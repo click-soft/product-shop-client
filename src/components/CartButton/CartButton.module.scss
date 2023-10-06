@@ -1,0 +1,33 @@
+@import '../../config/variables';
+
+.items-count {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  min-width: 25px;
+  padding: 2px 5px;
+  border-radius: 50px;
+  background-color: rgba($color: $color-pink, $alpha: 0.9);
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
+
+.animate {
+  animation: pop 0.1s ease-in-out forwards;
+}
+
+@keyframes pop {
+  0% {
+    transform: translatY(-50%);
+  }
+
+  50% {
+    transform: translateY(50%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}

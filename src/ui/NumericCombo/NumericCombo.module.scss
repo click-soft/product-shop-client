@@ -1,0 +1,20 @@
+@import '../../config/variables';
+
+.combo-style {
+  width: 50px;
+  border: 1px solid $color-lightblue;
+  border-radius: 4px;
+  padding: 4px;
+  outline: none;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-style {
+  @include blue-button;
+  margin-top: 2px;
+  height: 28px;
+}

@@ -1,0 +1,26 @@
+@import '../../config/variables';
+
+.textbox {
+  display: flex;
+  margin: 0;
+  height: 35px;
+}
+
+.textbox input {
+  width: 100%;
+  padding-left: 6px;
+  margin: 0;
+  border: none;
+  outline: none;
+  background-color: $color-lightgray;
+  &:focus {
+    border: 1px solid $color-lightblue;
+    border-left: none;
+  }
+}
+
+.indicator {
+  width: 3px;
+  height: 100%;
+  background-color: $color-blue;
+}

@@ -1,0 +1,39 @@
+@import '../../config/variables';
+
+.container {
+  display: flex;
+  justify-content: center;
+
+  table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px;
+  }
+
+  th {
+    border-top: 1px solid $color-lightblue;
+    border-bottom: 1px solid $color-lightblue;
+    margin: 0;
+    padding: 10px 0;
+    background-color: $color-lightskyblue;
+  }
+
+  tr {
+    border-bottom: 1px solid $color-lightblue;
+  }
+}
+
+.first-column-header {
+  span {
+    position: absolute;
+  }
+}
+
+.first-column {
+  text-align: center;
+}
+
+.last-column {
+  text-align: center;
+}
+

@@ -1,0 +1,37 @@
+@import '../../config/variables';
+
+.header {
+  background-color: white;
+  border-bottom: 1px solid rgba($color: $color-blue, $alpha: 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: $header-height;
+  z-index: 1000;
+}
+
+.header__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 10px;
+}
+
+.header__left {
+  display: flex;
+}
+
+.header__center {
+  flex: 1;
+  text-align: center;
+}
+
+.header__right {
+  display: flex;
+}
+
+.logo {
+  height: $header-height;
+}

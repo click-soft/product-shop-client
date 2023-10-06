@@ -1,0 +1,31 @@
+@import '../../config/_variables.scss';
+
+.item {
+  width: 95%;
+  padding: 10px 0;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 10px 0;
+  font-size: $font-size-level4;
+  .fit {
+    @include fit-mark;
+  }
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail__left {
+  color: $color-gray;
+}
+
+.detail__right {
+  font-size: $font-size-level4;
+  font-weight: bold;
+}

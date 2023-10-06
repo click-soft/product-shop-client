@@ -1,0 +1,92 @@
+$radius-primary: 4px;
+$backcolor-primary: rgb(233, 237, 249);
+$header-height: 48px;
+$cart-view-height: 5rem;
+
+$color-black: #333;
+$color-pink: #ef23b2;
+$color-red: #ef2a23;
+$color-darkred: #9e100b;
+$color-darkblue: #0165d6;
+$color-darkblue2: #0053b3;
+$color-darkblue3: #00397a;
+$color-blue: #297ad6;
+$color-lightskyblue: #b8d7fa;
+$color-lightblue: #77a4d8;
+$color-lightgray: #f7f7f7;
+$color-gray: rgb(128, 128, 128);
+$color-lightgreen: #80e12a;
+$color-green: #369f36;
+
+$font-size-level1: 10px;
+$font-size-level2: 13px;
+$font-size-level3: 16px;
+$font-size-level4: 19px;
+$font-size-level5: 22px;
+$font-size-level6: 25px;
+$font-size-level7: 28px;
+$font-size-level8: 31px;
+
+@mixin custom-button(
+  $color: $color-lightgray,
+  $backgroundColor: $color-blue,
+  $activeBackgroundColor: $color-darkblue
+) {
+  color: $color;
+  background-color: $backgroundColor;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover,
+  &:active {
+    background-color: $activeBackgroundColor;
+  }
+}
+
+@mixin blue-button {
+  color: white;
+  background-color: $color-blue;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover,
+  &:active {
+    background-color: $color-darkblue;
+  }
+}
+
+@mixin white-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  height: 4rem;
+  font-size: $font-size-level2;
+  border-radius: 4px;
+  font-weight: bold;
+  color: $color-darkblue2;
+  background-color: whitesmoke;
+  border: none;
+  &:hover {
+    cursor: pointer;
+    color: $color-darkblue3;
+    background-color: $color-lightgray;
+  }
+}
+
+@mixin fit-mark {
+  margin: 0;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: $font-size-level2;
+  border: 1px solid $color-green;
+  background-color: $color-green;
+  color: white;
+}
+
+@mixin box-mark {
+  @include fit-mark;
+  border: 1px solid $color-gray;
+  background-color: $color-gray;
+}

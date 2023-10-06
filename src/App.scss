@@ -1,0 +1,13 @@
+@import './config/variables';
+
+body {
+  background-color: $backcolor-primary;
+}
+
+.header-text {
+  text-align: center;
+  color: $color-blue;
+  padding: 10px;
+  margin: 0 20px;
+  border-bottom: 1px solid $color-lightblue;
+}

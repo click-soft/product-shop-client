@@ -1,0 +1,12 @@
+@import '../../config/variables';
+
+.main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    font-size: $font-size-level7;
+  }
+}

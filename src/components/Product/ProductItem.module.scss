@@ -1,0 +1,40 @@
+@import '../../config/variables';
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 23rem;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 4px 10px;
+  background-color: white;
+  margin: 10px;
+
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.cost {
+  background-color: $color-blue;
+  border-radius: 4px;
+  min-width: 6rem;
+  text-align: right;
+  padding: 5px;
+  margin: 0;
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+.item__name{
+  margin: 10px 0;
+}
+
+.item__unit{
+  margin-bottom: 10px;
+  font-size: $font-size-level2;
+  color: $color-gray;
+}

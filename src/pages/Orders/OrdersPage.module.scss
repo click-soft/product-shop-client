@@ -1,0 +1,11 @@
+@import '../../config/variables';
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

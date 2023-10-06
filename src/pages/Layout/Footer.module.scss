@@ -1,0 +1,41 @@
+@import '../../config/variables';
+
+.footer {
+  position: relative;
+  bottom: 0px;
+  width: 100%;
+  // background-color: $color-lightskyblue;
+  // padding: 20px;
+  color: black;
+  text-align: left;
+}
+
+.footer__wrapper {
+  margin: 20px;
+  padding-top: 20px;
+  border-top: 1px solid $color-lightskyblue;
+}
+
+.cart-view {
+  padding-bottom: calc(#{$cart-view-height} + 20px);
+}
+
+.company {
+  display: flex;
+  flex-direction: column;
+  strong {
+    color: black;
+    font-size: $font-size-level3;
+    padding-bottom: 6px;
+  }
+  color: $color-gray;
+  font-size: $font-size-level2;
+}
+
+.vertical {
+  display: inline-block;
+  width: 1px;
+  background-color: $color-gray;
+  height: 10px;
+  margin: 0 10px;
+}

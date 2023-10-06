@@ -1,0 +1,18 @@
+.checkbox {
+  display: flex;
+  align-items: center;  
+
+  label{
+    display: flex;    
+    width: 100%;
+    padding: 2px;
+  }
+}
+
+// 체크박스 디폴트 이미지 적용
+input[id='checkbox'] {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: top;
+}

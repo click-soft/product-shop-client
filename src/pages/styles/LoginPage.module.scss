@@ -1,0 +1,9 @@
+@import "../../config/variables";
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $backcolor-primary;
+  height: 100vh;
+}

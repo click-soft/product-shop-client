@@ -1,0 +1,25 @@
+@import '../../../config/variables';
+
+.card {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-weight: bold;
+  color: $color-blue; 
+  &.error {
+    color: $color-red;
+  }
+}
+
+.message {
+  margin: 4px;
+}

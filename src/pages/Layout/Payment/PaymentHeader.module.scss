@@ -1,0 +1,36 @@
+@import '../../../config/variables';
+
+.header {
+  position: relative;
+  height: $header-height;
+  align-items: center;
+  background-color: $color-lightgray;
+  box-shadow: 0px 2px 4px rgba($color: $color-lightskyblue, $alpha: 1);
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  img {
+    height: calc(#{$header-height} - 10px);
+  }
+}
+
+.header__center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.header__right {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

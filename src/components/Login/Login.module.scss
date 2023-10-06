@@ -1,0 +1,60 @@
+@import '../../config/variables';
+
+.card {
+  position: relative;
+}
+
+.select-mode {
+  position: absolute;
+  display: flex;  
+  justify-content: space-evenly;
+  text-align: center;  
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  a {
+    width: 5rem;
+    font-size: $font-size-level2;
+    padding: 4px;
+    color: $color-gray;
+    text-decoration: none;
+  }
+}
+
+.active {
+  border-bottom: 2px solid $color-darkblue;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 0;
+  h2 {
+    margin: 0;
+    color: $color-blue;
+    margin-bottom: 20px;
+  }
+}
+
+.login_form {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 20rem;
+}
+
+.ykiho_form {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    padding: 4px;
+  }
+}
+
+.login_button {
+  margin-top: 10px;
+  height: 36px;
+  @include blue-button;
+}

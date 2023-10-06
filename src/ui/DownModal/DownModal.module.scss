@@ -1,0 +1,23 @@
+@import '../../config/variables';
+
+.slider {
+  position: fixed;
+  top: $header-height;
+  right: 0;
+  min-width: 22rem;
+  background-color: rgba($color: blue, $alpha: 0.5);
+  // overflow: hidden;  
+  // height: 40rem;
+  animation: down 0.5s ease-in forwards;
+  z-index: 10000;
+}
+
+@keyframes down {
+  0% {
+    max-height: 0;
+  }
+  100%{
+    max-height: 80%;   
+    overflow-y: auto;
+  }
+}

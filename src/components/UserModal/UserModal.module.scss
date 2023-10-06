@@ -1,0 +1,40 @@
+@import '../../config/variables';
+
+.container {
+  height: 100%;
+
+  & > .header,
+  & > .list {
+    padding: 10px 20px;
+  }
+
+  .header {
+    background-color: $color-darkblue;
+    display: flex;
+    justify-content: space-between;
+    color: whitesmoke;
+  }
+
+  .header__left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__left__title {
+    font-size: $font-size-level4;
+    margin-bottom: 4px;
+  }
+
+  .header__left__sub {
+    font-size: $font-size-level2;
+  }
+}
+
+.shop-button {
+  @include white-button;
+  .shop-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-bottom: 3px;
+  }
+}

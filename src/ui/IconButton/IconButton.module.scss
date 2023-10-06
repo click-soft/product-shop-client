@@ -1,0 +1,13 @@
+@import '../../config/variables';
+
+.button {
+  position: relative;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  color: $color-black;
+
+  :hover{
+    color: $color-red;
+  }
+}
