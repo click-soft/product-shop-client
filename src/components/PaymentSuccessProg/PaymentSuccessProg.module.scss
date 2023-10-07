@@ -1,0 +1,15 @@
+@import '../../config/variables';
+
+.wrapper {
+  text-align: center;
+}
+
+.main__text {
+  font-size: $font-size-level8;
+  color: $color-blue;
+  font-weight: bold;
+}
+
+.main__description {
+  padding-top: 20px;
+}

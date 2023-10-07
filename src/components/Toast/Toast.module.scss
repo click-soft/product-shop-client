@@ -1,0 +1,132 @@
+@import '../../config/variables';
+$icon-size: 24px;
+$toastBackgroundOpacity : 0.9;
+
+.toast {
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  width: 90vw;
+  transition: 3px;
+  overflow: hidden;
+  align-items: center;
+
+  .message_wrapper {
+    display: flex;
+    flex: 1;
+    align-items: center;
+  }
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-right: 1.5rem;
+  width: $icon-size;
+  height: $icon-size;
+}
+
+.message {
+  flex: 1;
+  color: white;
+  font-size: $font-size-level4;
+  padding-bottom: 2px;
+}
+
+.close {
+  margin-left: 1.5rem;
+  margin-right: 0;
+  color: white;
+  font-weight: bold;
+}
+
+.toast.show {
+  animation: pop 0.5s ease forwards;
+}
+.toast.hide {
+  animation: hide 0.3s linear forwards;
+}
+
+.toast::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;  
+  animation: progress 5s ease forwards;
+}
+
+.info {
+  background-color: rgba($color: $color-blue, $alpha: $toastBackgroundOpacity);
+}
+
+.info::before {
+  background-color: $color-darkblue2;
+}
+
+.ok {
+  background-color: rgba($color: $color-green, $alpha: $toastBackgroundOpacity);
+}
+
+.ok::before {
+  background-color: $color-darkgreen;
+}
+
+.warning {
+  background-color: rgba($color: rgb(255, 123, 0), $alpha: $toastBackgroundOpacity);
+}
+
+.warning::before {
+  background-color: $color-darkbrown;
+}
+
+.error {
+  background-color: rgba($color: $color-red, $alpha: $toastBackgroundOpacity);
+}
+
+.error::before {
+  background-color: $color-darkred;
+}
+
+@keyframes progress {
+  100% {
+    width: 0%;
+  }
+}
+
+@keyframes hide {
+  0% {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  100% {
+    left: 50%;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pop {
+  0% {
+    left: 50%;
+    transform: translateX(100%);
+  }
+  40% {
+    left: 50%;
+    transform: translateX(-60%);
+  }
+  60% {
+    left: 50%;
+    transform: translateX(-45%);
+  }
+  100% {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
