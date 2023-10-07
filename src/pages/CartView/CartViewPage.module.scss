@@ -1,5 +1,10 @@
 @import '../../config/variables';
 
+.caption {
+  padding-bottom: 20px;
+  font-size: $font-size-level6;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -36,4 +41,3 @@
 .last-column {
   text-align: center;
 }
-

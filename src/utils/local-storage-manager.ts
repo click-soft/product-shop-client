@@ -1,5 +1,5 @@
 export enum LocalStoragekey {
-  CHECKOUT_DATA = 'CHECKOUT_DATA'
+  TEST = 'TEST'
 }
 
 export default class LocalStorageManager {

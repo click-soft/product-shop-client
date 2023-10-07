@@ -6,13 +6,14 @@ import DownModal from '../../ui/DownModal/DownModal';
 import { useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import useCartItems from '../../hooks/use-cart-items';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../../store/modal-slice';
 import CartItemManager from '../../utils/cart-item-manager';
 
 const Cart = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const { cartItems } = useCartItems();
   const cartItemManager = useMemo(
     () => new CartItemManager(cartItems),
@@ -51,14 +52,14 @@ const Cart = () => {
                 className={styles.totalPrice}
               >{`₩${cartItemManager.totalPrice.toLocaleString()}`}</div>
             </div>
-            <NavLink
+            <Link
               to="/cart-view"
               className={styles['shop-button']}
               onClick={navToCartHandler}
             >
               <BsCartCheck className={styles['shop-icon']} />
               장바구니 보기
-            </NavLink>
+            </Link>
           </div>
           <ul className={styles.list}>{itemsComponents}</ul>
         </div>

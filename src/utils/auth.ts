@@ -7,7 +7,7 @@ const checkAuth = async (): Promise<boolean> => {
   return !!user;
 };
 
-export async function checkAuthLoader() {
+export async function checkAuthLoader() {  
   const isAuthenticated = await checkAuth();
 
   if (isAuthenticated) {

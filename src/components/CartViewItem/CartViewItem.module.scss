@@ -87,3 +87,11 @@
 .last-column {
   text-align: center;
 }
+
+.cancel-button {
+  @include custom-button(
+    $backgroundColor: $color-lightred,
+    $activeBackgroundColor: $color-red
+  );
+  padding: 4px;
+}

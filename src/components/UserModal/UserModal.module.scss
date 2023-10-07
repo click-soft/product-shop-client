@@ -38,3 +38,33 @@
     margin-bottom: 3px;
   }
 }
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li > a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+   
+    text-decoration: none;
+    .icon {
+      width: 30px;
+      height: 30px;
+      color: $color-blue;
+      margin-right: 10px;
+    }
+    span {
+      color: $color-darkblue3;
+    }
+  }
+
+  li:hover,
+  li:active {
+    background-color: $color-lightskyblue;
+    border-radius: 14px;
+  }
+}

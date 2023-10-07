@@ -9,8 +9,8 @@ export const UPDATE_CART_ITEM_QUANTITY = gql`
 `;
 
 export const DELETE_CART_ITEM = gql`
-  mutation ($id:Int!) {
-    deleteCartItem(id: $id){
+  mutation ($ids:[Int!]!) {
+    deleteCartItems(ids: $ids){
       raw
     }
   }

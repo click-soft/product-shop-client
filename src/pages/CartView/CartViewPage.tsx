@@ -5,7 +5,10 @@ import { getCartWithProduct } from '../../graphql/queries/cart';
 import CartViewItems from '../../components/CartViewItem/CartViewItem';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store';
-import { deleteCartItem, updateCartItemQuantity } from '../../store/cart-slice';
+import {
+  deleteCartItems,
+  updateCartItemQuantity,
+} from '../../store/cart-slice';
 import BuyArea from '../../components/BuyArea/BuyArea';
 import { useNavigate } from 'react-router-dom';
 import CartItemManager from '../../utils/cart-item-manager';
@@ -13,21 +16,48 @@ import CheckoutState from '../../interfaces/CheckoutState';
 import { paymentActions } from '../../store/payment-slice';
 
 const CartViewPage = () => {
+  const [allCheck, setAllCheck] = useState<boolean>(true);
+  const [chkItemIds, setChkItemIds] = useState<number[]>([]);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [cart, setCart] = useState<Cart>();
   const cartItemManager = useMemo(
-    () => new CartItemManager(cart?.cartItems),
-    [cart?.cartItems],
+    () =>
+      new CartItemManager(
+        cart?.cartItems.filter((item) => chkItemIds.includes(item.id!)),
+      ),
+    [cart?.cartItems, chkItemIds],
   );
 
+  function getIds(cart: Cart): number[] {
+    return cart?.cartItems.map((item) => item.id!)!;
+  }
+
   useEffect(() => {
-    fetchCart();
+    fetchCart().then((cart) => {
+      setChkItemIds(getIds(cart!));
+    });
   }, []);
 
-  async function fetchCart() {
+  useEffect(() => {
+    const isAllChecked = chkItemIds?.length === cart?.cartItems.length;
+    setAllCheck(isAllChecked);
+  }, [chkItemIds]);
+
+  function allCheckChangeHandler(checked: boolean) {
+    setAllCheck(checked);
+    if (checked) {
+      setChkItemIds(getIds(cart!));
+    } else {
+      setChkItemIds([]);
+    }
+  }
+
+  async function fetchCart(): Promise<Cart | undefined> {
     const cart = await getCartWithProduct();
+
     setCart(cart);
+    return cart;
   }
 
   const countChangeHandler = (cartItemId: number, value: number) => {
@@ -42,7 +72,7 @@ const CartViewPage = () => {
   };
 
   function onCancelHandler(id: number): void {
-    dispatch(deleteCartItem(id)).then(() => fetchCart());
+    dispatch(deleteCartItems([id])).then(() => fetchCart());
   }
 
   function buyHandler() {
@@ -52,6 +82,7 @@ const CartViewPage = () => {
       totalPrice: cartItemManager.totalPrice,
       totalQuantity: cartItemManager.totalQuantity,
     };
+
     dispatch(paymentActions.checkout(state));
     navigate('/payment');
   }
@@ -61,6 +92,14 @@ const CartViewPage = () => {
       <CartViewItems
         key={ci.id}
         cartItem={ci}
+        checked={chkItemIds.includes(ci.id!)}
+        onCheckChange={(checked) => {
+          if (checked) {
+            setChkItemIds((prevIds) => prevIds?.concat(ci.id!));
+          } else {
+            setChkItemIds((prevIds) => prevIds?.filter((i) => i !== ci.id));
+          }
+        }}
         onCancel={onCancelHandler}
         onCountChange={countChangeHandler}
       />
@@ -71,7 +110,7 @@ const CartViewPage = () => {
     <>
       <div className={styles.container}>
         <table>
-          <caption>sdadasd</caption>
+          <caption className={styles.caption}>장바구니 목록</caption>
           <colgroup>
             <col width={50} />
             <col span={2} width="*" />
@@ -84,7 +123,11 @@ const CartViewPage = () => {
                 className={`${styles['first-column']} ${styles['first-column-header']}`}
               >
                 <label>
-                  <input type="checkbox" />
+                  <input
+                    type="checkbox"
+                    checked={allCheck}
+                    onChange={(e) => allCheckChangeHandler(e.target.checked)}
+                  />
                   <span>전체</span>
                 </label>
               </th>
@@ -97,7 +140,11 @@ const CartViewPage = () => {
           <tbody>{itemComponents}</tbody>
         </table>
       </div>
-      <BuyArea totalPrice={cartItemManager.totalPrice} onBuy={buyHandler} />
+      <BuyArea
+        totalPrice={cartItemManager.totalPrice}
+        onBuy={buyHandler}
+        disabled={chkItemIds.length === 0}
+      />
     </>
   );
 };

@@ -5,6 +5,8 @@ import { formatCurrency } from '../../utils/strings';
 import NumericCombo from '../../ui/NumericCombo/NumericCombo';
 interface CartViewItemProps {
   cartItem: CartItem;
+  checked: boolean;
+  onCheckChange: (checked: boolean) => void;
   onCountChange: (id: number, value: number) => void;
   onCancel: (id: number) => void;
 }
@@ -13,10 +15,20 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
   const ci = props.cartItem;
   const totalPrice = ci.quantity * ci.product?.danga!;
 
+  function checkChangeHandler(
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): void {
+    props.onCheckChange(event.target.checked);
+  }
+
   return (
     <tr key={ci.id}>
       <td className={styles['first-column']}>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          checked={props.checked}
+          onChange={checkChangeHandler}
+        />
       </td>
       <td className={styles['second-column']} colSpan={2}>
         <div className={styles['cart-item']}>
@@ -48,7 +60,12 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
               />
             </div>
 
-            <button onClick={props.onCancel.bind(null, ci.id!)}>취소</button>
+            <button
+              className={styles['cancel-button']}
+              onClick={props.onCancel.bind(null, ci.id!)}
+            >
+              취소
+            </button>
           </div>
         </div>
       </td>

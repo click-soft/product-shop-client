@@ -1,29 +1,6 @@
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
-
-interface CheckoutInput {
-  paymentType: string
-  orderId: string
-  orderName: string
-  paymentKey: string
-  amount: number
-  quantity: number
-  items: CheckoutCartItemInput[]
-}
-
-interface CheckoutCartItemInput {
-  code: string
-  name: string
-  fit: boolean
-  quantity: number
-  amount: number
-}
-
-interface CheckoutResult {
-  success: string
-  errorCode?: string
-  errorMessage?: string
-}
+import { CheckoutInput, CheckoutResult } from "../interfaces/checkout";
 
 export const CHECKOUT = gql`
   mutation Checkout(
@@ -47,13 +24,19 @@ export const CHECKOUT = gql`
     success
     errorCode
     errorMessage
+    method
+    approvedAt
   }
 }
 `;
 
 export const CANCEL_ORDER = gql`
-  mutation ($paymentKey:String! $cancelReason:String! ){
-    cancelOrder(paymentKey: $paymentKey cancelReason: $cancelReason)
+  mutation ($paymentId: Int!, $paymentKey:String! $cancelReason:String! ){
+    cancelOrder(paymentId:$paymentId paymentKey: $paymentKey cancelReason: $cancelReason){
+      success
+      errorCode
+      errorMessage
+    }
   }
 `;
 
@@ -65,3 +48,26 @@ export const checkout = async (input: CheckoutInput): Promise<CheckoutResult> =>
 
   return response.data.checkout;
 }
+
+// export const cancelOrder = async (
+//   { paymentId, paymentKey, cancelReason }: {
+//     paymentId: number,
+//     paymentKey: string,
+//     cancelReason: string
+//   }): Promise<CheckoutResult> => {
+//   const response = await client.mutate({
+//     mutation: CANCEL_ORDER,
+//     variables: { paymentId, paymentKey, cancelReason },
+//   });
+
+//   if (response.errors) {
+//     const err = response.errors[0];
+//     return {
+//       success: false,
+//       errorCode: "error",
+//       errorMessage: err.message,
+//     }
+//   } else {
+//     return response.data.cancelOrder;
+//   }
+// }

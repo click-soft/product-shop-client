@@ -54,12 +54,12 @@ export const updateCartItemQuantity = createAsyncThunk(
   }
 )
 
-export const deleteCartItem = createAsyncThunk(
-  'cart-slice/deleteCartItem',
-  async (id: number, thunkAPI) => {
+export const deleteCartItems = createAsyncThunk(
+  'cart-slice/deleteCartItems',
+  async (ids: number[], thunkAPI) => {
     const response = await client.mutate({
       mutation: DELETE_CART_ITEM,
-      variables: { id }
+      variables: { ids }
     })
 
     if (!response.errors) {

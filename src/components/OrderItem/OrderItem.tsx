@@ -7,7 +7,7 @@ interface OrderItemProps {
   setSeparator: boolean;
 }
 
-const OrderItem: React.FC<OrderItemProps> = ({ item ,setSeparator }) => {
+const OrderItem: React.FC<OrderItemProps> = ({ item, setSeparator }) => {
   const totalAmount = item.amount * item.quantity;
   return (
     <li className={`${styles.container} ${setSeparator && styles.separator}`}>
@@ -17,8 +17,8 @@ const OrderItem: React.FC<OrderItemProps> = ({ item ,setSeparator }) => {
           {item.quantity > 1 && <span>x {item.quantity}</span>}
         </div>
         <div className={styles.info}>
-          <div className={styles.fit}>맞춤</div>
-          <div className={styles.box}>BOX</div>
+          {item.fit && <div className={styles.fit}>맞춤</div>}
+          {/* {item. <div className={styles.box}>BOX</div>} */}
         </div>
       </div>
       <div className={styles.amount}>{totalAmount.toLocaleString()}원</div>

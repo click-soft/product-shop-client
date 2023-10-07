@@ -19,9 +19,9 @@
   align-items: center;
   padding: 10px 30px;
   box-shadow: 1px 2px 4px rgba($color: $color-blue, $alpha: 0.3);
-  color: $color-lightgray;
-  background-color: $color-darkblue2;
-  // color: $color-lightgray;
+  font-weight: bold;
+  background-color: $color-lightorange;
+  color: $color-darkbrown;
 }
 
 .order-body-wrapper {
@@ -34,22 +34,30 @@
   }
 }
 
-.order-send {
+.send-type-base {
+  font-weight: normal;
   font-size: $font-size-level2;
   color: $color-gray;
   border-radius: 4px;
+  border: 1px solid white;
   padding: 4px;
   background-color: white;
 }
 
 .send-type-ing {
-  color: $color-blue;
+  color: white;
+  background-color: $color-lightblue;
 }
 
 .send-type-end {
   color: white;
-  border: 1px solid white;
   background-color: $color-green;
+}
+
+.send-type-cancel {
+  color: white;
+  border: 1px solid white;
+  background-color: $color-lightred;
 }
 
 .footer {
@@ -71,7 +79,7 @@
   height: 38px;
   margin-top: 10px;
   @include custom-button(
-    $backgroundColor: $color-red,
+    $backgroundColor: $color-lightred,
     $activeBackgroundColor: red
   );
 }

@@ -6,10 +6,12 @@ export const GET_PAYMENT_WITH_ITEMS = gql`
       id
       orderId
       paymentKey
+      method
       amount
       quantity
       approvedAt
       sendType
+      cancel
       paymentItems {
         id
         name

@@ -12,25 +12,28 @@ import PaymentLayout from './pages/Layout/Payment/PaymentLayout';
 import PaymentSuccessPage from './pages/PaymentSuccess/PaymentSuccessPage';
 import PaymentFailPage from './pages/PaymentFail/PaymentFailPage';
 import OrdersPage from './pages/Orders/OrdersPage';
+import PaymentProcessingPage from './pages/PaymentProcessing/PaymentProcessingPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-    loader: checkAuthLoader,
     children: [
       {
         index: true,
         element: <MainPage />,
+        loader: checkAuthLoader,
       },
       {
         path: 'cart-view',
         element: <CartViewPage />,
+        loader: checkAuthLoader,
       },
       {
         path: 'orders',
         element: <OrdersPage />,
+        loader: checkAuthLoader,
       },
     ],
   },
@@ -47,6 +50,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <PaymentPage />,
+      },
+      {
+        path: 'processing',
+        element: <PaymentProcessingPage />,
       },
       {
         path: 'success',

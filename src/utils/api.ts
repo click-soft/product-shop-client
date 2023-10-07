@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { interceptors } from './storage';
 
 const BASE_URL = 'http://localhost:3000';

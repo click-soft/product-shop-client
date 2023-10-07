@@ -6,6 +6,7 @@ $cart-view-height: 5rem;
 $color-black: #333;
 $color-pink: #ef23b2;
 $color-red: #ef2a23;
+$color-lightred: #ff2a52;
 $color-darkred: #9e100b;
 $color-darkblue: #0165d6;
 $color-darkblue2: #0053b3;
@@ -17,6 +18,11 @@ $color-lightgray: #f7f7f7;
 $color-gray: rgb(128, 128, 128);
 $color-lightgreen: #80e12a;
 $color-green: #369f36;
+$color-darkgreen: #006600;
+$color-yellow: #fff56e;
+$color-lightorange: #fcc736;
+$color-orange: #ffb900;
+$color-darkbrown: #69500b;
 
 $font-size-level1: 10px;
 $font-size-level2: 13px;
@@ -43,6 +49,14 @@ $font-size-level8: 31px;
   }
 }
 
+@mixin button-disable {
+  &:disabled {
+    color: white;
+    cursor: not-allowed;
+    color: gray;
+  }
+}
+
 @mixin blue-button {
   color: white;
   background-color: $color-blue;
@@ -53,6 +67,7 @@ $font-size-level8: 31px;
   &:active {
     background-color: $color-darkblue;
   }
+  @include button-disable;
 }
 
 @mixin white-button {
@@ -73,6 +88,7 @@ $font-size-level8: 31px;
     color: $color-darkblue3;
     background-color: $color-lightgray;
   }
+  @include button-disable;
 }
 
 @mixin fit-mark {

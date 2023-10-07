@@ -4,10 +4,11 @@ import { formatCurrency } from '../../utils/strings';
 
 interface BuyAreaProps {
   totalPrice: number;
+  disabled: boolean;
   onBuy: () => void;
 }
 
-const BuyArea: React.FC<BuyAreaProps> = ({ totalPrice, onBuy }) => {
+const BuyArea: React.FC<BuyAreaProps> = ({ totalPrice, onBuy, disabled }) => {
   return (
     <div className={styles['buy-container']}>
       <div className={styles['buy-wrapper']}>
@@ -17,7 +18,11 @@ const BuyArea: React.FC<BuyAreaProps> = ({ totalPrice, onBuy }) => {
             {formatCurrency(totalPrice)}원
           </div>
         </div>
-        <button className={styles['buy-amount-button']} onClick={onBuy}>
+        <button
+          className={styles['buy-amount-button']}
+          onClick={onBuy}
+          disabled={disabled}
+        >
           구매하기
         </button>
       </div>
