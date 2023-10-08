@@ -1,6 +1,6 @@
 import ProductPage from './ProductPage/ProductPage';
 
-function MainPage() {
+function MainPage() {  
   return <ProductPage />;
 }
 

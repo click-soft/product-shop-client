@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { interceptors } from './storage';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
 interface GqlResponse {
   data: any;
@@ -44,7 +44,7 @@ const axiosAuthApi = (url: string, options?: any) => {
 
 export const baseApi = axiosApi(BASE_URL + '/api');
 export const authApi = axiosAuthApi(BASE_URL + '/api');
-export const gqlPost = async (data: any) : Promise<GqlResponse> => {
+export const gqlPost = async (data: any): Promise<GqlResponse> => {
   const url = BASE_URL + '/graphql';
   const response = await axios.post(url, data, { withCredentials: true });
 
