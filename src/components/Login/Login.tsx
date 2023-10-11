@@ -7,9 +7,11 @@ import TextInput from '../../ui/TextInput/TextInput';
 import useFindUser from '../../hooks/use-find-user';
 import LoginMsgCard from './LoginMsgCard/LoginMsgCard';
 import { login } from '../../graphql/mutates/auth';
+import useToast from '../../hooks/use-toast';
 
 function Login() {
   const navigate = useNavigate();
+  const { showToast, toastComponet } = useToast();
   const [inputValue, setInputValue] = useState('');
   const { data, error, fetchHospData } = useFindUser();
   const [searchQuery] = useSearchParams();
@@ -24,10 +26,14 @@ function Login() {
     e.preventDefault();
 
     if (!error) {
-      const result = await login(isBuisness, inputValue);
+      try {
+        const result = await login(isBuisness, inputValue);
 
-      if (result.message === 'success') {
-        navigate('/');
+        if (result.message === 'success') {
+          navigate('/');
+        }
+      } catch (err: any) {
+        showToast('error', err.message);
       }
     }
   }
@@ -58,57 +64,60 @@ function Login() {
   );
 
   return (
-    <Card className={styles.card}>
-      <div className={styles['select-mode']}>
-        <Link
-          to={`/login`}
-          className={isBuisness ? undefined : styles.active}
-          onClick={linkClickHandler}
-        >
-          요양기관
-        </Link>
-        <Link
-          to={`/login?mode=buisness`}
-          className={isBuisness ? styles.active : undefined}
-          onClick={linkClickHandler}
-        >
-          사업자
-        </Link>
-      </div>
-      <div className={styles.container}>
-        <h2>Login Account</h2>
-        <form className={styles.login_form} onSubmit={submitHandler}>
-          <div className={styles.ykiho_form}>
-            {inputBox}
-            {error?.type === 'notfound error' && (
-              <LoginMsgCard
-                isError={true}
-                dataList={[
-                  {
-                    title: 'Error',
-                    message: error.message,
-                  },
-                ]}
-              />
-            )}
-            {data?.ykiho && (
-              <LoginMsgCard
-                dataList={[
-                  { title: '요양기관명칭', message: data?.name },
-                  { title: '대표자명', message: data?.ceoName },
-                ]}
-              />
-            )}
-            <button
-              className={`${styles.login_button} blue-button`}
-              id="btn-login"
-            >
-              로그인
-            </button>
-          </div>
-        </form>
-      </div>
-    </Card>
+    <>
+      {toastComponet}
+      <Card className={styles.card}>
+        <div className={styles['select-mode']}>
+          <Link
+            to={`/login`}
+            className={isBuisness ? undefined : styles.active}
+            onClick={linkClickHandler}
+          >
+            요양기관
+          </Link>
+          <Link
+            to={`/login?mode=buisness`}
+            className={isBuisness ? styles.active : undefined}
+            onClick={linkClickHandler}
+          >
+            사업자
+          </Link>
+        </div>
+        <div className={styles.container}>
+          <h2>Login Account</h2>
+          <form className={styles.login_form} onSubmit={submitHandler}>
+            <div className={styles.ykiho_form}>
+              {inputBox}
+              {error?.type === 'notfound error' && (
+                <LoginMsgCard
+                  isError={true}
+                  dataList={[
+                    {
+                      title: 'Error',
+                      message: error.message,
+                    },
+                  ]}
+                />
+              )}
+              {data?.ykiho && (
+                <LoginMsgCard
+                  dataList={[
+                    { title: '요양기관명칭', message: data?.name },
+                    { title: '대표자명', message: data?.ceoName },
+                  ]}
+                />
+              )}
+              <button
+                className={`${styles.login_button} blue-button`}
+                id="btn-login"
+              >
+                로그인
+              </button>
+            </div>
+          </form>
+        </div>
+      </Card>
+    </>
   );
 }
 

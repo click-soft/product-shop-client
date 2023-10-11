@@ -25,28 +25,23 @@ export const login = async (
   value: string,
 ): Promise<Message> => {
   client.resetStore();
-  try {
-    const ykiho = isBuisness ? undefined : value;
-    const saupkiho = isBuisness ? value : undefined;
-    const response = await client.mutate({
-      mutation: gql`
+
+  const ykiho = isBuisness ? undefined : value;
+  const saupkiho = isBuisness ? value : undefined;
+  const response = await client.mutate({
+    mutation: gql`
         mutation ($ykiho: String, $saupkiho: String){
           login(ykiho: $ykiho, saupkiho:$saupkiho) {
             message
           }
         }
       `,
-      variables: {
-        ykiho, saupkiho
-      }
-    });
+    variables: {
+      ykiho, saupkiho
+    }
+  });
 
-    return {
-      message: response.data.login.message,
-    };
-  } catch (err) {
-    console.log(err);
-
-    return { message: 'fail' };
-  }
+  return {
+    message: response.data.login.message,
+  };
 };
