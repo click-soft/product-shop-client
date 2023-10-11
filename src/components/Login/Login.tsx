@@ -28,7 +28,7 @@ function Login() {
 
     if (!error) {
       try {
-        const result = await login(isBuisness, inputValue);
+        // const result = await login(isBuisness, inputValue);
         const user = await getUser();
         showToast('info', JSON.stringify(user));
         // if (result.message === 'success') {

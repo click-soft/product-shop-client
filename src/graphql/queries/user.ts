@@ -6,14 +6,13 @@ import { parseExpToDate } from '../../utils/parse';
 import { CS_FIELD } from '../fragments/user.fragment';
 
 export const getUser = async (): Promise<UserProfile | undefined> => {
-  try {
-    const userString = getCookie('user');
-    let user: UserProfile;
-    if (userString) {
-      user = JSON.parse(userString);
-    } else {
-      const response = await client.query({
-        query: gql`
+  const userString = getCookie('user');
+  let user: UserProfile;
+  if (userString) {
+    user = JSON.parse(userString);
+  } else {
+    const response = await client.query({
+      query: gql`
           {
             getUser {
               jisa
@@ -27,18 +26,15 @@ export const getUser = async (): Promise<UserProfile | undefined> => {
             }
           }
         `,
-        fetchPolicy: 'no-cache',
-      });
+      fetchPolicy: 'no-cache',
+    });
 
-      user = response.data.getUser;
+    user = response.data.getUser;
 
-      const expires = parseExpToDate(response.data.getUser.exp);
-      setCookie('user', JSON.stringify(user), { expires });
-    }
-    return user;
-  } catch (err) {
-    return undefined;
+    const expires = parseExpToDate(response.data.getUser.exp);
+    setCookie('user', JSON.stringify(user), { expires, secure: true });
   }
+  return user;
 };
 
 export const GET_CS = gql`
