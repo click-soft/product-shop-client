@@ -37,7 +37,8 @@ export const login = async (
       `,
     variables: {
       ykiho, saupkiho
-    }
+    },
+    fetchPolicy: 'no-cache',
   });
 
   return {
