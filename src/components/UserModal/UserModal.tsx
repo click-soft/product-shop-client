@@ -9,7 +9,6 @@ import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import { logout } from '../../graphql/mutates/auth';
 import { BiBasket } from 'react-icons/bi';
 import useToast from '../../hooks/use-toast';
-import cookies from '../../utils/cookies';
 
 const UserModal = () => {
   const navigate = useNavigate();
@@ -21,7 +20,6 @@ const UserModal = () => {
   const user = useGetLoginedUser(showUserModal);
 
   const logoutHandler = async () => {
-    cookies.remove('user');
     const result = await logout();
     if (result.message === 'success') {
       await dispatch(modalActions.closeDownAll());
