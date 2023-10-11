@@ -20,11 +20,11 @@ const UserModal = () => {
   const user = useGetLoginedUser(showUserModal);
 
   const logoutHandler = async () => {
-    await logout().catch((err) => {
-      showToast('error', err.message);
-    });
-    await dispatch(modalActions.closeDownAll());
-    navigate('/login');
+    const result = await logout();
+    if (result.message === 'success') {
+      await dispatch(modalActions.closeDownAll());
+      navigate('/login');
+    }
   };
 
   if (!showUserModal) {

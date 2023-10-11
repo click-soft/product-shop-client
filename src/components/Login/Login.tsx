@@ -28,10 +28,10 @@ function Login() {
     if (!error) {
       try {
         const result = await login(isBuisness, inputValue);
-
-        if (result.message === 'success') {
-          navigate('/');
-        }
+        showToast('info', JSON.stringify(result));
+        // if (result.message === 'success') {
+        //   navigate('/');
+        // }
       } catch (err: any) {
         showToast('error', err.message);
       }
