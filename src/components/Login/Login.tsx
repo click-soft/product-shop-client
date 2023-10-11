@@ -9,6 +9,7 @@ import LoginMsgCard from './LoginMsgCard/LoginMsgCard';
 import { login } from '../../graphql/mutates/auth';
 import useToast from '../../hooks/use-toast';
 import { getUser } from '../../graphql/queries/user';
+import cookies from '../../utils/cookies';
 
 function Login() {
   const navigate = useNavigate();
@@ -29,9 +30,11 @@ function Login() {
     if (!error) {
       try {
         const result = await login(isBuisness, inputValue);
-        if (result.message === 'success') {
-          navigate('/');
-        }
+        const user: string = cookies.get('user');
+        showToast('error', user);
+        // if (result.message === 'success') {
+        //   navigate('/');
+        // }
       } catch (err: any) {
         showToast('error', err.message);
       }
