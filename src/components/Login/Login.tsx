@@ -8,6 +8,7 @@ import useFindUser from '../../hooks/use-find-user';
 import LoginMsgCard from './LoginMsgCard/LoginMsgCard';
 import { login } from '../../graphql/mutates/auth';
 import useToast from '../../hooks/use-toast';
+import { getUser } from '../../graphql/queries/user';
 
 function Login() {
   const navigate = useNavigate();
@@ -28,7 +29,8 @@ function Login() {
     if (!error) {
       try {
         const result = await login(isBuisness, inputValue);
-        showToast('info', JSON.stringify(result));
+        const user = await getUser();
+        showToast('info', JSON.stringify(user));
         // if (result.message === 'success') {
         //   navigate('/');
         // }
