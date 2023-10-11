@@ -1,6 +1,5 @@
-import { ApolloQueryResult, FetchResult, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
 import client from '../apollo-client';
-import { clearCookie } from '../../utils/cookies';
 
 type Message = {
   message: string;

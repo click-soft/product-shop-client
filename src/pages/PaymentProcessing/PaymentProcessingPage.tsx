@@ -14,7 +14,7 @@ const PaymentProcessingPage = () => {
   const { mutateCheckout } = useCheckout({
     isSession: true,
   });
-
+  
   useEffect(() => {
     mutateCheckout(searchParams)
       .then((data) => {

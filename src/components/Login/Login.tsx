@@ -28,12 +28,10 @@ function Login() {
 
     if (!error) {
       try {
-        // const result = await login(isBuisness, inputValue);
-        const user = await getUser();
-        showToast('info', JSON.stringify(user));
-        // if (result.message === 'success') {
-        //   navigate('/');
-        // }
+        const result = await login(isBuisness, inputValue);
+        if (result.message === 'success') {
+          navigate('/');
+        }
       } catch (err: any) {
         showToast('error', err.message);
       }
