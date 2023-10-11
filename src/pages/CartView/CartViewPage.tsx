@@ -72,6 +72,7 @@ const CartViewPage = () => {
   };
 
   function onCancelHandler(id: number): void {
+    setChkItemIds((prevIds) => prevIds.filter((pId) => pId !== id));
     dispatch(deleteCartItems([id])).then(() => fetchCart());
   }
 

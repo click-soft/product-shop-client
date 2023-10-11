@@ -20,13 +20,15 @@ const PaymentProcessingPage = () => {
       .then((data) => {
         if (data.success) {
           dispatch(deleteCartItems(data.ids));
-          navigate('/payment/success');
+          navigate(`/payment/success/${searchParams.get('orderId')}`);
         } else {
           throw new Error(data.errorMessage);
         }
       })
       .catch((error) => {
-        navigate('/error?code=access-denied');
+        console.log(error);
+
+        // navigate('/error?code=access-denied');
       });
   }, []);
 

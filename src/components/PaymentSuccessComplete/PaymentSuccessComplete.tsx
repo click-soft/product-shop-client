@@ -3,32 +3,61 @@ import Card from '../../ui/Card';
 import moment from 'moment';
 import useCheckout from '../../hooks/use-checkout';
 import { NavLink } from 'react-router-dom';
+import { PaymentType } from '../../graphql/interfaces/payment';
+import bankData from '../../data/bankData';
 
-const PaymentSuccessComplete = () => {
-  const { checkoutData } = useCheckout({ isSession: true });
-  const checkoutState = checkoutData?.checkoutState;
-  const ymd = moment(checkoutData?.approvedAt).format('YYYY-MM-DD');
+interface PaymentSuccessCompleteProps {
+  orderData: PaymentType;
+}
+const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({
+  orderData,
+}) => {
+  // const { checkoutData } = useCheckout({ isSession: true });
+  // const checkoutState = checkoutData?.checkoutState;
+  const ymd = moment(orderData.requestedAt).format('YYYY-MM-DD');
   return (
     <>
       <div className={styles.wrapper}>
         <div className={styles.title}>주문이 완료되었습니다.</div>
-        <div className={styles.order_id}>주문번호: {checkoutData?.orderId}</div>
+        <div className={styles.order_id}>주문번호: {orderData.orderId}</div>
 
         <Card className={styles.detail}>
           <section className={styles.detail_section}>
             <LabelText label="주문일시" text={ymd} />
-            <LabelText label="주문방법" text={checkoutData?.method} />
+            <LabelText label="주문방법" text={orderData.method} />
           </section>
-          <div className={styles.separator}/>
+          <div className={styles.separator} />
           <section className={styles.detail_section}>
-            <LabelText label="총 수량" text={checkoutState?.totalQuantity} />
+            <LabelText label="총 수량" text={orderData.quantity} />
             <LabelText
               label="주문금액"
-              text={checkoutState?.totalPrice?.toLocaleString() + '원'}
+              text={orderData.amount.toLocaleString() + '원'}
               highlight={true}
             />
           </section>
         </Card>
+
+        {orderData.virtual && (
+          <Card className={`${styles.detail} ${styles.virtual_info}`}>
+            <section className={styles.detail_section}>
+              <div className={styles.virtual_info__title}>가상계좌</div>
+              <LabelText
+                label="은행"
+                text={bankData[orderData.virtual?.bankCode]}
+              />
+              <LabelText
+                label="계좌번호"
+                text={orderData.virtual?.accountNumber}
+              />
+              <LabelText
+                label="만료일시"
+                text={moment(orderData.virtual?.dueDate).format(
+                  'YYYY-MM-DD HH:mm:ss',
+                )}
+              />
+            </section>
+          </Card>
+        )}
       </div>
       <nav className={styles.nav_wrapper}>
         <NavLink to={'/orders'} className={styles.nav_orders}>

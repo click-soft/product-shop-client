@@ -1,18 +1,21 @@
 import React from 'react';
 import styles from './OrderGroup.module.scss';
 import Card from '../../ui/Card';
-import { PaymentType } from '../../interfaces/PaymentType';
 import moment from 'moment';
 import OrderItem from '../OrderItem/OrderItem';
+import { PaymentType } from '../../graphql/interfaces/payment';
+import bankData from '../../data/bankData';
 
 interface OrderGroupProps {
   payment: PaymentType;
-  onCancel: () => void;
+  onCancel: (isRefund: boolean) => void;
 }
 
 const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel }) => {
-  const longDateString = moment(payment.approvedAt).format('YYYY-MM-DD HH:mm');
+  const longDateString = moment(payment.requestedAt).format('YYYY-MM-DD HH:mm');
   const sendTypeClasses = [styles['send-type-base']];
+  const canRefund = !!payment.virtual && payment.sendType === '배송준비';
+
   let sendType = payment.sendType.toString();
 
   if (payment.cancel) {
@@ -28,6 +31,8 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel }) => {
         break;
     }
   }
+
+  console.log(payment.virtual);
 
   const orderItems = payment.paymentItems.map((item, i) => {
     return <OrderItem key={item.id} item={item} setSeparator={i > 0} />;
@@ -46,11 +51,38 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel }) => {
         <LabelText label="주문방법" text={payment.method} />
         <LabelText label="주문일시" text={longDateString} />
         <LabelText label="총 비용" text={payment.amount.toLocaleString()} />
-        {!payment.cancel && payment.sendType === '배송준비' && (
-          <button className={styles['cancel-button']} onClick={onCancel}>
-            주문취소
-          </button>
-        )}
+
+        {payment.virtual &&
+          payment.sendType === '결제대기' &&
+          !payment.cancel && (
+            <Card className={`${styles.virtual_info}`}>
+              <div className={styles.virtual_info__title}>가상계좌</div>
+              <LabelText
+                label="은행"
+                text={bankData[payment.virtual.bankCode]}
+              />
+              <LabelText
+                label="계좌번호"
+                text={payment.virtual?.accountNumber}
+              />
+              <LabelText
+                label="만료일시"
+                text={moment(payment.virtual.dueDate).format(
+                  'YYYY-MM-DD HH:mm:ss',
+                )}
+              />
+            </Card>
+          )}
+
+        {!payment.cancel &&
+          ['결제대기', '배송준비'].includes(payment.sendType) && (
+            <button
+              className={styles['cancel-button']}
+              onClick={onCancel.bind(null, canRefund)}
+            >
+              주문취소
+            </button>
+          )}
       </div>
     </Card>
   );

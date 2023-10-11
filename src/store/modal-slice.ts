@@ -50,7 +50,6 @@ const modalSlice = createSlice({
       state.showMenuModal = false;
       state.showCartModal = false;
       state.showUserModal = false;
-
     },
   },
 });

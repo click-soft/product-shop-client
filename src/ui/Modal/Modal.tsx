@@ -6,6 +6,7 @@ import Backdrop from '../Backdrop/Backdrop';
 import ReactDOM from 'react-dom';
 
 interface ModalProps extends ChildrenProps {
+  className?: string;
   onBackdropClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
@@ -16,7 +17,9 @@ const Modal: React.FC<ModalProps> = (props) => {
     <>
       <Backdrop onClick={props.onBackdropClick} />
       {ReactDOM.createPortal(
-        <Card className={styles.modal}>{props.children}</Card>,
+        <Card className={`${styles.modal} ${props.className}`}>
+          {props.children}
+        </Card>,
         modalElement,
       )}
     </>

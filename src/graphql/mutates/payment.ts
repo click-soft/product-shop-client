@@ -25,14 +25,36 @@ export const CHECKOUT = gql`
     errorCode
     errorMessage
     method
+    requestedAt
     approvedAt
   }
 }
 `;
 
 export const CANCEL_ORDER = gql`
-  mutation ($paymentId: Int!, $paymentKey:String! $cancelReason:String! ){
+  mutation ($paymentId: Int! $paymentKey:String! $cancelReason:String! ){
     cancelOrder(paymentId:$paymentId paymentKey: $paymentKey cancelReason: $cancelReason){
+      success
+      errorCode
+      errorMessage
+    }
+  }
+`;
+
+export const REFUND_ORDER = gql`
+  mutation (
+    $paymentId: Int! 
+    $cancelReason: String! 
+    $bank:String! 
+    $accountNumber:String! 
+    $holderName:String!){
+    refundOrder(
+      paymentId: $paymentId
+      cancelReason: $cancelReason
+      bank: $bank
+      accountNumber: $accountNumber
+      holderName: $holderName
+    ){
       success
       errorCode
       errorMessage

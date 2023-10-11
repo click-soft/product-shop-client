@@ -22,4 +22,5 @@ export interface CheckoutResult {
   errorMessage?: string
   method?: string
   approvedAt?: Date
+  requestedAt?: Date
 }

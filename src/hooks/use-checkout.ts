@@ -60,6 +60,7 @@ const useCheckout = ({ isSession }: { isSession: boolean }) => {
       setCheckoutDataSession({
         checkoutState,
         method: data.method,
+        requestedAt: data.requestedAt,
         approvedAt: data.approvedAt,
         orderId: query.orderId,
       });
@@ -80,6 +81,7 @@ const useCheckout = ({ isSession }: { isSession: boolean }) => {
 interface CheckoutResultWithIds extends CheckoutResult {
   ids: number[];
 }
+
 class TossQueryParser {
   paymentType: string;
   orderId: string;
@@ -101,6 +103,7 @@ export interface CheckoutData {
   checkoutState?: CheckoutState;
   orderId?: string;
   method?: string;
+  requestedAt?: Date;
   approvedAt?: Date;
 }
 

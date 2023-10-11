@@ -45,6 +45,6 @@ export const getCartWithProduct = async (): Promise<Cart | undefined> => {
 
     return response.data.getCartWithProduct;
   } catch (err) {
-    return undefined;
+    console.log(err);
   }
 };

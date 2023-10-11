@@ -1,0 +1,45 @@
+@import '../../config/variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.title {
+  font-size: $font-size-level4;
+  font-weight: bold;
+  color: $color-lightred;
+  margin-bottom: 20px;
+}
+
+.data_section {
+  display: flex;
+  margin: 6px 0;
+  font-size: $font-size-level3;
+}
+
+.data {
+  font: inherit;
+}
+
+.label {
+  width: 65px;
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+  button {
+    padding: 10px 30px;
+  }
+}
+
+.refund_button {
+  @include custom-button($backgroundColor: $color-lightred, $activeBackgroundColor: $color-red);
+}
+
+.cancel_button {
+  @include custom-button($color: black, $backgroundColor: transparent, $activeBackgroundColor: $color-lightgray);
+}

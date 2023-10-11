@@ -28,6 +28,17 @@
   max-width: 30rem;
 }
 
+.virtual_info{
+  margin-top: 10px;
+}
+
+.virtual_info__title{
+  text-align: center;
+  font-size: $font-size-level4;
+  font-weight: bold;
+  color: $color-darkblue3;
+}
+
 .detail_section {
   flex: 1;  
 }

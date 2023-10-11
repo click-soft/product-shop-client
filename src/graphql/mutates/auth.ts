@@ -31,16 +31,19 @@ export const login = async (
 ): Promise<Message> => {
   client.resetStore();
   try {
-    const ykiho = isBuisness ? '' : `ykiho: "${value}"`;
-    const saupkiho = isBuisness ? `saupkiho: "${value}"` : '';
+    const ykiho = isBuisness ? undefined : value;
+    const saupkiho = isBuisness ? value : undefined;
     const response = await client.mutate({
       mutation: gql`
-        mutation {
-          login(loginDto: { ${ykiho} ${saupkiho}}) {
+        mutation ($ykiho: String, $saupkiho: String){
+          login(ykiho: $ykiho, saupkiho:$saupkiho) {
             message
           }
         }
       `,
+      variables: {
+        ykiho, saupkiho
+      }
     });
 
     return {

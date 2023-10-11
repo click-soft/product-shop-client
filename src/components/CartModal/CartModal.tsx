@@ -6,14 +6,13 @@ import DownModal from '../../ui/DownModal/DownModal';
 import { useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import useCartItems from '../../hooks/use-cart-items';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../../store/modal-slice';
 import CartItemManager from '../../utils/cart-item-manager';
 
 const Cart = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
   const { cartItems } = useCartItems();
   const cartItemManager = useMemo(
     () => new CartItemManager(cartItems),
