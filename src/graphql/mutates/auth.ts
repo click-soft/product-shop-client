@@ -50,6 +50,8 @@ export const login = async (
       message: response.data.login.message,
     };
   } catch (err) {
+    console.log(err);
+
     return { message: 'fail' };
   }
 };
