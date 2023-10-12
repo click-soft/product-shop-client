@@ -12,8 +12,6 @@ const ProductPage: React.FC = (props) => {
     variables: { jisa: user?.jisa },
     skip: !user,
   });
-
-  console.log(data);
   
   const prds: ProductsByBunryu[] = data?.getProductsBunryuList;
   let elements: JSX.Element[];

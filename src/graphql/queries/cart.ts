@@ -20,9 +20,8 @@ export const cartItemsCount = async (): Promise<number> => {
 };
 
 export const getCartWithProduct = async (): Promise<Cart | undefined> => {
-  try {
-    const response = await client.query({
-      query: gql`
+  const response = await client.query({
+    query: gql`
         {
           getCartWithProduct {
             id
@@ -40,11 +39,8 @@ export const getCartWithProduct = async (): Promise<Cart | undefined> => {
           }
         }
       `,
-      fetchPolicy: 'no-cache',
-    });
+    fetchPolicy: 'no-cache',
+  });
 
-    return response.data.getCartWithProduct;
-  } catch (err) {
-    console.log(err);
-  }
+  return response.data.getCartWithProduct;
 };

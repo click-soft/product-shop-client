@@ -4,6 +4,7 @@ import modalSlice from './modal-slice';
 import cartSlice from './cart-slice';
 import paymentSlice from './payment-slice';
 import ordersSlice from './orders-slice';
+import errorSlice from './error-slice';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     cart: cartSlice.reducer,
     payment: paymentSlice.reducer,
     orders: ordersSlice.reducer,
+    error: errorSlice.reducer,
   }
 })
 

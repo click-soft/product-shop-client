@@ -13,11 +13,19 @@ import PaymentSuccessPage from './pages/PaymentSuccess/PaymentSuccessPage';
 import PaymentFailPage from './pages/PaymentFail/PaymentFailPage';
 import OrdersPage from './pages/Orders/OrdersPage';
 import PaymentProcessingPage from './pages/PaymentProcessing/PaymentProcessingPage';
+import ErrorBoundary from './pages/Error/ErrorBoundary';
+import TokenExpiredHookPage from './pages/Error/TokenExpiredHookPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />,
+    element: (
+      <ErrorBoundary>
+        <TokenExpiredHookPage>
+          <RootLayout />
+        </TokenExpiredHookPage>
+      </ErrorBoundary>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
