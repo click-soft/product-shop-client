@@ -11,8 +11,8 @@ import {
 import { useSelector } from 'react-redux';
 import useToast from '../../hooks/use-toast';
 import { PaymentType } from '../../graphql/interfaces/payment';
-import { modalActions } from '../../store/modal-slice';
 import RefundModal from '../../components/RefundModal/RefundModal';
+import CircleLoading from '../../components/Loading/CircleLoading';
 
 type RefundType = {
   show: boolean;
@@ -20,7 +20,8 @@ type RefundType = {
 };
 
 const OrdersPage = () => {
-  const { toastComponet, showToast } = useToast();
+  const { toast, toastConatiner } = useToast();
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const [refundData, setRefundData] = useState<RefundType>();
   const payments = useSelector<RootState, PaymentType[]>(
@@ -39,11 +40,14 @@ const OrdersPage = () => {
       return;
     }
 
+    setLoading(true);
     dispatch(cancelOrder({ payment, cancelReason: '미선택' }))
       .unwrap()
       .catch((error) => {
-        showToast('error', error.message);
-      });
+        toast.error(error.message);
+        // showToast('error', error.message);
+      })
+      .then(() => setLoading(false));
   }
 
   function refundClickHandler({
@@ -55,9 +59,10 @@ const OrdersPage = () => {
     accountNumber: string;
     holderName: string;
   }): void {
+    setLoading(true);
     dispatch(
       refundOrder({
-        paymentId: refundData?.payment.id!,        
+        paymentId: refundData?.payment.id!,
         bank,
         accountNumber: accountNumber,
         holderName,
@@ -66,10 +71,11 @@ const OrdersPage = () => {
     )
       .unwrap()
       .catch((error) => {
-        showToast('error', error.message);
+        toast.error(error.message);
       });
 
     setRefundData(undefined);
+    setLoading(false);
   }
 
   const orderGroupsComponents = payments?.map((p) => {
@@ -85,13 +91,14 @@ const OrdersPage = () => {
 
   return (
     <>
+      {loading && <CircleLoading />}
+      {toastConatiner}
       {refundData?.show && (
         <RefundModal
           onClose={() => setRefundData(undefined)}
           onRefund={refundClickHandler}
         />
       )}
-      {toastComponet}
       <div className={styles.main}>
         <ul className={styles['order-ul']}>{orderGroupsComponents}</ul>
       </div>

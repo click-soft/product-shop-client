@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import CartItemManager from '../../utils/cart-item-manager';
 import CheckoutState from '../../interfaces/CheckoutState';
 import { paymentActions } from '../../store/payment-slice';
+import CircleLoading from '../../components/Loading/CircleLoading';
 
 const CartViewPage = () => {
   const [allCheck, setAllCheck] = useState<boolean>(true);
@@ -21,6 +22,7 @@ const CartViewPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [cart, setCart] = useState<Cart>();
+  const [loading, setLoading] = useState(false);
   const cartItemManager = useMemo(
     () =>
       new CartItemManager(
@@ -66,14 +68,20 @@ const CartViewPage = () => {
 
     if (isNotChanged) return;
 
-    dispatch(updateCartItemQuantity({ id: cartItemId, quantity: value })).then(
-      () => fetchCart(),
-    );
+    setLoading(true);
+    dispatch(updateCartItemQuantity({ id: cartItemId, quantity: value }))
+      .unwrap()
+      .then(() => fetchCart())
+      .then(() => setLoading(false));
   };
 
   function onCancelHandler(id: number): void {
+    setLoading(true);
     setChkItemIds((prevIds) => prevIds.filter((pId) => pId !== id));
-    dispatch(deleteCartItems([id])).then(() => fetchCart());
+    dispatch(deleteCartItems([id]))
+      .unwrap()
+      .then(() => fetchCart())
+      .then(() => setLoading(false));
   }
 
   function buyHandler() {
@@ -109,6 +117,7 @@ const CartViewPage = () => {
 
   return (
     <>
+      {loading && <CircleLoading />}
       <div className={styles.container}>
         <table>
           <caption className={styles.caption}>장바구니 목록</caption>

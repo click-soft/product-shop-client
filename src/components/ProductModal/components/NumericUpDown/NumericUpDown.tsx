@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import CustomLi from '../CustomLi/CustomLi';
 import styles from './NumericUpDown.module.scss';
 
@@ -5,7 +6,7 @@ const MIN_COUNT_VALUE = 1;
 const MAX_COUNT_VALUE = 99;
 
 interface NumericUpDownProps {
-  quantity : number;
+  quantity: number;
   onQuantityChange: (quantity: number) => void;
 }
 
@@ -21,10 +22,16 @@ const NumericUpDown: React.FC<NumericUpDownProps> = (props) => {
   };
 
   const changeCount = (value: number) => {
-    if (value >= MIN_COUNT_VALUE && value <= MAX_COUNT_VALUE) {      
+    if (value >= MIN_COUNT_VALUE && value <= MAX_COUNT_VALUE) {
       props.onQuantityChange(value);
     }
   };
+
+  function focusHandler(
+    event: React.FocusEvent<HTMLInputElement, Element>,
+  ): void {
+    event.target.select();
+  }
 
   return (
     <CustomLi
@@ -35,6 +42,7 @@ const NumericUpDown: React.FC<NumericUpDownProps> = (props) => {
             className={`${styles['data']} ${styles['count-input']}`}
             type="number"
             onChange={countChangeHandler}
+            onFocus={focusHandler}
             value={props.quantity}
             min={MIN_COUNT_VALUE}
             max={MAX_COUNT_VALUE}

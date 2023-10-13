@@ -10,7 +10,7 @@ const Backdrop: React.FC<BackdropProps> = (props) => {
   const data = document.getElementById('backdrop-root') as HTMLElement;
 
   return ReactDOM.createPortal(
-    <div className={styles.backdrop} onClick={props.onClick}>
+    <div className={`${styles.backdrop} ${props.className}`} onClick={props.onClick}>
       {props.children}
     </div>,
     data,

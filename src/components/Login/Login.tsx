@@ -11,7 +11,7 @@ import useToast from '../../hooks/use-toast';
 
 function Login() {
   const navigate = useNavigate();
-  const { showToast, toastComponet } = useToast();
+  const { toast, toastConatiner } = useToast();
   const [inputValue, setInputValue] = useState('');
   const { data, error, fetchHospData } = useFindUser();
   const [searchQuery] = useSearchParams();
@@ -32,7 +32,7 @@ function Login() {
           navigate('/');
         }
       } catch (err: any) {
-        showToast('error', err.message);
+        toast.error(err.message);
       }
     }
   }
@@ -64,7 +64,7 @@ function Login() {
 
   return (
     <>
-      {toastComponet}
+      {toastConatiner}
       <Card className={styles.card}>
         <div className={styles['select-mode']}>
           <Link

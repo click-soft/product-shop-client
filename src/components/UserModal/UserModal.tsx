@@ -8,11 +8,9 @@ import { modalActions } from '../../store/modal-slice';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import { logout } from '../../graphql/mutates/auth';
 import { BiBasket } from 'react-icons/bi';
-import useToast from '../../hooks/use-toast';
 
 const UserModal = () => {
   const navigate = useNavigate();
-  const { showToast, toastComponet } = useToast();
   const dispatch = useDispatch<AppDispatch>();
   const showUserModal = useSelector<RootState, boolean>(
     (state) => state.modal.showUserModal,
@@ -33,7 +31,6 @@ const UserModal = () => {
 
   return (
     <>
-      {toastComponet}
       <DownModal>
         <div className={styles.container}>
           <div className={styles.header}>

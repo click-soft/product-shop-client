@@ -1,0 +1,11 @@
+.loading_backdrop {
+  background-color: rgba($color: white, $alpha: 0.05) !important;
+}
+
+.loading{
+  z-index: 99999;
+  position: fixed;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

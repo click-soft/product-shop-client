@@ -6,7 +6,7 @@ import { modalActions } from '../../store/modal-slice';
 import styles from './ProductModal.module.scss';
 import ProductListSub from '../../interfaces/ProductListSub';
 import CartProduct from '../../interfaces/CartItem';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { formatCurrency } from '../../utils/strings';
 import { fetchGetItemsCount } from '../../store/cart-slice';
 import CheckBox from '../../ui/CheckBox/CheckBox';
@@ -51,10 +51,14 @@ const ProductModal = () => {
     }
   }, [showProductModal, user?.fitCherbang]);
 
+  useEffect(() => {
+    if (!showProductModal) return;
+
+    setFitChecked(isFitProduct);
+    setQuantity(isFitProduct ? 6 : 1);
+  }, [showProductModal]);
+
   if (!showProductModal) {
-    if (quantity !== 1) {
-      setQuantity(1);
-    }
     return <></>;
   }
 
