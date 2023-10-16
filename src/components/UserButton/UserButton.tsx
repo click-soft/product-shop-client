@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { modalActions } from '../../store/modal-slice';
 import useResizeWindow from '../../hooks/use-resize-window';
-import styles from './UserButton.module.scss';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import UserModal from '../UserModal/UserModal';
@@ -40,16 +39,14 @@ const UserButton = () => {
     }
   }, [mouseEntered]);
   return (
-    <>
-      <IconButton
-        icon={AiOutlineUser}
-        onClick={showModal}
-        onMouseEnter={() => setMouseEntered(true)}
-        onMouseLeave={() => setMouseEntered(false)}
-        text={isMobile ? '' : '계정'}
-      ></IconButton>
-      <UserModal />
-    </>
+    <IconButton
+      icon={AiOutlineUser}
+      onClick={showModal}
+      onMouseEnter={() => setMouseEntered(true)}
+      onMouseLeave={() => setMouseEntered(false)}
+      text={isMobile ? '' : '계정'}
+      modalComponent={<UserModal />}
+    ></IconButton>
   );
 };
 

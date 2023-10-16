@@ -63,26 +63,24 @@ const CartButton = () => {
   }, [mouseEntered]);
 
   return (
-    <>
-      <IconButton
-        icon={BsCart2}
-        onClick={clickHandler}
-        onMouseEnter={() => setMouseEntered(true)}
-        onMouseLeave={() => setMouseEntered(false)}
-        text={isMobile ? '' : '장바구니'}
-      >
-        {(itemsCount || 0) > 0 && (
-          <div
-            className={`${styles['items-count']} ${
-              animation ? styles['animate'] : ''
-            }`}
-          >
-            {itemsCount}
-          </div>
-        )}
-      </IconButton>
-      <CartModal />
-    </>
+    <IconButton
+      icon={BsCart2}
+      onClick={clickHandler}
+      onMouseEnter={() => setMouseEntered(true)}
+      onMouseLeave={() => setMouseEntered(false)}
+      text={isMobile ? '' : '장바구니'}
+      modalComponent={<CartModal />}
+    >
+      {(itemsCount || 0) > 0 && (
+        <div
+          className={`${styles['items-count']} ${
+            animation ? styles['animate'] : ''
+          }`}
+        >
+          {itemsCount}
+        </div>
+      )}
+    </IconButton>
   );
 };
 
