@@ -4,9 +4,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 23rem;
+  min-width: 18rem;
   min-height: 20rem;
-  padding: 0 10px 10px 10px;
+  padding: 0 0 10px 0;
 }
 
 .header {
@@ -16,21 +16,27 @@
 .footer {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
+.add-and-to-cart-button,
 .to-cart-button,
 .cancel-button {
-  @include blue-button;
+  margin-left: 4px;
   padding: 10px;
-  width: 160px;
+  width: 80px;
+}
+
+.add-and-to-cart-button {
+  @include custom-button($color: white, $backgroundColor: $color-green, $activeBackgroundColor: $color-darkgreen);
+}
+
+.to-cart-button {
+  @include blue-button;
 }
 
 .cancel-button {
-  background-color: $color-red;
-  &:hover {
-    background-color: $color-darkred;
-  }
+  @include red-button;
 }
 
 .body {
@@ -41,6 +47,7 @@
   ul {
     margin: 15px 30px;
     padding: 0;
+
     li {
       padding: 8px 0;
       display: flex;

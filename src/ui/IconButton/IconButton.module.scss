@@ -2,11 +2,16 @@
 
 .button_container {
   position: relative;
+  background-color: white;
 
   :hover {
     color: $color-darkblue;
     cursor: pointer;
   }
+}
+
+.button_to_front {
+  z-index: 1002;
 }
 
 .button {

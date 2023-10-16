@@ -46,7 +46,7 @@ const CartButton = () => {
     dispatch(modalActions.closeCart());
   }
 
-  useEffect(() => {    
+  useEffect(() => {
     if (!showCartModal) {
       setMouseEntered(false);
     }
@@ -63,13 +63,12 @@ const CartButton = () => {
   }, [mouseEntered]);
 
   return (
-    <div
-      onMouseEnter={() => setMouseEntered(true)}
-      onMouseLeave={() => {setMouseEntered(false)}}
-    >
+    <>
       <IconButton
         icon={BsCart2}
         onClick={clickHandler}
+        onMouseEnter={() => setMouseEntered(true)}
+        onMouseLeave={() => setMouseEntered(false)}
         text={isMobile ? '' : '장바구니'}
       >
         {(itemsCount || 0) > 0 && (
@@ -83,7 +82,7 @@ const CartButton = () => {
         )}
       </IconButton>
       <CartModal />
-    </div>
+    </>
   );
 };
 

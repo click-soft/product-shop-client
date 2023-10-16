@@ -40,18 +40,16 @@ const UserButton = () => {
     }
   }, [mouseEntered]);
   return (
-    <div
-      className={styles.wrapper}
-      onMouseEnter={() => setMouseEntered(true)}
-      onMouseLeave={() => setMouseEntered(false)}
-    >
+    <>
       <IconButton
         icon={AiOutlineUser}
         onClick={showModal}
+        onMouseEnter={() => setMouseEntered(true)}
+        onMouseLeave={() => setMouseEntered(false)}
         text={isMobile ? '' : '계정'}
       ></IconButton>
       <UserModal />
-    </div>
+    </>
   );
 };
 

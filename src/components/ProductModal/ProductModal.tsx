@@ -15,9 +15,11 @@ import CustomLi from './components/CustomLi/CustomLi';
 import NumericUpDown from './components/NumericUpDown/NumericUpDown';
 import ErrorText from '../../ui/ErrorText/ErrorText';
 import { addToCart } from '../../graphql/mutates/cart';
+import { useNavigate } from 'react-router-dom';
 
 const ProductModal = () => {
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
   const [fitChecked, setFitChecked] = useState<boolean | undefined>(false);
   const [fitError, setFitError] = useState('');
   const dispatch = useDispatch<AppDispatch>();
@@ -70,9 +72,7 @@ const ProductModal = () => {
     setFitChecked(e.target.checked);
   };
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const addItemToCart = async () => {
     const cartItem: CartProduct = {
       code: productData.smCode,
       quantity: quantity,
@@ -84,9 +84,20 @@ const ProductModal = () => {
     closeHandler();
   };
 
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await addItemToCart();
+  };
+
   const closeHandler = () => {
     dispatch(modalActions.closeProduct());
   };
+
+  function addAndToCartHandler(): void {
+    addItemToCart().then((_) => {
+      navigate('/cart-view');
+    });
+  }
 
   return (
     <Modal onBackdropClick={closeHandler}>
@@ -114,11 +125,22 @@ const ProductModal = () => {
         </div>
         <div className={styles.footer}>
           <button
+            className={styles['add-and-to-cart-button']}
+            type="button"
+            onClick={addAndToCartHandler}
+          >
+            장바구니
+            <br />
+            바로가기
+          </button>
+          <button
             className={styles['to-cart-button']}
             type="submit"
             disabled={!!fitError}
           >
-            장바구니에 담기
+            장바구니
+            <br />
+            담기
           </button>
           <button
             className={styles['cancel-button']}

@@ -8,7 +8,7 @@ interface UseResizeWindowArgs {
 }
 
 const useResizeWindow = (args?: UseResizeWindowArgs) => {
-  const [isMobile, setIsMobile] = useState<boolean>()
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768)
   useEffect(() => {
     function handleResize() {
       const wh = { width: window.innerWidth, height: window.innerHeight }

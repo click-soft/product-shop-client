@@ -22,6 +22,8 @@ const DownModal: React.FC<DownModalProps> = (props) => {
     props.popupLocation === 'left' ? { left: 0 } : {};
 
   function backdropMouseEnterHandler(): void {
+    console.log('isMobile', isMobile);
+    
     if (isMobile) return;
     dispatch(modalActions.closeDownAll());
   }
