@@ -26,8 +26,6 @@ const PaymentProcessingPage = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
-
         // navigate('/error?code=access-denied');
       });
   }, []);

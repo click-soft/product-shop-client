@@ -61,7 +61,7 @@ const errorLink = onError(
       }
     }
     if (networkError) {
-      console.log(`[Network error]: ${networkError}`);
+      // console.log(`[Network error]: ${networkError}`);
       // if you would also like to retry automatically on
       // network errors, we recommend that you use
       // apollo-link-retry
