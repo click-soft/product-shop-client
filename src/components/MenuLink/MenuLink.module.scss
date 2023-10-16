@@ -1,6 +1,7 @@
 @import '../../config/variables';
 
 .ul {
+  position: relative;
   list-style: none;
   padding: 10px;
   margin: 0;
@@ -13,7 +14,7 @@
   margin: 2px 0;
 }
 
-.li > button {
+.li>button {
   padding: 10px;
   width: 100%;
   text-decoration: none;
@@ -23,9 +24,23 @@
   background-color: transparent;
   text-align: left;
   font-size: $font-size-level3;
+
   &:hover,
   &:active {
     background-color: $color-lightskyblue;
   }
 }
 
+@media (min-width:768px) {
+  .ul {
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    background-color: $color-lightblue;
+  }
+
+  .li>button {
+    color: white;
+    font-weight: bold;
+  }
+}

@@ -8,7 +8,7 @@ export interface PaymentType {
   quantity: number;
   requestedAt?: Date | null;
   approvedAt?: Date | null;
-  sendType: '결제대기' | '배송준비' | '배송중' | '배송완료';
+  sendType: '결제대기' | '주문확인' | '상품준비중' | '배송중' | '배송완료';
   cancel: boolean;
   paymentItems: PaymentItemType[];
   virtual?: VirtualAccountType | null;

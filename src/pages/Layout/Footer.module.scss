@@ -10,10 +10,10 @@
   text-align: left;
 }
 
-.footer__wrapper {
-  margin: 20px;
-  padding-top: 20px;
-  border-top: 1px solid $color-lightskyblue;
+.footer__wrapper {  
+  margin: 0 auto;
+  padding: 20px;
+  border-top: 1px solid $color-lightskyblue;  
 }
 
 .cart-view {
@@ -23,13 +23,16 @@
 .company {
   display: flex;
   flex-direction: column;
-  strong {
-    color: black;
-    font-size: $font-size-level3;
-    padding-bottom: 6px;
-  }
   color: $color-gray;
   font-size: $font-size-level2;
+  text-align: center;
+  width: 100%;
+}
+
+.corporate {
+  color: black;
+  font-size: $font-size-level3;
+  padding-bottom: 6px;
 }
 
 .vertical {
@@ -38,4 +41,9 @@
   background-color: $color-gray;
   height: 10px;
   margin: 0 10px;
+}
+
+.copyright {
+  color: black;
+  font-size: $font-size-level2;
 }

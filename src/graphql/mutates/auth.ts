@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
-import LocalStorageManager, { LocalStoragekey } from '../../utils/local-storage-manager';
+import { LocalStoragekey } from '../../utils/enums';
 import TokenResult from '../types/token-result';
 
 type Message = {
@@ -18,51 +18,29 @@ export const logout = async (): Promise<Message> => {
       `,
   });
 
-  LocalStorageManager.remove(LocalStoragekey.ACT);
-  LocalStorageManager.remove(LocalStoragekey.USR);
+  localStorage.removeItem(LocalStoragekey.ACT);
+  localStorage.removeItem(LocalStoragekey.USR);
   return response.data.logout;
 };
 
-export const login = async (
-  isBuisness: boolean,
-  value: string,
-): Promise<Message> => {
-  client.resetStore();
-
-  const ykiho = isBuisness ? undefined : value;
-  const saupkiho = isBuisness ? value : undefined;
-  const response = await client.mutate({
-    mutation: gql`
-        mutation ($ykiho: String, $saupkiho: String){
-          login(ykiho: $ykiho, saupkiho:$saupkiho) {
+export const LOGIN = gql`
+        mutation ($userId: String!, $password: String!){
+          login(userId: $userId, password:$password) {
             accessToken
             usr
           }
         }
-      `,
-    variables: {
-      ykiho, saupkiho
-    },
-    fetchPolicy: 'no-cache',
-  });
-
-  const data = response.data.login;
-
-  LocalStorageManager.set(LocalStoragekey.ACT, data.accessToken);
-  LocalStorageManager.set(LocalStoragekey.USR, data.usr);
-  return {
-    message: 'success',
-  };
-};
+      `
 
 export const refresh = async (): Promise<TokenResult> => {
-  const key = LocalStorageManager.get(LocalStoragekey.USR);
+  const key = localStorage.getItem(LocalStoragekey.USR);
 
-  if (!key) return {
-    accessToken: '',
-    usr: '',
-  };
-
+  if (!key) {
+    return {
+      accessToken: '',
+      usr: '',
+    };
+  }
   try {
     const response = await client.mutate({
       mutation: gql`
@@ -82,13 +60,13 @@ export const refresh = async (): Promise<TokenResult> => {
       usr: data.usr,
     }
 
-    LocalStorageManager.set(LocalStoragekey.ACT, tokenResult.accessToken);
-    LocalStorageManager.set(LocalStoragekey.USR, tokenResult.usr);
+    localStorage.setItem(LocalStoragekey.ACT, tokenResult.accessToken);
+    localStorage.setItem(LocalStoragekey.USR, tokenResult.usr);
 
     return tokenResult;
   } catch (err: any) {
-    LocalStorageManager.remove(LocalStoragekey.ACT);
-    LocalStorageManager.remove(LocalStoragekey.USR);
+    localStorage.removeItem(LocalStoragekey.ACT);
+    localStorage.removeItem(LocalStoragekey.USR);
     throw new Error("RefreshToken expired")
   }
 }

@@ -22,6 +22,8 @@ export const getUser = async (): Promise<UserProfile | undefined> => {
           `,
       fetchPolicy: 'no-cache',
     });
+    console.log(response.data);
+    
     return response.data.getUser;
   } catch (err: any) {
     if (err.message === "Unauthorized") {

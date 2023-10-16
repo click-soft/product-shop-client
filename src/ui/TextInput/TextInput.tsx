@@ -13,9 +13,9 @@ const TextInput: React.FC<
   >
 > = (props) => {
   return (
-    <div className={styles.textbox}>
+    <div className={`${props.className} ${styles.textbox}`}>
+      <input type="text" {...props} className={styles.input}/>
       <div className={styles.indicator}></div>
-      <input type="text" {...props} />
     </div>
   );
 };

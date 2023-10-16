@@ -33,20 +33,21 @@ $font-size-level6: 25px;
 $font-size-level7: 28px;
 $font-size-level8: 31px;
 
-@mixin custom-button(
-  $color: $color-lightgray,
+@mixin custom-button($color: $color-lightgray,
   $backgroundColor: $color-blue,
-  $activeBackgroundColor: $color-darkblue
-) {
+  $activeBackgroundColor: $color-darkblue) {
   color: $color;
   background-color: $backgroundColor;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
   &:hover,
   &:active {
     background-color: $activeBackgroundColor;
   }
+
+  @include button-disable;
 }
 
 @mixin button-disable {
@@ -63,11 +64,19 @@ $font-size-level8: 31px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
   &:hover,
   &:active {
     background-color: $color-darkblue;
   }
+
   @include button-disable;
+}
+
+@mixin red-button {
+  @include custom-button($color: white,
+    $backgroundColor: $color-lightred,
+    $activeBackgroundColor: $color-red );
 }
 
 @mixin white-button {
@@ -83,11 +92,13 @@ $font-size-level8: 31px;
   color: $color-darkblue2;
   background-color: whitesmoke;
   border: none;
+
   &:hover {
     cursor: pointer;
     color: $color-darkblue3;
     background-color: $color-lightgray;
   }
+
   @include button-disable;
 }
 

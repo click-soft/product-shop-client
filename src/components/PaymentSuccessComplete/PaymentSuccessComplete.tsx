@@ -1,7 +1,6 @@
 import styles from './PaymentSuccessComplete.module.scss';
 import Card from '../../ui/Card';
 import moment from 'moment';
-import useCheckout from '../../hooks/use-checkout';
 import { NavLink } from 'react-router-dom';
 import { PaymentType } from '../../graphql/interfaces/payment';
 import bankData from '../../data/bankData';

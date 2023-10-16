@@ -2,7 +2,7 @@ import DownModal from '../../ui/DownModal/DownModal';
 import { RootState } from '../../store';
 import { useSelector } from 'react-redux';
 import MenuLink from '../MenuLink/MenuLink';
-
+ 
 const MenuModal = () => {
   const showMenuModal = useSelector<RootState>(
     (state) => state.modal.showMenuModal,
@@ -14,7 +14,7 @@ const MenuModal = () => {
 
   return (
     <DownModal popupLocation="left">
-      <MenuLink />
+      <MenuLink isDropdown={true} />
     </DownModal>
   );
 };

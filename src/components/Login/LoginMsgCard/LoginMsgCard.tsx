@@ -16,8 +16,10 @@ const LoginMsgCard: React.FC<CardProps> = (props) => {
   const components: ReactNode[] = props.dataList.map((data, i) => {
     return (
       <div key={i} className={styles.container}>
-        {i > 0 && <hr style={{ width: 100 }} />}
-        <div className={`${styles.title} ${props.isError && styles.error}`}>{data.title}</div>
+        {i > 0 && <div className={styles.separator} />}
+        <div className={`${styles.title} ${props.isError && styles.error}`}>
+          {data.title}
+        </div>
         <div className={styles.message}>{data?.message}</div>
       </div>
     );

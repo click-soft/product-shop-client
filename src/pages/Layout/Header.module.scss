@@ -1,26 +1,36 @@
 @import '../../config/variables';
 
-.header {
+.header,
+.header__relative {
   background-color: white;
   border-bottom: 1px solid rgba($color: $color-blue, $alpha: 0.5);
-  position: fixed;
+  position: relative;
+  // display: flex;
   top: 0;
   left: 0;
   right: 0;
-  height: $header-height;
   z-index: 1000;
+}
+
+.header__menu{
+  z-index: 1;
+  width: 100%;
+}
+.header_fixed {
+  // top: 0;
+  position: fixed;
 }
 
 .header__container {
   position: relative;
-  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: $header-height;
 }
 
 .header__left {
   left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  position: absolute;
+  top: 50%;  
   display: flex;
 }
 
@@ -32,10 +42,6 @@
 }
 
 .header__right {
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  position: absolute;
   display: flex;
 }
 

@@ -18,7 +18,6 @@ const ProductPage: React.FC = (props) => {
   let elements: JSX.Element[] = prds?.map(({ bunryu, products }) => {
     return <Products key={bunryu} prodCode={bunryu} prds={products} />;
   });
-
   return (
     <>
       {loading && <CircleLoading />}

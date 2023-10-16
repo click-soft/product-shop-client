@@ -9,9 +9,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import moment from 'moment';
 import useCheckout from '../../hooks/use-checkout';
+import { LocalStoragekey } from '../../utils/enums';
 const selector = '#payment-widget';
-const clientKey = 'test_ck_kYG57Eba3GZ2ggEg5R68pWDOxmA1';
-const customerKey = 'YbX2HuSlsC9uVJW6NMRMj';
 
 const PaymentPage = () => {
   const { checkoutState, setCheckoutDataSession, removeCheckoutDataSession } =
@@ -31,11 +30,14 @@ const PaymentPage = () => {
 
   useEffect(() => {
     removeCheckoutDataSession();
-
     (async () => {
       // ------  결제위젯 초기화 ------
       // 비회원 결제에는 customerKey 대신 ANONYMOUS를 사용하세요.
-      const paymentWidget = await loadPaymentWidget(clientKey, customerKey); // 회원 결제
+      const customerKey = localStorage.getItem(LocalStoragekey.USR) as string;
+      const paymentWidget = await loadPaymentWidget(
+        process.env.REACT_APP_TOSSPAYMENTS_CLIENT_KEY!,
+        customerKey,
+      ); // 회원 결제
       // const paymentWidget = await loadPaymentWidget(clientKey, ANONYMOUS); // 비회원 결제
 
       // ------  결제위젯 렌더링 ------

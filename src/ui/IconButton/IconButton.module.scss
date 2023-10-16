@@ -1,14 +1,33 @@
 @import '../../config/variables';
 
-.button {
+.button_container {
   position: relative;
-  display: inline-block;
-  background: transparent;
-  border: none;
-  color: $color-black;
 
-  :hover{
+  :hover {
     color: $color-darkblue;
     cursor: pointer;
   }
+}
+
+.button {
+  color: $color-darkblue3;
+  height: 48px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+}
+
+.icon {
+  height: 100%;
+  width: 100%;
+  flex: 1;
+}
+
+.text {
+  font-size: $font-size-level3;
+  padding-left: 4px;
+  margin-left: 8px;
 }

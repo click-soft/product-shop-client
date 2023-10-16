@@ -13,63 +13,67 @@ import PaymentSuccessPage from './pages/PaymentSuccess/PaymentSuccessPage';
 import PaymentFailPage from './pages/PaymentFail/PaymentFailPage';
 import OrdersPage from './pages/Orders/OrdersPage';
 import PaymentProcessingPage from './pages/PaymentProcessing/PaymentProcessingPage';
-import ErrorBoundary from './pages/Error/ErrorBoundary';
-import TokenExpiredHookPage from './pages/Error/TokenExpiredHookPage';
+import SignupPage from './pages/SignupPage/SignupPage';
+import BaseLayout from './pages/Layout/Payment/BaseLayout';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <ErrorBoundary>
-        <TokenExpiredHookPage>
-          <RootLayout />
-        </TokenExpiredHookPage>
-      </ErrorBoundary>
-    ),
+    element: <BaseLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: <MainPage />,
+        path: '/',
+        element: <RootLayout />,
+        children: [
+          {
+            path: '/',
+            element: <MainPage />,
+            loader: checkAuthLoader,
+          },
+          {
+            path: 'cart-view',
+            element: <CartViewPage />,
+            loader: checkAuthLoader,
+          },
+          {
+            path: 'orders',
+            element: <OrdersPage />,
+            loader: checkAuthLoader,
+          },
+        ],
+      },
+      {
+        path: '/login',
+        element: <LoginPage />,
+        loader: checkLoginLoader,
+      },
+      {
+        path: '/signup',
+        element: <SignupPage />,
+      },
+      {
+        path: '/payment',
+        element: <PaymentLayout />,
         loader: checkAuthLoader,
-      },
-      {
-        path: 'cart-view',
-        element: <CartViewPage />,
-        loader: checkAuthLoader,
-      },
-      {
-        path: 'orders',
-        element: <OrdersPage />,
-        loader: checkAuthLoader,
-      },
-    ],
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-    loader: checkLoginLoader,
-  },
-  {
-    path: '/payment',
-    element: <PaymentLayout />,
-    loader: checkAuthLoader,
-    children: [
-      {
-        index: true,
-        element: <PaymentPage />,
-      },
-      {
-        path: 'processing',
-        element: <PaymentProcessingPage />,
-      },
-      {
-        path: 'success/:orderId',
-        element: <PaymentSuccessPage />,
-      },
-      {
-        path: 'fail',
-        element: <PaymentFailPage />,
+        children: [
+          {
+            index: true,
+            element: <PaymentPage />,
+          },
+          {
+            path: 'processing',
+            element: <PaymentProcessingPage />,
+          },
+          {
+            path: 'success/:orderId',
+            element: <PaymentSuccessPage />,
+          },
+          {
+            path: 'fail',
+            element: <PaymentFailPage />,
+          },
+        ],
       },
     ],
   },

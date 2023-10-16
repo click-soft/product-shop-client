@@ -7,14 +7,20 @@ import { AppDispatch, RootState } from '../../store';
 import { fetchGetItemsCount } from '../../store/cart-slice';
 import { useSelector } from 'react-redux';
 import { modalActions } from '../../store/modal-slice';
+import useResizeWindow from '../../hooks/use-resize-window';
+import CartModal from '../CartModal/CartModal';
 
 const CartButton = () => {
   const [animation, setAnimation] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
+  const [mouseEntered, setMouseEntered] = useState(false);
   const itemsCount = useSelector<RootState, number | undefined>(
     (state) => state.cart.itemsCount,
   );
-
+  const showCartModal = useSelector<RootState>(
+    (state) => state.modal.showCartModal,
+  );
+  const { isMobile } = useResizeWindow();
   function clickHandler() {
     dispatch(modalActions.showCart());
   }
@@ -31,9 +37,41 @@ const CartButton = () => {
 
     return () => clearTimeout(animationTimeout);
   }, [itemsCount]);
+
+  function showModal() {
+    dispatch(modalActions.showCart());
+  }
+
+  function closeModal() {
+    dispatch(modalActions.closeCart());
+  }
+
+  useEffect(() => {    
+    if (!showCartModal) {
+      setMouseEntered(false);
+    }
+  }, [showCartModal]);
+
+  useEffect(() => {
+    if (isMobile) return;
+
+    if (mouseEntered) {
+      showModal();
+    } else {
+      closeModal();
+    }
+  }, [mouseEntered]);
+
   return (
-    <>
-      <IconButton icon={BsCart2} onClick={clickHandler}>
+    <div
+      onMouseEnter={() => setMouseEntered(true)}
+      onMouseLeave={() => {setMouseEntered(false)}}
+    >
+      <IconButton
+        icon={BsCart2}
+        onClick={clickHandler}
+        text={isMobile ? '' : '장바구니'}
+      >
         {(itemsCount || 0) > 0 && (
           <div
             className={`${styles['items-count']} ${
@@ -44,7 +82,8 @@ const CartButton = () => {
           </div>
         )}
       </IconButton>
-    </>
+      <CartModal />
+    </div>
   );
 };
 

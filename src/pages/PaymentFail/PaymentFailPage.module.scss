@@ -1,0 +1,57 @@
+@import '../../config/variables';
+
+.main {
+  height: 78vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    color: $color-lightred;
+    text-align: center;
+  }
+}
+
+
+.detail_container {
+  padding: 20px;
+  box-shadow: 1px 2px 4px rgba($color: $color-red, $alpha: 0.3);
+  border: 1px solid rgba($color: $color-lightred, $alpha: 0.3);
+  background-color: white;
+  border-radius: 8px;
+
+  .error_container {
+    margin: 20px;
+
+    .error_label {
+      font-size: $font-size-level3;
+    }
+
+    .error_text {
+      font-weight: bold;
+      color: $color-lightred;
+    }
+  }
+}
+
+.nav_wrapper {
+  padding: 15px;
+
+  a {
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    padding: 8px;
+    margin: 0 4px;    
+    width: 8rem
+  }
+
+  .to_cart_view {
+    @include red-button;
+  }
+  
+  .to_main {
+    @include blue-button;
+  }
+}

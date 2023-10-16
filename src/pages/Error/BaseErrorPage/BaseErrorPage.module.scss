@@ -1,0 +1,62 @@
+@import '../../../config/variables';
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: white;
+
+  img {
+    height: 3rem;
+    margin-bottom: 10px;
+  }
+}
+
+.container {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.box {
+  border: 1px solid rgba($color: $color-blue, $alpha: .5);
+  border-radius: 8px;
+  box-shadow: 1px 2px 4px rgba($color: $color-darkblue, $alpha: 0.3);
+  background-color: white;  
+}
+
+.header {
+  background-color: $color-lightskyblue;
+  padding: 20px;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.nav_wrapper {
+  display: flex;
+
+  a,
+  button {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-level3;
+    text-decoration: none;
+    padding: 8px;
+    margin: 0 4px;
+    width: 8rem
+  }
+
+  .to_back {
+    @include red-button;
+  }
+
+  .to_main,
+  .to_login {
+    @include blue-button;
+  }
+}

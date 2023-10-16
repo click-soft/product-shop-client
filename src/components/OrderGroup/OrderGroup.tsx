@@ -14,12 +14,12 @@ interface OrderGroupProps {
 const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel }) => {
   const longDateString = moment(payment.requestedAt).format('YYYY-MM-DD HH:mm');
   const sendTypeClasses = [styles['send-type-base']];
-  const canRefund = !!payment.virtual && payment.sendType === '배송준비';
+  const canRefund = !!payment.virtual && payment.sendType === '주문확인';
 
   let sendType = payment.sendType.toString();
 
   if (payment.cancel) {
-    sendType = '주문 취소 됨';
+    sendType = '주문 취소';
     sendTypeClasses.push(styles['send-type-cancel']);
   } else {
     switch (payment.sendType) {
@@ -75,7 +75,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel }) => {
           )}
 
         {!payment.cancel &&
-          ['결제대기', '배송준비'].includes(payment.sendType) && (
+          ['결제대기', '주문확인'].includes(payment.sendType) && (
             <button
               className={styles['cancel-button']}
               onClick={onCancel.bind(null, canRefund)}

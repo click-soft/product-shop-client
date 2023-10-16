@@ -20,7 +20,7 @@ const errorSlice = createSlice(
 )
 
 export interface ErrorState {
-  code?: 'TOKEN_EXPIRED';
+  code?: 'ACCOUNT_EXPIRED';
   error?: any;
 }
 export const errorActions = errorSlice.actions;

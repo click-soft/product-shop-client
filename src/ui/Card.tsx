@@ -3,7 +3,7 @@ import styles from './styles/Card.module.scss';
 
 const Card: React.FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> = (props) => {  
+> = (props) => {
   const defaultStyle: CSSProperties = {
     backgroundColor: 'white',
   };
@@ -13,7 +13,12 @@ const Card: React.FC<
   };
 
   return (
-    <div style={combinedStyle} className={`${props.className} ${styles.card}`}>
+    <div
+      style={combinedStyle}
+      onMouseEnter={props.onMouseEnter}
+      onMouseLeave={props.onMouseLeave}
+      className={`${props.className} ${styles.card}`}
+    >
       {props.children}
     </div>
   );

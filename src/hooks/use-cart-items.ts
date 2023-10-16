@@ -6,6 +6,7 @@ import { getCartWithProduct } from "../graphql/queries/cart";
 
 const useCartItems = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>()
+  const [error, setError] = useState<any>();
   const showCartModal = useSelector<RootState, boolean>(state => state.modal.showCartModal);
   async function fetchCart() {
     const cart = await getCartWithProduct();
@@ -18,9 +19,13 @@ const useCartItems = () => {
 
   useEffect(() => {
     if (!showCartModal) return;
-
-    fetchCart();
+    fetchCart()
+      .catch(err => setError(err));
   }, [showCartModal])
+
+  if (error) {
+    throw new Error(error.message);
+  }
 
   return {
     cartItems

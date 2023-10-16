@@ -1,10 +1,9 @@
 import { ApolloClient, HttpLink, InMemoryCache, Observable, concat, fromPromise } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
-import LocalStorageManager, { LocalStoragekey } from "../utils/local-storage-manager";
+import { LocalStoragekey } from "../utils/enums";
 import { onError } from '@apollo/client/link/error';
 import { refresh } from "./mutates/auth";
 import store from "../store";
-import { modalActions } from "../store/modal-slice";
 import { errorActions } from "../store/error-slice";
 
 const httpLink = new HttpLink({
@@ -13,7 +12,8 @@ const httpLink = new HttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = LocalStorageManager.get<string>(LocalStoragekey.ACT);
+  const token = localStorage.getItem(LocalStoragekey.ACT);
+
   return {
     headers: {
       ...headers,
@@ -51,7 +51,7 @@ const errorLink = onError(
                   forward(operation).subscribe(subscriber);
                 })
                 .catch(error => {
-                  store.dispatch(errorActions.setError({ code: "TOKEN_EXPIRED", error: new Error(error) }))
+                  store.dispatch(errorActions.setError({ code: "ACCOUNT_EXPIRED", error: new Error(error) }))
                   observer.error(error);
                 });
             });

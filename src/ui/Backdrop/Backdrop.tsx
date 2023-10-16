@@ -5,16 +5,29 @@ import ReactDOM from 'react-dom';
 
 interface BackdropProps extends ChildrenProps {
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onMouseEnter?: () => void;
 }
 const Backdrop: React.FC<BackdropProps> = (props) => {
-  const data = document.getElementById('backdrop-root') as HTMLElement;
-
-  return ReactDOM.createPortal(
-    <div className={`${styles.backdrop} ${props.className}`} onClick={props.onClick}>
+  return (
+    <div
+      className={`${styles.backdrop} ${props.className}`}
+      onClick={props.onClick}
+      onMouseEnter={props.onMouseEnter}
+    >
       {props.children}
-    </div>,
-    data,
+    </div>
   );
+  // const data = document.getElementById('backdrop-root') as HTMLElement;
+
+  // return ReactDOM.createPortal(
+  //   <div
+  //     className={`${styles.backdrop} ${props.className}`}
+  //     onClick={props.onClick}
+  //   >
+  //     {props.children}
+  //   </div>,
+  //   data,
+  // );
 };
 
 export default Backdrop;

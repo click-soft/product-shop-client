@@ -2,25 +2,33 @@
 
 .textbox {
   display: flex;
+  flex-direction: row-reverse;
   margin: 0;
   height: 35px;
 }
-
-.textbox input {
+ 
+.input {
   width: 100%;
   padding-left: 6px;
   margin: 0;
   border: none;
   outline: none;
   background-color: $color-lightgray;
-  &:focus {
-    border: 1px solid $color-lightblue;
-    border-left: none;
-  }
+  border: 1px solid $color-lightblue;
+  border-left: none;
+}
+
+.input:focus {
+  border: 1px solid $color-blue;
+  border-left: none;
 }
 
 .indicator {
-  width: 3px;
+  width: 4px;
   height: 100%;
   background-color: $color-blue;
+}
+
+.input:focus~.indicator {
+  width: 5px;
 }

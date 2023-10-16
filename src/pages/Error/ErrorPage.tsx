@@ -1,15 +1,20 @@
-import { useLocation, useSearchParams } from 'react-router-dom';
+import {
+  isRouteErrorResponse,
+  useLocation,
+  useRouteError,
+  useSearchParams,
+} from 'react-router-dom';
 import styles from './ErrorPage.module.scss';
-const ErrorPage = () => {
-  const [query] = useSearchParams();
-  const errorCode = query.get('code');
+import NotFoundErrorPage from './NotFoundErrorPage/NotFoundErrorPage';
 
-  return (
-    <main className={styles.main}>
-      {errorCode === 'access-denied' && <div>잘못된 접근입니다.</div>}
-      {!errorCode && <div>페이지가 존재하지 않습니다. ㅠㅠ</div>}
-    </main>
-  );
+const ErrorPage = () => {
+  const error = useRouteError() as any;
+
+  if (error.status === 404) {
+    return <NotFoundErrorPage />;
+  }
+
+  return <main className={styles.main}></main>;
 };
 
 export default ErrorPage;

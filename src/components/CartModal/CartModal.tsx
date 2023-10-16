@@ -24,7 +24,7 @@ const Cart = () => {
   if (!showDownModal) {
     return <></>;
   }
-
+  
   const itemsComponents = cartItems?.map((item, i) => {
     return (
       <Fragment key={item.id}>

@@ -19,8 +19,8 @@ interface ModalState {
 
 const initialState: ModalState = {
   showProductModal: false,
-  showCartModal: false,
   showUserModal: false,
+  showCartModal: false,
   showMenuModal: false,
 }
 
@@ -43,13 +43,22 @@ const modalSlice = createSlice({
     showCart(state) {
       state.showCartModal = true;
     },
-    showUser(state) {
+    showUser(state) {      
       state.showUserModal = true;
     },
+    closeUser(state){
+      state.showUserModal = false;
+    },
+    closeMenu(state){
+      state.showMenuModal = false;
+    },
+    closeCart(state){
+      state.showCartModal = false;
+    },
     closeDownAll(state) {
+      state.showUserModal = false;
       state.showMenuModal = false;
       state.showCartModal = false;
-      state.showUserModal = false;
     },
   },
 });

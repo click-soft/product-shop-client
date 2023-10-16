@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './ErrorText.module.scss';
+import ChildrenProps from '../../interfaces/ChildrenProps';
 
-interface ErrorTextProps {
+interface ErrorTextProps extends ChildrenProps {
   error: string;
 }
 
@@ -11,7 +12,7 @@ const ErrorText: React.FC<ErrorTextProps> = (props) => {
   }
 
   return (
-    <div className={styles['error-wrapper']}>
+    <div className={`${styles['error-wrapper']} ${props.className}`}>
       <div className={styles.error}>{props.error}</div>
     </div>
   );

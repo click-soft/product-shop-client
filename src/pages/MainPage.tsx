@@ -1,6 +1,7 @@
+import MenuLink from '../components/MenuLink/MenuLink';
 import ProductPage from './ProductPage/ProductPage';
 
-function MainPage() {  
+function MainPage() {
   return <ProductPage />;
 }
 

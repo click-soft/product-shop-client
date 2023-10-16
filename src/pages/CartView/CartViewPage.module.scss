@@ -8,10 +8,11 @@
 .container {
   display: flex;
   justify-content: center;
-
+  // max-width: 80rem;
   table {
+    max-width: 60rem;
+    width: 100%;
     border-collapse: collapse;
-    width: 90%;
     margin: 20px;
   }
 
