@@ -61,7 +61,6 @@ const PaymentPage = () => {
     const randInt = Math.floor(Math.random() * 10000);
     const currentDt = moment(new Date()).format('YYMMDDHHmmssSSS');
     const orderId = `${currentDt}${randInt}`;
-    console.log(checkoutState);
 
     setCheckoutDataSession({ checkoutState });
 

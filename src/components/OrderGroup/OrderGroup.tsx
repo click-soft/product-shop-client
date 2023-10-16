@@ -32,8 +32,6 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel }) => {
     }
   }
 
-  console.log(payment.virtual);
-
   const orderItems = payment.paymentItems.map((item, i) => {
     return <OrderItem key={item.id} item={item} setSeparator={i > 0} />;
   });

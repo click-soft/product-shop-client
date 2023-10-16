@@ -12,13 +12,7 @@ interface IconButtonProps extends ChildrenProps {
   onMouseLeave?: MouseEventHandler<HTMLButtonElement>;
 }
 const IconButton: React.FC<IconButtonProps> = (props) => {
-  function mouseEnterHandler(
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ): void {
-    console.log('test');
-  }
-
-  return (
+   return (
     <div className={styles.button_container}>
       <button
         className={styles.button}

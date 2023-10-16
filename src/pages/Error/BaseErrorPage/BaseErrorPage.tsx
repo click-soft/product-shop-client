@@ -42,9 +42,7 @@ const BaseErrorPage: React.FC<BaseErrorPageProps> = (props) => {
           <button
             className={styles.to_login}
             onClick={() => {
-              console.log('redirect');
               window.location.href = "/login";
-              // redirect('/login');
             }}
           >
             로그인화면으로

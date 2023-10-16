@@ -13,8 +13,6 @@ const TokenExpiredHookPage: React.FC<ChildrenProps> = ({ children }) => {
 
   useEffect(() => {
     if (error?.code === 'ACCOUNT_EXPIRED') {
-      console.log('error~~', error?.code);
-
       navigate('/error?mode=ACCOUNT_EXPIRED');
       dispatch(errorActions.clearError());
     }

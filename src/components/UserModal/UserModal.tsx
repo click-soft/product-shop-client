@@ -25,7 +25,6 @@ const UserModal = () => {
     }
   };
 
-  console.log(showUserModal, 'showUserModal');
   if (!showUserModal) {
     return <></>;
   }

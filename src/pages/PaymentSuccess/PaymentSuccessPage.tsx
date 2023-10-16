@@ -18,8 +18,6 @@ const PaymentSuccessPage = () => {
     return <div>에러발생</div>
   }
 
-  console.log(data.getOrderCompleted);
-  
   return (
     <div className={styles.main}>
       <PaymentSuccessComplete orderData={data.getOrderCompleted} />
