@@ -1,7 +1,7 @@
 function getEnvironment(): 'test' | 'production' | 'development' {
   const currentDomain = window.location.hostname;
 
-  if (currentDomain.startsWith('test')) {
+  if (currentDomain.startsWith('test') || currentDomain.startsWith('www.test')) {
     return 'test';
   } else {
     return 'production';
