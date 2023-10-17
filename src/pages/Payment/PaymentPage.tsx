@@ -10,6 +10,7 @@ import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import moment from 'moment';
 import useCheckout from '../../hooks/use-checkout';
 import { LocalStoragekey } from '../../utils/enums';
+import { TOSSPAYMENTS_CLIENT_KEY } from '../../config';
 const selector = '#payment-widget';
 
 const PaymentPage = () => {
@@ -35,7 +36,7 @@ const PaymentPage = () => {
       // 비회원 결제에는 customerKey 대신 ANONYMOUS를 사용하세요.
       const customerKey = localStorage.getItem(LocalStoragekey.USR) as string;
       const paymentWidget = await loadPaymentWidget(
-        process.env.REACT_APP_TOSSPAYMENTS_CLIENT_KEY!,
+        TOSSPAYMENTS_CLIENT_KEY!,
         customerKey,
       ); // 회원 결제
       // const paymentWidget = await loadPaymentWidget(clientKey, ANONYMOUS); // 비회원 결제

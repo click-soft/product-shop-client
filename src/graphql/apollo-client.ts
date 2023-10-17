@@ -5,6 +5,7 @@ import { onError } from '@apollo/client/link/error';
 import { refresh } from "./mutates/auth";
 import store from "../store";
 import { errorActions } from "../store/error-slice";
+import { environment } from "../config";
 
 const httpLink = new HttpLink({
   uri: `${process.env.REACT_APP_BACKEND_URL}/graphql`,
@@ -17,6 +18,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
+      'X-Is-Test': environment,
       authorization: token ? `Bearer ${token}` : "",
     }
   }
