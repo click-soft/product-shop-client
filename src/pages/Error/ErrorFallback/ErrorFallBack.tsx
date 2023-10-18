@@ -5,7 +5,10 @@ const ErrorFallback: React.FC<FallbackProps> = ({
   error,
   resetErrorBoundary,
 }) => {
-  if (error?.message === 'Unauthorized') {
+
+  switch (error?.message){
+    case  "Failed to fetch":    
+    case "Unauthorized":
     return <UnauthorizedPage />;
   }
 

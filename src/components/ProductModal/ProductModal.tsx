@@ -72,20 +72,14 @@ const ProductModal = () => {
   };
 
   const addItemToCart = async () => {
-    const cartItem: CartProduct = {
-      code: productData.smCode,
-      quantity: quantity,
-      fit: fitChecked ?? false,
-    };
-
-    dispatch(
+    await dispatch(
       addToCart({
         code: productData.smCode,
         quantity,
         fit: fitChecked ?? false,
       }),
     );
-    
+
     closeHandler();
   };
 

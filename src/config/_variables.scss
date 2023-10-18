@@ -43,6 +43,7 @@ $font-size-level8: 31px;
   @if $borderColor {
     border: 1px solid $borderColor;
   }
+
   @else {
     border: none;
   }
