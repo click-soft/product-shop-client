@@ -1,3 +1,5 @@
+import { format, parse } from "date-fns";
+
 export function parseExpiresInToMilliseconds(timeString: string): number {
   const [, value, unit] = /^(\d+)([smhd])$/.exec(timeString) || [];
   if (!value || !unit) {
@@ -21,4 +23,16 @@ export function parseExpToDate(exp: string | number) {
   const expirationDate = new Date(expInMilliseconds);
 
   return expirationDate;
+}
+
+export function ymdToShortString(ymd: string): string {
+  if (!ymd) {
+    return '';
+  }
+  try {
+    const date = parse(ymd, 'yyyyMMdd', new Date())
+    return format(date, "yyyy-MM-dd")
+  } catch {
+    return '';
+  }
 }

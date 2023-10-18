@@ -11,6 +11,7 @@ interface MenuLinkProps {
   isDropdown: boolean;
 }
 const MenuLink: React.FC<MenuLinkProps> = (props) => {
+  const { isMobile } = useResizeWindow();
   const dispatch = useDispatch<AppDispatch>();
   const linkClickHandler = (key: string) => {
     scrollToTargetAdjusted(key);
@@ -18,7 +19,19 @@ const MenuLink: React.FC<MenuLinkProps> = (props) => {
     dispatch(modalActions.closeDownAll());
   };
 
-  const { isMobile } = useResizeWindow();
+  function scrollToTargetAdjusted(id: string) {
+    var element = document.getElementById(id);
+    if (!element) return;
+    var headerOffset = 55 + (isMobile ? 0 : 50);
+    var elementPosition = element.getBoundingClientRect().top;
+    var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    });
+  }
+
   if ((!props.isDropdown && isMobile) || window.location.pathname !== '/') {
     return <></>;
   }
@@ -39,18 +52,5 @@ const MenuLink: React.FC<MenuLinkProps> = (props) => {
     </nav>
   );
 };
-
-function scrollToTargetAdjusted(id: string) {
-  var element = document.getElementById(id);
-  if (!element) return;
-  var headerOffset = 55;
-  var elementPosition = element.getBoundingClientRect().top;
-  var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-  window.scrollTo({
-    top: offsetPosition,
-    behavior: 'smooth',
-  });
-}
 
 export default MenuLink;

@@ -1,0 +1,46 @@
+@import '../../config/variables';
+
+.wrapper {
+  display: flex;
+  height: 100%;
+
+  .wrapper_left{
+    display: none;
+    height: 100%;
+  }
+  .wrapper_center {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+    }
+
+    main {
+      padding-top: var(--header-height, 0);
+      flex-grow: 1;
+    }
+  }
+
+
+  // footer {
+  //   height: 60px;
+  // }
+}
+
+@media (min-width:768px) {
+  .wrapper {
+    header {
+      display: none;
+    }
+
+    .wrapper_left{
+      display: block;
+    }
+  }
+}

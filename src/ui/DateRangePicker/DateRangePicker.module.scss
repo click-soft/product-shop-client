@@ -1,0 +1,32 @@
+@import '../../config/variables';
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.dtp_range_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 3px 2px 5px 2px;
+  background-color: white;
+  border: 1px solid $color-skyblue;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.date_picker {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: 95px;
+  text-align: center;
+  height: 25px;
+  font-size: $font-size-level3;
+  color: $color-blue;
+
+  &:hover {
+    background-color: rgba($color: $color-lightskyblue, $alpha: 0.3);
+  }
+}

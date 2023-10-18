@@ -1,6 +1,8 @@
 :root {
   --font-robotoMedium: 'Roboto-Medium';
-  --font-notoSansKRRegular: 'NotoSansKR-Regular'; 
+  --font-notoSansKRRegular: 'NotoSansKR-Regular';
+
+  --color-red: red;
 }
 
 * {
@@ -18,9 +20,17 @@
   src: url(./assets/fonts/NotoSansKR-Regular.ttf);
 }
 
+html {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
 body {
-  margin: 0;  
+  margin: 0;
   padding: 0;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

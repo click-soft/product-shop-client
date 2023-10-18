@@ -38,6 +38,7 @@ const UserButton = () => {
       closeModal();
     }
   }, [mouseEntered]);
+
   return (
     <IconButton
       icon={AiOutlineUser}

@@ -1,0 +1,40 @@
+@import '../../config/variables';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - #{$header-height});
+}
+
+.img_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: none;
+  max-width: 30rem;  
+  max-height: 30rem;
+}
+
+.img {
+  width: 80%;
+  min-width: 20rem;
+  max-width: 50rem;
+  position: absolute;
+  z-index: -1;
+}
+
+.text_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($color: $color-red, $alpha: 0.9);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.text {
+  color: white;
+  font-size: x-large;
+  font-weight: bold;
+}

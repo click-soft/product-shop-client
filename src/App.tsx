@@ -1,25 +1,27 @@
 import './App.scss';
 import { RouterProvider } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import MainPage from './pages/MainPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import MainPage from './pages/MainPage/MainPage';
 import { createBrowserRouter } from 'react-router-dom';
-import RootLayout from './pages/Layout/RootLayout';
 import { checkAuthLoader, checkLoginLoader } from './utils/auth';
-import CartViewPage from './pages/CartView/CartViewPage';
-import ErrorPage from './pages/Error/ErrorPage';
-import PaymentPage from './pages/Payment/PaymentPage';
-import PaymentLayout from './pages/Layout/Payment/PaymentLayout';
-import PaymentSuccessPage from './pages/PaymentSuccess/PaymentSuccessPage';
-import PaymentFailPage from './pages/PaymentFail/PaymentFailPage';
-import OrdersPage from './pages/Orders/OrdersPage';
-import PaymentProcessingPage from './pages/PaymentProcessing/PaymentProcessingPage';
+import CartViewPage from './pages/CartViewPage/CartViewPage';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
+import PaymentPage from './pages/PaymentPage/PaymentPage';
+import PaymentSuccessPage from './pages/PaymentSuccessPage/PaymentSuccessPage';
+import PaymentFailPage from './pages/PaymentFailPage/PaymentFailPage';
+import OrdersPage from './pages/OrdersPage/OrdersPage';
+import PaymentProcessingPage from './pages/PaymentProcessingPage/PaymentProcessingPage';
 import SignupPage from './pages/SignupPage/SignupPage';
-import BaseLayout from './pages/Layout/Payment/BaseLayout';
+import DefaultLayout from './Layout/DefaultLayout/DefaultLayout';
+import AdminLayout from './Layout/AdminLayout/AdminLayout';
+import PaymentLayout from './Layout/PaymentLayout/PaymentLayout';
+import RootLayout from './Layout/RootLayout/RootLayout';
+import AdminOrderPage from './pages/AdminOrderPage/AdminOrderPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <BaseLayout />,
+    element: <DefaultLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -72,6 +74,16 @@ const router = createBrowserRouter([
           {
             path: 'fail',
             element: <PaymentFailPage />,
+          },
+        ],
+      },
+      {
+        path: 'admin',
+        element: <AdminLayout />,
+        children: [
+          {
+            index: true,
+            element: <AdminOrderPage/>,
           },
         ],
       },

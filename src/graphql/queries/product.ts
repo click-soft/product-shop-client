@@ -15,3 +15,28 @@ export const GET_RPDUCTS_BUNRYU_LIST = gql`
     }
   }
 `;
+
+export const GET_ADMIN_PRODUCTS = gql`
+  query ($startYmd: String!, $endYmd: String!){
+    getAdminProducts(startYmd: $startYmd, endYmd: $endYmd ){
+      clCode
+      csCode
+      count
+      sellYmd
+      createDt
+      etc1
+      cs {
+        gubun
+        code
+        myung
+        em{
+          name
+        }
+      }
+      productListSub{
+        smMyung
+        danga
+      }
+    }
+  }
+`
