@@ -35,10 +35,18 @@ $font-size-level8: 31px;
 
 @mixin custom-button($color: $color-lightgray,
   $backgroundColor: $color-blue,
-  $activeBackgroundColor: $color-darkblue) {
+  $activeBackgroundColor: $color-darkblue,
+  $borderColor: null) {
   color: $color;
   background-color: $backgroundColor;
-  border: none;
+
+  @if $borderColor {
+    border: 1px solid $borderColor;
+  }
+  @else {
+    border: none;
+  }
+
   border-radius: 4px;
   cursor: pointer;
 

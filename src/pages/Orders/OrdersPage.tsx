@@ -13,6 +13,9 @@ import useToast from '../../hooks/use-toast';
 import { PaymentType } from '../../graphql/interfaces/payment';
 import RefundModal from '../../components/RefundModal/RefundModal';
 import CircleLoading from '../../components/Loading/CircleLoading';
+import { addToCart, cartActions } from '../../store/cart-slice';
+import { useLazyQuery } from '@apollo/client';
+import { GET_PAYMENT_ITEM_CODE } from '../../graphql/queries/payment-item';
 
 type RefundType = {
   show: boolean;
@@ -23,6 +26,7 @@ const OrdersPage = () => {
   const { toast, toastConatiner } = useToast();
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
+  const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
   const [refundData, setRefundData] = useState<RefundType>();
   const payments = useSelector<RootState, PaymentType[]>(
     (state) => state.orders.payments,
@@ -48,6 +52,26 @@ const OrdersPage = () => {
         // showToast('error', error.message);
       })
       .then(() => setLoading(false));
+  }
+
+  function reorderHandler(p: PaymentType) {
+    if (!window.confirm('장바구니에 추가하시겠습니까?')) return;
+    async function reorder() {
+      for (const item of p.paymentItems) {
+        const result = await getPaymentItemCode({ variables: { id: item.id } });
+        const code = result.data?.getPaymentItemById?.code;
+        if (!code) continue;
+
+        await dispatch(
+          addToCart({
+            code: code,
+            fit: item.fit,
+            quantity: item.quantity,
+          }),
+        );
+      }
+    }
+    reorder();
   }
 
   function refundClickHandler({
@@ -84,6 +108,7 @@ const OrdersPage = () => {
         <OrderGroup
           payment={p}
           onCancel={(isRefund) => cancelHandler(isRefund, p)}
+          onReorder={() => reorderHandler(p)}
         />
       </li>
     );

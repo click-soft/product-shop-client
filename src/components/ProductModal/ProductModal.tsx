@@ -8,13 +8,12 @@ import ProductListSub from '../../interfaces/ProductListSub';
 import CartProduct from '../../interfaces/CartItem';
 import React, { useEffect, useRef, useState } from 'react';
 import { formatCurrency } from '../../utils/strings';
-import { fetchGetItemsCount } from '../../store/cart-slice';
+import { addToCart, fetchGetItemsCount } from '../../store/cart-slice';
 import CheckBox from '../../ui/CheckBox/CheckBox';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import CustomLi from './components/CustomLi/CustomLi';
 import NumericUpDown from './components/NumericUpDown/NumericUpDown';
 import ErrorText from '../../ui/ErrorText/ErrorText';
-import { addToCart } from '../../graphql/mutates/cart';
 import { useNavigate } from 'react-router-dom';
 
 const ProductModal = () => {
@@ -79,8 +78,14 @@ const ProductModal = () => {
       fit: fitChecked ?? false,
     };
 
-    await addToCart(cartItem);
-    await dispatch(fetchGetItemsCount());
+    dispatch(
+      addToCart({
+        code: productData.smCode,
+        quantity,
+        fit: fitChecked ?? false,
+      }),
+    );
+    
     closeHandler();
   };
 

@@ -9,9 +9,14 @@ import bankData from '../../data/bankData';
 interface OrderGroupProps {
   payment: PaymentType;
   onCancel: (isRefund: boolean) => void;
+  onReorder: () => void;
 }
 
-const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel }) => {
+const OrderGroup: React.FC<OrderGroupProps> = ({
+  payment,
+  onCancel,
+  onReorder,
+}) => {
   const longDateString = moment(payment.requestedAt).format('YYYY-MM-DD HH:mm');
   const sendTypeClasses = [styles['send-type-base']];
   const canRefund = !!payment.virtual && payment.sendType === '주문확인';
@@ -35,6 +40,9 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel }) => {
   const orderItems = payment.paymentItems.map((item, i) => {
     return <OrderItem key={item.id} item={item} setSeparator={i > 0} />;
   });
+
+  const canCancel =
+    !payment.cancel && ['결제대기', '주문확인'].includes(payment.sendType);
 
   return (
     <Card className={styles['orders-container']}>
@@ -72,15 +80,18 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel }) => {
             </Card>
           )}
 
-        {!payment.cancel &&
-          ['결제대기', '주문확인'].includes(payment.sendType) && (
-            <button
-              className={styles['cancel-button']}
-              onClick={onCancel.bind(null, canRefund)}
-            >
-              주문취소
-            </button>
-          )}
+        {canCancel ? (
+          <button
+            className={styles['cancel-button']}
+            onClick={onCancel.bind(null, canRefund)}
+          >
+            주문취소
+          </button>
+        ) : (
+          <button className={styles['reorder-button']} onClick={onReorder}>
+            재주문
+          </button>
+        )}
       </div>
     </Card>
   );

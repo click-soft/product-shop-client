@@ -49,7 +49,10 @@ export const getPaymentWithItems = createAsyncThunk(
   'orders-slice/getPaymentWithItems',
   async ({ isInit }: { isInit: boolean }): Promise<PaymentsResultType> => {
     try {
-      const response = await client.query({ query: GET_PAYMENT_WITH_ITEMS })
+      const response = await client.query({
+        query: GET_PAYMENT_WITH_ITEMS,
+        fetchPolicy: "no-cache",
+      })
 
       return { isInit, payments: response.data.getPaymentWithItems };
     } catch (err: any) {
@@ -61,7 +64,6 @@ export const getPaymentWithItems = createAsyncThunk(
 export const cancelOrder = createAsyncThunk(
   'orders-slice/cancelOrder',
   async ({ payment, cancelReason }: { payment: PaymentType, cancelReason: string }): Promise<number> => {
-    // throw new Error("오메메ㅔ");
     const response = await client.mutate({
       mutation: CANCEL_ORDER, variables: {
         paymentId: payment.id,
