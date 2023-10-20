@@ -3,6 +3,7 @@ $backcolor-primary: rgb(233, 237, 249);
 $header-height: 48px;
 $cart-view-height: 5rem;
 
+$color-lightblack: rgb(34, 34, 34);
 $color-black: #333;
 $color-pink: #ef23b2;
 $color-red: #ef2a23;
@@ -15,7 +16,7 @@ $color-blue: #297ad6;
 $color-lightskyblue: #b8d7fa;
 $color-skyblue: #97C3F0;
 $color-lightblue: #77a4d8;
-$color-lightgray: #f7f7f7;
+$color-lightgray: #EEEEEE;
 $color-gray: rgb(128, 128, 128);
 $color-lightgreen: #80e12a;
 $color-green: #369f36;
@@ -126,4 +127,41 @@ $font-size-level8: 31px;
   @include fit-mark;
   border: 1px solid $color-gray;
   background-color: $color-gray;
+}
+
+@mixin icon-button-style {
+  .icon_wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 10px;
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      color: gray;
+    }
+
+    .text {
+      color: $color-lightgray;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $color-lightblack;
+    }
+
+    &.active {
+      background-color: $color-lightred;
+
+      .icon {
+        color: white;
+      }
+    }
+  }
 }

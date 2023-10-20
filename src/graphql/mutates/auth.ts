@@ -7,21 +7,13 @@ type Message = {
   message: string;
 };
 
-export const logout = async (): Promise<Message> => {
-  const response = await client.mutate({
-    mutation: gql`
-        mutation {
-          logout {
-            message
-          }
-        }
-      `,
-  });
-
-  localStorage.removeItem(LocalStoragekey.ACT);
-  localStorage.removeItem(LocalStoragekey.USR);
-  return response.data.logout;
-};
+export const LOGOUT = gql`
+mutation {
+  logout {
+    message
+  }
+}
+` 
 
 export const LOGIN = gql`
         mutation ($userId: String!, $password: String!){

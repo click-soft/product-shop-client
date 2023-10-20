@@ -1,7 +1,7 @@
 :root {
   --font-robotoMedium: 'Roboto-Medium';
   --font-notoSansKRRegular: 'NotoSansKR-Regular';
-
+  --font-lilitaOne: 'Lilita One';
   --color-red: red;
 }
 
@@ -20,6 +20,10 @@
   src: url(./assets/fonts/NotoSansKR-Regular.ttf);
 }
 
+@font-face {
+  font-family: 'Lilita One';
+  src: url(./assets/fonts/LilitaOne-Regular.ttf);
+}
 html {
   height: 100%;
 }

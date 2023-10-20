@@ -17,8 +17,9 @@ export const GET_RPDUCTS_BUNRYU_LIST = gql`
 `;
 
 export const GET_ADMIN_PRODUCTS = gql`
-  query ($startYmd: String!, $endYmd: String!){
-    getAdminProducts(startYmd: $startYmd, endYmd: $endYmd ){
+  query ($startYmd: String!, $endYmd: String!, $emCode: String){
+    getAdminProducts(startYmd: $startYmd, endYmd: $endYmd, emCode: $emCode ){
+      auto
       clCode
       csCode
       count

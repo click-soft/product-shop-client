@@ -3,16 +3,16 @@
 .wrapper {
   display: flex;
   height: 100%;
-
-  .wrapper_left{
+  background-color: $color-lightgray;
+  .wrapper_left {
     display: none;
-    height: 100%;
+    height: 100%;   
   }
+
   .wrapper_center {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-
     header {
       position: fixed;
       top: 0;
@@ -33,14 +33,29 @@
   // }
 }
 
+
 @media (min-width:768px) {
   .wrapper {
-    header {
-      display: none;
+    .wrapper_center {
+      header {
+        top: 0;
+        left: var(--left-menu-width);
+        width: calc(100% - var(--left-menu-width));
+      }
     }
 
-    .wrapper_left{
+    // header {
+    //   display: none;
+    // }
+
+    .wrapper_left_dummy{
       display: block;
+      width: var(--left-menu-width);
+    }
+    .wrapper_left {
+      display: block;
+      position: fixed;
+      top: 0;
     }
   }
 }

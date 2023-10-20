@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PaymentSuccessProg from '../../components/PaymentSuccessProg/PaymentSuccessProg';
 import styles from './PaymentProcessingPage.module.scss';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -10,11 +10,12 @@ import { deleteCartItems } from '../../store/cart-slice';
 const PaymentProcessingPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const [error, setError] = useState<{ code?: string; message?: string }>();
   const [searchParams] = useSearchParams();
   const { mutateCheckout } = useCheckout({
     isSession: true,
   });
-  
+
   useEffect(() => {
     mutateCheckout(searchParams)
       .then((data) => {
@@ -22,14 +23,19 @@ const PaymentProcessingPage = () => {
           dispatch(deleteCartItems(data.ids));
           navigate(`/payment/success/${searchParams.get('orderId')}`);
         } else {
-          throw new Error(data.errorMessage);
+          setError({ code: data.errorCode, message: data.errorMessage });
         }
       })
       .catch((error) => {
-        // navigate('/error?code=access-denied');
+        setError(error.message);
       });
   }, []);
 
+  useEffect(() => {
+    if (error) {
+      throw new Error(JSON.stringify(error));
+    }
+  }, [error]);
   return (
     <div className={styles.main}>
       <PaymentSuccessProg />

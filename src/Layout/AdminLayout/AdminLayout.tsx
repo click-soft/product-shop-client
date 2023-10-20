@@ -1,3 +1,4 @@
+import AdminMenu from '../../components/Admin/AdminMenu/AdminMenu';
 import BaseLayout from '../BaseLayout/BaseLayout';
 import AdminHeader from './Header/AdminHeader';
 
@@ -6,9 +7,7 @@ const AdminLayout = () => {
     <BaseLayout
       headerComponent={<AdminHeader />}
       footerComponent={<div>foooter</div>}
-      leftMenuComponent={
-        <div style={{ backgroundColor: 'red' }}>left range ▣</div>
-      }
+      leftMenuComponent={<AdminMenu />}
     />
   );
 };

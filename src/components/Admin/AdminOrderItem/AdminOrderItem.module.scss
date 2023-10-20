@@ -1,0 +1,87 @@
+@import '../../../config/variables';
+
+$header-color :rgb(2, 127, 168);
+$back-color : rgb(240, 248, 253);
+$label-color :  rgb(197, 229, 248);
+
+.list_item {
+  display: grid;
+  width: 100%;
+  margin: 10px 0;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: $back-color;
+  border-radius: 4px;  
+  box-shadow: 1px 2px 4px rgba($color: #000000, $alpha: 0.1);
+  overflow: hidden;
+}
+
+.header {
+  grid-column: 1 / 3;
+  background-color: $header-color;
+
+}
+
+.header_group {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.data_box {
+  display: grid;
+  grid-template-columns: 80px auto;
+  grid-template-rows: repeat(1, 45px);
+
+  // padding: 4px 0;
+  // background-color: red;
+  .label {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-level2;
+    padding-left: 10px;
+    // margin-left: 10px;    
+    background-color: $label-color;
+  }
+
+  .text {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: $color-darkblue2;
+    padding-left: 10px;
+  }
+
+  &.grid_header {
+    display: flex;
+    color: white;
+    .label {
+      background-color: transparent;
+    }
+
+    .text {
+      padding-right: 20px;      
+      color: white;
+    }
+  }
+}
+
+$min-widths: (
+  768px : 3,
+  1000px : 4,
+  1150px : 5,
+  1300px : 6,
+  1450px : 7
+);
+
+@each $width,
+$columnCount in $min-widths {
+  @media (min-width: $width) {
+    .list_item {
+      grid-template-columns: repeat($columnCount, 1fr);
+    }
+
+    .header {
+      grid-column: 1 / #{$columnCount + 1};
+    }
+  }
+}

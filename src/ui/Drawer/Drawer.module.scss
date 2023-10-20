@@ -1,0 +1,38 @@
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  // width: auto;
+  height: 100%;
+  z-index: 1002;
+  width: fit-content;
+  background-color: white;
+  overflow: hidden;
+  &.open {
+    animation: open 0.3s ease forwards;
+  }
+
+  &.close {
+    animation: close 0.3s ease forwards;
+  }
+}
+
+@keyframes open {
+  from {
+    max-width: 0; 
+  }
+
+  to {
+    max-width: 80%;   
+  }
+}
+
+@keyframes close {
+  from {
+    max-width: 80%;
+  }
+
+  to {
+    max-width: 0;
+  }
+}

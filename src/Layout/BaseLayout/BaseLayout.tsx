@@ -15,22 +15,37 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({
   footerComponent,
 }) => {
   const headerRef = useRef<HTMLHRElement>(null);
+  const leftMenuRef = useRef<HTMLDivElement>(null);
 
   useResizeObserver(headerRef, {
     onHeightChange: (height) => {
-      console.log(height);
-
       document.documentElement.style.setProperty(
         '--header-height',
         `${height}px`,
       );
     },
   });
- 
+
+  useResizeObserver(leftMenuRef, {
+    onWidthChange: (width) => {
+      console.log('width', width);
+      
+      document.documentElement.style.setProperty(
+        '--left-menu-width',
+        `${width}px`,
+      );
+    },
+  });
+
   return (
     <div className={styles.wrapper}>
       {leftMenuComponent && (
-        <div className={styles.wrapper_left}>{leftMenuComponent}</div>
+        <div>
+          <div ref={leftMenuRef} className={styles.wrapper_left}>
+            {leftMenuComponent}
+          </div>
+          <div className={styles.wrapper_left_dummy}></div>
+        </div>
       )}
       <div className={styles.wrapper_center}>
         {headerComponent && <header ref={headerRef}>{headerComponent}</header>}

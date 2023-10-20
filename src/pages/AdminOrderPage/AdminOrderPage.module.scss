@@ -1,7 +1,5 @@
 @import '../../config/variables';
 
-$group-color : rgb(214, 62, 138);
-
 .container {
   display: flex;
   flex-direction: column;
@@ -9,20 +7,28 @@ $group-color : rgb(214, 62, 138);
 
 .search_wrapper {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;  
-  padding: 10px;
-}
+  justify-content: left;
+  flex-wrap: wrap;
+  margin: 10px 10px 0 10px;
+  border-radius: 4px;
+  box-shadow: 1px 2px 4px rgba($color: #000000, $alpha: 0.1);
+  padding: 0 20px;
+  background-color: white;
 
-.select {
-  margin-left: 4px;
-}
+  .select {
+    margin-left: 8px;
+  }
 
-.select_wrapper {
-  display: flex;
-  align-items: center;
-  height: 50px;
-  margin-right: 4px;
+  .select_wrapper {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-right: 4px;
+  }
+
+  .submit_button {
+    margin: 4px;
+  }
 }
 
 .list {
@@ -31,86 +37,5 @@ $group-color : rgb(214, 62, 138);
   flex-direction: column;
   align-items: center;
   margin: 0;
-  padding: 0;
-}
-
-.list_item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: fit-content;
-  flex-wrap: wrap;
-  margin: 10px;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 1px 2px 4px rgba($color: $group-color, $alpha: .3);
-  background-color: rgba($color: $group-color, $alpha: 0.02);
-
-  .header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    background-color: $group-color;
-    color: white;
-    padding: 0 10px;
-  }
-
-  .item_group {
-    display: grid;
-    grid-template-columns: repeat(1, 250px);
-
-    .text_group {
-      display: flex;
-      align-items: center;
-    }
-  }
-}
-
-.data_box {
-  display: flex;
-  padding: 10px;
-
-  .label {
-    font-size: $font-size-level2;
-  }
-
-  .text {
-    font-weight: bold;
-  }
-
-  &.row {
-    align-items: center;
-
-    .label {
-      margin-right: 6px;
-    }
-  }
-
-  &.column {
-    flex-direction: column;
-
-    .text {
-      margin-left: 4px;
-      color: $color-darkblue3;
-    }
-  }
-}
-
-@media (min-width: 600px) {
-  .list_item {
-    .item_group {
-      display: grid;
-      grid-template-columns: repeat(2, 250px);
-
-    }
-  }
-}
-@media (min-width: 800px) {
-  .list_item {
-    .item_group {
-      display: grid;
-      grid-template-columns: repeat(3, 250px);
-
-    }
-  }
+  padding: 0 10px;
 }
