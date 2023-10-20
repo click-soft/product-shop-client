@@ -1,0 +1,45 @@
+@import '../../config/variables';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.container {
+  margin: 0 auto;
+  width: 30rem;
+
+  .title {
+    font-weight: bold;
+    padding: 15px 0;
+    font-size: $font-size-level4;
+    text-align: center;
+    color: $color-darkblue2;
+    border-bottom: 1px solid $color-blue;
+  }
+
+  .detail {
+    padding: 20px 10px;
+    font-size: $font-size-level3;
+  }
+
+  .sub_text {
+    margin-left: 71px;
+  }
+}
+
+@media (min-width:768px) {
+  .container {
+    width: 40rem;
+  }
+
+  .title {
+    padding: 15px;
+  }
+
+  .detail {
+    padding: 20px 40px;
+    font-size: $font-size-level3;
+  }
+}

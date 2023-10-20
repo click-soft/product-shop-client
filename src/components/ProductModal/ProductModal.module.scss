@@ -54,3 +54,14 @@
     }
   }
 }
+
+.service_info {
+  text-align: center;
+  font-size: $font-size-level2;
+  color: $color-darkblue2;
+  text-decoration: underline;
+
+  &:hover{
+    cursor: pointer;
+  }
+}

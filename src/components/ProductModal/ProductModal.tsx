@@ -5,19 +5,21 @@ import { useDispatch } from 'react-redux';
 import { modalActions } from '../../store/modal-slice';
 import styles from './ProductModal.module.scss';
 import ProductListSub from '../../interfaces/ProductListSub';
-import CartProduct from '../../interfaces/CartItem';
 import React, { useEffect, useRef, useState } from 'react';
 import { formatCurrency } from '../../utils/strings';
 import { addToCart, fetchGetItemsCount } from '../../store/cart-slice';
 import CheckBox from '../../ui/CheckBox/CheckBox';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import CustomLi from './components/CustomLi/CustomLi';
-import NumericUpDown from './components/NumericUpDown/NumericUpDown';
 import ErrorText from '../../ui/ErrorText/ErrorText';
 import { useNavigate } from 'react-router-dom';
+import ProductQuantitySelect from '../ProductQuantitySelect/ProductQuantitySelect';
+import Drawer from '../../ui/Drawer/Drawer';
+import ServiceInfo from '../ServiceInfo/ServiceInfo';
 
 const ProductModal = () => {
-  const [quantity, setQuantity] = useState(1);
+  const [show, setShow] = useState(false);
+  const [quantity, setQuantity] = useState(2);
   const navigate = useNavigate();
   const [fitChecked, setFitChecked] = useState<boolean | undefined>(false);
   const [fitError, setFitError] = useState('');
@@ -56,7 +58,7 @@ const ProductModal = () => {
     if (!showProductModal) return;
 
     setFitChecked(isFitProduct);
-    setQuantity(isFitProduct ? 6 : 1);
+    setQuantity(isFitProduct ? 6 : 2);
   }, [showProductModal]);
 
   if (!showProductModal) {
@@ -107,10 +109,13 @@ const ProductModal = () => {
             <CustomLi title="주문명칭" text={productData.smMyung} />
             <CustomLi title="단위" text={productData.danwi} />
             <CustomLi title="금액" text={cost} />
-            <NumericUpDown
-              quantity={quantity}
-              onQuantityChange={quantityChangeHandler}
-            />
+            <CustomLi title="수량">
+              <ProductQuantitySelect
+                value={quantity}
+                onChange={quantityChangeHandler}
+                isFit={fitChecked ?? false}
+              />
+            </CustomLi>
             <ErrorText error={fitError} />
             <CustomLi title="총 금액" text={totalCost} />
             {isFitProduct && (
@@ -150,6 +155,24 @@ const ProductModal = () => {
           </button>
         </div>
       </form>
+      <div
+        className={styles.service_info}
+        onClick={() => {
+          setShow(true);
+        }}
+      >
+        서비스 안내
+      </div>
+      <Drawer
+        zIndex={10000}
+        anchor="bottom"
+        show={show}
+        onClose={() => {
+          setShow(false);
+        }}
+      >
+        <ServiceInfo />
+      </Drawer>
     </Modal>
   );
 };

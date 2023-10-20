@@ -1,38 +1,91 @@
 .drawer {
   position: fixed;
-  top: 0;
-  left: 0;
+ 
   // width: auto;
-  height: 100%;
+
   z-index: 1002;
   width: fit-content;
-  background-color: white;
+  // background-color: white;
   overflow: hidden;
-  &.open {
-    animation: open 0.3s ease forwards;
+
+  &.left {
+    top: 0;    
+    left: 0;
+    height: 100%;
   }
 
-  &.close {
-    animation: close 0.3s ease forwards;
+  &.right {
+    top: 0;    
+    right: 0;
+    height: 100%;
+  }
+
+  &.bottom {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &.top {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &.open_width {
+    animation: open_width 0.3s ease-in forwards;
+  }
+
+  &.close_width {
+    animation: close_width 0.3s ease forwards;
+  }
+
+  &.open_height {
+    animation: open_height 0.3s ease-in forwards;
+  }
+
+  &.close_height {
+    animation: close_height 0.3s ease forwards;
   }
 }
 
-@keyframes open {
+@keyframes open_width {
   from {
-    max-width: 0; 
+    max-width: 0;
   }
 
   to {
-    max-width: 80%;   
+    max-width: 80%;
   }
 }
 
-@keyframes close {
+@keyframes close_width {
   from {
     max-width: 80%;
   }
 
   to {
     max-width: 0;
+  }
+}
+
+
+@keyframes open_height {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: 80%;
+  }
+}
+
+@keyframes close_height {
+  from {
+    max-height: 80%;
+  }
+
+  to {
+    max-height: 0;
   }
 }

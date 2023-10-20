@@ -1,0 +1,12 @@
+@import '../../config/variables';
+
+.select {
+  background-color: transparent;
+  border: 1px solid $color-blue;
+  border-radius: 4px;
+  outline: none;
+
+  &:hover {
+    border-width: 2px;
+  }
+}

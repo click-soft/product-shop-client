@@ -3,6 +3,7 @@ import CartItem from '../../interfaces/CartItem';
 import styles from './CartViewItem.module.scss';
 import { formatCurrency } from '../../utils/strings';
 import NumericCombo from '../../ui/NumericCombo/NumericCombo';
+import ProductQuantitySelect from '../ProductQuantitySelect/ProductQuantitySelect';
 interface CartViewItemProps {
   cartItem: CartItem;
   checked: boolean;
@@ -53,10 +54,10 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
               <div className={styles['cart-item__body__price']}>
                 {formatCurrency(ci.product?.danga)}원
               </div>
-              <NumericCombo
+              <ProductQuantitySelect
                 value={ci.quantity}
-                minValue={ci.fit ? 6 : 1}
-                onValueChange={(value) => props.onCountChange(ci.id!, value)}
+                onChange={(v) => props.onCountChange(ci.id!, v)}
+                isFit={ci.fit}
               />
             </div>
 
