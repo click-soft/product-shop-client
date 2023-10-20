@@ -36,7 +36,7 @@ const ProductModal = () => {
   );
   const totalCost = formatCurrency(quantity * productData?.danga);
   const cost = formatCurrency(productData?.danga);
-  const isFitProduct = ['A', 'B'].includes(productCode);
+  const isFitProduct = false;
 
   useEffect(() => {
     if (!showProductModal) return;
