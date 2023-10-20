@@ -3,17 +3,17 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: white;  
 }
 
 .container {
   margin: 0 auto;
-  width: 30rem;
+  width: 20rem;
 
   .title {
     font-weight: bold;
     padding: 15px 0;
-    font-size: $font-size-level4;
+    font-size: $font-size-level3;
     text-align: center;
     color: $color-darkblue2;
     border-bottom: 1px solid $color-blue;
@@ -21,7 +21,7 @@
 
   .detail {
     padding: 20px 10px;
-    font-size: $font-size-level3;
+    font-size: $font-size-level2;
   }
 
   .sub_text {
@@ -32,14 +32,15 @@
 @media (min-width:768px) {
   .container {
     width: 40rem;
-  }
 
-  .title {
-    padding: 15px;
-  }
-
-  .detail {
-    padding: 20px 40px;
-    font-size: $font-size-level3;
-  }
+    .title {
+      padding: 15px;
+      font-size: $font-size-level4;
+    }
+  
+    .detail {
+      padding: 20px 40px;
+      font-size: $font-size-level3;
+    }
+  } 
 }

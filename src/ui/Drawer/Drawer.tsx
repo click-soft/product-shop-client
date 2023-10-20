@@ -10,12 +10,15 @@ interface DrawerProps extends ChildrenProps {
   onClose: () => void;
   anchor?: 'left' | 'right' | 'top' | 'bottom';
   zIndex?: number;
+  overflow?: 'hidden' | 'auto' | 'scroll';
 }
 
 const Drawer: React.FC<DrawerProps> = (props) => {
   const [disp, setDisp] = useState(false);
   const [closeCalled, setCloseCalled] = useState(false);
   const anchor = props.anchor ?? 'left';
+  const overflow = props.overflow ?? 'hidden';
+
   const animationType =
     anchor === 'left' || anchor === 'right' ? 'width' : 'height';
 
@@ -47,7 +50,10 @@ const Drawer: React.FC<DrawerProps> = (props) => {
             ? styles[`close_${animationType}`]
             : styles[`open_${animationType}`],
         )}
-        style={{ zIndex: props.zIndex ? props.zIndex + 1 : undefined }}
+        style={{
+          zIndex: props.zIndex ? props.zIndex + 1 : undefined,
+          overflow,
+        }}
       >
         {props.children}
       </div>

@@ -164,12 +164,11 @@ const ProductModal = () => {
         서비스 안내
       </div>
       <Drawer
-        zIndex={10000}
         anchor="bottom"
+        overflow="auto"
+        zIndex={10000}
         show={show}
-        onClose={() => {
-          setShow(false);
-        }}
+        onClose={() => setShow(false)}
       >
         <ServiceInfo />
       </Drawer>
