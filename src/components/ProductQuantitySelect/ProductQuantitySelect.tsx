@@ -24,7 +24,7 @@ const ProductQuantitySelect: React.FC<ProductQuantitySelectProps> = (props) => {
       onChange={(e) => props.onChange?.(+e.target.value)}
     >
       {getOptions().map((i) => (
-        <option value={i}>{i}</option>
+        <option key={i} value={i}>{i}</option>
       ))}
     </select>
   );

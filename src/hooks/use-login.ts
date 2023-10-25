@@ -6,34 +6,30 @@ import { useEffect, useState } from "react";
 import { LocalStoragekey } from "../utils/enums";
 
 interface LoginSubmitArgs extends LoginArgs {
-  onSuccess: () => void;
+  onSuccess: (admin?: boolean) => void;
   onError: (errorMessage?: string, err?: ApolloError | undefined) => void;
 }
 
 const useLogin = () => {
   const [loginArgs, setLoginArgs] = useState<LoginSubmitArgs>();
-  const [loginMutate, { data, error, loading }] = useMutation(LOGIN);
+  const [loginMutate, { data }] = useMutation(LOGIN);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (data?.login) {
       client.resetStore();
       localStorage.setItem(LocalStoragekey.ACT, data.login.accessToken);
       localStorage.setItem(LocalStoragekey.USR, data.login.usr);
-      loginArgs?.onSuccess();
+      const timeout = setTimeout(() => {
+        loginArgs?.onSuccess(data.login.admin);
+      }, 300)
+
+      return () => {
+        setLoading(false);
+        clearTimeout(timeout);
+      }
     }
   }, [data]);
-
-
-  useEffect(() => {
-    if (error) {
-      error.graphQLErrors.forEach(err => {
-        if (err.extensions.code === "BAD_REQUEST") {
-
-        }
-        loginArgs?.onError(err.message, error);
-      })
-    }
-  }, [error])
 
   function login(args: LoginSubmitArgs) {
     setLoginArgs(args);
@@ -45,12 +41,16 @@ const useLogin = () => {
       return args.onError("비밀번호를 입력하세요.")
     }
 
+    setLoading(true);
     loginMutate({
       variables: {
         userId: args.userId,
         password: args.password
       }
-    }).catch(err => { })
+    }).catch(err => {
+      setLoading(false);
+      args?.onError(err.message);
+    })
   }
 
   return { login, loading }

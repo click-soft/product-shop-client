@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useEffect } from 'react';
 import styles from './Backdrop.module.scss';
 import ChildrenProps from '../../interfaces/ChildrenProps';
 import ReactDOM from 'react-dom';
@@ -8,8 +8,20 @@ interface BackdropProps extends ChildrenProps {
   onMouseEnter?: () => void;
   zIndex?: number;
   setPortal?: boolean;
+  notScrollHidden?: boolean;
 }
 const Backdrop: React.FC<BackdropProps> = (props) => {
+  useEffect(() => {
+    if (!props.notScrollHidden) {
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      if (!props.notScrollHidden) {
+        document.body.style.overflow = 'auto';
+      }
+    };
+  }, []);
   if (props.setPortal) {
     const data = document.getElementById('backdrop-root') as HTMLElement;
 

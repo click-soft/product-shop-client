@@ -6,6 +6,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import TextInput from '../../ui/TextInput/TextInput';
 import useToast from '../../hooks/use-toast';
 import useLogin from '../../hooks/use-login';
+import CircleLoading from '../Loading/CircleLoading';
 
 function Login() {
   const navigate = useNavigate();
@@ -16,18 +17,18 @@ function Login() {
   const isBuisness = searchQuery.get('mode') === 'buisness';
   const { login, loading } = useLogin();
 
-  function linkClickHandler() {
-    setInputs({ id: '', password: '' });
-  }
-
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     login({
       userId: inputs.id,
       password: inputs.password,
-      onSuccess: () => {
-        navigate('/');
+      onSuccess: (admin) => {
+        if (admin) {
+          navigate('/admin/orders');
+        } else {
+          navigate('/');
+        }
       },
       onError: (errorMessage) => {
         toast.error(errorMessage);
@@ -50,13 +51,6 @@ function Login() {
       passwordRef?.current?.focus();
     }
   }
-  // function inputChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
-  //   const value: string = e.target.value;
-
-  //   if (isNuemric(value)) {
-  //     setInputValue(value);
-  //   }
-  // }
 
   const inputBox = isBuisness ? (
     <TextInput
@@ -78,6 +72,7 @@ function Login() {
 
   return (
     <>
+      {loading && <CircleLoading />}
       {toastConatiner}
       <Card className={styles.card}>
         <div className={styles.container}>
@@ -96,6 +91,7 @@ function Login() {
               <button
                 className={`${styles.login_button} blue-button`}
                 id="btn-login"
+                disabled={loading}
               >
                 로그인
               </button>

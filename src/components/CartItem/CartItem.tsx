@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './CartItem.module.scss';
 import CartProduct from '../../interfaces/CartItem';
-import { formatCurrency } from '../../utils/strings';
 
 interface CartItemProps {
   item: CartProduct;
@@ -9,7 +8,7 @@ interface CartItemProps {
 
 const CartItem: React.FC<CartItemProps> = (props) => {
   const item = props.item;
-  const formatedPrice = formatCurrency(item.product?.danga! * item.quantity);
+  const formatedPrice = (item.product?.danga! * item.quantity);
 
   return (
     <li className={styles.item}>
@@ -22,7 +21,7 @@ const CartItem: React.FC<CartItemProps> = (props) => {
           <div>수량 : {item.quantity}</div>
           <div>단위 : {item.product?.danwi}</div>
         </div>
-        <div className={styles.detail__right}>₩{formatedPrice}</div>
+        <div className={styles.detail__right}>₩{formatedPrice.toLocaleString()}</div>
       </div>
     </li>
   );

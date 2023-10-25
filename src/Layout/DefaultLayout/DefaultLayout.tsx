@@ -1,7 +1,7 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import { Outlet } from 'react-router-dom';
 import ErrorFallback from '../../pages/ErrorPage/ErrorFallback/ErrorFallBack';
-import TokenExpiredHookPage from '../../pages/ErrorPage/TokenExpiredHookPage';
+import RejectionErrorBoundary from '../../pages/ErrorPage/RejectionErrorBoundary';
 
 const DefaultLayout = () => {
   return (
@@ -12,9 +12,9 @@ const DefaultLayout = () => {
         // console.log(args);
       }}
     >
-      <TokenExpiredHookPage>
+      <RejectionErrorBoundary>
           <Outlet />
-      </TokenExpiredHookPage>
+      </RejectionErrorBoundary>
     </ErrorBoundary>
   );
 };

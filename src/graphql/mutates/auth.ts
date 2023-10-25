@@ -20,6 +20,7 @@ export const LOGIN = gql`
           login(userId: $userId, password:$password) {
             accessToken
             usr
+            admin
           }
         }
       `

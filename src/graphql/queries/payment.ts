@@ -1,33 +1,49 @@
 import { gql } from "@apollo/client";
-import { ORDER_COMPLETED_FIELD, PAYMENT_VIRTUAL_FIELD as PAYMENT_VIRTUAL_FIELD } from "../fragments/payment.fragment";
+import { GET_PAYMENTS_FIELDS, ORDER_COMPLETED_FIELD, PAYMENT_VIRTUAL_FIELD as PAYMENT_VIRTUAL_FIELD } from "../fragments/payment.fragment";
 
 export const GET_PAYMENT_WITH_ITEMS = gql`
-  query {
-    getPaymentWithItems {
-      id
-      orderId
-      paymentKey
-      method
-      amount
-      quantity
-      requestedAt
-      approvedAt
-      sendType
-      cancel
-      virtual{
-        ...PaymentVirtualField
-      }
-      paymentItems {
-        id
-        name
-        fit
-        quantity
-        amount
+  query ($page: Int!){
+    getPaymentWithItems(page: $page) {
+      page
+      isLast
+      payments {
+        ...GetPaymentsFields      
       }
     }
   }
+  ${GET_PAYMENTS_FIELDS}
+`;
 
-  ${PAYMENT_VIRTUAL_FIELD}
+export const GET_ADMIN_PAYMENTS = gql`
+  query (
+    $jisa: String!,
+    $startDate: DateTime!,
+    $endDate: DateTime!,
+    $emCode: String,
+    $orderId: String,
+    $customerName: String,
+    $page: Int!){
+    getAdminPayments(      
+      jisa: $jisa,
+      startDate: $startDate,
+      endDate: $endDate,
+      emCode: $emCode,
+      orderId: $orderId,
+      customerName: $customerName,
+      page: $page) {
+      page
+      isLast      
+      payments {
+        ykiho
+        ...GetPaymentsFields      
+        cs {
+        myung
+        }  
+      }    
+    }
+  } 
+
+  ${GET_PAYMENTS_FIELDS}
 `;
 
 export const GET_ORDER_COMPLETED = gql`

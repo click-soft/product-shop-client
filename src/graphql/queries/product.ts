@@ -17,27 +17,47 @@ export const GET_RPDUCTS_BUNRYU_LIST = gql`
 `;
 
 export const GET_ADMIN_PRODUCTS = gql`
-  query ($startYmd: String!, $endYmd: String!, $emCode: String){
-    getAdminProducts(startYmd: $startYmd, endYmd: $endYmd, emCode: $emCode ){
-      auto
-      clCode
-      csCode
-      count
-      sellYmd
-      createDt
-      etc1
-      cs {
-        gubun
-        code
-        myung
-        em{
-          name
+  query (
+    $startYmd: String!,
+    $endYmd: String!,
+    $emCode: String,
+    $csMyung: String,
+    $page: Int!){
+    getAdminProducts(
+      startYmd: $startYmd, 
+      endYmd: $endYmd,
+      emCode: $emCode,
+      csMyung: $csMyung,
+      page: $page ){
+      page
+      isLast
+      products{
+        auto
+        clCode
+        csCode
+        count
+        sellYmd
+        createDt
+        etc1
+        orderCheck
+        sell
+        seller
+        check2
+        bigo
+        web
+        cs {
+          gubun
+          code
+          myung
+          em{
+            name
+          }
         }
-      }
-      productListSub{
-        smMyung
-        danga
-      }
+        productListSub{
+          smMyung
+          danga
+        }
+      }      
     }
   }
 `

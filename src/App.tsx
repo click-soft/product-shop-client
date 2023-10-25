@@ -3,7 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MainPage from './pages/MainPage/MainPage';
 import { createBrowserRouter } from 'react-router-dom';
-import { checkAuthLoader, checkLoginLoader } from './utils/auth';
+import { checkAdminLoader, checkAuthLoader, checkLoginLoader } from './utils/auth';
 import CartViewPage from './pages/CartViewPage/CartViewPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import PaymentPage from './pages/PaymentPage/PaymentPage';
@@ -17,6 +17,7 @@ import AdminLayout from './Layout/AdminLayout/AdminLayout';
 import PaymentLayout from './Layout/PaymentLayout/PaymentLayout';
 import RootLayout from './Layout/RootLayout/RootLayout';
 import AdminOrderPage from './pages/AdminOrderPage/AdminOrderPage';
+import AdminWebOrdersPage from './pages/AdminWebOrdersPage/AdminWebOrdersPage';
 
 const router = createBrowserRouter([
   {
@@ -79,11 +80,18 @@ const router = createBrowserRouter([
       },
       {
         path: 'admin',
-        element: <AdminLayout />,
+        element: <AdminLayout />,        
         children: [
           {
             path: 'orders',
             element: <AdminOrderPage/>,
+            errorElement: <ErrorPage />,
+            loader: checkAdminLoader,
+          },
+          {
+            path: 'web-orders',
+            element: <AdminWebOrdersPage/>,
+            loader: checkAdminLoader,
           },
         ],
       },

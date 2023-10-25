@@ -22,3 +22,28 @@ export const ORDER_COMPLETED_FIELD = gql`
 
   ${PAYMENT_VIRTUAL_FIELD}
 `
+
+export const GET_PAYMENTS_FIELDS = gql`
+ fragment GetPaymentsFields on Payment {
+    id
+    orderId
+    paymentKey
+    method
+    amount
+    quantity
+    requestedAt
+    approvedAt
+    sendType
+    cancel
+    virtual{
+      ...PaymentVirtualField
+    }
+    paymentItems {
+      id
+      name
+      fit
+      quantity
+      amount
+    }  
+}
+${PAYMENT_VIRTUAL_FIELD}`

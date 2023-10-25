@@ -20,12 +20,12 @@ const useCartItems = () => {
   useEffect(() => {
     if (!showCartModal) return;
     fetchCart()
-      .catch(err => setError(err));
+      // .catch(err => setError(err));
   }, [showCartModal])
 
-  if (error) {
-    throw new Error(error.message);
-  }
+  // if (error) {
+  //   throw new Error(error.message);
+  // }
 
   return {
     cartItems

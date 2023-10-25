@@ -3,8 +3,8 @@
 .container {
   height: 100%;
 
-  & > .header,
-  & > .list {
+  &>.header,
+  &>.list {
     padding: 10px 20px;
   }
 
@@ -32,6 +32,7 @@
 
 .shop-button {
   @include white-button;
+
   .shop-icon {
     width: 1.5rem;
     height: 1.5rem;
@@ -39,32 +40,48 @@
   }
 }
 
-.list {
+.link_ul {
   list-style: none;
-  padding: 0;
+  padding: 10px;
   margin: 0;
+}
 
-  li > a {
+.link_li {
+  .link {
     display: flex;
     align-items: center;
     width: 100%;
     padding: 10px;
-   
+    margin-bottom: 10px;
     text-decoration: none;
+    color: $color-darkblue3;
+
     .icon {
       width: 30px;
       height: 30px;
       color: $color-blue;
       margin-right: 10px;
     }
-    span {
-      color: $color-darkblue3;
+  }
+
+  &:hover,
+  &:active {
+    background-color: $color-lightskyblue;
+    border-radius: 14px;
+  }
+}
+
+.link_li.admin {
+  .link {
+    color: $color-lightred;
+
+    .icon {
+      color: $color-lightred;
     }
   }
 
-  li:hover,
-  li:active {
-    background-color: $color-lightskyblue;
-    border-radius: 14px;
+  &:hover,
+  &:active {
+    background-color: rgba($color: $color-lightred, $alpha: 0.3);
   }
 }

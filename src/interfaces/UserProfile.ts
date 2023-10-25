@@ -7,6 +7,7 @@ export default interface UserProfile {
   ceoName: string;
   fitCherbang: boolean;
   fitYoungsu: boolean;
+  admin?: boolean;
 }
 
 export const parseUserProfile = (data: any): UserProfile => {

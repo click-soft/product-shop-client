@@ -6,7 +6,7 @@ const AdminLayout = () => {
   return (
     <BaseLayout
       headerComponent={<AdminHeader />}
-      footerComponent={<div>foooter</div>}
+      // footerComponent={}
       leftMenuComponent={<AdminMenu />}
     />
   );

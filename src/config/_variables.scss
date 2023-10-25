@@ -24,7 +24,9 @@ $color-darkgreen: #006600;
 $color-yellow: #fff56e;
 $color-lightorange: #fcc736;
 $color-orange: #ffb900;
+$color-darkorange:#ff7b00;
 $color-darkbrown: #69500b;
+
 
 $font-size-level1: 10px;
 $font-size-level2: 13px;
@@ -139,7 +141,7 @@ $font-size-level8: 31px;
     padding: 10px;
     text-decoration: none;
     border-radius: 10px;
-
+    font-size: $font-size-level3;
     .icon {
       width: 30px;
       height: 30px;

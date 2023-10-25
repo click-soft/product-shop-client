@@ -16,14 +16,18 @@ const AdminHeader = () => {
   );
 };
 
+const headerTextData: { [key: string]: string } = {
+  '/admin/orders': '물품 주문 내역',
+  '/admin/web-orders': '웹 주문 내역',
+};
 const useGetHeaderText = () => {
   const location = useLocation();
   const [headerText, setHeaderText] = useState('');
 
   useEffect(() => {
-    if (location.pathname === '/admin/orders') {
-      setHeaderText('물품 주문 내역');
-    }
+    const headerText = headerTextData[location.pathname];
+
+    setHeaderText(headerText);
   }, [location]);
 
   return headerText;

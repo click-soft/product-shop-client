@@ -6,12 +6,13 @@ import ProductsByBunryu from '../../interfaces/ProductsByBunryu';
 import { useQuery } from '@apollo/client';
 import { GET_RPDUCTS_BUNRYU_LIST } from '../../graphql/queries/product';
 import CircleLoading from '../../components/Loading/CircleLoading';
+import CustomError from '../../errors/status-error';
 
 const ProductPage: React.FC = (props) => {
   const user = useGetLoginedUser(true);
   const { loading, error, data } = useQuery(GET_RPDUCTS_BUNRYU_LIST, {
     variables: { jisa: user?.jisa },
-    skip: !user,
+    skip: !user,    
   });
 
   const prds: ProductsByBunryu[] = data?.getProductsBunryuList;

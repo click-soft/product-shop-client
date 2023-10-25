@@ -1,81 +1,167 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './AdminOrderPage.module.scss';
-import DateRangePicker from '../../ui/DateRangePicker/DateRangePicker';
-import { Button, Select } from '@mui/joy';
-import Option from '@mui/joy/Option';
-import { useLazyQuery, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { GET_ADMIN_PRODUCTS } from '../../graphql/queries/product';
 import { format, parse } from 'date-fns';
 import CircleLoading from '../../components/Loading/CircleLoading';
 import Product from '../../graphql/interfaces/product';
-import AdminOrderItem from '../../components/Admin/AdminOrderItem/AdminOrderItem';
-import { GET_MANAGERS } from '../../graphql/queries/em';
-import Em from '../../graphql/interfaces/em';
+import AdminOrderItem, {
+  AdminOrderArgs,
+} from '../../components/Admin/AdminOrderItem/AdminOrderItem';
+import { UPDATE_PRODUCT } from '../../graphql/mutates/product';
+import useToast from '../../hooks/use-toast';
+import useGetManagers from '../../hooks/use-get-managers';
+import AdminSearchForm, {
+  FormValues,
+} from '../../components/Admin/AdminSearchForm/AdminSearchForm';
+import { useInfiniteQuery } from 'react-query';
+import GetAdminProductsArgs from '../../graphql/dto/get-admin-products.args';
+import client from '../../graphql/apollo-client';
+import ProductsWithPage from '../../graphql/interfaces/products-with-page';
+import useIntersectionObserver from '../../hooks/use-intersection-observer';
+
+const fetchGetAdminProducts = async (
+  page: number,
+  variables: GetAdminProductsArgs,
+): Promise<ProductsWithPage> => {
+  if (!variables?.startYmd) {
+    return { isLast: true, page: 0, products: [] }
+  }
+
+  const result = await client.query({
+    query: GET_ADMIN_PRODUCTS,
+    variables: {
+      startYmd: variables.startYmd,
+      endYmd: variables.endYmd,
+      page,
+    },
+    fetchPolicy: 'no-cache',
+  });
+
+  return result.data?.getAdminProducts;
+};
 
 const AdminOrderPage = () => {
-  const [dateRange, setDateRange] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
+  const [variables, setVariables] = useState<GetAdminProductsArgs>();
+  const { toast, toastConatiner } = useToast();
+  const [products, setProducts] = useState<Product[]>([]);
+  const { managers } = useGetManagers();
+  const [
+    updateProduct,
+    { data: updatedData, loading: updatedLoading, error: updatedError },
+  ] = useMutation(UPDATE_PRODUCT);
+
+  const { isLoading, hasNextPage, fetchNextPage, refetch } =
+    useInfiniteQuery(
+      ['getAdminProducts', variables],
+      ({ pageParam = 1 }) =>
+        fetchGetAdminProducts(pageParam, variables!),
+      {
+        getNextPageParam: (nextPage, pages) => {
+          if (nextPage?.isLast ?? true) return undefined;
+          return nextPage.page + 1;
+        },
+        onSuccess: (data) => {
+          const products = data.pages?.flatMap(pg => pg.products)
+          setProducts(products ?? []);
+        },
+        onError: (err) => {
+          if (err instanceof Error) {
+            toast.error(err.message);
+          }
+        },
+      },
+    );
+
+  const observerRef = useRef(null);
+  useIntersectionObserver(observerRef, {
+    dependecyList: [hasNextPage, fetchNextPage],
+    onIntersecting: () => {
+      fetchNextPage();
+    },
   });
-  const [manager, setManager] = useState('');
-  const { data: managerData } = useQuery(GET_MANAGERS);
-  const [getAdminProducts, { data, error, loading }] =
-    useLazyQuery(GET_ADMIN_PRODUCTS);
-  function dateChangeHandler(startDate: Date, endDate: Date): void {
-    setDateRange({ startDate, endDate });
+
+  function orderChangeHandler(args: AdminOrderArgs, product: Product) {
+    updateProduct({
+      variables: {
+        auto: product.auto,
+        orderCheck: args.type === '배송방법' ? args.value : undefined,
+        seller: args.type === '배송자' ? args.value : undefined,
+      },
+    });
   }
 
-  function submitHandler(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  useEffect(() => {
+    if (!updatedData) return;
 
-    const startYmd = format(dateRange.startDate, 'yyyyMMdd');
-    const endYmd = format(dateRange.endDate, 'yyyyMMdd');
-    const variables = {
+    const product: Product = updatedData.updateProduct;
+
+    if (!product) return;
+
+    setProducts((prevProducts) => {
+      const newProducts = [...prevProducts];
+      const findProduct = newProducts?.find((p) => p.auto === product.auto);
+
+      if (!findProduct) return prevProducts;
+
+      if (product.orderCheck !== undefined)
+        findProduct.orderCheck = product.orderCheck;
+      if (product.seller !== undefined) findProduct.seller = product.seller;
+
+      return newProducts;
+    });
+    toast.success('변경되었습니다.');
+  }, [updatedData]);
+
+  useEffect(() => {
+    if (updatedError) {
+      toast.error(updatedError.message);
+    }
+  }, [updatedError]);
+
+  const components = products?.map((p) => {
+    return (
+      <AdminOrderItem
+        key={p.auto}
+        product={p}
+        managers={managers}
+        onValueChange={(args) => orderChangeHandler(args, p)}
+      />
+    );
+  });
+
+  function submitHandler({
+    startDate,
+    endDate,
+    manager,
+    text: customerName,
+  }: FormValues): void {
+    const startYmd = format(startDate, 'yyyyMMdd');
+    const endYmd = format(endDate, 'yyyyMMdd');
+
+    setVariables({
       startYmd,
       endYmd,
-      emCode: manager ? manager : undefined,
-    };
-
-    getAdminProducts({ variables: variables });
+      emCode: manager,
+      csMyung: customerName,
+      page: 1,
+    });
   }
 
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  const products: Product[] = data?.getAdminProducts;
-  const managers: Em[] = managerData?.getManagers;
-  const components = products?.map((p) => {
-    return <AdminOrderItem key={p.auto} product={p} />;
-  });
+  useEffect(() => {
+    refetch();
+  }, [variables]);
 
   return (
     <>
-      {loading && <CircleLoading />}
+      {toastConatiner}
+      {(isLoading || updatedLoading) && <CircleLoading />}
       <div className={styles.container}>
-        <form className={styles.search_wrapper} onSubmit={submitHandler}>
-          <div className={styles.select_wrapper}>
-            담당자
-            <Select
-              className={styles.select}
-              defaultValue=""
-              color="primary"
-              onChange={(e, value) => setManager(value!)}
-            >
-              <Option value="">전체</Option>
-              {managers?.map((m) => (
-                <Option key={m.code} value={m.code}>
-                  {m.name}
-                </Option>
-              ))}
-            </Select>
-          </div>
-          <DateRangePicker label="기간" onDateChange={dateChangeHandler} />
-          <Button className={styles.submit_button} type="submit">조회</Button>
-        </form>
+        <AdminSearchForm onSubmit={submitHandler} textLabel="거래처 명칭" />
 
         <ul className={styles.list}>{components}</ul>
       </div>
+      <div ref={observerRef} />
     </>
   );
 };

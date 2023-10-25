@@ -3,5 +3,19 @@
   "singleQuote": true,
   "tabWidth": 2,
   "printWidth": 80,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+      "options": {
+        "parser": "babel"
+      }
+    },
+    {
+      "files": ["**/*.graphql", "**/*.gql"],
+      "options": {
+        "parser": "graphql"
+      }
+    }
+  ]
 }

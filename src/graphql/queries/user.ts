@@ -16,6 +16,7 @@ export const getUser = async (): Promise<UserProfile | undefined> => {
                 ceoName
                 fitCherbang
                 fitYoungsu
+                admin
                 exp
               }
             }

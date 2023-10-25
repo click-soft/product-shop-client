@@ -1,8 +1,6 @@
 import React from 'react';
 import CartItem from '../../interfaces/CartItem';
 import styles from './CartViewItem.module.scss';
-import { formatCurrency } from '../../utils/strings';
-import NumericCombo from '../../ui/NumericCombo/NumericCombo';
 import ProductQuantitySelect from '../ProductQuantitySelect/ProductQuantitySelect';
 interface CartViewItemProps {
   cartItem: CartItem;
@@ -52,7 +50,7 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
           <div className={styles['cart-item__body']}>
             <div className={styles['cart-item__body__left']}>
               <div className={styles['cart-item__body__price']}>
-                {formatCurrency(ci.product?.danga)}원
+                {ci.product?.danga?.toLocaleString()}원
               </div>
               <ProductQuantitySelect
                 value={ci.quantity}
@@ -70,7 +68,7 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
           </div>
         </div>
       </td>
-      <td className={styles['last-column']}>{formatCurrency(totalPrice)}원</td>
+      <td className={styles['last-column']}>{totalPrice.toLocaleString()}원</td>
     </tr>
   );
 };

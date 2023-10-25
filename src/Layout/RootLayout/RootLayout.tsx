@@ -16,7 +16,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-const RootLayout = () => {
+const RootLayout = () => {  
   ScrollToTop();
   return (
     <>

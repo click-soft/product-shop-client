@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './BuyArea.module.scss';
-import { formatCurrency } from '../../utils/strings';
 
 interface BuyAreaProps {
   totalPrice: number;
@@ -15,7 +14,7 @@ const BuyArea: React.FC<BuyAreaProps> = ({ totalPrice, onBuy, disabled }) => {
         <div className={styles['buy-amount-wrapper']}>
           <div className={styles['buy-amount-title']}>총 주문금액</div>
           <div className={styles['buy-amount']}>
-            {formatCurrency(totalPrice)}원
+            {totalPrice.toLocaleString()}원
           </div>
         </div>
         <button

@@ -1,27 +1,30 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState: ErrorState = {}
+const initialState: ErrorState = {};
 
 const errorSlice = createSlice(
   {
-    name: "error",
+    name: 'error',
     initialState,
     reducers: {
-      setError(state, action: PayloadAction<ErrorState>) {
-        state.code = action.payload.code;
-        state.error = action.payload.error;
+      setError(state, action: PayloadAction<ErrorArgs>) {
+        state.error = action.payload;
       },
-      clearError(state) {
-        state.code = undefined;
+      clear(state) {
         state.error = undefined;
       }
     }
   }
 )
-
 export interface ErrorState {
-  code?: 'ACCOUNT_EXPIRED';
-  error?: any;
+  error?: ErrorArgs;
 }
+
+export interface ErrorArgs {
+  code?: string;
+  status?: number;
+  message?: string;
+}
+
 export const errorActions = errorSlice.actions;
 export default errorSlice;

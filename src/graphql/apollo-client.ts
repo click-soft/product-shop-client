@@ -3,9 +3,9 @@ import { setContext } from '@apollo/client/link/context';
 import { LocalStoragekey } from "../utils/enums";
 import { onError } from '@apollo/client/link/error';
 import { refresh } from "./mutates/auth";
+import { environment } from "../config";
 import store from "../store";
 import { errorActions } from "../store/error-slice";
-import { environment } from "../config";
 
 const httpLink = new HttpLink({
   uri: `${process.env.REACT_APP_BACKEND_URL}/graphql`,
@@ -53,7 +53,7 @@ const errorLink = onError(
                   forward(operation).subscribe(subscriber);
                 })
                 .catch(error => {
-                  store.dispatch(errorActions.setError({ code: "ACCOUNT_EXPIRED", error: new Error(error) }))
+                  store.dispatch(errorActions.setError({ status: 401, message: 'UNAUTHORIZED' }))
                   observer.error(error);
                 });
             });

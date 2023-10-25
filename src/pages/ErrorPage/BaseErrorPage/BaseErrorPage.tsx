@@ -34,9 +34,12 @@ const BaseErrorPage: React.FC<BaseErrorPageProps> = (props) => {
           </button>
         )}
         {props.visibleButtons?.toMain && (
-          <Link to={'/'} className={styles.to_main}>
+          <button
+            className={styles.to_main}
+            onClick={() => (window.location.href = '/')}
+          >
             메인으로
-          </Link>
+          </button>
         )}
         {props.visibleButtons?.toLogin && (
           <button

@@ -2,7 +2,7 @@
 
 $header-color :rgb(2, 127, 168);
 $back-color : rgb(240, 248, 253);
-$label-color :  rgb(197, 229, 248);
+$label-color : rgb(197, 229, 248);
 
 .list_item {
   display: grid;
@@ -10,7 +10,7 @@ $label-color :  rgb(197, 229, 248);
   margin: 10px 0;
   grid-template-columns: repeat(2, 1fr);
   background-color: $back-color;
-  border-radius: 4px;  
+  border-radius: 4px;
   box-shadow: 1px 2px 4px rgba($color: #000000, $alpha: 0.1);
   overflow: hidden;
 }
@@ -18,6 +18,15 @@ $label-color :  rgb(197, 229, 248);
 .header {
   grid-column: 1 / 3;
   background-color: $header-color;
+
+  .web_mark {
+    border: 3px solid $color-lightgreen;
+    color: $color-lightgreen;
+    padding: 0 4px;
+    margin-left: 4px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
 
 }
 
@@ -39,11 +48,11 @@ $label-color :  rgb(197, 229, 248);
     align-items: center;
     font-size: $font-size-level2;
     padding-left: 10px;
-    // margin-left: 10px;    
     background-color: $label-color;
   }
 
-  .text {
+  .text,
+  .complete_text {
     display: flex;
     align-items: center;
     font-weight: bold;
@@ -51,15 +60,21 @@ $label-color :  rgb(197, 229, 248);
     padding-left: 10px;
   }
 
+  .complete_text {
+    color: $color-lightred;
+    background-color: rgba($color: $color-lightred, $alpha: 0.3)
+  }
+
   &.grid_header {
     display: flex;
     color: white;
+
     .label {
       background-color: transparent;
     }
 
     .text {
-      padding-right: 20px;      
+      padding-right: 20px;
       color: white;
     }
   }

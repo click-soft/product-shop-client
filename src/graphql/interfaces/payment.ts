@@ -1,3 +1,5 @@
+import Cs from "./cs";
+
 export interface PaymentType {
   id: number;
   ykiho: string;
@@ -12,6 +14,7 @@ export interface PaymentType {
   cancel: boolean;
   paymentItems: PaymentItemType[];
   virtual?: VirtualAccountType | null;
+  cs?: Cs;
 }
 
 export interface PaymentItemType {

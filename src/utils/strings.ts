@@ -1,11 +1,4 @@
-export function isNuemric(value: string): boolean {
+export function isNuemric(value?: string): boolean {
+  if (!value) return false;
   return /^[0-9]*$/.test(value);
-}
-
-export function formatCurrency(value: number | undefined): string {
-  if (value) {
-    return Intl.NumberFormat('ko-KR').format(value);
-  } else {
-    return '0';
-  }
 }

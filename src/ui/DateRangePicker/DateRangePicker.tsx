@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styles from './DateRangePicker.module.scss';
 import DatePicker from 'react-datepicker';
+import classNames from 'classnames';
 
 interface DateRangePickerProps {
   label?: string;
   onDateChange: (startDate: Date, endDate: Date) => void;
+  className?: string;
 }
 
 const DateRangePicker: React.FC<DateRangePickerProps> = (props) => {
@@ -20,7 +22,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (props) => {
   return (
     <div className={styles.container}>
       {props.label}
-      <div className={styles.dtp_range_container}>
+      <div className={classNames(styles.dtp_range_container, props.className)}>
         <DatePicker
           className={styles.date_picker}
           dateFormat="yyyy.MM.dd" // 날짜 형태

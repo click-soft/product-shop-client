@@ -1,0 +1,33 @@
+@import '../../config/variables';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid $color-skyblue;
+  border-radius: 4px;
+  color: $color-darkblue;
+  overflow: none;
+
+  .icon_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon {
+    margin: 4px 8px;
+    flex-grow: 1;
+  }
+
+  input {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    outline-style: none;
+    color: $color-darkblue;
+    font: inherit;
+  }
+
+  &:hover {
+    background-color: rgba($color: $color-lightskyblue, $alpha: 0.5);
+  }
+}

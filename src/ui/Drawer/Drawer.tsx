@@ -23,7 +23,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
     anchor === 'left' || anchor === 'right' ? 'width' : 'height';
 
   useEffect(() => {
-    setDisp(!props.show);
+    setDisp(props.show);
     setCloseCalled(!props.show);
   }, [props.show]);
 
@@ -34,7 +34,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
     }, 300);
   }
 
-  if (disp) {
+  if (!disp) {
     return <></>;
   }
 

@@ -2,7 +2,7 @@ import { redirect } from 'react-router-dom';
 import { getUser } from '../graphql/queries/user';
 import { LocalStoragekey } from './enums';
 import store from '../store';
-import { modalActions } from '../store/modal-slice';
+import { errorActions } from '../store/error-slice';
 
 const checkAuth = async (): Promise<boolean> => {
   const usr = localStorage.getItem(LocalStoragekey.USR);
@@ -11,7 +11,7 @@ const checkAuth = async (): Promise<boolean> => {
 };
 
 export async function checkAuthLoader() {
-  const isAuthenticated = await checkAuth();  
+  const isAuthenticated = await checkAuth();
   if (isAuthenticated) {
     return true;
   } else {
@@ -25,5 +25,16 @@ export async function checkLoginLoader() {
     return redirect('/');
   } else {
     return true;
+  }
+}
+
+export async function checkAdminLoader() {
+  const user = await getUser();
+  const isAdmin = user?.admin;
+
+  if (isAdmin) {
+    return true;
+  } else {
+    return store.dispatch(errorActions.setError({ status: 403, message: 'Unauthorized' }));
   }
 }

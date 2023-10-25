@@ -23,7 +23,7 @@ const DownModal: React.FC<DownModalProps> = (props) => {
 
   function backdropMouseEnterHandler(): void {
     console.log('isMobile', isMobile);
-    
+
     if (isMobile) return;
     dispatch(modalActions.closeDownAll());
   }
@@ -33,6 +33,7 @@ const DownModal: React.FC<DownModalProps> = (props) => {
       <Backdrop
         onClick={backdropClickHandler}
         onMouseEnter={backdropMouseEnterHandler}
+        notScrollHidden
       />
       <Card className={`${styles.slider}`} style={style}>
         {props.children}

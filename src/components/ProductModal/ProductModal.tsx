@@ -5,65 +5,43 @@ import { useDispatch } from 'react-redux';
 import { modalActions } from '../../store/modal-slice';
 import styles from './ProductModal.module.scss';
 import ProductListSub from '../../interfaces/ProductListSub';
-import React, { useEffect, useRef, useState } from 'react';
-import { formatCurrency } from '../../utils/strings';
-import { addToCart, fetchGetItemsCount } from '../../store/cart-slice';
+import React, { useEffect, useReducer, useState } from 'react';
+import { addToCart } from '../../store/cart-slice';
 import CheckBox from '../../ui/CheckBox/CheckBox';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import CustomLi from './components/CustomLi/CustomLi';
-import ErrorText from '../../ui/ErrorText/ErrorText';
 import { useNavigate } from 'react-router-dom';
 import ProductQuantitySelect from '../ProductQuantitySelect/ProductQuantitySelect';
 import Drawer from '../../ui/Drawer/Drawer';
 import ServiceInfo from '../ServiceInfo/ServiceInfo';
 
 const ProductModal = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(2);
-  const navigate = useNavigate();
-  const [fitChecked, setFitChecked] = useState<boolean | undefined>(false);
-  const [fitError, setFitError] = useState('');
-  const dispatch = useDispatch<AppDispatch>();
+  const [fitChecked, setFitChecked] = useState<boolean>(false);
   const showProductModal = useSelector<RootState, boolean>(
     (state) => state.modal.showProductModal,
   );
-  const user = useGetLoginedUser(showProductModal);
-  const productCode = useSelector<RootState, string>(
-    (state) => state.modal.productCode!,
-  );
+  const { isFitProduct, defaultFit, defaultQuantity } =
+    useProductState(showProductModal);
   const productData = useSelector<RootState, ProductListSub>(
     (state) => state.modal.data!,
   );
-  const totalCost = formatCurrency(quantity * productData?.danga);
-  const cost = formatCurrency(productData?.danga);
-  const isFitProduct = false;
 
   useEffect(() => {
     if (!showProductModal) return;
 
-    if (isFitProduct && fitChecked && quantity < 6) {
-      setFitError('맞춤주문은 6개 이상 주문 필수입니다.');
-    } else {
-      setFitError('');
-    }
-  }, [showProductModal, quantity, fitChecked]);
+    setFitChecked(defaultFit);
+    setQuantity(defaultQuantity);
+  }, [showProductModal, defaultFit]);
 
   useEffect(() => {
-    if (showProductModal) {
-      setFitChecked(isFitProduct ? user?.fitCherbang : false);
-    }
-  }, [showProductModal, user?.fitCherbang]);
+    setQuantity(defaultQuantity);
+  }, [fitChecked]);
 
-  useEffect(() => {
-    if (!showProductModal) return;
-
-    setFitChecked(isFitProduct);
-    setQuantity(isFitProduct ? 6 : 2);
-  }, [showProductModal]);
-
-  if (!showProductModal) {
-    return <></>;
-  }
+  if (!showProductModal) return <></>;
 
   const quantityChangeHandler = (value: number) => {
     setQuantity(value);
@@ -108,7 +86,10 @@ const ProductModal = () => {
           <ul>
             <CustomLi title="주문명칭" text={productData.smMyung} />
             <CustomLi title="단위" text={productData.danwi} />
-            <CustomLi title="금액" text={cost} />
+            <CustomLi
+              title="금액"
+              text={productData?.danga?.toLocaleString()}
+            />
             <CustomLi title="수량">
               <ProductQuantitySelect
                 value={quantity}
@@ -116,8 +97,10 @@ const ProductModal = () => {
                 isFit={fitChecked ?? false}
               />
             </CustomLi>
-            <ErrorText error={fitError} />
-            <CustomLi title="총 금액" text={totalCost} />
+            <CustomLi
+              title="총 금액"
+              text={(quantity * productData?.danga).toLocaleString()}
+            />
             {isFitProduct && (
               <CheckBox
                 text="맞춤주문"
@@ -137,11 +120,7 @@ const ProductModal = () => {
             <br />
             바로가기
           </button>
-          <button
-            className={styles['to-cart-button']}
-            type="submit"
-            disabled={!!fitError}
-          >
+          <button className={styles['to-cart-button']} type="submit">
             장바구니
             <br />
             담기
@@ -174,6 +153,33 @@ const ProductModal = () => {
       </Drawer>
     </Modal>
   );
+};
+
+const useProductState = (isShown: boolean) => {
+  const user = useGetLoginedUser(isShown);
+  const [defaultFit, setDefaultFit] = useState(false);
+  const [defaultQuantity, setDefaultQuantity] = useState(2);
+  const isFitProduct = useSelector<RootState, boolean>((state) =>
+    ['A', 'B'].includes(state.modal.productCode ?? ''),
+  );
+
+  useEffect(() => {
+    if (!isShown || !user) return;
+
+    setDefaultFit(isFitProduct && user?.fitCherbang!);
+  }, [isShown, isFitProduct, user?.fitCherbang]);
+
+  useEffect(() => {
+    if (!isShown) return;
+
+    setDefaultQuantity(defaultFit ? 6 : 2);
+  }, [defaultFit]);
+
+  return {
+    isFitProduct,
+    defaultFit,
+    defaultQuantity,
+  };
 };
 
 export default ProductModal;

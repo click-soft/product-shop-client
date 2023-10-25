@@ -7,15 +7,19 @@ import { Provider } from 'react-redux';
 import store from './store';
 import client from './graphql/apollo-client';
 import 'react-datepicker/dist/react-datepicker.css';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+const queryClient = new QueryClient();
 
 root.render(
-  <ApolloProvider client={client}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </ApolloProvider>,
+  <QueryClientProvider client={queryClient}>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ApolloProvider>
+  </QueryClientProvider>,
 );
