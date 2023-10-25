@@ -25,7 +25,7 @@ const useIntersectionObserver = (args: IntersectionObserverArgs) => {
     const element = observerRef.current;
     const observer = new IntersectionObserver(handleObserver, {
       rootMargin: '0px',
-      threshold: 1,
+      threshold: 0.1,
     });
     if (element) observer.observe(element);
     return () => {

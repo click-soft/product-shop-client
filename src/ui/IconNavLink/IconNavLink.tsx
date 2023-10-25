@@ -9,12 +9,14 @@ interface IconNavLinkProps extends ChildrenProps {
   icon: IconType;
   text?: string;
   to: string;
+  onClick?: () => void;
 }
 
 const IconNavLink: React.FC<IconNavLinkProps> = (props) => {
   return (
     <NavLink
       to={props.to}
+      onClick={props.onClick}
       className={({ isActive }) => {
         return classNames(
           styles.icon_wrapper,

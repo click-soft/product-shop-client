@@ -18,7 +18,7 @@ const AdminMenuButton = () => {
       {isMobile && (
         <>
           <Drawer show={show} onClose={() => setShow(false)}>
-            <AdminMenu />
+            <AdminMenu onLinkClick={() => setShow(false)} />
           </Drawer>
           <IconButton
             icon={GiHamburgerMenu}
