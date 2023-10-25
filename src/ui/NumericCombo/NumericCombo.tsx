@@ -7,13 +7,15 @@ interface NumericComboProps {
   onValueChange?: (value: number) => void;
   minValue?: number;
   maxValue?: number;
+  isFit: boolean;
 }
 
 const NumericCombo: React.FC<NumericComboProps> = ({
   value: initValue,
   onValueChange,
-  minValue = 1,
-  maxValue = 99,
+  minValue = 2,
+  maxValue = 100,
+  isFit,
 }) => {
   const [isInit, setIsInit] = useState(true);
   const [value, setValue] = useState(1);
@@ -37,8 +39,9 @@ const NumericCombo: React.FC<NumericComboProps> = ({
   }
 
   const options: number[] = useMemo(() => {
+    const startValue = isFit ? 6 : 2
     const arr = [];
-    for (let i = minValue; i <= 10; i++) {
+    for (let i = startValue; i <= 10; i = i + 2) {
       arr.push(i);
     }
 

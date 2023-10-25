@@ -21,7 +21,7 @@ const ErrorFallback: React.FC<FallbackProps> = ({
   }
 
   return (
-    <BaseErrorPage title={errorMessage}>
+    <BaseErrorPage title={errorMessage} visibleButtons={{toMain: true}}>
       <button
         style={{
           width: '100%',

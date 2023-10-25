@@ -2,6 +2,7 @@ import React from 'react';
 import CartItem from '../../interfaces/CartItem';
 import styles from './CartViewItem.module.scss';
 import ProductQuantitySelect from '../ProductQuantitySelect/ProductQuantitySelect';
+import NumericCombo from '../../ui/NumericCombo/NumericCombo';
 interface CartViewItemProps {
   cartItem: CartItem;
   checked: boolean;
@@ -45,18 +46,22 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
                 )}
               </div>
             </div>
-            {/* <button>주문 취소</button> */}
           </div>
           <div className={styles['cart-item__body']}>
             <div className={styles['cart-item__body__left']}>
               <div className={styles['cart-item__body__price']}>
                 {ci.product?.danga?.toLocaleString()}원
               </div>
-              <ProductQuantitySelect
+              <NumericCombo
+                value={ci.quantity}
+                onValueChange={(v) => props.onCountChange(ci.id!, v)}
+                isFit={ci.fit}
+              />
+              {/* <ProductQuantitySelect
                 value={ci.quantity}
                 onChange={(v) => props.onCountChange(ci.id!, v)}
                 isFit={ci.fit}
-              />
+              /> */}
             </div>
 
             <button

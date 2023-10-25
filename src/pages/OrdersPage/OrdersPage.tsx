@@ -14,6 +14,8 @@ import { GET_PAYMENT_WITH_ITEMS } from '../../graphql/queries/payment';
 import PaymentWithPage from '../../graphql/interfaces/payments-with-page';
 import useIntersectionObserver from '../../hooks/use-intersection-observer';
 import { updateOrderCancel } from '../../utils/payment-utils';
+import { socket } from '../../config/socket';
+import useSocketIo from '../../hooks/use-socket-io';
 
 const fetchGetPaymentWithItems = async ({
   pageParam = 1,
@@ -33,7 +35,7 @@ const OrdersPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
   const [payments, setPayments] = useState<PaymentType[]>([]);
-  const { data, hasNextPage, isLoading, fetchNextPage } = useInfiniteQuery(
+  const { hasNextPage, isLoading, fetchNextPage, refetch } = useInfiniteQuery(
     ['getPaymentWithItems'],
     fetchGetPaymentWithItems,
     {
@@ -50,6 +52,36 @@ const OrdersPage = () => {
       },
     },
   );
+
+  useSocketIo({
+    receiveEventName: 'onOrders',
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    onReceive: (args) => {
+      const result: {
+        state: 'update' | 'checkout',
+        data: PaymentType,
+      } = args[0];
+
+      if (result.state === 'update') {
+        const payment: PaymentType = result.data;
+        setPayments(prevPayments => {
+          return prevPayments.map(p => {
+            if (p.id === payment.id) {
+              return {
+                ...p,
+                sendType: payment.sendType,
+              };
+            }
+            return p;
+          })
+        })
+      } else if (result.state === 'checkout') {
+        refetch();
+      }
+    }
+  })
 
   useIntersectionObserver(observerRef, {
     dependecyList: [hasNextPage, isLoading, fetchNextPage],
