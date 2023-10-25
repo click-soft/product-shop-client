@@ -67,7 +67,7 @@ const AdminWebOrdersPage = () => {
 
   const observerRef = useRef(null);
   useIntersectionObserver(observerRef, {
-    dependecyList: [hasNextPage, fetchNextPage],
+    hasNextPage: !!hasNextPage,
     onIntersecting: () => {
       fetchNextPage();
     },

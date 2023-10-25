@@ -58,7 +58,9 @@ const AdminOrderPage = () => {
         fetchGetAdminProducts(pageParam, variables!),
       {
         getNextPageParam: (nextPage, pages) => {
-          if (nextPage?.isLast ?? true) return undefined;
+          if (nextPage?.isLast ?? true) {
+            return null
+          };
           return nextPage.page + 1;
         },
         onSuccess: (data) => {
@@ -75,7 +77,7 @@ const AdminOrderPage = () => {
 
   const observerRef = useRef(null);
   useIntersectionObserver(observerRef, {
-    dependecyList: [hasNextPage, fetchNextPage],
+    hasNextPage: !!hasNextPage,
     onIntersecting: () => {
       fetchNextPage();
     },

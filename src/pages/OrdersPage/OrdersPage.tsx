@@ -84,7 +84,7 @@ const OrdersPage = () => {
   })
 
   useIntersectionObserver(observerRef, {
-    dependecyList: [hasNextPage, isLoading, fetchNextPage],
+    hasNextPage: !!hasNextPage,
     onIntersecting: () => {
       fetchNextPage();
     },
