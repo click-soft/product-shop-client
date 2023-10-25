@@ -83,7 +83,7 @@ const OrdersPage = () => {
     }
   })
 
-  useIntersectionObserver(observerRef, {
+  const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
     onIntersecting: () => {
       fetchNextPage();
@@ -131,7 +131,7 @@ const OrdersPage = () => {
       <div className={styles.main}>
         <ul className={styles['order-ul']}>{orderGroupsComponents}</ul>
       </div>
-      <div ref={observerRef}></div>
+      {observerComponent}
     </>
   );
 };

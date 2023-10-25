@@ -76,7 +76,7 @@ const AdminOrderPage = () => {
     );
 
   const observerRef = useRef(null);
-  useIntersectionObserver(observerRef, {
+  const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
     onIntersecting: () => {
       fetchNextPage();
@@ -163,7 +163,7 @@ const AdminOrderPage = () => {
 
         <ul className={styles.list}>{components}</ul>
       </div>
-      <div ref={observerRef} />
+      {observerComponent}
     </>
   );
 };

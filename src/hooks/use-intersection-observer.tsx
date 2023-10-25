@@ -1,11 +1,12 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 interface IntersectionObserverArgs {
   hasNextPage: boolean;
   onIntersecting?: () => void;
 }
 
-const useIntersectionObserver = (ref: React.MutableRefObject<null>, args: IntersectionObserverArgs) => {
+const useIntersectionObserver = (args: IntersectionObserverArgs) => {
+  const observerRef = useRef(null);
   const handleObserver = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       const [target] = entries;
@@ -20,8 +21,8 @@ const useIntersectionObserver = (ref: React.MutableRefObject<null>, args: Inters
     if (!args.hasNextPage) {
       return;
     }
-    
-    const element = ref.current;
+
+    const element = observerRef.current;
     const observer = new IntersectionObserver(handleObserver, {
       rootMargin: '0px',
       threshold: 1,
@@ -32,6 +33,11 @@ const useIntersectionObserver = (ref: React.MutableRefObject<null>, args: Inters
     };
   }, [handleObserver, args.hasNextPage]);
 
+  const observerComponent = <div ref={observerRef} style={{ height: "1px" }}></div >;
+
+  return {
+    observerComponent
+  };
 }
 
 export default useIntersectionObserver;

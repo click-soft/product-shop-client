@@ -65,8 +65,7 @@ const AdminWebOrdersPage = () => {
       },
     );
 
-  const observerRef = useRef(null);
-  useIntersectionObserver(observerRef, {
+  const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
     onIntersecting: () => {
       fetchNextPage();
@@ -125,7 +124,7 @@ const AdminWebOrdersPage = () => {
         textLabel="거래처명 or 주문번호"
       />
       <ul className={styles.order_ul}>{orderGroupComponents}</ul>
-      <div ref={observerRef}></div>
+      {observerComponent}
     </div>
   );
 };
