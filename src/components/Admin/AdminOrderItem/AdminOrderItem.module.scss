@@ -38,7 +38,7 @@ $label-color: rgb(197, 229, 248);
 .data_box {
   display: grid;
   grid-template-columns: 80px auto;
-  grid-template-rows: repeat(1, 45px);
+  grid-template-rows: repeat(1, minmax(35px, auto));
 
   // padding: 4px 0;
   // background-color: red;

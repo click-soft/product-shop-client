@@ -39,10 +39,12 @@ const createDatePicker = (value: dayjs.Dayjs, onChangeCallback: (date: Date) => 
       defaultValue={dayjs(value)}
       format="YYYY-MM-DD"
       slotProps={{
-        actionBar: { actions: ['today'] },
+        actionBar: { actions: ['today', 'accept'] },
       }}
       onChange={(value) => {
-        onChangeCallback(dayjs(value).toDate());
+        if (dayjs(value).isValid()) {
+          onChangeCallback(dayjs(value).toDate());
+        }
       }}
     />
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState, useImperativeHandle } from 'react';
 import styles from './Drawer.module.scss';
 import ChildrenProps from '../../interfaces/ChildrenProps';
 import Backdrop from '../Backdrop/Backdrop';
@@ -13,13 +13,17 @@ interface DrawerProps extends ChildrenProps {
   overflow?: 'hidden' | 'auto' | 'scroll';
 }
 
-const Drawer: React.FC<DrawerProps> = (props) => {
+const Drawer = forwardRef((props: DrawerProps, ref: React.Ref<DrawerHandler>) => {
   const [disp, setDisp] = useState(false);
   const [closeCalled, setCloseCalled] = useState(false);
   const anchor = props.anchor ?? 'left';
   const overflow = props.overflow ?? 'hidden';
 
   const animationType = anchor === 'left' || anchor === 'right' ? 'width' : 'height';
+
+  useImperativeHandle(ref, () => ({
+    close,
+  }));
 
   useEffect(() => {
     setDisp(props.show);
@@ -59,6 +63,9 @@ const Drawer: React.FC<DrawerProps> = (props) => {
   );
 
   return portal;
-};
+});
 
+export interface DrawerHandler {
+  close: () => void;
+}
 export default Drawer;
