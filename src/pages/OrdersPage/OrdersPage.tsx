@@ -32,23 +32,19 @@ const OrdersPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
   const [payments, setPayments] = useState<PaymentType[]>([]);
-  const { hasNextPage, isLoading, fetchNextPage, refetch } = useInfiniteQuery(
-    ['getPaymentWithItems'],
-    fetchGetPaymentWithItems,
-    {
-      getNextPageParam: (lastPage, pages) => {
-        if (lastPage?.isLast ?? true) return undefined;
-        return lastPage.page + 1;
-      },
-      onSuccess: (data) => {
-        const payments = data.pages.flatMap((pg) => pg.payments);
-        setPayments(payments);
-      },
-      onError: (err) => {
-        toast.error((err as any).message);
-      },
-    }
-  );
+  const { hasNextPage, fetchNextPage, refetch } = useInfiniteQuery(['getPaymentWithItems'], fetchGetPaymentWithItems, {
+    getNextPageParam: (lastPage, pages) => {
+      if (lastPage?.isLast ?? true) return undefined;
+      return lastPage.page + 1;
+    },
+    onSuccess: (data) => {
+      const payments = data.pages.flatMap((pg) => pg.payments);
+      setPayments(payments);
+    },
+    onError: (err) => {
+      toast.error((err as any).message);
+    },
+  });
 
   useSocketIo({
     receiveEventName: 'onOrders',

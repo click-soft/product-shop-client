@@ -24,8 +24,7 @@ const fetchGetAdminProducts = async (page: number, variables: GetAdminProductsAr
   const result = await client.query({
     query: GET_ADMIN_PRODUCTS,
     variables: {
-      startYmd: variables.startYmd,
-      endYmd: variables.endYmd,
+      ...variables,
       page,
     },
     fetchPolicy: 'no-cache',
@@ -44,7 +43,7 @@ const AdminOrderPage = () => {
   const [updateProduct, { data: updatedData, loading: updatedLoading, error: updatedError }] =
     useMutation(UPDATE_PRODUCT);
 
-  const { isLoading, hasNextPage, fetchNextPage, refetch } = useInfiniteQuery(
+  const { isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery(
     [GET_ADMIN_QUERY_KEY, variables],
     ({ pageParam = 1 }) => fetchGetAdminProducts(pageParam, variables!),
     {
@@ -63,6 +62,7 @@ const AdminOrderPage = () => {
           toast.error(err.message);
         }
       },
+      retry: 1,
     }
   );
 

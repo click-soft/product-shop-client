@@ -40,11 +40,11 @@ const AdminWebOrdersPage = () => {
   const [payments, setPayments] = useState<PaymentType[]>([]);
   const [variables, setVariables] = useState<GetAdminPaymentsArgs>();
   const user = useGetLoginedUser(true);
-  const { hasNextPage, isLoading, fetchNextPage, refetch } = useInfiniteQuery(
+  const { hasNextPage, isLoading, fetchNextPage } = useInfiniteQuery(
     [GET_ADMIN_PAYMENTS_QUERY_KEY, variables],
-    ({ pageParam = 1, queryKey }) => fetchGetAdminPayments(pageParam, variables!),
+    ({ pageParam = 1 }) => fetchGetAdminPayments(pageParam, variables!),
     {
-      getNextPageParam: (nextPage, pages) => {
+      getNextPageParam: (nextPage) => {
         if (nextPage.isLast) return undefined;
         return nextPage.page + 1;
       },
@@ -57,6 +57,7 @@ const AdminWebOrdersPage = () => {
           toast.error(err.message);
         }
       },
+      retry: 1,
     }
   );
 
@@ -96,7 +97,6 @@ const AdminWebOrdersPage = () => {
       customerName = value.text;
     }
 
-    // setPayments(undefined);
     setVariables({
       jisa: user?.jisa!,
       startDate: dayjs(value.startDate).startOf('day').toDate(),
@@ -106,10 +106,6 @@ const AdminWebOrdersPage = () => {
       orderId,
     });
   }
-
-  useEffect(() => {
-    refetch();
-  }, [variables]);
 
   return (
     <div className={styles.container}>
