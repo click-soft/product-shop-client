@@ -64,7 +64,6 @@ const AdminOrderPage = () => {
     }
   );
 
-  const observerRef = useRef(null);
   const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
     onIntersecting: () => {

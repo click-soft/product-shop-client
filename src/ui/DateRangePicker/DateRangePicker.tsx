@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from './DateRangePicker.module.scss';
-import DatePicker from 'react-datepicker';
 import classNames from 'classnames';
+import { DatePicker } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 
 interface DateRangePickerProps {
   label?: string;
@@ -19,31 +20,31 @@ const DateRangePicker: React.FC<DateRangePickerProps> = (props) => {
     }
   }, [startDate, endDate]);
 
+  const startDatePicker = createDatePicker(dayjs(), setStartDate);
+  const endDatePicker = createDatePicker(dayjs(), setEndDate);
   return (
     <div className={styles.container}>
       {props.label}
       <div className={classNames(styles.dtp_range_container, props.className)}>
-        <DatePicker
-          className={styles.date_picker}
-          dateFormat="yyyy.MM.dd" // 날짜 형태
-          minDate={new Date('2000-01-01')}
-          maxDate={new Date()}
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          todayButton="Today"
-        />
-        ~
-        <DatePicker
-          className={styles.date_picker}
-          dateFormat="yyyy.MM.dd" // 날짜 형태
-          minDate={new Date('2000-01-01')}
-          maxDate={new Date()}
-          selected={endDate}
-          onChange={(date) => setEndDate(date)}
-          todayButton="Today"
-        />
+        {startDatePicker}~{endDatePicker}
       </div>
     </div>
+  );
+};
+
+const createDatePicker = (value: dayjs.Dayjs, onChangeCallback: (date: Date) => void) => {
+  return (
+    <DatePicker
+      className={styles.date_picker}
+      defaultValue={dayjs(value)}
+      format="YYYY-MM-DD"
+      slotProps={{
+        actionBar: { actions: ['today'] },
+      }}
+      onChange={(value) => {
+        onChangeCallback(dayjs(value).toDate());
+      }}
+    />
   );
 };
 
