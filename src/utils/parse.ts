@@ -1,4 +1,4 @@
-import { format, parse } from 'date-fns';
+import dayjs from 'dayjs';
 
 export function parseExpiresInToMilliseconds(timeString: string): number {
   const [, value, unit] = /^(\d+)([smhd])$/.exec(timeString) || [];
@@ -30,8 +30,7 @@ export function ymdToShortString(ymd: string): string {
     return '';
   }
   try {
-    const date = parse(ymd, 'yyyyMMdd', new Date());
-    return format(date, 'yyyy-MM-dd');
+    return dayjs(ymd, 'YYYYMMDD').format('YYYY-MM-DD');
   } catch {
     return '';
   }

@@ -3,11 +3,11 @@ import React from 'react';
 import styles from './AdminOrderItem.module.scss';
 import Product from '../../../graphql/interfaces/product';
 import { ymdToShortString } from '../../../utils/parse';
-import { format } from 'date-fns';
 import Em from '../../../graphql/interfaces/em';
 import ChildrenProps from '../../../interfaces/ChildrenProps';
 import InnerSelect from './Components/DeliverySelect/DeliverySelect';
 import deliveryMethods from '../../../constants/deliveryMethods';
+import dayjs from 'dayjs';
 
 interface AdminOrderItemProps {
   product: Product;
@@ -16,7 +16,7 @@ interface AdminOrderItemProps {
 }
 
 const AdminOrderItem: React.FC<AdminOrderItemProps> = ({ product, managers, onValueChange }) => {
-  const createDateString = format(new Date(product.createDt), 'yyyy-MM-dd HH:mm');
+  const createDateString = dayjs(product.createDt).format('YYYY-MM-DD HH:mm');
 
   const managerObject = managers.reduce(
     (object: { [key: string]: string }, m: Em) => {

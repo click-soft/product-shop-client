@@ -4,17 +4,17 @@ import { GET_ADMIN_PAYMENTS } from '../../graphql/queries/payment';
 import OrderGroup from '../../components/OrderGroup/OrderGroup';
 import { PaymentType } from '../../graphql/interfaces/payment';
 import AdminSearchForm, { FormValues } from '../../components/Admin/AdminSearchForm/AdminSearchForm';
-import { format } from 'date-fns';
 import useToast from '../../hooks/use-toast';
 import { isNuemric } from '../../utils/strings';
 import PaymentWithPage from '../../graphql/interfaces/payments-with-page';
 import client from '../../graphql/apollo-client';
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQueryClient } from 'react-query';
 import GetAdminPaymentsArgs from '../../graphql/dto/get-admin-payments-args';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import useIntersectionObserver from '../../hooks/use-intersection-observer';
 import { updateOrderCancel } from '../../utils/payment-utils';
 import CircleLoading from '../../components/Loading/CircleLoading';
+import dayjs from 'dayjs';
 
 const fetchGetAdminPayments = async (page: number, variables: GetAdminPaymentsArgs): Promise<PaymentWithPage> => {
   if (!variables) {
@@ -33,13 +33,15 @@ const fetchGetAdminPayments = async (page: number, variables: GetAdminPaymentsAr
   return result.data?.getAdminPayments;
 };
 
+const GET_ADMIN_PAYMENTS_QUERY_KEY = 'getAdminPayments';
 const AdminWebOrdersPage = () => {
+  const queryClient = useQueryClient();
   const { toast, toastConatiner } = useToast();
   const [payments, setPayments] = useState<PaymentType[]>([]);
   const [variables, setVariables] = useState<GetAdminPaymentsArgs>();
   const user = useGetLoginedUser(true);
   const { hasNextPage, isLoading, fetchNextPage, refetch } = useInfiniteQuery(
-    ['getAdminPayments', variables],
+    [GET_ADMIN_PAYMENTS_QUERY_KEY, variables],
     ({ pageParam = 1, queryKey }) => fetchGetAdminPayments(pageParam, variables!),
     {
       getNextPageParam: (nextPage, pages) => {
@@ -73,7 +75,10 @@ const AdminWebOrdersPage = () => {
           payment={p}
           onCancel={(state, message) => {
             toast[state](message);
-            if (state === 'success') updateOrderCancel(setPayments, p);
+            if (state === 'success') {
+              queryClient.removeQueries(GET_ADMIN_PAYMENTS_QUERY_KEY);
+              updateOrderCancel(setPayments, p);
+            }
           }}
         />
       </li>
@@ -81,8 +86,6 @@ const AdminWebOrdersPage = () => {
   });
 
   function submitHandler(value: FormValues): void {
-    const startDate = format(value.startDate, 'yyyy-MM-dd 00:00:00');
-    const endDate = format(value.endDate, 'yyyy-MM-dd 23:59:59');
     const emCode = value.manager;
     let customerName: string | undefined;
     let orderId: string | undefined;
@@ -96,8 +99,8 @@ const AdminWebOrdersPage = () => {
     // setPayments(undefined);
     setVariables({
       jisa: user?.jisa!,
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
+      startDate: dayjs(value.startDate).startOf('day').toDate(),
+      endDate: dayjs(value.endDate).endOf('day').toDate(),
       emCode,
       customerName,
       orderId,

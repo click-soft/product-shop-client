@@ -8,13 +8,12 @@ import { PaymentType } from '../../graphql/interfaces/payment';
 import { addToCart } from '../../store/cart-slice';
 import { useLazyQuery } from '@apollo/client';
 import { GET_PAYMENT_ITEM_CODE } from '../../graphql/queries/payment-item';
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQueryClient } from 'react-query';
 import client from '../../graphql/apollo-client';
 import { GET_PAYMENT_WITH_ITEMS } from '../../graphql/queries/payment';
 import PaymentWithPage from '../../graphql/interfaces/payments-with-page';
 import useIntersectionObserver from '../../hooks/use-intersection-observer';
 import { updateOrderCancel } from '../../utils/payment-utils';
-import { socket } from '../../config/socket';
 import useSocketIo from '../../hooks/use-socket-io';
 
 const fetchGetPaymentWithItems = async ({ pageParam = 1 }): Promise<PaymentWithPage> => {
@@ -28,7 +27,7 @@ const fetchGetPaymentWithItems = async ({ pageParam = 1 }): Promise<PaymentWithP
 };
 
 const OrdersPage = () => {
-  const observerRef = useRef(null);
+  const queryClient = useQueryClient();
   const { toast, toastConatiner } = useToast();
   const dispatch = useDispatch<AppDispatch>();
   const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
@@ -115,7 +114,10 @@ const OrdersPage = () => {
           payment={p}
           onCancel={(state, message) => {
             toast[state](message);
-            if (state === 'success') updateOrderCancel(setPayments, p);
+            if (state === 'success') {
+              queryClient.removeQueries('getPaymentWithItems');
+              updateOrderCancel(setPayments, p);
+            }
           }}
           onReorder={() => reorderHandler(p)}
         />

@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './AdminOrderPage.module.scss';
 import { useMutation } from '@apollo/client';
 import { GET_ADMIN_PRODUCTS } from '../../graphql/queries/product';
-import { format, parse } from 'date-fns';
 import CircleLoading from '../../components/Loading/CircleLoading';
 import Product from '../../graphql/interfaces/product';
 import AdminOrderItem, { AdminOrderArgs } from '../../components/Admin/AdminOrderItem/AdminOrderItem';
@@ -15,6 +14,7 @@ import GetAdminProductsArgs from '../../graphql/dto/get-admin-products.args';
 import client from '../../graphql/apollo-client';
 import ProductsWithPage from '../../graphql/interfaces/products-with-page';
 import useIntersectionObserver from '../../hooks/use-intersection-observer';
+import dayjs from 'dayjs';
 
 const fetchGetAdminProducts = async (page: number, variables: GetAdminProductsArgs): Promise<ProductsWithPage> => {
   if (!variables?.startYmd) {
@@ -34,6 +34,8 @@ const fetchGetAdminProducts = async (page: number, variables: GetAdminProductsAr
   return result.data?.getAdminProducts;
 };
 
+const GET_ADMIN_QUERY_KEY = 'getAdminProducts';
+
 const AdminOrderPage = () => {
   const [variables, setVariables] = useState<GetAdminProductsArgs>();
   const { toast, toastConatiner } = useToast();
@@ -43,7 +45,7 @@ const AdminOrderPage = () => {
     useMutation(UPDATE_PRODUCT);
 
   const { isLoading, hasNextPage, fetchNextPage, refetch } = useInfiniteQuery(
-    ['getAdminProducts', variables],
+    [GET_ADMIN_QUERY_KEY, variables],
     ({ pageParam = 1 }) => fetchGetAdminProducts(pageParam, variables!),
     {
       getNextPageParam: (nextPage, pages) => {
@@ -120,8 +122,8 @@ const AdminOrderPage = () => {
   });
 
   function submitHandler({ startDate, endDate, manager, text: customerName }: FormValues): void {
-    const startYmd = format(startDate, 'yyyyMMdd');
-    const endYmd = format(endDate, 'yyyyMMdd');
+    const startYmd = dayjs(startDate).format('YYYYMMDD');
+    const endYmd = dayjs(endDate).format('YYYYMMDD');
 
     setVariables({
       startYmd,
@@ -131,10 +133,6 @@ const AdminOrderPage = () => {
       page: 1,
     });
   }
-
-  useEffect(() => {
-    refetch();
-  }, [variables]);
 
   return (
     <>
