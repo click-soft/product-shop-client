@@ -3,7 +3,7 @@ import styles from './OrderGroup.module.scss';
 import Card from '../../ui/Card';
 import moment from 'moment';
 import OrderItem from '../OrderItem/OrderItem';
-import { PaymentType } from '../../graphql/interfaces/payment';
+import { Payment } from '../../graphql/interfaces/payment';
 import bankData from '../../data/bankData';
 import CircleLoading from '../Loading/CircleLoading';
 import { useDispatch } from 'react-redux';
@@ -12,7 +12,7 @@ import { cancelOrder, refundOrder } from '../../store/orders-slice';
 import RefundModal from '../RefundModal/RefundModal';
 
 interface OrderGroupProps {
-  payment: PaymentType;
+  payment: Payment;
   onCancel: (state: 'success' | 'error', message: string) => void;
   onReorder?: () => void;
   isAdmin?: boolean;

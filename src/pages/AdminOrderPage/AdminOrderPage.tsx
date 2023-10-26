@@ -15,6 +15,7 @@ import client from '../../graphql/apollo-client';
 import ProductsWithPage from '../../graphql/interfaces/products-with-page';
 import useIntersectionObserver from '../../hooks/use-intersection-observer';
 import dayjs from 'dayjs';
+import ReChartTest from '../../components/ReChartTest/ReChartTest';
 
 const fetchGetAdminProducts = async (page: number, variables: GetAdminProductsArgs): Promise<ProductsWithPage> => {
   if (!variables?.startYmd) {
@@ -137,6 +138,7 @@ const AdminOrderPage = () => {
   return (
     <>
       {toastConatiner}
+      {/* <ReChartTest products={products} /> */}
       {(isLoading || updatedLoading) && <CircleLoading />}
       <div className={styles.container}>
         <AdminSearchForm onSubmit={submitHandler} textLabel="거래처 명칭" />

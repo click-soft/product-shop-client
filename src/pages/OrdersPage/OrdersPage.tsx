@@ -4,7 +4,7 @@ import OrderGroup from '../../components/OrderGroup/OrderGroup';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store';
 import useToast from '../../hooks/use-toast';
-import { PaymentType } from '../../graphql/interfaces/payment';
+import { Payment } from '../../graphql/interfaces/payment';
 import { addToCart } from '../../store/cart-slice';
 import { useLazyQuery } from '@apollo/client';
 import { GET_PAYMENT_ITEM_CODE } from '../../graphql/queries/payment-item';
@@ -31,7 +31,7 @@ const OrdersPage = () => {
   const { toast, toastConatiner } = useToast();
   const dispatch = useDispatch<AppDispatch>();
   const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
-  const [payments, setPayments] = useState<PaymentType[]>([]);
+  const [payments, setPayments] = useState<Payment[]>([]);
   const { hasNextPage, fetchNextPage, refetch } = useInfiniteQuery(['getPaymentWithItems'], fetchGetPaymentWithItems, {
     getNextPageParam: (lastPage, pages) => {
       if (lastPage?.isLast ?? true) return undefined;
@@ -54,11 +54,11 @@ const OrdersPage = () => {
     onReceive: (args) => {
       const result: {
         state: 'update' | 'checkout';
-        data: PaymentType;
+        data: Payment;
       } = args[0];
 
       if (result.state === 'update') {
-        const payment: PaymentType = result.data;
+        const payment: Payment = result.data;
         setPayments((prevPayments) => {
           return prevPayments.map((p) => {
             if (p.id === payment.id) {
@@ -83,7 +83,7 @@ const OrdersPage = () => {
     },
   });
 
-  function reorderHandler(p: PaymentType) {
+  function reorderHandler(p: Payment) {
     if (!window.confirm('장바구니에 추가하시겠습니까?')) return;
     async function reorder() {
       for (const item of p.paymentItems) {

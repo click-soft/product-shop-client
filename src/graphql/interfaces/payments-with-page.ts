@@ -1,7 +1,7 @@
-import { PaymentType } from './payment';
+import { Payment } from './payment';
 
 export default interface PaymentWithPage {
   page: number;
   isLast: boolean;
-  payments: PaymentType[];
+  payments: Payment[];
 }

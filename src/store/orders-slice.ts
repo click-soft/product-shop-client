@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { GET_PAYMENT_WITH_ITEMS } from '../graphql/queries/payment';
 import { CANCEL_ORDER, REFUND_ORDER } from '../graphql/mutates/payment';
 import { CheckoutResult } from '../graphql/interfaces/checkout';
-import { PaymentType } from '../graphql/interfaces/payment';
+import { Payment } from '../graphql/interfaces/payment';
 import RefundOrderArgs from '../graphql/dto/refund-order-args';
 import client from '../graphql/apollo-client';
 
 interface OrdersState {
-  payments: PaymentType[];
+  payments: Payment[];
 }
 
 const initialState: OrdersState = { payments: [] };
@@ -43,7 +43,7 @@ const ordersSlice = createSlice({
 
 type PaymentsResultType = {
   isInit: boolean;
-  payments: PaymentType[];
+  payments: Payment[];
 };
 export const getPaymentWithItems = createAsyncThunk(
   'orders-slice/getPaymentWithItems',
@@ -63,7 +63,7 @@ export const getPaymentWithItems = createAsyncThunk(
 
 export const cancelOrder = createAsyncThunk(
   'orders-slice/cancelOrder',
-  async ({ payment, cancelReason }: { payment: PaymentType; cancelReason: string }): Promise<number> => {
+  async ({ payment, cancelReason }: { payment: Payment; cancelReason: string }): Promise<number> => {
     const response = await client.mutate({
       mutation: CANCEL_ORDER,
       variables: {

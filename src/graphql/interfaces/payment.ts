@@ -1,6 +1,6 @@
 import Cs from './cs';
 
-export interface PaymentType {
+export interface Payment {
   id: number;
   ykiho: string;
   orderId: string;
@@ -12,12 +12,12 @@ export interface PaymentType {
   approvedAt?: Date | null;
   sendType: '결제대기' | '주문확인' | '상품준비중' | '배송중' | '배송완료';
   cancel: boolean;
-  paymentItems: PaymentItemType[];
-  virtual?: VirtualAccountType | null;
+  paymentItems: PaymentItem[];
+  virtual?: VirtualAccount | null;
   cs?: Cs;
 }
 
-export interface PaymentItemType {
+export interface PaymentItem {
   id: number;
   paymentId: number;
   code: string;
@@ -27,7 +27,7 @@ export interface PaymentItemType {
   amount: number;
 }
 
-export interface VirtualAccountType {
+export interface VirtualAccount {
   bankCode: string;
   customerName: string;
   dueDate: Date;

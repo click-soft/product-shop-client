@@ -2,11 +2,11 @@ import styles from './PaymentSuccessComplete.module.scss';
 import Card from '../../ui/Card';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
-import { PaymentType } from '../../graphql/interfaces/payment';
+import { Payment } from '../../graphql/interfaces/payment';
 import bankData from '../../data/bankData';
 
 interface PaymentSuccessCompleteProps {
-  orderData: PaymentType;
+  orderData: Payment;
 }
 const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({ orderData }) => {
   // const { checkoutData } = useCheckout({ isSession: true });

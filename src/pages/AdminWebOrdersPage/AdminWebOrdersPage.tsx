@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './AdminWebOrdersPage.module.scss';
 import { GET_ADMIN_PAYMENTS } from '../../graphql/queries/payment';
 import OrderGroup from '../../components/OrderGroup/OrderGroup';
-import { PaymentType } from '../../graphql/interfaces/payment';
+import { Payment } from '../../graphql/interfaces/payment';
 import AdminSearchForm, { FormValues } from '../../components/Admin/AdminSearchForm/AdminSearchForm';
 import useToast from '../../hooks/use-toast';
 import { isNuemric } from '../../utils/strings';
@@ -37,7 +37,7 @@ const GET_ADMIN_PAYMENTS_QUERY_KEY = 'getAdminPayments';
 const AdminWebOrdersPage = () => {
   const queryClient = useQueryClient();
   const { toast, toastConatiner } = useToast();
-  const [payments, setPayments] = useState<PaymentType[]>([]);
+  const [payments, setPayments] = useState<Payment[]>([]);
   const [variables, setVariables] = useState<GetAdminPaymentsArgs>();
   const user = useGetLoginedUser(true);
   const { hasNextPage, isLoading, fetchNextPage } = useInfiniteQuery(

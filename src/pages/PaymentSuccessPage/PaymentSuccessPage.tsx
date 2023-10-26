@@ -3,7 +3,7 @@ import PaymentSuccessComplete from '../../components/PaymentSuccessComplete/Paym
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_ORDER_COMPLETED } from '../../graphql/queries/payment';
-import { PaymentType } from '../../graphql/interfaces/payment';
+import { Payment } from '../../graphql/interfaces/payment';
 
 const PaymentSuccessPage = () => {
   const params = useParams();

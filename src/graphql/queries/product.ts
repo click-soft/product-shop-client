@@ -40,6 +40,7 @@ export const GET_ADMIN_PRODUCTS = gql`
           code
           myung
           em {
+            code
             name
           }
         }

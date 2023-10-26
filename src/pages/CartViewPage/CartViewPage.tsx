@@ -91,7 +91,9 @@ const CartViewPage = () => {
     navigate('/payment');
   }
 
-  if ((cart?.cartItems?.length ?? 0) === 0) {
+  if (!cart) {
+    return <CircleLoading />;
+  } else if (cart.cartItems.length === 0) {
     return <EmptyCartView />;
   }
   const itemComponents = cart?.cartItems.map((ci) => {
