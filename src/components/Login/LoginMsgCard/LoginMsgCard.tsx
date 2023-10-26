@@ -17,9 +17,7 @@ const LoginMsgCard: React.FC<CardProps> = (props) => {
     return (
       <div key={i} className={styles.container}>
         {i > 0 && <div className={styles.separator} />}
-        <div className={`${styles.title} ${props.isError && styles.error}`}>
-          {data.title}
-        </div>
+        <div className={`${styles.title} ${props.isError && styles.error}`}>{data.title}</div>
         <div className={styles.message}>{data?.message}</div>
       </div>
     );

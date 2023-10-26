@@ -10,6 +10,6 @@ export const interceptors = (instance: AxiosInstance) => {
     },
     (error) => {
       return Promise.reject(error);
-    },
+    }
   );
 };

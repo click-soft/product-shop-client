@@ -11,14 +11,12 @@ import useLogout from '../../hooks/use-logout';
 import React from 'react';
 import { IconType } from 'react-icons';
 import { MdManageAccounts } from 'react-icons/md';
-import classNames from 'classnames'; 
+import classNames from 'classnames';
 
 const UserModal = () => {
   const logout = useLogout();
-  const showUserModal = useSelector<RootState, boolean>(
-    (state) => state.modal.showUserModal,
-  );
-  
+  const showUserModal = useSelector<RootState, boolean>((state) => state.modal.showUserModal);
+
   const user = useGetLoginedUser(showUserModal);
 
   if (!showUserModal) {
@@ -43,14 +41,7 @@ const UserModal = () => {
             </div>
           </div>
           <ul className={styles.link_ul}>
-            {user?.admin && (
-              <LinkButton
-                to="/admin/orders"
-                text="관리자 페이지"
-                icon={MdManageAccounts}
-                admin
-              />
-            )}
+            {user?.admin && <LinkButton to="/admin/orders" text="관리자 페이지" icon={MdManageAccounts} admin />}
             <LinkButton to="/orders" text="주문 내역 보기" icon={BiBasket} />
           </ul>
         </div>

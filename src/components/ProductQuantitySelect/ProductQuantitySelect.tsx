@@ -18,13 +18,11 @@ const ProductQuantitySelect: React.FC<ProductQuantitySelectProps> = (props) => {
   }
 
   return (
-    <select
-      className={styles.select}
-      value={props.value}
-      onChange={(e) => props.onChange?.(+e.target.value)}
-    >
+    <select className={styles.select} value={props.value} onChange={(e) => props.onChange?.(+e.target.value)}>
       {getOptions().map((i) => (
-        <option key={i} value={i}>{i}</option>
+        <option key={i} value={i}>
+          {i}
+        </option>
       ))}
     </select>
   );

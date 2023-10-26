@@ -71,19 +71,12 @@ const Toast: React.FC<ToastProps> = (props) => {
   const iconStyle = iconStyles[props.type];
 
   return (
-    <div
-      className={`${styles.toast} ${iconStyle} ${
-        message === '' ? styles.hide : styles.show
-      }`}
-    >
+    <div className={`${styles.toast} ${iconStyle} ${message === '' ? styles.hide : styles.show}`}>
       <div className={styles.message_wrapper}>
         <IconComponent className={styles.icon} />
         <div className={styles.message}>{message}</div>
       </div>
-      <AiOutlineClose
-        className={`${styles.icon} ${styles.close}`}
-        onClick={closeHandler}
-      />
+      <AiOutlineClose className={`${styles.icon} ${styles.close}`} onClick={closeHandler} />
     </div>
   );
 };

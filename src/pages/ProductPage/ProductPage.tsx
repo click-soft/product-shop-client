@@ -12,7 +12,7 @@ const ProductPage: React.FC = (props) => {
   const user = useGetLoginedUser(true);
   const { loading, error, data } = useQuery(GET_RPDUCTS_BUNRYU_LIST, {
     variables: { jisa: user?.jisa },
-    skip: !user,    
+    skip: !user,
   });
 
   const prds: ProductsByBunryu[] = data?.getProductsBunryuList;

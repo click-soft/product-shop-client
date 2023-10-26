@@ -3,10 +3,7 @@ import styles from './TextBox.module.scss';
 import { IconType } from 'react-icons';
 import classNames from 'classnames';
 
-type Type = React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->;
+type Type = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 interface TextBoxProps extends Type {
   icon?: IconType;

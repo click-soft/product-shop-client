@@ -34,10 +34,7 @@ const AdminSearchForm: React.FC<AdminSearchFormProps> = (props) => {
         props.onSubmit(formValues);
       }}
     >
-      <DateRangePicker
-        className={styles.date_picker}
-        onDateChange={dataChangeHandler}
-      />
+      <DateRangePicker className={styles.date_picker} onDateChange={dataChangeHandler} />
       <MuiSelect
         className={styles.select}
         label="담당자"
@@ -61,11 +58,7 @@ const AdminSearchForm: React.FC<AdminSearchFormProps> = (props) => {
         }}
       />
       {props.children}
-      <Button
-        className={styles.submit_button}
-        variant="contained"
-        type="submit"
-      >
+      <Button className={styles.submit_button} variant="contained" type="submit">
         조회
       </Button>
     </form>

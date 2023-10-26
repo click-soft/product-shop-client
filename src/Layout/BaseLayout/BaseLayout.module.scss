@@ -6,7 +6,7 @@
   background-color: $color-lightgray;
   .wrapper_left {
     display: none;
-    height: 100%;   
+    height: 100%;
   }
 
   .wrapper_center {
@@ -27,14 +27,12 @@
     }
   }
 
-
   // footer {
   //   height: 60px;
   // }
 }
 
-
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .wrapper {
     .wrapper_center {
       header {
@@ -48,7 +46,7 @@
     //   display: none;
     // }
 
-    .wrapper_left_dummy{
+    .wrapper_left_dummy {
       display: block;
       width: var(--left-menu-width);
     }

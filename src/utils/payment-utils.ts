@@ -1,4 +1,4 @@
-import { PaymentType } from "../graphql/interfaces/payment";
+import { PaymentType } from '../graphql/interfaces/payment';
 
 export function updateOrderCancel(setPayments: (value: React.SetStateAction<PaymentType[]>) => void, p: PaymentType) {
   setPayments((prevPayments: PaymentType[]) => {

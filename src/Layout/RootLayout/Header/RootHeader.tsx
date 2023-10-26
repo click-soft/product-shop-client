@@ -21,17 +21,10 @@ const RootHeader: React.FC<ChildrenProps> = () => {
 
   return (
     <header style={{ position: 'relative' }}>
-      {headerFixed && (
-        <div
-          className={styles.header}
-          style={{ height: ref.current?.clientHeight }}
-        ></div>
-      )}
+      {headerFixed && <div className={styles.header} style={{ height: ref.current?.clientHeight }}></div>}
       <div ref={ref} className={`${styles.header} ${headerFixed}`}>
         <div className={styles.header__container}>
-          <div className={styles.header__left}>
-            {isMainPage && <MenuButton />}
-          </div>
+          <div className={styles.header__left}>{isMainPage && <MenuButton />}</div>
           <div className={styles.header__center}>
             <Link to={'/'}>
               <img className={styles.logo} src={logo} />

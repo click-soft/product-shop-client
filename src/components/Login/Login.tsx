@@ -88,11 +88,7 @@ function Login() {
                 placeholder="비밀번호"
                 onChange={inputChangeHandler}
               />
-              <button
-                className={`${styles.login_button} blue-button`}
-                id="btn-login"
-                disabled={loading}
-              >
+              <button className={`${styles.login_button} blue-button`} id="btn-login" disabled={loading}>
                 로그인
               </button>
 

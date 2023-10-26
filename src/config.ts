@@ -9,4 +9,7 @@ function getEnvironment(): 'test' | 'production' | 'development' {
 }
 
 export const environment = getEnvironment();
-export const TOSSPAYMENTS_CLIENT_KEY = environment === "production" ? process.env.REACT_APP_TOSSPAYMENTS_TEST_CLIENT_KEY : process.env.REACT_APP_TOSSPAYMENTS_CLIENT_KEY;
+export const TOSSPAYMENTS_CLIENT_KEY =
+  environment === 'production'
+    ? process.env.REACT_APP_TOSSPAYMENTS_TEST_CLIENT_KEY
+    : process.env.REACT_APP_TOSSPAYMENTS_CLIENT_KEY;

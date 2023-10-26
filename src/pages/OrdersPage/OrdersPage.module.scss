@@ -16,19 +16,19 @@
   grid-template-rows: repeat(auto-fill, max-content);
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .order-ul {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width:1200px) {
+@media (min-width: 1200px) {
   .order-ul {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width:1530px) {
+@media (min-width: 1530px) {
   .order-ul {
     grid-template-columns: repeat(4, 1fr);
   }

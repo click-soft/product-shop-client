@@ -8,15 +8,7 @@ import bankData from '../../data/bankData';
 
 interface RefundModalProps {
   onClose: () => void;
-  onRefund: ({
-    bank,
-    accountNumber,
-    holderName,
-  }: {
-    bank: string;
-    accountNumber: string;
-    holderName: string;
-  }) => void;
+  onRefund: ({ bank, accountNumber, holderName }: { bank: string; accountNumber: string; holderName: string }) => void;
 }
 const RefundModal: React.FC<RefundModalProps> = (props) => {
   const bankRef = useRef<HTMLSelectElement | null>(null);
@@ -24,9 +16,7 @@ const RefundModal: React.FC<RefundModalProps> = (props) => {
   const holderNameRef = useRef<HTMLInputElement | null>(null);
   const bankKeys = Object.keys(bankData);
 
-  const bankOptionsComponents = bankKeys.map((key) => (
-    <option value={key}>{bankData[key]}</option>
-  ));
+  const bankOptionsComponents = bankKeys.map((key) => <option value={key}>{bankData[key]}</option>);
   function submitHandler(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
@@ -65,22 +55,13 @@ const RefundModal: React.FC<RefundModalProps> = (props) => {
           <label htmlFor="holder_input" className={styles.label}>
             예금주
           </label>
-          <input
-            ref={holderNameRef}
-            className={styles.data}
-            id="holder_input"
-            type="text"
-          />
+          <input ref={holderNameRef} className={styles.data} id="holder_input" type="text" />
         </section>
         <div className={styles.button_container}>
           <button type="submit" className={styles.refund_button}>
             환불
           </button>
-          <button
-            type="button"
-            className={styles.cancel_button}
-            onClick={props.onClose}
-          >
+          <button type="button" className={styles.cancel_button} onClick={props.onClose}>
             취소
           </button>
         </div>

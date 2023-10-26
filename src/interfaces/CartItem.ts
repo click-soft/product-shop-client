@@ -1,4 +1,4 @@
-import ProductListSub from "./ProductListSub";
+import ProductListSub from './ProductListSub';
 
 export default interface CartProduct {
   id?: number;

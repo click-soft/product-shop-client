@@ -14,9 +14,9 @@ $color-darkblue2: #0053b3;
 $color-darkblue3: #00397a;
 $color-blue: #297ad6;
 $color-lightskyblue: #b8d7fa;
-$color-skyblue: #97C3F0;
+$color-skyblue: #97c3f0;
 $color-lightblue: #77a4d8;
-$color-lightgray: #EEEEEE;
+$color-lightgray: #eeeeee;
 $color-gray: rgb(128, 128, 128);
 $color-lightgreen: #80e12a;
 $color-green: #369f36;
@@ -24,9 +24,8 @@ $color-darkgreen: #006600;
 $color-yellow: #fff56e;
 $color-lightorange: #fcc736;
 $color-orange: #ffb900;
-$color-darkorange:#ff7b00;
+$color-darkorange: #ff7b00;
 $color-darkbrown: #69500b;
-
 
 $font-size-level1: 10px;
 $font-size-level2: 13px;
@@ -37,18 +36,18 @@ $font-size-level6: 25px;
 $font-size-level7: 28px;
 $font-size-level8: 31px;
 
-@mixin custom-button($color: $color-lightgray,
+@mixin custom-button(
+  $color: $color-lightgray,
   $backgroundColor: $color-blue,
   $activeBackgroundColor: $color-darkblue,
-  $borderColor: null) {
+  $borderColor: null
+) {
   color: $color;
   background-color: $backgroundColor;
 
   @if $borderColor {
     border: 1px solid $borderColor;
-  }
-
-  @else {
+  } @else {
     border: none;
   }
 
@@ -87,9 +86,7 @@ $font-size-level8: 31px;
 }
 
 @mixin red-button {
-  @include custom-button($color: white,
-    $backgroundColor: $color-lightred,
-    $activeBackgroundColor: $color-red );
+  @include custom-button($color: white, $backgroundColor: $color-lightred, $activeBackgroundColor: $color-red);
 }
 
 @mixin white-button {

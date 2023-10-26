@@ -1,4 +1,4 @@
-import { PaymentType } from "./payment";
+import { PaymentType } from './payment';
 
 export default interface PaymentWithPage {
   page: number;

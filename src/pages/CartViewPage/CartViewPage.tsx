@@ -5,10 +5,7 @@ import { getCartWithProduct } from '../../graphql/queries/cart';
 import CartViewItems from '../../components/CartViewItem/CartViewItem';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store';
-import {
-  deleteCartItems,
-  updateCartItemQuantity,
-} from '../../store/cart-slice';
+import { deleteCartItems, updateCartItemQuantity } from '../../store/cart-slice';
 import BuyArea from '../../components/BuyArea/BuyArea';
 import { useNavigate } from 'react-router-dom';
 import CartItemManager from '../../utils/cart-item-manager';
@@ -25,11 +22,8 @@ const CartViewPage = () => {
   const [cart, setCart] = useState<Cart>();
   const [loading, setLoading] = useState(false);
   const cartItemManager = useMemo(
-    () =>
-      new CartItemManager(
-        cart?.cartItems.filter((item) => chkItemIds.includes(item.id!)),
-      ),
-    [cart?.cartItems, chkItemIds],
+    () => new CartItemManager(cart?.cartItems.filter((item) => chkItemIds.includes(item.id!))),
+    [cart?.cartItems, chkItemIds]
   );
 
   function getIds(cart: Cart): number[] {
@@ -97,8 +91,8 @@ const CartViewPage = () => {
     navigate('/payment');
   }
 
-  if ((cart?.cartItems?.length ?? 0) === 0){
-    return  <EmptyCartView/>
+  if ((cart?.cartItems?.length ?? 0) === 0) {
+    return <EmptyCartView />;
   }
   const itemComponents = cart?.cartItems.map((ci) => {
     return (
@@ -123,7 +117,6 @@ const CartViewPage = () => {
     <>
       {loading && <CircleLoading />}
       <div className={styles.container}>
-        
         <table>
           <caption className={styles.caption}>장바구니 목록</caption>
           <colgroup>
@@ -134,15 +127,9 @@ const CartViewPage = () => {
 
           <thead className={styles.head}>
             <tr>
-              <th
-                className={`${styles['first-column']} ${styles['first-column-header']}`}
-              >
+              <th className={`${styles['first-column']} ${styles['first-column-header']}`}>
                 <label>
-                  <input
-                    type="checkbox"
-                    checked={allCheck}
-                    onChange={(e) => allCheckChangeHandler(e.target.checked)}
-                  />
+                  <input type="checkbox" checked={allCheck} onChange={(e) => allCheckChangeHandler(e.target.checked)} />
                   <span>전체</span>
                 </label>
               </th>
@@ -155,11 +142,7 @@ const CartViewPage = () => {
           <tbody>{itemComponents}</tbody>
         </table>
       </div>
-      <BuyArea
-        totalPrice={cartItemManager.totalPrice}
-        onBuy={buyHandler}
-        disabled={chkItemIds.length === 0}
-      />
+      <BuyArea totalPrice={cartItemManager.totalPrice} onBuy={buyHandler} disabled={chkItemIds.length === 0} />
     </>
   );
 };

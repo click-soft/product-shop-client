@@ -23,9 +23,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
   const [inputValue, setInputValue] = useState('');
   const [comboValue, setComboValue] = useState<number | string>(1);
   const isCustom = comboValue === 'custom' || +comboValue > 10;
-  const isValueChanged = isCustom
-    ? value !== +inputValue
-    : value !== comboValue;
+  const isValueChanged = isCustom ? value !== +inputValue : value !== comboValue;
   function comboChangeHandler(e: React.ChangeEvent<HTMLSelectElement>) {
     if (e.target.value === 'custom') {
       setComboValue(e.target.value);
@@ -39,7 +37,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
   }
 
   const options: number[] = useMemo(() => {
-    const startValue = isFit ? 6 : 2
+    const startValue = isFit ? 6 : 2;
     const arr = [];
     for (let i = startValue; i <= 10; i = i + 2) {
       arr.push(i);
@@ -111,11 +109,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
           )}
         </div>
       ) : (
-        <select
-          className={styles['combo-style']}
-          onChange={comboChangeHandler}
-          value={comboValue}
-        >
+        <select className={styles['combo-style']} onChange={comboChangeHandler} value={comboValue}>
           {options.map((i) => {
             return (
               <option key={i} value={i}>

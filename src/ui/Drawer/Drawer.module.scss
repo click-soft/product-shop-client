@@ -1,21 +1,21 @@
 .drawer {
   position: fixed;
- 
+
   // width: auto;
 
   z-index: 1002;
   width: fit-content;
   // background-color: white;
-   overflow: hidden;
+  overflow: hidden;
 
   &.left {
-    top: 0;    
+    top: 0;
     left: 0;
     height: 100%;
   }
 
   &.right {
-    top: 0;    
+    top: 0;
     right: 0;
     height: 100%;
   }
@@ -68,7 +68,6 @@
     max-width: 0;
   }
 }
-
 
 @keyframes open_height {
   from {

@@ -89,15 +89,16 @@
 }
 
 .cancel-button {
-  @include custom-button($backgroundColor: $color-lightred,
-    $activeBackgroundColor: red);
+  @include custom-button($backgroundColor: $color-lightred, $activeBackgroundColor: red);
 }
 
 .reorder-button {
-  @include custom-button($backgroundColor: white,
+  @include custom-button(
+    $backgroundColor: white,
     $activeBackgroundColor: Azure,
-    $color : $color-darkgreen,
-    $borderColor: $color-green);
+    $color: $color-darkgreen,
+    $borderColor: $color-green
+  );
 }
 
 .virtual_info {

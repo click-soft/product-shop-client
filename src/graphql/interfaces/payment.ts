@@ -1,4 +1,4 @@
-import Cs from "./cs";
+import Cs from './cs';
 
 export interface PaymentType {
   id: number;
@@ -18,13 +18,13 @@ export interface PaymentType {
 }
 
 export interface PaymentItemType {
-  id: number
-  paymentId: number
-  code: string
-  name: string
-  fit: boolean
-  quantity: number
-  amount: number
+  id: number;
+  paymentId: number;
+  code: string;
+  name: string;
+  fit: boolean;
+  quantity: number;
+  amount: number;
 }
 
 export interface VirtualAccountType {

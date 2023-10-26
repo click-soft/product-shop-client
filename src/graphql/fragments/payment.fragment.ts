@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client"
+import { gql } from '@apollo/client';
 
 export const PAYMENT_VIRTUAL_FIELD = gql`
   fragment PaymentVirtualField on PaymentVirtual {
@@ -7,9 +7,9 @@ export const PAYMENT_VIRTUAL_FIELD = gql`
     dueDate
     accountNumber
   }
-`
+`;
 export const ORDER_COMPLETED_FIELD = gql`
-  fragment OrderCompletedField on Payment{
+  fragment OrderCompletedField on Payment {
     orderId
     method
     amount
@@ -21,10 +21,10 @@ export const ORDER_COMPLETED_FIELD = gql`
   }
 
   ${PAYMENT_VIRTUAL_FIELD}
-`
+`;
 
 export const GET_PAYMENTS_FIELDS = gql`
- fragment GetPaymentsFields on Payment {
+  fragment GetPaymentsFields on Payment {
     id
     orderId
     paymentKey
@@ -35,7 +35,7 @@ export const GET_PAYMENTS_FIELDS = gql`
     approvedAt
     sendType
     cancel
-    virtual{
+    virtual {
       ...PaymentVirtualField
     }
     paymentItems {
@@ -44,6 +44,7 @@ export const GET_PAYMENTS_FIELDS = gql`
       fit
       quantity
       amount
-    }  
-}
-${PAYMENT_VIRTUAL_FIELD}`
+    }
+  }
+  ${PAYMENT_VIRTUAL_FIELD}
+`;

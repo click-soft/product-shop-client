@@ -4,4 +4,4 @@ export default interface ProductListSub {
   smMyung: string;
   danwi: string;
   danga: number;
-};
+}

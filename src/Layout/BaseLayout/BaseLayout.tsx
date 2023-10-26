@@ -9,31 +9,19 @@ interface BaseLayoutProps {
   footerComponent?: ReactNode;
 }
 
-const BaseLayout: React.FC<BaseLayoutProps> = ({
-  leftMenuComponent,
-  headerComponent,
-  footerComponent,
-}) => {
+const BaseLayout: React.FC<BaseLayoutProps> = ({ leftMenuComponent, headerComponent, footerComponent }) => {
   const headerRef = useRef<HTMLHRElement>(null);
   const leftMenuRef = useRef<HTMLDivElement>(null);
 
   useResizeObserver(headerRef, {
     onHeightChange: (height) => {
-      document.documentElement.style.setProperty(
-        '--header-height',
-        `${height}px`,
-      );
+      document.documentElement.style.setProperty('--header-height', `${height}px`);
     },
   });
 
   useResizeObserver(leftMenuRef, {
     onWidthChange: (width) => {
-      console.log('width', width);
-      
-      document.documentElement.style.setProperty(
-        '--left-menu-width',
-        `${width}px`,
-      );
+      document.documentElement.style.setProperty('--left-menu-width', `${width}px`);
     },
   });
 

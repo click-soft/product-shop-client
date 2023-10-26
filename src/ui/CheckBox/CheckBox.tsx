@@ -10,12 +10,7 @@ interface CheckBoxProps {
 const CheckBox: React.FC<CheckBoxProps> = (props) => {
   return (
     <div className={styles.checkbox}>
-      <input
-        id="checkbox"
-        type="checkbox"
-        checked={props.checked}
-        onChange={props.onChange}
-      />
+      <input id="checkbox" type="checkbox" checked={props.checked} onChange={props.onChange} />
       <label htmlFor="checkbox">{props.text}</label>
     </div>
   );

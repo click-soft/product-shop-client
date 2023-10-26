@@ -1,6 +1,6 @@
-import { DependencyList, useEffect, useState } from "react";
-import UserProfile from "../interfaces/UserProfile";
-import { getUser } from "../graphql/queries/user";
+import { DependencyList, useEffect, useState } from 'react';
+import UserProfile from '../interfaces/UserProfile';
+import { getUser } from '../graphql/queries/user';
 
 export default function useGetLoginedUser(load: boolean) {
   const [user, setUser] = useState<UserProfile>();
@@ -11,7 +11,7 @@ export default function useGetLoginedUser(load: boolean) {
         .then((user) => {
           setUser(user);
         })
-        .catch(err => setUser(undefined));
+        .catch((err) => setUser(undefined));
     }
   }, [load]);
 

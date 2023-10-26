@@ -18,23 +18,16 @@ const DownModal: React.FC<DownModalProps> = (props) => {
   function backdropClickHandler() {
     dispatch(modalActions.closeDownAll());
   }
-  const style: CSSProperties =
-    props.popupLocation === 'left' ? { left: 0 } : {};
+  const style: CSSProperties = props.popupLocation === 'left' ? { left: 0 } : {};
 
   function backdropMouseEnterHandler(): void {
-    console.log('isMobile', isMobile);
-
     if (isMobile) return;
     dispatch(modalActions.closeDownAll());
   }
 
   return (
     <>
-      <Backdrop
-        onClick={backdropClickHandler}
-        onMouseEnter={backdropMouseEnterHandler}
-        notScrollHidden
-      />
+      <Backdrop onClick={backdropClickHandler} onMouseEnter={backdropMouseEnterHandler} notScrollHidden />
       <Card className={`${styles.slider}`} style={style}>
         {props.children}
       </Card>

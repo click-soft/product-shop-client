@@ -1,5 +1,5 @@
 export enum SessionStoragekey {
-  CHECKOUT_DATA = 'CHECKOUT_DATA'
+  CHECKOUT_DATA = 'CHECKOUT_DATA',
 }
 
 export default class SessionStorageManager {
@@ -10,7 +10,7 @@ export default class SessionStorageManager {
   static get<T>(key: SessionStoragekey): T | undefined {
     const item = sessionStorage.getItem(key);
 
-    return item ? JSON.parse(item) as T : undefined;
+    return item ? (JSON.parse(item) as T) : undefined;
   }
 
   static remove(key: SessionStoragekey): void {

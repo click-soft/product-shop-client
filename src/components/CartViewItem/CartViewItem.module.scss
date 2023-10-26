@@ -89,9 +89,6 @@
 }
 
 .cancel-button {
-  @include custom-button(
-    $backgroundColor: $color-lightred,
-    $activeBackgroundColor: $color-red
-  );
+  @include custom-button($backgroundColor: $color-lightred, $activeBackgroundColor: $color-red);
   padding: 4px;
 }

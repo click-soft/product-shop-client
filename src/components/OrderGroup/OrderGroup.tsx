@@ -18,12 +18,7 @@ interface OrderGroupProps {
   isAdmin?: boolean;
 }
 
-const OrderGroup: React.FC<OrderGroupProps> = ({
-  payment,
-  onCancel,
-  onReorder,
-  isAdmin,
-}) => {
+const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, isAdmin }) => {
   const longDateString = moment(payment.requestedAt).format('YYYY-MM-DD HH:mm');
   const sendTypeClasses = [styles['send-type-base']];
   const [showRefundModal, setShowRefundModal] = useState(false);
@@ -50,8 +45,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({
     return <OrderItem key={item.id} item={item} setSeparator={i > 0} />;
   });
 
-  const canCancel =
-    !payment.cancel && ['결제대기', '주문확인'].includes(payment.sendType);
+  const canCancel = !payment.cancel && ['결제대기', '주문확인'].includes(payment.sendType);
 
   const cancelButtonComponent = (
     <button className={styles['cancel-button']} onClick={cancelOrderHandler}>
@@ -89,7 +83,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({
         accountNumber: accountNumber,
         holderName,
         cancelReason: '사용자의 요청으로 인한 환불',
-      }),
+      })
     )
       .unwrap()
       .then(() => {
@@ -99,7 +93,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({
       .catch((error) => onCancel('error', error.message))
       .then(() => setLoading(false));
   }
-  
+
   async function cancelOrderHandler() {
     if (!window.confirm('주문을 취소하시겠습니까?')) return;
 
@@ -113,12 +107,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({
   return (
     <>
       {loading && <CircleLoading />}
-      {showRefundModal && (
-        <RefundModal
-          onClose={() => setShowRefundModal(false)}
-          onRefund={refundHandler}
-        />
-      )}
+      {showRefundModal && <RefundModal onClose={() => setShowRefundModal(false)} onRefund={refundHandler} />}
       <Card className={styles['orders-container']}>
         <div className={styles['order-title-wrapper']}>
           <div className={styles['order-id']}>주문번호 : {payment.orderId}</div>
@@ -138,27 +127,14 @@ const OrderGroup: React.FC<OrderGroupProps> = ({
           <LabelText label="주문일시" text={longDateString} />
           <LabelText label="총 비용" text={payment.amount.toLocaleString()} />
 
-          {payment.virtual &&
-            payment.sendType === '결제대기' &&
-            !payment.cancel && (
-              <Card className={`${styles.virtual_info}`}>
-                <div className={styles.virtual_info__title}>가상계좌</div>
-                <LabelText
-                  label="은행"
-                  text={bankData[payment.virtual.bankCode]}
-                />
-                <LabelText
-                  label="계좌번호"
-                  text={payment.virtual?.accountNumber}
-                />
-                <LabelText
-                  label="만료일시"
-                  text={moment(payment.virtual.dueDate).format(
-                    'YYYY-MM-DD HH:mm:ss',
-                  )}
-                />
-              </Card>
-            )}
+          {payment.virtual && payment.sendType === '결제대기' && !payment.cancel && (
+            <Card className={`${styles.virtual_info}`}>
+              <div className={styles.virtual_info__title}>가상계좌</div>
+              <LabelText label="은행" text={bankData[payment.virtual.bankCode]} />
+              <LabelText label="계좌번호" text={payment.virtual?.accountNumber} />
+              <LabelText label="만료일시" text={moment(payment.virtual.dueDate).format('YYYY-MM-DD HH:mm:ss')} />
+            </Card>
+          )}
 
           {!isAdmin && canCancel && cancelButtonComponent}
           {isAdmin && !payment.cancel && cancelButtonComponent}

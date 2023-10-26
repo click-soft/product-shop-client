@@ -8,6 +8,6 @@
   min-height: 100vh;
 }
 
-.cart-view{
+.cart-view {
   min-height: calc(100vh - #{$header-height} - #{$cart-view-height} - 2px);
 }

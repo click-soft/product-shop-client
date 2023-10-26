@@ -18,11 +18,7 @@ const IconNavLink: React.FC<IconNavLinkProps> = (props) => {
       to={props.to}
       onClick={props.onClick}
       className={({ isActive }) => {
-        return classNames(
-          styles.icon_wrapper,
-          isActive ? styles.active : undefined,
-          props.className,
-        );
+        return classNames(styles.icon_wrapper, isActive ? styles.active : undefined, props.className);
       }}
     >
       <props.icon className={styles.icon} />

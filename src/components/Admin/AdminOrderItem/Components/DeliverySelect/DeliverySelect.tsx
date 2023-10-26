@@ -12,11 +12,7 @@ const DeliverySelect: React.FC<InnerSelectProps> = (props) => {
   keys.sort();
 
   return (
-    <select
-      className={styles.inner_select}
-      value={props.value}
-      onChange={(e) => props.onChange(e.target.value)}
-    >
+    <select className={styles.inner_select} value={props.value} onChange={(e) => props.onChange(e.target.value)}>
       {keys.map((k) => (
         <option key={k} value={k}>
           {props.object[k]}

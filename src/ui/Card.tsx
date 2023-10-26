@@ -1,9 +1,7 @@
 import React, { CSSProperties } from 'react';
 import styles from './styles/Card.module.scss';
 
-const Card: React.FC<
-  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> = (props) => {
+const Card: React.FC<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>> = (props) => {
   const defaultStyle: CSSProperties = {
     backgroundColor: 'white',
   };

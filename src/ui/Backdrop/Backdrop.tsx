@@ -26,14 +26,10 @@ const Backdrop: React.FC<BackdropProps> = (props) => {
     const data = document.getElementById('backdrop-root') as HTMLElement;
 
     return ReactDOM.createPortal(
-      <div
-        style={{ zIndex: props.zIndex }}
-        className={`${styles.backdrop} ${props.className}`}
-        onClick={props.onClick}
-      >
+      <div style={{ zIndex: props.zIndex }} className={`${styles.backdrop} ${props.className}`} onClick={props.onClick}>
         {props.children}
       </div>,
-      data,
+      data
     );
   } else {
     return (

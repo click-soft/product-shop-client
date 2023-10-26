@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_RPDUCTS_BUNRYU_LIST = gql`
-  query ($jisa: String! $bunryu: String) {
-    getProductsBunryuList(jisa: $jisa bunryu: $bunryu) {
+  query ($jisa: String!, $bunryu: String) {
+    getProductsBunryuList(jisa: $jisa, bunryu: $bunryu) {
       bunryu
       products {
         auto
@@ -17,21 +17,11 @@ export const GET_RPDUCTS_BUNRYU_LIST = gql`
 `;
 
 export const GET_ADMIN_PRODUCTS = gql`
-  query (
-    $startYmd: String!,
-    $endYmd: String!,
-    $emCode: String,
-    $csMyung: String,
-    $page: Int!){
-    getAdminProducts(
-      startYmd: $startYmd, 
-      endYmd: $endYmd,
-      emCode: $emCode,
-      csMyung: $csMyung,
-      page: $page ){
+  query ($startYmd: String!, $endYmd: String!, $emCode: String, $csMyung: String, $page: Int!) {
+    getAdminProducts(startYmd: $startYmd, endYmd: $endYmd, emCode: $emCode, csMyung: $csMyung, page: $page) {
       page
       isLast
-      products{
+      products {
         auto
         clCode
         csCode
@@ -49,15 +39,15 @@ export const GET_ADMIN_PRODUCTS = gql`
           gubun
           code
           myung
-          em{
+          em {
             name
           }
         }
-        productListSub{
+        productListSub {
           smMyung
           danga
         }
-      }      
+      }
     }
   }
-`
+`;

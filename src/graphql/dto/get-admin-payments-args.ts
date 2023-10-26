@@ -1,4 +1,3 @@
-
 export default interface GetAdminPaymentsArgs {
   jisa: string;
   startDate: Date;

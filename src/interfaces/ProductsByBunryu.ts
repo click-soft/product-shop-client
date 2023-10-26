@@ -1,6 +1,6 @@
-import ProductListSub from "./ProductListSub";
+import ProductListSub from './ProductListSub';
 
 export default interface ProductsByBunryu {
   bunryu: string;
-  products: ProductListSub[]
-};
+  products: ProductListSub[];
+}

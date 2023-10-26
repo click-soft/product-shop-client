@@ -23,31 +23,31 @@
   grid-template-rows: repeat(auto-fill, max-content);
 }
 
-@media (min-width:470px) {
+@media (min-width: 470px) {
   .products-grid ul {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .products-grid ul {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width:940px) {
+@media (min-width: 940px) {
   .products-grid ul {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (min-width:1200px) {
+@media (min-width: 1200px) {
   .products-grid ul {
     grid-template-columns: repeat(5, 1fr);
   }
 }
 
-@media (min-width:1530px) {
+@media (min-width: 1530px) {
   .products-grid ul {
     grid-template-columns: repeat(6, 1fr);
   }

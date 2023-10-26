@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
-import CartItem from "../interfaces/CartItem";
-import { getCartWithProduct } from "../graphql/queries/cart";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
+import CartItem from '../interfaces/CartItem';
+import { getCartWithProduct } from '../graphql/queries/cart';
 
 const useCartItems = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>()
+  const [cartItems, setCartItems] = useState<CartItem[]>();
   const [error, setError] = useState<any>();
-  const showCartModal = useSelector<RootState, boolean>(state => state.modal.showCartModal);
+  const showCartModal = useSelector<RootState, boolean>((state) => state.modal.showCartModal);
   async function fetchCart() {
     const cart = await getCartWithProduct();
     if (cart) {
@@ -19,17 +19,17 @@ const useCartItems = () => {
 
   useEffect(() => {
     if (!showCartModal) return;
-    fetchCart()
-      // .catch(err => setError(err));
-  }, [showCartModal])
+    fetchCart();
+    // .catch(err => setError(err));
+  }, [showCartModal]);
 
   // if (error) {
   //   throw new Error(error.message);
   // }
 
   return {
-    cartItems
-  }
-}
+    cartItems,
+  };
+};
 
 export default useCartItems;

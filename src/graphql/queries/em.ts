@@ -1,10 +1,10 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const GET_MANAGERS = gql`
   query {
-    getManagers{
+    getManagers {
       code
       name
     }
   }
-`
+`;

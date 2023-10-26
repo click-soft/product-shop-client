@@ -22,23 +22,23 @@ export const cartItemsCount = async (): Promise<number> => {
 export const getCartWithProduct = async (): Promise<Cart | undefined> => {
   const response = await client.query({
     query: gql`
-        {
-          getCartWithProduct {
+      {
+        getCartWithProduct {
+          id
+          cartItems {
             id
-            cartItems {
-              id
-              quantity
-              fit
-              product {
-                smCode
-                smMyung
-                danga
-                danwi
-              }
+            quantity
+            fit
+            product {
+              smCode
+              smMyung
+              danga
+              danwi
             }
           }
         }
-      `,
+      }
+    `,
     fetchPolicy: 'no-cache',
   });
 

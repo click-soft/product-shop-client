@@ -9,9 +9,7 @@ import client from './graphql/apollo-client';
 import 'react-datepicker/dist/react-datepicker.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const queryClient = new QueryClient();
 
 root.render(
@@ -21,5 +19,5 @@ root.render(
         <App />
       </Provider>
     </ApolloProvider>
-  </QueryClientProvider>,
+  </QueryClientProvider>
 );

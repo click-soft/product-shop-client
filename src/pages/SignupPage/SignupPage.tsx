@@ -8,10 +8,7 @@ import useFindUser from '../../hooks/use-find-user';
 import LoginMsgCard from '../../components/Login/LoginMsgCard/LoginMsgCard';
 import ErrorText from '../../ui/ErrorText/ErrorText';
 import { useLazyQuery, useMutation } from '@apollo/client';
-import {
-  GET_ACCOUNT_EXISTS,
-  SAVE_ACCOUNT,
-} from '../../graphql/queries/account';
+import { GET_ACCOUNT_EXISTS, SAVE_ACCOUNT } from '../../graphql/queries/account';
 import useToast from '../../hooks/use-toast';
 
 const SignupPage = () => {
@@ -23,8 +20,7 @@ const SignupPage = () => {
   const [pwdErr, setPwdErr] = useState('');
   const { data, fetchHospData } = useFindUser();
   const [getAccount] = useLazyQuery(GET_ACCOUNT_EXISTS);
-  const [saveAccount, { error: saveAccountError, data: saveAccountData }] =
-    useMutation(SAVE_ACCOUNT);
+  const [saveAccount, { error: saveAccountError, data: saveAccountData }] = useMutation(SAVE_ACCOUNT);
   const navigate = useNavigate();
   const { toast, toastConatiner } = useToast();
   const isEqualPassword = pwd === confirmPwd;
@@ -75,9 +71,7 @@ const SignupPage = () => {
     }
   }
 
-  function pwdFocusHandler(
-    e: React.FocusEvent<HTMLInputElement, Element>,
-  ): void {
+  function pwdFocusHandler(e: React.FocusEvent<HTMLInputElement, Element>): void {
     setPwdChanged((p) => {
       if (p.some((input) => input === e.target)) return p;
       return p.concat(e.target);

@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 
 import modalSlice from './modal-slice';
 import cartSlice from './cart-slice';
@@ -13,8 +13,8 @@ const store = configureStore({
     payment: paymentSlice.reducer,
     orders: ordersSlice.reducer,
     error: errorSlice.reducer,
-  }
-})
+  },
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

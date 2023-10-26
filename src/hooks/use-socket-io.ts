@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { socket } from "../config/socket";
+import { useEffect, useState } from 'react';
+import { socket } from '../config/socket';
 
 interface UseSocketIoArgs {
   receiveEventName: string;
@@ -37,9 +37,9 @@ const useSocketIo = (sockArgs: UseSocketIoArgs) => {
       socket.off('disconnect', onDisconnect);
       socket.off(sockArgs.receiveEventName, onOrders);
     };
-  }, [])
+  }, []);
 
-  return { isConnected }
-}
+  return { isConnected };
+};
 
 export default useSocketIo;

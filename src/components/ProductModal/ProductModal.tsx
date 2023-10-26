@@ -21,14 +21,9 @@ const ProductModal = () => {
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(2);
   const [fitChecked, setFitChecked] = useState<boolean>(false);
-  const showProductModal = useSelector<RootState, boolean>(
-    (state) => state.modal.showProductModal,
-  );
-  const { isFitProduct, defaultFit, defaultQuantity } =
-    useProductState(showProductModal);
-  const productData = useSelector<RootState, ProductListSub>(
-    (state) => state.modal.data!,
-  );
+  const showProductModal = useSelector<RootState, boolean>((state) => state.modal.showProductModal);
+  const { isFitProduct, defaultFit, defaultQuantity } = useProductState(showProductModal);
+  const productData = useSelector<RootState, ProductListSub>((state) => state.modal.data!);
 
   useEffect(() => {
     if (!showProductModal) return;
@@ -57,7 +52,7 @@ const ProductModal = () => {
         code: productData.smCode,
         quantity,
         fit: fitChecked ?? false,
-      }),
+      })
     );
 
     closeHandler();
@@ -86,36 +81,16 @@ const ProductModal = () => {
           <ul>
             <CustomLi title="주문명칭" text={productData.smMyung} />
             <CustomLi title="단위" text={productData.danwi} />
-            <CustomLi
-              title="금액"
-              text={productData?.danga?.toLocaleString()}
-            />
+            <CustomLi title="금액" text={productData?.danga?.toLocaleString()} />
             <CustomLi title="수량">
-              <ProductQuantitySelect
-                value={quantity}
-                onChange={quantityChangeHandler}
-                isFit={fitChecked ?? false}
-              />
+              <ProductQuantitySelect value={quantity} onChange={quantityChangeHandler} isFit={fitChecked ?? false} />
             </CustomLi>
-            <CustomLi
-              title="총 금액"
-              text={(quantity * productData?.danga).toLocaleString()}
-            />
-            {isFitProduct && (
-              <CheckBox
-                text="맞춤주문"
-                checked={fitChecked}
-                onChange={fitCheckHandler}
-              />
-            )}
+            <CustomLi title="총 금액" text={(quantity * productData?.danga).toLocaleString()} />
+            {isFitProduct && <CheckBox text="맞춤주문" checked={fitChecked} onChange={fitCheckHandler} />}
           </ul>
         </div>
         <div className={styles.footer}>
-          <button
-            className={styles['add-and-to-cart-button']}
-            type="button"
-            onClick={addAndToCartHandler}
-          >
+          <button className={styles['add-and-to-cart-button']} type="button" onClick={addAndToCartHandler}>
             장바구니
             <br />
             바로가기
@@ -125,11 +100,7 @@ const ProductModal = () => {
             <br />
             담기
           </button>
-          <button
-            className={styles['cancel-button']}
-            type="button"
-            onClick={closeHandler}
-          >
+          <button className={styles['cancel-button']} type="button" onClick={closeHandler}>
             취소
           </button>
         </div>
@@ -142,13 +113,7 @@ const ProductModal = () => {
       >
         서비스 안내
       </div>
-      <Drawer
-        anchor="bottom"
-        overflow="auto"
-        zIndex={10000}
-        show={show}
-        onClose={() => setShow(false)}
-      >
+      <Drawer anchor="bottom" overflow="auto" zIndex={10000} show={show} onClose={() => setShow(false)}>
         <ServiceInfo />
       </Drawer>
     </Modal>
@@ -159,9 +124,7 @@ const useProductState = (isShown: boolean) => {
   const user = useGetLoginedUser(isShown);
   const [defaultFit, setDefaultFit] = useState(false);
   const [defaultQuantity, setDefaultQuantity] = useState(2);
-  const isFitProduct = useSelector<RootState, boolean>((state) =>
-    ['A', 'B'].includes(state.modal.productCode ?? ''),
-  );
+  const isFitProduct = useSelector<RootState, boolean>((state) => ['A', 'B'].includes(state.modal.productCode ?? ''));
 
   useEffect(() => {
     if (!isShown || !user) return;

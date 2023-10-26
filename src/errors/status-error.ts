@@ -1,4 +1,4 @@
-import { ErrorArgs, ErrorState } from "../store/error-slice";
+import { ErrorArgs, ErrorState } from '../store/error-slice';
 
 export default class CustomError extends Error {
   public code?: string;

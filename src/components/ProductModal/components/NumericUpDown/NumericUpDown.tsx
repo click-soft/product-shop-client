@@ -27,9 +27,7 @@ const NumericUpDown: React.FC<NumericUpDownProps> = (props) => {
     }
   };
 
-  function focusHandler(
-    event: React.FocusEvent<HTMLInputElement, Element>,
-  ): void {
+  function focusHandler(event: React.FocusEvent<HTMLInputElement, Element>): void {
     event.target.select();
   }
 
@@ -47,18 +45,10 @@ const NumericUpDown: React.FC<NumericUpDownProps> = (props) => {
             min={MIN_COUNT_VALUE}
             max={MAX_COUNT_VALUE}
           />
-          <button
-            className={styles['count-button']}
-            onClick={() => countUpDown('up')}
-            type="button"
-          >
+          <button className={styles['count-button']} onClick={() => countUpDown('up')} type="button">
             ▲
           </button>
-          <button
-            className={styles['count-button']}
-            onClick={() => countUpDown('down')}
-            type="button"
-          >
+          <button className={styles['count-button']} onClick={() => countUpDown('down')} type="button">
             ▼
           </button>
         </>

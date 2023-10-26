@@ -19,8 +19,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
   const anchor = props.anchor ?? 'left';
   const overflow = props.overflow ?? 'hidden';
 
-  const animationType =
-    anchor === 'left' || anchor === 'right' ? 'width' : 'height';
+  const animationType = anchor === 'left' || anchor === 'right' ? 'width' : 'height';
 
   useEffect(() => {
     setDisp(props.show);
@@ -46,9 +45,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
         className={classNames(
           styles.drawer,
           styles[anchor],
-          closeCalled
-            ? styles[`close_${animationType}`]
-            : styles[`open_${animationType}`],
+          closeCalled ? styles[`close_${animationType}`] : styles[`open_${animationType}`]
         )}
         style={{
           zIndex: props.zIndex ? props.zIndex + 1 : undefined,
@@ -58,7 +55,7 @@ const Drawer: React.FC<DrawerProps> = (props) => {
         {props.children}
       </div>
     </>,
-    rootElement,
+    rootElement
   );
 
   return portal;

@@ -1,4 +1,4 @@
-import Em from "./em";
+import Em from './em';
 
 export default interface Cs {
   gubun?: string;

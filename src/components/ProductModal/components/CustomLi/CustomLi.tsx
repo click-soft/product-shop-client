@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './CustomLi.module.scss';
-const CustomLi: React.FC<{ title: string; text?: string; children?: any }> = (
-  props,
-) => {
+const CustomLi: React.FC<{ title: string; text?: string; children?: any }> = (props) => {
   return (
     <li>
       <span className={styles['title-span']}>{props.title}</span>

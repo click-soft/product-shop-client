@@ -17,9 +17,7 @@ import { updateOrderCancel } from '../../utils/payment-utils';
 import { socket } from '../../config/socket';
 import useSocketIo from '../../hooks/use-socket-io';
 
-const fetchGetPaymentWithItems = async ({
-  pageParam = 1,
-}): Promise<PaymentWithPage> => {
+const fetchGetPaymentWithItems = async ({ pageParam = 1 }): Promise<PaymentWithPage> => {
   const result = await client.query({
     query: GET_PAYMENT_WITH_ITEMS,
     variables: { page: pageParam },
@@ -44,13 +42,13 @@ const OrdersPage = () => {
         return lastPage.page + 1;
       },
       onSuccess: (data) => {
-        const payments = data.pages.flatMap(pg => pg.payments);
+        const payments = data.pages.flatMap((pg) => pg.payments);
         setPayments(payments);
       },
       onError: (err) => {
-        toast.error((err as any).message)
+        toast.error((err as any).message);
       },
-    },
+    }
   );
 
   useSocketIo({
@@ -60,14 +58,14 @@ const OrdersPage = () => {
     },
     onReceive: (args) => {
       const result: {
-        state: 'update' | 'checkout',
-        data: PaymentType,
+        state: 'update' | 'checkout';
+        data: PaymentType;
       } = args[0];
 
       if (result.state === 'update') {
         const payment: PaymentType = result.data;
-        setPayments(prevPayments => {
-          return prevPayments.map(p => {
+        setPayments((prevPayments) => {
+          return prevPayments.map((p) => {
             if (p.id === payment.id) {
               return {
                 ...p,
@@ -75,13 +73,13 @@ const OrdersPage = () => {
               };
             }
             return p;
-          })
-        })
+          });
+        });
       } else if (result.state === 'checkout') {
         refetch();
       }
-    }
-  })
+    },
+  });
 
   const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
@@ -103,7 +101,7 @@ const OrdersPage = () => {
             code: code,
             fit: item.fit,
             quantity: item.quantity,
-          }),
+          })
         );
       }
     }

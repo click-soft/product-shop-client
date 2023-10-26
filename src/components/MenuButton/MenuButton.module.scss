@@ -1,12 +1,10 @@
 .slidebar {
   position: fixed;
-  width: 0px;  
+  width: 0px;
   height: 100vh;
   background-color: blue;
   overflow: hidden;
-  transition: 0.3s; 
-
- 
+  transition: 0.3s;
 }
 
 .slidebar.on {

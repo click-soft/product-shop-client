@@ -8,9 +8,7 @@ import bankData from '../../data/bankData';
 interface PaymentSuccessCompleteProps {
   orderData: PaymentType;
 }
-const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({
-  orderData,
-}) => {
+const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({ orderData }) => {
   // const { checkoutData } = useCheckout({ isSession: true });
   // const checkoutState = checkoutData?.checkoutState;
   const ymd = moment(orderData.requestedAt).format('YYYY-MM-DD');
@@ -28,11 +26,7 @@ const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({
           <div className={styles.separator} />
           <section className={styles.detail_section}>
             <LabelText label="총 수량" text={orderData.quantity} />
-            <LabelText
-              label="주문금액"
-              text={orderData.amount.toLocaleString() + '원'}
-              highlight={true}
-            />
+            <LabelText label="주문금액" text={orderData.amount.toLocaleString() + '원'} highlight={true} />
           </section>
         </Card>
 
@@ -40,20 +34,9 @@ const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({
           <Card className={`${styles.detail} ${styles.virtual_info}`}>
             <section className={styles.detail_section}>
               <div className={styles.virtual_info__title}>가상계좌</div>
-              <LabelText
-                label="은행"
-                text={bankData[orderData.virtual?.bankCode]}
-              />
-              <LabelText
-                label="계좌번호"
-                text={orderData.virtual?.accountNumber}
-              />
-              <LabelText
-                label="만료일시"
-                text={moment(orderData.virtual?.dueDate).format(
-                  'YYYY-MM-DD HH:mm:ss',
-                )}
-              />
+              <LabelText label="은행" text={bankData[orderData.virtual?.bankCode]} />
+              <LabelText label="계좌번호" text={orderData.virtual?.accountNumber} />
+              <LabelText label="만료일시" text={moment(orderData.virtual?.dueDate).format('YYYY-MM-DD HH:mm:ss')} />
             </section>
           </Card>
         )}
@@ -70,19 +53,11 @@ const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({
   );
 };
 
-const LabelText = (props: {
-  label: string;
-  text: string | number | undefined;
-  highlight?: boolean;
-}) => {
+const LabelText = (props: { label: string; text: string | number | undefined; highlight?: boolean }) => {
   return (
     <div className={styles.label_text}>
       <div className={styles.label}>{props.label}</div>
-      <div
-        className={`${styles.text} ${props.highlight && styles.highlight_text}`}
-      >
-        {props.text}
-      </div>
+      <div className={`${styles.text} ${props.highlight && styles.highlight_text}`}>{props.text}</div>
     </div>
   );
 };

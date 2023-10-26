@@ -1,7 +1,7 @@
-import CartItem from "../interfaces/CartItem";
+import CartItem from '../interfaces/CartItem';
 
 export default class CartItemManager {
-  constructor(public cartItems?: CartItem[]) { }
+  constructor(public cartItems?: CartItem[]) {}
 
   public get totalPrice(): number {
     const totalPrice = this.cartItems?.reduce((price: number, ci: CartItem) => {
@@ -20,7 +20,7 @@ export default class CartItemManager {
   }
 
   public get orderName(): string {
-    const orderNames = this.cartItems?.map(ci => `${ci.product?.smMyung}${ci.fit ? '[맞춤주문]' : ''}`)
+    const orderNames = this.cartItems?.map((ci) => `${ci.product?.smMyung}${ci.fit ? '[맞춤주문]' : ''}`);
     return orderNames?.join('|') ?? '';
   }
 }

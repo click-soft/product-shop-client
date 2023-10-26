@@ -1,6 +1,6 @@
 @import '../../../../../config/variables';
 
-.inner_select{
+.inner_select {
   width: 100%;
   height: 100%;
   font: inherit;
@@ -10,7 +10,7 @@
   outline-style: none;
   padding-left: 6px;
   font-weight: bold;
-  &:hover{
+  &:hover {
     background-color: rgba($color: #000000, $alpha: 0.1);
   }
 }

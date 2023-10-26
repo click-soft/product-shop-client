@@ -1,5 +1,5 @@
-import ProductListSub from "../../interfaces/ProductListSub";
-import Cs from "./cs";
+import ProductListSub from '../../interfaces/ProductListSub';
+import Cs from './cs';
 
 export default interface Product {
   auto: number;

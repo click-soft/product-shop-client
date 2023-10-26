@@ -21,11 +21,7 @@ const IconButton: React.FC<IconButtonProps> = (props) => {
   const [mouseEntered, setMouseEntered] = useState(false);
 
   const isModalShown = useSelector<RootState>((state) => {
-    return (
-      state.modal.showCartModal ||
-      state.modal.showMenuModal ||
-      state.modal.showUserModal
-    );
+    return state.modal.showCartModal || state.modal.showMenuModal || state.modal.showUserModal;
   });
 
   useEffect(() => {
@@ -47,11 +43,7 @@ const IconButton: React.FC<IconButtonProps> = (props) => {
     >
       <div className={mouseEntered && !isMobile ? styles.button_to_front : ''}>
         <div className={classNames(styles.button_container)}>
-          <button
-            className={styles.button}
-            onClick={props.onClick}
-            style={{ ...props.style }}
-          >
+          <button className={styles.button} onClick={props.onClick} style={{ ...props.style }}>
             <props.icon className={styles.icon} />
             {props.children}
             {props.text && <span className={styles.text}>{props.text}</span>}

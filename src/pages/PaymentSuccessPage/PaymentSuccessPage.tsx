@@ -11,11 +11,10 @@ const PaymentSuccessPage = () => {
     variables: { orderId: params.orderId },
   });
 
-
-  if (loading ){
-    return <div>조회 중</div>
-  }else if ( error ) {
-    return <div>에러발생</div>
+  if (loading) {
+    return <div>조회 중</div>;
+  } else if (error) {
+    return <div>에러발생</div>;
   }
 
   return (

@@ -7,26 +7,26 @@ export const getUser = async (): Promise<UserProfile | undefined> => {
   try {
     const response = await client.query({
       query: gql`
-            {
-              getUser {
-                jisa
-                ykiho
-                saupkiho
-                name
-                ceoName
-                fitCherbang
-                fitYoungsu
-                admin
-                exp
-              }
-            }
-          `,
+        {
+          getUser {
+            jisa
+            ykiho
+            saupkiho
+            name
+            ceoName
+            fitCherbang
+            fitYoungsu
+            admin
+            exp
+          }
+        }
+      `,
       fetchPolicy: 'no-cache',
     });
-    
+
     return response.data.getUser;
   } catch (err: any) {
-    if (err.message === "Unauthorized") {
+    if (err.message === 'Unauthorized') {
       return undefined;
     }
   }

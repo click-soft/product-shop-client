@@ -3,7 +3,7 @@
   padding: 10px;
   top: 50%;
   left: 50%;
-  display: block;  
+  display: block;
   animation: slide-down 0.3s ease-out forwards;
   z-index: 9999;
 }
@@ -13,6 +13,7 @@
     opacity: 0;
     transform: translate(-50%, -100%);
   }
+
   to {
     opacity: 1;
     transform: translate(-50%, -50%);

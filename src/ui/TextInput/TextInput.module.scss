@@ -6,7 +6,7 @@
   margin: 0;
   height: 35px;
 }
- 
+
 .input {
   width: 100%;
   padding-left: 6px;
@@ -29,6 +29,6 @@
   background-color: $color-blue;
 }
 
-.input:focus~.indicator {
+.input:focus ~ .indicator {
   width: 5px;
 }

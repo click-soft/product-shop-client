@@ -14,12 +14,8 @@ const CartButton = () => {
   const [animation, setAnimation] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const [mouseEntered, setMouseEntered] = useState(false);
-  const itemsCount = useSelector<RootState, number | undefined>(
-    (state) => state.cart.itemsCount,
-  );
-  const showCartModal = useSelector<RootState>(
-    (state) => state.modal.showCartModal,
-  );
+  const itemsCount = useSelector<RootState, number | undefined>((state) => state.cart.itemsCount);
+  const showCartModal = useSelector<RootState>((state) => state.modal.showCartModal);
   const { isMobile } = useResizeWindow();
   function clickHandler() {
     dispatch(modalActions.showCart());
@@ -72,13 +68,7 @@ const CartButton = () => {
       modalComponent={<CartModal />}
     >
       {(itemsCount || 0) > 0 && (
-        <div
-          className={`${styles['items-count']} ${
-            animation ? styles['animate'] : ''
-          }`}
-        >
-          {itemsCount}
-        </div>
+        <div className={`${styles['items-count']} ${animation ? styles['animate'] : ''}`}>{itemsCount}</div>
       )}
     </IconButton>
   );

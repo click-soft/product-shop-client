@@ -1,7 +1,7 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const CS_FIELD = gql`
-  fragment CsField on CsType{
+  fragment CsField on CsType {
     gubun
     code
     myung
@@ -10,4 +10,4 @@ export const CS_FIELD = gql`
     youngsu
     cherbang
   }
-`
+`;

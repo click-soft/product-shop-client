@@ -8,22 +8,22 @@ type Message = {
 };
 
 export const LOGOUT = gql`
-mutation {
-  logout {
-    message
+  mutation {
+    logout {
+      message
+    }
   }
-}
-` 
+`;
 
 export const LOGIN = gql`
-        mutation ($userId: String!, $password: String!){
-          login(userId: $userId, password:$password) {
-            accessToken
-            usr
-            admin
-          }
-        }
-      `
+  mutation ($userId: String!, $password: String!) {
+    login(userId: $userId, password: $password) {
+      accessToken
+      usr
+      admin
+    }
+  }
+`;
 
 export const refresh = async (): Promise<TokenResult> => {
   const key = localStorage.getItem(LocalStoragekey.USR);
@@ -37,13 +37,13 @@ export const refresh = async (): Promise<TokenResult> => {
   try {
     const response = await client.mutate({
       mutation: gql`
-          mutation ($key: String!){
-            refresh(key: $key) {
-              accessToken
-              usr
-            }
+        mutation ($key: String!) {
+          refresh(key: $key) {
+            accessToken
+            usr
           }
-        `,
+        }
+      `,
       variables: { key },
     });
 
@@ -51,7 +51,7 @@ export const refresh = async (): Promise<TokenResult> => {
     const tokenResult: TokenResult = {
       accessToken: data.accessToken,
       usr: data.usr,
-    }
+    };
 
     localStorage.setItem(LocalStoragekey.ACT, tokenResult.accessToken);
     localStorage.setItem(LocalStoragekey.USR, tokenResult.usr);
@@ -60,6 +60,6 @@ export const refresh = async (): Promise<TokenResult> => {
   } catch (err: any) {
     localStorage.removeItem(LocalStoragekey.ACT);
     localStorage.removeItem(LocalStoragekey.USR);
-    throw new Error("RefreshToken expired")
+    throw new Error('RefreshToken expired');
   }
-}
+};

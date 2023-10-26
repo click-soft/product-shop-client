@@ -1,8 +1,8 @@
 @import '../../../config/variables';
 
-$header-color :rgb(2, 127, 168);
-$back-color : rgb(240, 248, 253);
-$label-color : rgb(197, 229, 248);
+$header-color: rgb(2, 127, 168);
+$back-color: rgb(240, 248, 253);
+$label-color: rgb(197, 229, 248);
 
 .list_item {
   display: grid;
@@ -27,7 +27,6 @@ $label-color : rgb(197, 229, 248);
     border-radius: 4px;
     text-transform: uppercase;
   }
-
 }
 
 .header_group {
@@ -62,7 +61,7 @@ $label-color : rgb(197, 229, 248);
 
   .complete_text {
     color: $color-lightred;
-    background-color: rgba($color: $color-lightred, $alpha: 0.3)
+    background-color: rgba($color: $color-lightred, $alpha: 0.3);
   }
 
   &.grid_header {
@@ -81,15 +80,14 @@ $label-color : rgb(197, 229, 248);
 }
 
 $min-widths: (
-  768px : 3,
-  1000px : 4,
-  1150px : 5,
-  1300px : 6,
-  1450px : 7
+  768px: 3,
+  1000px: 4,
+  1150px: 5,
+  1300px: 6,
+  1450px: 7,
 );
 
-@each $width,
-$columnCount in $min-widths {
+@each $width, $columnCount in $min-widths {
   @media (min-width: $width) {
     .list_item {
       grid-template-columns: repeat($columnCount, 1fr);

@@ -80,17 +80,17 @@ const router = createBrowserRouter([
       },
       {
         path: 'admin',
-        element: <AdminLayout />,        
+        element: <AdminLayout />,
         children: [
           {
             path: 'orders',
-            element: <AdminOrderPage/>,
+            element: <AdminOrderPage />,
             errorElement: <ErrorPage />,
             loader: checkAdminLoader,
           },
           {
             path: 'web-orders',
-            element: <AdminWebOrdersPage/>,
+            element: <AdminWebOrdersPage />,
             loader: checkAdminLoader,
           },
         ],

@@ -15,22 +15,15 @@ interface AdminOrderItemProps {
   onValueChange: (args: AdminOrderArgs) => void;
 }
 
-const AdminOrderItem: React.FC<AdminOrderItemProps> = ({
-  product,
-  managers,
-  onValueChange,
-}) => {
-  const createDateString = format(
-    new Date(product.createDt),
-    'yyyy-MM-dd HH:mm',
-  );
+const AdminOrderItem: React.FC<AdminOrderItemProps> = ({ product, managers, onValueChange }) => {
+  const createDateString = format(new Date(product.createDt), 'yyyy-MM-dd HH:mm');
 
   const managerObject = managers.reduce(
     (object: { [key: string]: string }, m: Em) => {
       object[m.code] = m.name;
       return object;
     },
-    { '': '' },
+    { '': '' }
   );
 
   return (
@@ -55,14 +48,8 @@ const AdminOrderItem: React.FC<AdminOrderItemProps> = ({
       <DataBox label="상품코드" text={product.clCode} />
       <DataBox label="상품명칭" text={product.productListSub?.smMyung} />
       <DataBox label="수량" text={product.count} />
-      <DataBox
-        label="단가"
-        text={product.productListSub?.danga!.toLocaleString()}
-      />
-      <DataBox
-        label="금액"
-        text={(product.productListSub?.danga! * product.count).toLocaleString()}
-      />
+      <DataBox label="단가" text={product.productListSub?.danga!.toLocaleString()} />
+      <DataBox label="금액" text={(product.productListSub?.danga! * product.count).toLocaleString()} />
       <DataBox label="발주일" text={ymdToShortString(product.sellYmd)} />
       <DataBox label="발주여부" text={product.etc1} />
       <DataBox label="배송방법">
@@ -80,11 +67,7 @@ const AdminOrderItem: React.FC<AdminOrderItemProps> = ({
         />
       </DataBox>
       <DataBox label="완료여부">
-        <div
-          className={product.sell === '1' ? styles.complete_text : styles.text}
-        >
-          {completeText(product.sell)}
-        </div>
+        <div className={product.sell === '1' ? styles.complete_text : styles.text}>{completeText(product.sell)}</div>
       </DataBox>
       <DataBox label="비고" text={product.bigo} />
     </li>
@@ -104,12 +87,7 @@ interface DataBoxProps extends ChildrenProps {
 
 function DataBox(props: DataBoxProps) {
   return (
-    <div
-      className={classNames(
-        styles.data_box,
-        props.isHeader ? styles.grid_header : styles.row,
-      )}
-    >
+    <div className={classNames(styles.data_box, props.isHeader ? styles.grid_header : styles.row)}>
       <div className={styles.label}>{props.label}</div>
       {props.text && <div className={styles.text}>{props.text}</div>}
       {props.children}

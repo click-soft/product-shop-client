@@ -1,23 +1,20 @@
-import SessionStorageManager, { SessionStoragekey } from "../utils/session-storage-manager";
-import CheckoutState from "../interfaces/CheckoutState";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
-import { checkout } from "../graphql/mutates/payment";
-import { CheckoutResult } from "../graphql/interfaces/checkout";
-
+import SessionStorageManager, { SessionStoragekey } from '../utils/session-storage-manager';
+import CheckoutState from '../interfaces/CheckoutState';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { checkout } from '../graphql/mutates/payment';
+import { CheckoutResult } from '../graphql/interfaces/checkout';
 
 const useCheckout = ({ isSession }: { isSession: boolean }) => {
-  const checkoutState = useSelector<RootState, CheckoutState>(
-    (state) => state.payment.checkout!,
-  );
+  const checkoutState = useSelector<RootState, CheckoutState>((state) => state.payment.checkout!);
   const checkoutData = isSession ? getCheckoutDataSession() : undefined;
 
   function setCheckoutDataSession(data: CheckoutData) {
-    SessionStorageManager.set(SessionStoragekey.CHECKOUT_DATA, data)
+    SessionStorageManager.set(SessionStoragekey.CHECKOUT_DATA, data);
   }
 
   function getCheckoutDataSession(): CheckoutData | undefined {
-    return SessionStorageManager.get<CheckoutData>(SessionStoragekey.CHECKOUT_DATA)
+    return SessionStorageManager.get<CheckoutData>(SessionStoragekey.CHECKOUT_DATA);
   }
 
   function removeCheckoutDataSession() {
@@ -31,7 +28,7 @@ const useCheckout = ({ isSession }: { isSession: boolean }) => {
         success: false,
         ids: [],
         errorMessage: '매개변수 누락',
-      }
+      };
     }
     const checkoutState = checkoutData?.checkoutState;
     const cartItems = checkoutState?.cartItems;
@@ -75,8 +72,8 @@ const useCheckout = ({ isSession }: { isSession: boolean }) => {
     mutateCheckout,
     checkoutData,
     checkoutState,
-  }
-}
+  };
+};
 
 interface CheckoutResultWithIds extends CheckoutResult {
   ids: number[];

@@ -3,10 +3,7 @@ import UnauthorizedPage from '../UnauthorizedPage/UnauthorizedPage';
 import BaseErrorPage from '../BaseErrorPage/BaseErrorPage';
 import NotFoundErrorPage from '../NotFoundErrorPage/NotFoundErrorPage';
 
-const ErrorFallback: React.FC<FallbackProps> = ({
-  error,
-  resetErrorBoundary,
-}) => {
+const ErrorFallback: React.FC<FallbackProps> = ({ error, resetErrorBoundary }) => {
   const errorMessage = error?.message;
 
   switch (error.status) {
@@ -21,7 +18,7 @@ const ErrorFallback: React.FC<FallbackProps> = ({
   }
 
   return (
-    <BaseErrorPage title={errorMessage} visibleButtons={{toMain: true}}>
+    <BaseErrorPage title={errorMessage} visibleButtons={{ toMain: true }}>
       <button
         style={{
           width: '100%',

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 interface UseResizeObserverArgs {
   onHeightChange?: (height: number) => void;
@@ -6,7 +6,7 @@ interface UseResizeObserverArgs {
 }
 
 const useResizeObserver = (ref: React.RefObject<HTMLElement>, args?: UseResizeObserverArgs) => {
-  const [entry, setEntry] = useState<ResizeObserverEntry>()
+  const [entry, setEntry] = useState<ResizeObserverEntry>();
 
   useEffect(() => {
     if (ref.current) {
@@ -30,13 +30,13 @@ const useResizeObserver = (ref: React.RefObject<HTMLElement>, args?: UseResizeOb
     if (entry) {
       args?.onHeightChange?.(entry?.contentRect.height);
     }
-  }, [entry?.contentRect.height])
+  }, [entry?.contentRect.height]);
 
   useEffect(() => {
     if (entry) {
       args?.onWidthChange?.(entry?.contentRect.width);
     }
-  }, [entry?.contentRect.width])
-}
+  }, [entry?.contentRect.width]);
+};
 
 export default useResizeObserver;

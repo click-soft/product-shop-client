@@ -7,13 +7,11 @@ import { useErrorBoundary } from 'react-error-boundary';
 
 const RejectionErrorBoundary: React.FC<ChildrenProps> = ({ children }) => {
   const { showBoundary } = useErrorBoundary();
-  const errorArgs = useSelector<RootState, ErrorArgs | undefined>(
-    (state) => state.error.error,
-  );
+  const errorArgs = useSelector<RootState, ErrorArgs | undefined>((state) => state.error.error);
 
   function captureReject(e: PromiseRejectionEvent) {
     e.preventDefault();
-    
+
     const error = e.reason;
     const errorMessage = error?.message?.toUpperCase();
 

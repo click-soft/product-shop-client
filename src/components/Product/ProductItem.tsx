@@ -13,9 +13,7 @@ const ProductItem: React.FC<ProductItemProps> = (props) => {
   const formatedDanga = Intl.NumberFormat('ko-KR').format(pls.danga);
 
   const itemClickHandler = () => {
-    dispatch(
-      modalActions.showProduct({ productCode: props.productCode, data: pls }),
-    );
+    dispatch(modalActions.showProduct({ productCode: props.productCode, data: pls }));
   };
 
   return (

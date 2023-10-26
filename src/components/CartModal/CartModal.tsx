@@ -14,17 +14,12 @@ import CartItemManager from '../../utils/cart-item-manager';
 const Cart = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { cartItems } = useCartItems();
-  const cartItemManager = useMemo(
-    () => new CartItemManager(cartItems),
-    [cartItems],
-  );
-  const showDownModal = useSelector<RootState>(
-    (state) => state.modal.showCartModal,
-  );
+  const cartItemManager = useMemo(() => new CartItemManager(cartItems), [cartItems]);
+  const showDownModal = useSelector<RootState>((state) => state.modal.showCartModal);
   if (!showDownModal) {
     return <></>;
   }
-  
+
   const itemsComponents = cartItems?.map((item, i) => {
     return (
       <Fragment key={item.id}>
@@ -47,15 +42,9 @@ const Cart = () => {
               <div className={styles.totalQuantity}>
                 총 주문 수량 : <span>{cartItemManager.totalQuantity}</span>
               </div>
-              <div
-                className={styles.totalPrice}
-              >{`₩${cartItemManager.totalPrice.toLocaleString()}`}</div>
+              <div className={styles.totalPrice}>{`₩${cartItemManager.totalPrice.toLocaleString()}`}</div>
             </div>
-            <Link
-              to="/cart-view"
-              className={styles['shop-button']}
-              onClick={navToCartHandler}
-            >
+            <Link to="/cart-view" className={styles['shop-button']} onClick={navToCartHandler}>
               <BsCartCheck className={styles['shop-icon']} />
               장바구니 보기
             </Link>

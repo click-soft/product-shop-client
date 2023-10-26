@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { type } from "os";
-import ProductListSub from "../interfaces/ProductListSub";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { type } from 'os';
+import ProductListSub from '../interfaces/ProductListSub';
 
 interface ProductPayload {
   productCode?: string;
@@ -22,7 +22,7 @@ const initialState: ModalState = {
   showUserModal: false,
   showCartModal: false,
   showMenuModal: false,
-}
+};
 
 const modalSlice = createSlice({
   name: 'modal',
@@ -43,16 +43,16 @@ const modalSlice = createSlice({
     showCart(state) {
       state.showCartModal = true;
     },
-    showUser(state) {      
+    showUser(state) {
       state.showUserModal = true;
     },
-    closeUser(state){
+    closeUser(state) {
       state.showUserModal = false;
     },
-    closeMenu(state){
+    closeMenu(state) {
       state.showMenuModal = false;
     },
-    closeCart(state){
+    closeCart(state) {
       state.showCartModal = false;
     },
     closeDownAll(state) {

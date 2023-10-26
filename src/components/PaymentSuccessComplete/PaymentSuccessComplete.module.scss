@@ -28,11 +28,11 @@
   max-width: 30rem;
 }
 
-.virtual_info{
+.virtual_info {
   margin-top: 10px;
 }
 
-.virtual_info__title{
+.virtual_info__title {
   text-align: center;
   font-size: $font-size-level4;
   font-weight: bold;
@@ -40,7 +40,7 @@
 }
 
 .detail_section {
-  flex: 1;  
+  flex: 1;
 }
 
 .separator {
@@ -85,20 +85,12 @@
 }
 
 .nav_orders {
-  @include custom-button(
-    $color: $color-black,
-    $backgroundColor: white,
-    $activeBackgroundColor: $color-lightgray
-  );
+  @include custom-button($color: $color-black, $backgroundColor: white, $activeBackgroundColor: $color-lightgray);
   margin-right: 5px;
   border: 1px solid $color-lightskyblue;
 }
 
 .nav_main {
-  @include custom-button(
-    $color: white,
-    $backgroundColor: $color-lightred,
-    $activeBackgroundColor: $color-red
-  );
+  @include custom-button($color: white, $backgroundColor: $color-lightred, $activeBackgroundColor: $color-red);
   margin-left: 5px;
 }

@@ -1,8 +1,8 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import CheckoutState from "../interfaces/CheckoutState";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import CheckoutState from '../interfaces/CheckoutState';
 
 interface PaymentState {
-  checkout?: CheckoutState
+  checkout?: CheckoutState;
 }
 const initialState: PaymentState = {};
 
@@ -11,10 +11,10 @@ const paymentSlice = createSlice({
   initialState,
   reducers: {
     checkout(state, action: PayloadAction<CheckoutState>) {
-      state.checkout = { ...action.payload }
-    }
-  }
-})
+      state.checkout = { ...action.payload };
+    },
+  },
+});
 
 export const paymentActions = paymentSlice.actions;
 export default paymentSlice;

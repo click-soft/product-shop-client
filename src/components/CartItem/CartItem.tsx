@@ -8,7 +8,7 @@ interface CartItemProps {
 
 const CartItem: React.FC<CartItemProps> = (props) => {
   const item = props.item;
-  const formatedPrice = (item.product?.danga! * item.quantity);
+  const formatedPrice = item.product?.danga! * item.quantity;
 
   return (
     <li className={styles.item}>

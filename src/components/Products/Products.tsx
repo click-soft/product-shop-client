@@ -14,13 +14,7 @@ const Products: React.FC<ProductsProps> = (props) => {
   const title = menuObject[props.prodCode];
 
   const components = props.prds.map((pls) => {
-    return (
-      <ProductItem
-        key={pls.auto}
-        productCode={props.prodCode}
-        productList={pls}
-      />
-    );
+    return <ProductItem key={pls.auto} productCode={props.prodCode} productList={pls} />;
   });
 
   return (

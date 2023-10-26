@@ -12,9 +12,7 @@ const UserButton = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { isMobile } = useResizeWindow();
   const [mouseEntered, setMouseEntered] = useState(false);
-  const showUserModal = useSelector<RootState>(
-    (state) => state.modal.showUserModal,
-  );
+  const showUserModal = useSelector<RootState>((state) => state.modal.showUserModal);
 
   function showModal() {
     dispatch(modalActions.showUser());

@@ -7,11 +7,7 @@ const RootFooter = () => {
   const isCartViewPage = location.pathname === '/cart-view';
 
   return (
-    <footer
-      className={`${styles.footer} ${
-        isCartViewPage ? styles['cart-view'] : ''
-      }`}
-    >
+    <footer className={`${styles.footer} ${isCartViewPage ? styles['cart-view'] : ''}`}>
       <div className={styles.footer__wrapper}>
         <div className={styles.company}>
           <strong className={styles.corporate}>클릭소프트주식회사</strong>
@@ -32,9 +28,7 @@ const RootFooter = () => {
               Fax. 063-251-0519
             </div>
           </div>
-          <strong className={styles.copyright}>
-            Copyrightⓒ 2020 by clicksoft.co.All right reserved.
-          </strong>
+          <strong className={styles.copyright}>Copyrightⓒ 2020 by clicksoft.co.All right reserved.</strong>
         </div>
       </div>
     </footer>

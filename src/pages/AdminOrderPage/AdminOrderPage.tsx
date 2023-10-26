@@ -5,27 +5,20 @@ import { GET_ADMIN_PRODUCTS } from '../../graphql/queries/product';
 import { format, parse } from 'date-fns';
 import CircleLoading from '../../components/Loading/CircleLoading';
 import Product from '../../graphql/interfaces/product';
-import AdminOrderItem, {
-  AdminOrderArgs,
-} from '../../components/Admin/AdminOrderItem/AdminOrderItem';
+import AdminOrderItem, { AdminOrderArgs } from '../../components/Admin/AdminOrderItem/AdminOrderItem';
 import { UPDATE_PRODUCT } from '../../graphql/mutates/product';
 import useToast from '../../hooks/use-toast';
 import useGetManagers from '../../hooks/use-get-managers';
-import AdminSearchForm, {
-  FormValues,
-} from '../../components/Admin/AdminSearchForm/AdminSearchForm';
+import AdminSearchForm, { FormValues } from '../../components/Admin/AdminSearchForm/AdminSearchForm';
 import { useInfiniteQuery } from 'react-query';
 import GetAdminProductsArgs from '../../graphql/dto/get-admin-products.args';
 import client from '../../graphql/apollo-client';
 import ProductsWithPage from '../../graphql/interfaces/products-with-page';
 import useIntersectionObserver from '../../hooks/use-intersection-observer';
 
-const fetchGetAdminProducts = async (
-  page: number,
-  variables: GetAdminProductsArgs,
-): Promise<ProductsWithPage> => {
+const fetchGetAdminProducts = async (page: number, variables: GetAdminProductsArgs): Promise<ProductsWithPage> => {
   if (!variables?.startYmd) {
-    return { isLast: true, page: 0, products: [] }
+    return { isLast: true, page: 0, products: [] };
   }
 
   const result = await client.query({
@@ -46,34 +39,30 @@ const AdminOrderPage = () => {
   const { toast, toastConatiner } = useToast();
   const [products, setProducts] = useState<Product[]>([]);
   const { managers } = useGetManagers();
-  const [
-    updateProduct,
-    { data: updatedData, loading: updatedLoading, error: updatedError },
-  ] = useMutation(UPDATE_PRODUCT);
+  const [updateProduct, { data: updatedData, loading: updatedLoading, error: updatedError }] =
+    useMutation(UPDATE_PRODUCT);
 
-  const { isLoading, hasNextPage, fetchNextPage, refetch } =
-    useInfiniteQuery(
-      ['getAdminProducts', variables],
-      ({ pageParam = 1 }) =>
-        fetchGetAdminProducts(pageParam, variables!),
-      {
-        getNextPageParam: (nextPage, pages) => {
-          if (nextPage?.isLast ?? true) {
-            return null
-          };
-          return nextPage.page + 1;
-        },
-        onSuccess: (data) => {
-          const products = data.pages?.flatMap(pg => pg.products)
-          setProducts(products ?? []);
-        },
-        onError: (err) => {
-          if (err instanceof Error) {
-            toast.error(err.message);
-          }
-        },
+  const { isLoading, hasNextPage, fetchNextPage, refetch } = useInfiniteQuery(
+    ['getAdminProducts', variables],
+    ({ pageParam = 1 }) => fetchGetAdminProducts(pageParam, variables!),
+    {
+      getNextPageParam: (nextPage, pages) => {
+        if (nextPage?.isLast ?? true) {
+          return null;
+        }
+        return nextPage.page + 1;
       },
-    );
+      onSuccess: (data) => {
+        const products = data.pages?.flatMap((pg) => pg.products);
+        setProducts(products ?? []);
+      },
+      onError: (err) => {
+        if (err instanceof Error) {
+          toast.error(err.message);
+        }
+      },
+    }
+  );
 
   const observerRef = useRef(null);
   const { observerComponent } = useIntersectionObserver({
@@ -106,8 +95,7 @@ const AdminOrderPage = () => {
 
       if (!findProduct) return prevProducts;
 
-      if (product.orderCheck !== undefined)
-        findProduct.orderCheck = product.orderCheck;
+      if (product.orderCheck !== undefined) findProduct.orderCheck = product.orderCheck;
       if (product.seller !== undefined) findProduct.seller = product.seller;
 
       return newProducts;
@@ -132,12 +120,7 @@ const AdminOrderPage = () => {
     );
   });
 
-  function submitHandler({
-    startDate,
-    endDate,
-    manager,
-    text: customerName,
-  }: FormValues): void {
+  function submitHandler({ startDate, endDate, manager, text: customerName }: FormValues): void {
     const startYmd = format(startDate, 'yyyyMMdd');
     const endYmd = format(endDate, 'yyyyMMdd');
 

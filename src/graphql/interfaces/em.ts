@@ -1,4 +1,4 @@
 export default interface Em {
   code: string;
-  name: string
+  name: string;
 }

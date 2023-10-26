@@ -5,15 +5,9 @@ import RejectionErrorBoundary from '../../pages/ErrorPage/RejectionErrorBoundary
 
 const DefaultLayout = () => {
   return (
-    <ErrorBoundary
-      FallbackComponent={ErrorFallback}
-      onReset={(error) => {
-        // const args: any[] = (error as any).args;
-        // console.log(args);
-      }}
-    >
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
       <RejectionErrorBoundary>
-          <Outlet />
+        <Outlet />
       </RejectionErrorBoundary>
     </ErrorBoundary>
   );

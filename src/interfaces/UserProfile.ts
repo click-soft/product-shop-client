@@ -1,5 +1,5 @@
 export default interface UserProfile {
-  place: "전주" | "광주";
+  place: '전주' | '광주';
   jisa: string;
   ykiho: string;
   saupkiho: string;
@@ -12,7 +12,7 @@ export default interface UserProfile {
 
 export const parseUserProfile = (data: any): UserProfile => {
   return {
-    place: data.gubun === "001" ? '전주' : "광주",
+    place: data.gubun === '001' ? '전주' : '광주',
     jisa: data.jisa,
     ykiho: data.code,
     saupkiho: data.saupkiho,
@@ -20,5 +20,5 @@ export const parseUserProfile = (data: any): UserProfile => {
     name: data.myung,
     fitCherbang: data.fitCherbang,
     fitYoungsu: data.fitYoungsu,
-  }
-}
+  };
+};
