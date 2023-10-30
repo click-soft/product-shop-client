@@ -1,11 +1,9 @@
-@import '../../config/variables';
-
 .button_container {
   position: relative;
   background-color: white;
 
   :hover {
-    color: $color-darkblue;
+    color: var(--color-blue-600);
     cursor: pointer;
   }
 }
@@ -16,7 +14,7 @@
 }
 
 .button {
-  color: $color-darkblue3;
+  color: var(--color-blue-900);
   height: 48px;
   padding: 10px;
   display: flex;
@@ -33,7 +31,7 @@
 }
 
 .text {
-  font-size: $font-size-level3;
+  font-size: var(--fs-base);
   padding-left: 4px;
   margin-left: 8px;
 }

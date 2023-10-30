@@ -16,6 +16,8 @@ import useIntersectionObserver from '../../hooks/use-intersection-observer';
 import { updateOrderCancel } from '../../utils/payment-utils';
 import useSocketIo from '../../hooks/use-socket-io';
 
+const QUERY_KEY = 'getPaymentWithItems';
+
 const fetchGetPaymentWithItems = async ({ pageParam = 1 }): Promise<PaymentWithPage> => {
   const result = await client.query({
     query: GET_PAYMENT_WITH_ITEMS,
@@ -32,19 +34,27 @@ const OrdersPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
   const [payments, setPayments] = useState<Payment[]>([]);
-  const { hasNextPage, fetchNextPage, refetch } = useInfiniteQuery(['getPaymentWithItems'], fetchGetPaymentWithItems, {
-    getNextPageParam: (lastPage, pages) => {
-      if (lastPage?.isLast ?? true) return undefined;
-      return lastPage.page + 1;
-    },
-    onSuccess: (data) => {
-      const payments = data.pages.flatMap((pg) => pg.payments);
-      setPayments(payments);
-    },
-    onError: (err) => {
-      toast.error((err as any).message);
-    },
-  });
+  const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useInfiniteQuery(
+    [QUERY_KEY],
+    fetchGetPaymentWithItems,
+    {
+      getNextPageParam: (lastPage, pages) => {
+        if (lastPage?.isLast ?? true) return undefined;
+        return lastPage.page + 1;
+      },
+      select({ pageParams, pages }) {
+        const payments = pages.flatMap((pg) => pg.payments);
+        return { pageParams, pages: payments };
+      },
+      onError: (err) => {
+        toast.error((err as any).message);
+      },
+    }
+  );
+
+  useEffect(() => {
+    setPayments(data?.pages ?? []);
+  }, [data]);
 
   useSocketIo({
     receiveEventName: 'onOrders',
@@ -78,6 +88,7 @@ const OrdersPage = () => {
 
   const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
+    isFetching: isFetching,
     onIntersecting: () => {
       fetchNextPage();
     },
@@ -111,7 +122,7 @@ const OrdersPage = () => {
           onCancel={(state, message) => {
             toast[state](message);
             if (state === 'success') {
-              queryClient.removeQueries('getPaymentWithItems');
+              queryClient.removeQueries(QUERY_KEY);
               updateOrderCancel(setPayments, p);
             }
           }}
@@ -125,9 +136,11 @@ const OrdersPage = () => {
     <>
       {toastConatiner}
       <div className={styles.main}>
-        <ul className={styles['order-ul']}>{orderGroupsComponents}</ul>
+        <ul className={styles['order-ul']}>
+          {orderGroupsComponents}
+          <li>{observerComponent}</li>
+        </ul>{' '}
       </div>
-      {observerComponent}
     </>
   );
 };

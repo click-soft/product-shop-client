@@ -1,4 +1,4 @@
-@import '../../config/variables';
+@import '../../index.scss';
 
 .container {
   height: 100%;
@@ -9,7 +9,7 @@
   }
 
   .header {
-    background-color: $color-darkblue;
+    background-color: var(--color-blue-600);
     display: flex;
     justify-content: space-between;
     color: whitesmoke;
@@ -21,17 +21,17 @@
   }
 
   .header__left__title {
-    font-size: $font-size-level4;
+    font-size: --fs-xl;
     margin-bottom: 4px;
   }
 
   .header__left__sub {
-    font-size: $font-size-level2;
+    font-size: var(--fs-xs);
   }
 }
 
 .shop-button {
-  @include white-button;
+  @include white-button-legacy;
 
   .shop-icon {
     width: 1.5rem;
@@ -54,34 +54,34 @@
     padding: 10px;
     margin-bottom: 10px;
     text-decoration: none;
-    color: $color-darkblue3;
+    color: var(--color-blue-900);
 
     .icon {
       width: 30px;
       height: 30px;
-      color: $color-blue;
+      color: var(--color-blue-500);
       margin-right: 10px;
     }
   }
 
   &:hover,
   &:active {
-    background-color: $color-lightskyblue;
+    background-color: var(--color-blue-200);
     border-radius: 14px;
   }
 }
 
 .link_li.admin {
   .link {
-    color: $color-lightred;
+    color: var(--color-rose-500);
 
     .icon {
-      color: $color-lightred;
+      color: var(--color-rose-500);
     }
   }
 
   &:hover,
   &:active {
-    background-color: rgba($color: $color-lightred, $alpha: 0.3);
+    background-color: rgba($color: rgb(223, 64, 64), $alpha: 0.3);
   }
 }

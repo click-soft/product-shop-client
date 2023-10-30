@@ -1,5 +1,3 @@
-@import '../../config/variables';
-
 .main {
   position: relative;
   left: 0;
@@ -9,5 +7,5 @@
 }
 
 .cart-view {
-  min-height: calc(100vh - #{$header-height} - #{$cart-view-height} - 2px);
+  min-height: calc(100vh - var(--header-height) - var(--cart-view-height) - 2px);
 }

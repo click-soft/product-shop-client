@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './OrderGroup.module.scss';
-import Card from '../../ui/Card';
+import Card from '../../ui/Card/Card';
 import moment from 'moment';
 import OrderItem from '../OrderItem/OrderItem';
 import { Payment } from '../../graphql/interfaces/payment';
@@ -42,7 +42,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, i
   }
 
   const orderItems = payment.paymentItems.map((item, i) => {
-    return <OrderItem key={item.id} item={item} setSeparator={i > 0} />;
+    return <OrderItem key={item.id} item={item} setSeparator={i > 0} cancel={payment.cancel} />;
   });
 
   const canCancel = !payment.cancel && ['결제대기', '주문확인'].includes(payment.sendType);

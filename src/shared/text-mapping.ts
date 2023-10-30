@@ -16,3 +16,11 @@ export const menuObject: MenuObject = {
   E: '기타용품',
   F: '거래명세서',
 };
+
+export const deliveryData: {
+  [key: string]: string;
+} = {
+  CJ: 'kr.cjlogistics',
+  롯데: 'kr.lotte',
+  로젠: 'kr.logen',
+};

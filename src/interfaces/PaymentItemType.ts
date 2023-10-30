@@ -1,4 +1,6 @@
-export interface PaymentItemType {
+import Product from '../graphql/interfaces/product';
+
+export interface PaymentItem {
   id: number;
   paymentId: number;
   code: string;
@@ -6,4 +8,5 @@ export interface PaymentItemType {
   fit: boolean;
   quantity: number;
   amount: number;
+  product?: Product;
 }

@@ -1,5 +1,5 @@
 import styles from './PaymentSuccessComplete.module.scss';
-import Card from '../../ui/Card';
+import Card from '../../ui/Card/Card';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import { Payment } from '../../graphql/interfaces/payment';

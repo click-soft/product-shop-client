@@ -1,12 +1,10 @@
-@import '../../config/variables';
-
 .wrapper {
   text-align: center;
 }
 
 .main__text {
-  font-size: $font-size-level8;
-  color: $color-blue;
+  font-size: var(--fs-3xl);
+  color: var(--color-blue-500);
   font-weight: bold;
 }
 

@@ -1,4 +1,4 @@
-@import '../../config/variables';
+@import '../../index.scss';
 
 .container {
   display: flex;
@@ -8,20 +8,25 @@
 }
 
 .title {
-  font-size: $font-size-level4;
+  font-size: --fs-xl;
   font-weight: bold;
-  color: $color-lightred;
+  color: var(--color-rose-500);
   margin-bottom: 20px;
 }
 
 .data_section {
   display: flex;
   margin: 6px 0;
-  font-size: $font-size-level3;
+  font-size: var(--fs-base);
 }
 
 .data {
-  font: inherit;
+  border: 1px solid var(--color-pink-900);
+  border-radius: var(--rounded);  
+
+  &:focus{
+    background-color: var(--color-pink-100);
+  }
 }
 
 .label {
@@ -37,9 +42,9 @@
 }
 
 .refund_button {
-  @include custom-button($backgroundColor: $color-lightred, $activeBackgroundColor: $color-red);
+  @include custom-button($backgroundColor: var(--color-rose-500), $activeBackgroundColor: var(--color-red-500));
 }
 
 .cancel_button {
-  @include custom-button($color: black, $backgroundColor: transparent, $activeBackgroundColor: $color-lightgray);
+  @include custom-button($color: black, $backgroundColor: transparent, $activeBackgroundColor: var(--color-gray-100));
 }

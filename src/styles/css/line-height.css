@@ -1,0 +1,15 @@
+:root {
+  --lh-xs: 1rem; /* 16px */
+  --lh-sm: 1.25rem; /* 20px */
+  --lh-base: 1.5rem; /* 24px */
+  --lh-lg: 1.75rem; /* 28px */
+  --lh-xl: 1.75rem; /* 28px */
+  --lh-2xl: 2rem; /* 32px */
+  --lh-3xl: 2.25rem; /* 36px */
+  --lh-4xl: 2.5rem; /* 40px */
+  --lh-5xl: 3rem;
+  --lh-6xl: 3.75rem;
+  --lh-7xl: 4.5rem;
+  --lh-8xl: 6rem;
+  --lh-9xl: 8rem;
+}

@@ -1,4 +1,4 @@
-@import '../../../config/variables';
+$color-gray : var(--color-gray-500);
 
 .card {
   margin: 10px 0;
@@ -16,15 +16,15 @@
   margin: 6px;
   width: 100%;
   height: 1px;
-  background-color: rgba($color: $color-gray, $alpha: 0.3);
+  background-color: rgba($color: gray, $alpha: 0.3);
 }
 
 .title {
   font-size: 1rem;
-  color: $color-blue;
+  color: var(--color-blue-500);
 
   &.error {
-    color: $color-red;
+    color: var(--color-red-500);
   }
 }
 

@@ -1,4 +1,4 @@
-@import '../../config/variables';
+@import '../../index.scss';
 
 .buy-container {
   display: flex;
@@ -9,8 +9,8 @@
   bottom: 0px;
   width: 100%;
   padding: 15px;
-  height: $cart-view-height;
-  background-color: $color-blue;
+  height: var(--cart-view-height);
+  background-color: var(--color-blue-500);
   z-index: 1;
   color: #fff;
 }
@@ -27,15 +27,15 @@
 }
 
 .buy-amount-title {
-  font-size: $font-size-level2;
+  font-size: var(--fs-base);
 }
 
 .buy-amount {
-  font-size: $font-size-level5;
+  font-size: var(--fs-2xl);
   font-weight: bold;
 }
 
 .buy-amount-button {
-  @include white-button;
+  @include white-button-legacy;
   height: auto;
 }

@@ -1,11 +1,9 @@
-@import '../../config/variables';
-
 .error-wrapper {
   display: flex;
   align-items: center;
-  color: $color-darkred;
+  color: var(--color-red-700);
   padding: 5px;
-  border: 1px solid $color-darkred;
+  border: 1px solid var(--color-red-700);
   background-color: rgb(252, 237, 237);
   border-radius: 4px;
 }

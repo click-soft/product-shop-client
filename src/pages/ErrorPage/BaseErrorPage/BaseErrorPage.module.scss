@@ -1,4 +1,4 @@
-@import '../../../config/variables';
+@import '../../../index.scss';
 
 .main {
   display: flex;
@@ -20,14 +20,14 @@
 }
 
 .box {
-  border: 1px solid rgba($color: $color-blue, $alpha: 0.5);
+  border: 1px solid var(--color-blue-400);
   border-radius: 8px;
-  box-shadow: 1px 2px 4px rgba($color: $color-darkblue, $alpha: 0.3);
+  box-shadow: 1px 2px 4px rgba($color: rgb(53, 53, 255), $alpha: 0.3);
   background-color: white;
 }
 
 .header {
-  background-color: $color-lightskyblue;
+  background-color: var(--color-blue-200);
   padding: 20px;
 
   h3 {
@@ -44,7 +44,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: $font-size-level3;
+    font-size: var(--fs-base);
     text-decoration: none;
     padding: 8px;
     margin: 0 4px;

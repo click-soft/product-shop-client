@@ -1,5 +1,5 @@
 import { Link, useActionData, useNavigate } from 'react-router-dom';
-import Card from '../../ui/Card';
+import Card from '../../ui/Card/Card';
 import TextInput from '../../ui/TextInput/TextInput';
 import styles from './SignupPage.module.scss';
 import { AiOutlineClose } from 'react-icons/ai';

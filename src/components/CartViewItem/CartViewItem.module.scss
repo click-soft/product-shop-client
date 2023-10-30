@@ -1,4 +1,4 @@
-@import '../../config/variables';
+@import '../../index.scss';
 
 .cart-item {
   display: flex;
@@ -40,7 +40,7 @@
 }
 
 .cart-item__head {
-  border-bottom: 1px solid $color-lightskyblue;
+  border-bottom: 1px solid var(--color-blue-200);
 }
 
 .detail__head__product {
@@ -54,7 +54,7 @@
 
 .product-name {
   font-weight: bold;
-  font-size: $font-size-level4;
+  font-size: --fs-xl;
 }
 
 .product-info {
@@ -68,13 +68,13 @@
 }
 
 .cart-item__body__price {
-  color: $color-gray;
+  color: var(--color-gray-500);
   margin-right: 4px;
 }
 
 .cart-item__body__combo {
   width: 50px;
-  border: 1px solid $color-lightblue;
+  border: 1px solid var(--color-blue-400);
   border-radius: 4px;
   padding: 4px;
   outline: none;
@@ -89,6 +89,6 @@
 }
 
 .cancel-button {
-  @include custom-button($backgroundColor: $color-lightred, $activeBackgroundColor: $color-red);
+  @include custom-button($backgroundColor: var(--color-rose-500), $activeBackgroundColor: var(--color-red-500));
   padding: 4px;
 }

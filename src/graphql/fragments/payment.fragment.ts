@@ -44,6 +44,9 @@ export const GET_PAYMENTS_FIELDS = gql`
       fit
       quantity
       amount
+      product {
+        bigo
+      }
     }
   }
   ${PAYMENT_VIRTUAL_FIELD}

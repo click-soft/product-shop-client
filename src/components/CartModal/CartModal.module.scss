@@ -1,4 +1,4 @@
-@import '../../config/variables';
+@import '../../index.scss';
 
 .container {
   height: 100%;
@@ -10,7 +10,7 @@
 
   .header {
     height: 100px;
-    background-color: $color-darkblue;
+    background-color: var(--color-blue-600);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,16 +28,16 @@
 }
 
 .totalQuantity {
-  font-size: $font-size-level4;
+  font-size: --fs-xl;
 }
 
 .totalPrice {
   font-weight: bold;
-  font-size: $font-size-level6;
+  font-size: var(--fs-2xl);
 }
 
 .shop-button {
-  @include white-button;
+  @include white-button-legacy;
   .shop-icon {
     width: 1.5rem;
     height: 1.5rem;

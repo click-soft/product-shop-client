@@ -1,13 +1,11 @@
-@import './config/variables';
-
 body {
-  background-color: $backcolor-primary;
+  background-color: var(--backcolor-primary);
 }
 
 .header-text {
   text-align: center;
-  color: $color-blue;
+  color: var(--color-blue-500);
   padding: 10px;
   margin: 0 20px;
-  border-bottom: 1px solid $color-lightblue;
+  border-bottom: 1px solid var(--color-blue-400);
 }

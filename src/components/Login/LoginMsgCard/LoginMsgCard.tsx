@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Card from '../../../ui/Card';
+import Card from '../../../ui/Card/Card';
 import styles from './LoginMsgCard.module.scss';
 
 interface CardProps {

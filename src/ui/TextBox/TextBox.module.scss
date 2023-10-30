@@ -1,11 +1,11 @@
-@import '../../config/variables';
+$light-blue: var(--color-blue-200);
 
 .wrapper {
   display: flex;
   align-items: center;
-  border: 1px solid $color-skyblue;
+  border: 1px solid var(--color-blue-300);
   border-radius: 4px;
-  color: $color-darkblue;
+  color: var(--color-blue-600);
   overflow: none;
 
   .icon_wrapper {
@@ -23,11 +23,11 @@
     background-color: transparent;
     height: 100%;
     outline-style: none;
-    color: $color-darkblue;
+    color: var(--color-blue-600);
     font: inherit;
   }
 
   &:hover {
-    background-color: rgba($color: $color-lightskyblue, $alpha: 0.5);
+    background-color: rgba($color: rgb(83, 83, 252), $alpha: 0.5);
   }
 }

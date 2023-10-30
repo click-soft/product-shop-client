@@ -1,11 +1,9 @@
-@import '../../../config/variables';
-
 .header {
   position: relative;
-  height: $header-height;
+  height: var(--header-height);
   align-items: center;
-  background-color: $color-lightgray;
-  box-shadow: 0px 2px 4px rgba($color: $color-lightskyblue, $alpha: 1);
+  background-color: var(--color-gray-100);
+  box-shadow: 0px 2px 4px rgba($color: black, $alpha: 0.1);
 }
 
 .header__left {
@@ -17,7 +15,7 @@
   transform: translateY(-50%);
   padding: 10px;
   img {
-    height: calc(#{$header-height} - 10px);
+    height: calc(var(--header-height) - 10px);
   }
 }
 

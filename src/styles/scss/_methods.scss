@@ -1,0 +1,6 @@
+@function colorToRgb($color) {
+  $redValue: red($color);
+  $greenValue: green($color);
+  $blueValue: blue($color);
+  @return ($redValue, $greenValue, $blueValue);
+}

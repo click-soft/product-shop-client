@@ -1,6 +1,6 @@
 import ChildrenProps from '../../interfaces/ChildrenProps';
 import styles from './DownModal.module.scss';
-import Card from '../Card';
+import Card from '../Card/Card';
 import Backdrop from '../Backdrop/Backdrop';
 import { AppDispatch, RootState } from '../../store';
 import { useDispatch } from 'react-redux';

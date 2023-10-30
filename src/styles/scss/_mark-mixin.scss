@@ -1,0 +1,15 @@
+@mixin fit-mark {
+  margin: 0;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: var(--fs-xs);
+  border: 1px solid var(--color-green-600);
+  background-color: var(--color-green-600);
+  color: white;
+}
+
+@mixin box-mark {
+  @include fit-mark;
+  border: 1px solid var(--color-gray-500);
+  background-color: var(--color-gray-500);
+}

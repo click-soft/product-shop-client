@@ -1,4 +1,5 @@
 import Cs from './cs';
+import Product from './product';
 
 export interface Payment {
   id: number;
@@ -25,6 +26,7 @@ export interface PaymentItem {
   fit: boolean;
   quantity: number;
   amount: number;
+  product?: Product;
 }
 
 export interface VirtualAccount {

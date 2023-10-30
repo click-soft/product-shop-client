@@ -17,10 +17,6 @@ import CircleLoading from '../../components/Loading/CircleLoading';
 import dayjs from 'dayjs';
 
 const fetchGetAdminPayments = async (page: number, variables: GetAdminPaymentsArgs): Promise<PaymentWithPage> => {
-  if (!variables) {
-    return { isLast: true, page: 0, payments: [] };
-  }
-
   const result = await client.query({
     query: GET_ADMIN_PAYMENTS,
     variables: {
@@ -33,15 +29,15 @@ const fetchGetAdminPayments = async (page: number, variables: GetAdminPaymentsAr
   return result.data?.getAdminPayments;
 };
 
-const GET_ADMIN_PAYMENTS_QUERY_KEY = 'getAdminPayments';
+const ADMIN_QUERY_KEY = 'getAdminPayments';
 const AdminWebOrdersPage = () => {
   const queryClient = useQueryClient();
   const { toast, toastConatiner } = useToast();
   const [payments, setPayments] = useState<Payment[]>([]);
   const [variables, setVariables] = useState<GetAdminPaymentsArgs>();
   const user = useGetLoginedUser(true);
-  const { hasNextPage, isLoading, fetchNextPage } = useInfiniteQuery(
-    [GET_ADMIN_PAYMENTS_QUERY_KEY, variables],
+  const { hasNextPage, isFetching, fetchNextPage } = useInfiniteQuery(
+    [ADMIN_QUERY_KEY, variables],
     ({ pageParam = 1 }) => fetchGetAdminPayments(pageParam, variables!),
     {
       getNextPageParam: (nextPage) => {
@@ -57,12 +53,13 @@ const AdminWebOrdersPage = () => {
           toast.error(err.message);
         }
       },
-      retry: 1,
+      enabled: !!variables,
     }
   );
 
   const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
+    isFetching: isFetching,
     onIntersecting: () => {
       fetchNextPage();
     },
@@ -77,7 +74,7 @@ const AdminWebOrdersPage = () => {
           onCancel={(state, message) => {
             toast[state](message);
             if (state === 'success') {
-              queryClient.removeQueries(GET_ADMIN_PAYMENTS_QUERY_KEY);
+              queryClient.removeQueries(ADMIN_QUERY_KEY);
               updateOrderCancel(setPayments, p);
             }
           }}
@@ -105,15 +102,18 @@ const AdminWebOrdersPage = () => {
       customerName,
       orderId,
     });
+    queryClient.invalidateQueries([ADMIN_QUERY_KEY]);
   }
 
   return (
     <div className={styles.container}>
-      {isLoading && <CircleLoading />}
+      {isFetching && <CircleLoading />}
       {toastConatiner}
       <AdminSearchForm onSubmit={submitHandler} textLabel="거래처명 or 주문번호" />
-      <ul className={styles.order_ul}>{orderGroupComponents}</ul>
-      {observerComponent}
+      <ul className={styles.order_ul}>
+        {orderGroupComponents}
+        {observerComponent}
+      </ul>
     </div>
   );
 };

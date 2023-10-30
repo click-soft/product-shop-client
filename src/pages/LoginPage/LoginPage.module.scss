@@ -1,9 +1,7 @@
-@import '../../config/variables';
-
 .body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $backcolor-primary;
+  background-color: var(--backcolor-primary);
   height: 100vh;
 }

@@ -1,0 +1,81 @@
+.box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 4px;
+  max-height: 70%;
+  overflow: auto;
+
+  &.fetching {
+    background-color: transparent;
+    overflow: hidden;
+  }
+}
+
+.wrapper {
+  section {
+    .title {
+      margin: 1rem 0;
+      font-size: smaller;
+      text-align: left;
+      color: gray;
+    }
+  }
+
+  .header_section {
+    padding: 20px;
+    padding-bottom: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0; /* 원하는 위치로 설정, 일반적으로 0이나 다른 값으로 조정 */
+    background-color: white;
+
+    .header_title {
+      margin-top: 0;
+      font-size: 30px;
+      text-align: center;
+    }
+  }
+
+  .info_section {
+    margin: 20px;
+    margin-top: 0;
+  }
+
+  table {
+    min-width: 20rem;
+    font-size: medium;
+    th {
+      width: 6rem;
+      font-weight: normal;
+      text-align: left;
+      color: gray;
+    }
+
+    tr {
+      height: 2rem;
+    }
+  }
+
+  .tracking_ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.error_wrapper{
+  h2{
+    margin-top: 0;
+    text-align: center;
+  }
+  
+  .errorMessage{
+    text-align: center;
+    color: var(--color-rose-500);
+  }
+
+  padding: 20px;
+}

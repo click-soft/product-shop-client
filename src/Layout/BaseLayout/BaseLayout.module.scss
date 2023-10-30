@@ -1,9 +1,7 @@
-@import '../../config/variables';
-
 .wrapper {
   display: flex;
   height: 100%;
-  background-color: $color-lightgray;
+  background-color: var(--color-gray-100);
   .wrapper_left {
     display: none;
     height: 100%;

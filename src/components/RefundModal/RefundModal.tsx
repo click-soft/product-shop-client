@@ -1,8 +1,5 @@
 import React, { useRef } from 'react';
 import Modal from '../../ui/Modal/Modal';
-import { modalActions } from '../../store/modal-slice';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store';
 import styles from './RefundModal.module.scss';
 import bankData from '../../data/bankData';
 

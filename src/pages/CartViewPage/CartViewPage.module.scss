@@ -1,8 +1,6 @@
-@import '../../config/variables';
-
 .caption {
   padding-bottom: 20px;
-  font-size: $font-size-level6;
+  font-size: var(--fs-2xl);
 }
 
 .container {
@@ -17,15 +15,15 @@
   }
 
   th {
-    border-top: 1px solid $color-lightblue;
-    border-bottom: 1px solid $color-lightblue;
+    border-top: 1px solid var(--color-blue-400);
+    border-bottom: 1px solid var(--color-blue-400);
     margin: 0;
     padding: 10px 0;
-    background-color: $color-lightskyblue;
+    background-color: var(--color-blue-200);
   }
 
   tr {
-    border-bottom: 1px solid $color-lightblue;
+    border-bottom: 1px solid var(--color-blue-400);
   }
 }
 

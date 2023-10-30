@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { socket } from '../config/socket';
+import { socket } from '../services/socket';
 
 interface UseSocketIoArgs {
   receiveEventName: string;

@@ -1,4 +1,4 @@
-@import '../../config/_variables.scss';
+@import '../../index.scss';
 
 .item {
   width: 95%;
@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   margin: 0 0 10px 0;
-  font-size: $font-size-level4;
+  font-size: --fs-xl;
   .fit {
     @include fit-mark;
   }
@@ -22,10 +22,10 @@
 }
 
 .detail__left {
-  color: $color-gray;
+  color: var(--color-gray-500);
 }
 
 .detail__right {
-  font-size: $font-size-level4;
+  font-size: --fs-xl;
   font-weight: bold;
 }

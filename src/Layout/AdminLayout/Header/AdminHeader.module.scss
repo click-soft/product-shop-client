@@ -1,9 +1,7 @@
-@import '../../../config/variables';
-
 .container {
   background-color: white;
   width: 100%;
-  height: $header-height;
+  height: var(--header-height);
   display: flex;
   justify-content: space-between;
   align-items: center;

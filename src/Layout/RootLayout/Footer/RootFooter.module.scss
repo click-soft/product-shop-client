@@ -1,11 +1,7 @@
-@import '../../../config/variables';
-
 .footer {
   position: relative;
   bottom: 0px;
   width: 100%;
-  // background-color: $color-lightskyblue;
-  // padding: 20px;
   color: black;
   text-align: left;
 }
@@ -13,37 +9,37 @@
 .footer__wrapper {
   margin: 0 auto;
   padding: 20px;
-  border-top: 1px solid $color-lightskyblue;
+  border-top: 1px solid var(--color-blue-200);
 }
 
 .cart-view {
-  padding-bottom: calc(#{$cart-view-height} + 20px);
+  padding-bottom: calc(var(--cart-view-height) + 20px);
 }
 
 .company {
   display: flex;
   flex-direction: column;
-  color: $color-gray;
-  font-size: $font-size-level2;
+  color: var(--color-gray-500);
+  font-size: var(--fs-xs);
   text-align: center;
   width: 100%;
 }
 
 .corporate {
   color: black;
-  font-size: $font-size-level3;
+  font-size: var(--fs-base);
   padding-bottom: 6px;
 }
 
 .vertical {
   display: inline-block;
   width: 1px;
-  background-color: $color-gray;
+  background-color: var(--color-gray-500);
   height: 10px;
   margin: 0 10px;
 }
 
 .copyright {
   color: black;
-  font-size: $font-size-level2;
+  font-size: var(--fs-xs);
 }

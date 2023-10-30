@@ -1,4 +1,4 @@
-@import '../../config/variables';
+@import '../../index.scss';
 
 .main {
   height: 78vh;
@@ -8,15 +8,15 @@
   align-items: center;
 
   h2 {
-    color: $color-lightred;
+    color: var(--color-rose-500);
     text-align: center;
   }
 }
 
 .detail_container {
   padding: 20px;
-  box-shadow: 1px 2px 4px rgba($color: $color-red, $alpha: 0.3);
-  border: 1px solid rgba($color: $color-lightred, $alpha: 0.3);
+  box-shadow: 1px 2px 4px var(--color-rose-400);
+  border: 1px solid rgba($color: rgb(223, 65, 65), $alpha: 0.3);
   background-color: white;
   border-radius: 8px;
 
@@ -24,12 +24,12 @@
     margin: 20px;
 
     .error_label {
-      font-size: $font-size-level3;
+      font-size: var(--fs-base);
     }
 
     .error_text {
       font-weight: bold;
-      color: $color-lightred;
+      color: var(--color-rose-500);
     }
   }
 }

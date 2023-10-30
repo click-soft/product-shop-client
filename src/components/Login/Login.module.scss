@@ -1,4 +1,4 @@
-@import '../../config/variables';
+@import '../../index.scss';
 
 .card {
   position: relative;
@@ -10,16 +10,16 @@
   a {
     display: inline-block;
     width: 5rem;
-    font-size: $font-size-level2;
+    font-size: var(--fs-xs);
     margin-top: 10px;
     padding: 4px;
-    color: $color-gray;
+    color: var(--color-gray-500);
     text-decoration: none;
   }
 }
 
 .active {
-  border-bottom: 2px solid $color-darkblue;
+  border-bottom: 2px solid var(--color-blue-600);
 }
 
 .container {
@@ -30,7 +30,7 @@
 
   h2 {
     margin: 0;
-    color: $color-blue;
+    color: var(--color-blue-500);
     margin-bottom: 20px;
   }
 }
@@ -62,9 +62,9 @@
 }
 
 .signup {
-  font-size: $font-size-level2;
+  font-size: var(--fs-xs);
   margin-top: 10px;
   text-align: center;
   text-decoration: none;
-  color: $color-blue;
+  color: var(--color-blue-500);
 }

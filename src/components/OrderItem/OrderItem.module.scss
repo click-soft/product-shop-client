@@ -1,4 +1,6 @@
-@import '../../config/variables';
+@import '../../index.scss';
+
+$color-gray: var(--color-gray-500);
 
 .container {
   display: flex;
@@ -8,28 +10,37 @@
 }
 
 .separator {
-  border-top: 1px solid rgba($color: $color-gray, $alpha: 0.3);
+  border-top: 1px solid rgba($color: gray, $alpha: 0.3);
 }
 
 .name {
-  font-size: $font-size-level3;
+  font-size: var(--fs-base);
   padding-bottom: 6px;
 
   span {
     margin-left: 6px;
     font-weight: bold;
-    color: $color-darkred;
+    color: var(--color-red-700);
   }
 }
 
 .info {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .fit {
   @include fit-mark;
+  margin: 2px;
 }
 .box {
   @include box-mark;
+  margin: 2px;
   margin-left: 4px;
+  min-width: 100px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(66, 66, 66);
+  }
 }

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { isNuemric } from '../../utils/strings';
-import Card from '../../ui/Card';
+import Card from '../../ui/Card/Card';
 import styles from './Login.module.scss';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import TextInput from '../../ui/TextInput/TextInput';

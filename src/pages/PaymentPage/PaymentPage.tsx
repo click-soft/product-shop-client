@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef } from 'react';
 import styles from './PaymentPage.module.scss';
 import { PaymentWidgetInstance, loadPaymentWidget } from '@tosspayments/payment-widget-sdk';
-import Card from '../../ui/Card';
+import Card from '../../ui/Card/Card';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import moment from 'moment';

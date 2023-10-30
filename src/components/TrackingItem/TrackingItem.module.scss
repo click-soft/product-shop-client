@@ -1,0 +1,32 @@
+.li {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  .icon {
+    padding: 5px;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: white;
+    background-color: lightgray;
+    border-radius: 20px;
+    margin-right: 15px;
+  }
+
+  .description_wrapper {
+    flex: 1;
+    color: gray;
+    .time {
+      font-size: smaller;
+    }
+  }
+
+  &.highlight {
+    .icon {
+      background-color: var(--color-blue-500);
+    }
+
+    .description_wrapper{
+      color: black;
+    }
+  }
+}

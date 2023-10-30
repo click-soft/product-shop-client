@@ -9,19 +9,14 @@ import { UPDATE_PRODUCT } from '../../graphql/mutates/product';
 import useToast from '../../hooks/use-toast';
 import useGetManagers from '../../hooks/use-get-managers';
 import AdminSearchForm, { FormValues } from '../../components/Admin/AdminSearchForm/AdminSearchForm';
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQueryClient } from 'react-query';
 import GetAdminProductsArgs from '../../graphql/dto/get-admin-products.args';
 import client from '../../graphql/apollo-client';
 import ProductsWithPage from '../../graphql/interfaces/products-with-page';
 import useIntersectionObserver from '../../hooks/use-intersection-observer';
 import dayjs from 'dayjs';
-import ReChartTest from '../../components/ReChartTest/ReChartTest';
 
 const fetchGetAdminProducts = async (page: number, variables: GetAdminProductsArgs): Promise<ProductsWithPage> => {
-  if (!variables?.startYmd) {
-    return { isLast: true, page: 0, products: [] };
-  }
-
   const result = await client.query({
     query: GET_ADMIN_PRODUCTS,
     variables: {
@@ -34,9 +29,10 @@ const fetchGetAdminProducts = async (page: number, variables: GetAdminProductsAr
   return result.data?.getAdminProducts;
 };
 
-const GET_ADMIN_QUERY_KEY = 'getAdminProducts';
+const ADMIN_QUERY_KEY = 'getAdminProducts';
 
 const AdminOrderPage = () => {
+  const queryClient = useQueryClient();
   const [variables, setVariables] = useState<GetAdminProductsArgs>();
   const { toast, toastConatiner } = useToast();
   const [products, setProducts] = useState<Product[]>([]);
@@ -44,8 +40,8 @@ const AdminOrderPage = () => {
   const [updateProduct, { data: updatedData, loading: updatedLoading, error: updatedError }] =
     useMutation(UPDATE_PRODUCT);
 
-  const { isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery(
-    [GET_ADMIN_QUERY_KEY, variables],
+  const { isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery(
+    [ADMIN_QUERY_KEY, variables],
     ({ pageParam = 1 }) => fetchGetAdminProducts(pageParam, variables!),
     {
       getNextPageParam: (nextPage, pages) => {
@@ -63,12 +59,13 @@ const AdminOrderPage = () => {
           toast.error(err.message);
         }
       },
-      retry: 1,
+      enabled: !!variables,
     }
   );
 
   const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
+    isFetching: isFetching,
     onIntersecting: () => {
       fetchNextPage();
     },
@@ -133,13 +130,14 @@ const AdminOrderPage = () => {
       csMyung: customerName,
       page: 1,
     });
+    queryClient.invalidateQueries(ADMIN_QUERY_KEY);
   }
 
   return (
     <>
       {toastConatiner}
       {/* <ReChartTest products={products} /> */}
-      {(isLoading || updatedLoading) && <CircleLoading />}
+      {(isFetching || updatedLoading) && <CircleLoading />}
       <div className={styles.container}>
         <AdminSearchForm onSubmit={submitHandler} textLabel="거래처 명칭" />
 
