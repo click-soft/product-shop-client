@@ -1,4 +1,4 @@
-import { Link, useActionData, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Card from '../../ui/Card/Card';
 import TextInput from '../../ui/TextInput/TextInput';
 import styles from './SignupPage.module.scss';

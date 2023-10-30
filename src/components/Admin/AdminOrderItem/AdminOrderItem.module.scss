@@ -31,7 +31,8 @@ $color-rose: var(--color-rose-500);
 .header_group {
   display: flex;
   justify-content: space-between;
-  margin: 5px 0;
+  margin: var(--m-2) 0;
+  padding: 0 var(--m-2);
 }
 
 .data_box {
@@ -68,11 +69,12 @@ $color-rose: var(--color-rose-500);
     color: white;
 
     .label {
+      padding: 0px;
       background-color: transparent;
     }
 
     .text {
-      padding-right: 20px;
+      padding-right: 0px;
       color: white;
     }
   }

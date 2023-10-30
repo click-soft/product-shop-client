@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { isNuemric } from '../../utils/strings';
 import Card from '../../ui/Card/Card';
 import styles from './Login.module.scss';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
@@ -7,6 +6,7 @@ import TextInput from '../../ui/TextInput/TextInput';
 import useToast from '../../hooks/use-toast';
 import useLogin from '../../hooks/use-login';
 import CircleLoading from '../Loading/CircleLoading';
+import classNames from 'classnames';
 
 function Login() {
   const navigate = useNavigate();
@@ -54,6 +54,7 @@ function Login() {
 
   const inputBox = isBuisness ? (
     <TextInput
+      className={styles.text_input}
       placeholder="사업자기호(`-` 제외)"
       // value={inputValue}
       maxLength={10}
@@ -61,6 +62,7 @@ function Login() {
     />
   ) : (
     <TextInput
+      className={styles.text_input}
       placeholder="요양기관 기호"
       name="id"
       // value={inputValue}
@@ -82,7 +84,7 @@ function Login() {
               {inputBox}
               <TextInput
                 ref={passwordRef}
-                className={styles.password}
+                className={classNames(styles.password, styles.text_input) }
                 name="password"
                 type="password"
                 placeholder="비밀번호"

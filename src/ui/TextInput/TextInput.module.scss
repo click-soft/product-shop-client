@@ -1,14 +1,12 @@
 .textbox {
   display: flex;
-  flex-direction: row-reverse;
-  margin: 0;
+  flex-direction: row-reverse; 
   height: 35px;
 }
 
 .input {
   width: 100%;
-  padding-left: 6px;
-  margin: 0;
+  padding-left: 6px; 
   border: none;
   outline: none;
   background-color: var(--color-gray-100);
