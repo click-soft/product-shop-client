@@ -34,7 +34,7 @@ $toastBackgroundOpacity: 0.9;
 .message {
   flex: 1;
   color: white;
-  font-size: --fs-xl;
+  font-size: var(--fs-xl);
   padding-bottom: 2px;
 }
 

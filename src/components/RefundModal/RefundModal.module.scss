@@ -5,10 +5,11 @@
   flex-direction: column;
   align-items: center;
   padding: 30px;
+  min-width: 20rem;
 }
 
 .title {
-  font-size: --fs-xl;
+  font-size: var(--fs-xl);
   font-weight: bold;
   color: var(--color-rose-500);
   margin-bottom: 20px;
@@ -21,6 +22,8 @@
 }
 
 .data {
+  min-width: 10rem;
+  max-width: 12rem;
   border: 1px solid var(--color-pink-900);
   border-radius: var(--rounded);  
 
@@ -38,6 +41,7 @@
   justify-content: center;
   button {
     padding: 10px 30px;
+    margin: var(--sz-1) 1rem;
   }
 }
 

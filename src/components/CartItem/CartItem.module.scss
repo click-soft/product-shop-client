@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   margin: 0 0 10px 0;
-  font-size: --fs-xl;
+  font-size: var(--fs-xl);
   .fit {
     @include fit-mark;
   }
@@ -26,6 +26,6 @@
 }
 
 .detail__right {
-  font-size: --fs-xl;
+  font-size: var(--fs-xl);
   font-weight: bold;
 }

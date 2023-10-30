@@ -1,7 +1,7 @@
 import './styles/css/font-size.css';
 import './styles/css/font-family.css';
 import './styles/css/color.css';
-import './styles/css/margin.css';
+import './styles/css/size.css';
 import './styles/css/radius.css';
 import './styles/css/line-height.css';
 import './index.css';

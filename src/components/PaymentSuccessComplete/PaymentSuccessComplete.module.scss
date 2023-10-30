@@ -17,7 +17,7 @@
 }
 
 .order_id {
-  font-size: --fs-xl;
+  font-size: var(--fs-xl);
   padding: 20px;
 }
 
@@ -34,7 +34,7 @@
 
 .virtual_info__title {
   text-align: center;
-  font-size: --fs-xl;
+  font-size: var(--fs-xl);
   font-weight: bold;
   color: var(--color-blue-900);
 }

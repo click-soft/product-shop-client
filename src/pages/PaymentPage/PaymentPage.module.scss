@@ -23,7 +23,7 @@
 }
 
 .checkout-amount {
-  font-size: --fs-xl;
+  font-size: var(--fs-xl);
   font-weight: bold;
   color: var(--color-blue-900);
 }
