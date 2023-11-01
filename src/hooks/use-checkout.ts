@@ -1,12 +1,11 @@
 import SessionStorageManager, { SessionStoragekey } from '../utils/session-storage-manager';
 import CheckoutState from '../interfaces/CheckoutState';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { useAppSelector } from '../store';
 import { checkout } from '../graphql/mutates/payment';
 import { CheckoutResult } from '../graphql/interfaces/checkout';
 
 const useCheckout = ({ isSession }: { isSession: boolean }) => {
-  const checkoutState = useSelector<RootState, CheckoutState>((state) => state.payment.checkout!);
+  const checkoutState = useAppSelector<CheckoutState>((state) => state.payment.checkout!);
   const checkoutData = isSession ? getCheckoutDataSession() : undefined;
 
   function setCheckoutDataSession(data: CheckoutData) {

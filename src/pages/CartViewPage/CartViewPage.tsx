@@ -3,8 +3,7 @@ import styles from './CartViewPage.module.scss';
 import Cart from '../../interfaces/Cart';
 import { getCartWithProduct } from '../../graphql/queries/cart';
 import CartViewItems from '../../components/CartViewItem/CartViewItem';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store';
+import { useAppDispatch } from '../../store';
 import { deleteCartItems, updateCartItemQuantity } from '../../store/cart-slice';
 import BuyArea from '../../components/BuyArea/BuyArea';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +16,7 @@ import EmptyCartView from '../../components/EmptyCartView/EmptyCartView';
 const CartViewPage = () => {
   const [allCheck, setAllCheck] = useState<boolean>(true);
   const [chkItemIds, setChkItemIds] = useState<number[]>([]);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [cart, setCart] = useState<Cart>();
   const [loading, setLoading] = useState(false);

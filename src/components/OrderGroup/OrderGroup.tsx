@@ -6,10 +6,9 @@ import OrderItem from '../OrderItem/OrderItem';
 import { Payment } from '../../graphql/interfaces/payment';
 import bankData from '../../data/bankData';
 import CircleLoading from '../Loading/CircleLoading';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store';
 import { cancelOrder, refundOrder } from '../../store/orders-slice';
 import RefundModal from '../RefundModal/RefundModal';
+import { useAppDispatch } from '../../store';
 
 interface OrderGroupProps {
   payment: Payment;
@@ -23,7 +22,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, i
   const sendTypeClasses = [styles['send-type-base']];
   const [showRefundModal, setShowRefundModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   let sendType = payment.sendType.toString();
 
@@ -61,7 +60,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, i
       .then(() => {
         onCancel('success', '취소되었습니다.');
       })
-      .catch((error) => onCancel('error', error.message))
+      .catch((error: any) => onCancel('error', error.message))
       .then(() => setLoading(false));
   }
 
@@ -90,7 +89,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, i
         onCancel('success', '환불되었습니다.');
         setShowRefundModal(false);
       })
-      .catch((error) => onCancel('error', error.message))
+      .catch((error: any) => onCancel('error', error.message))
       .then(() => setLoading(false));
   }
 

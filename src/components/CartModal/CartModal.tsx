@@ -3,19 +3,17 @@ import { BsCartCheck } from 'react-icons/bs';
 import CartItem from '../CartItem/CartItem';
 import { Fragment, useMemo } from 'react';
 import DownModal from '../../ui/DownModal/DownModal';
-import { useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import useCartItems from '../../hooks/use-cart-items';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { modalActions } from '../../store/modal-slice';
 import CartItemManager from '../../utils/cart-item-manager';
 
 const Cart = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const { cartItems } = useCartItems();
   const cartItemManager = useMemo(() => new CartItemManager(cartItems), [cartItems]);
-  const showDownModal = useSelector<RootState>((state) => state.modal.showCartModal);
+  const showDownModal = useAppSelector((state) => state.modal.showCartModal);
   if (!showDownModal) {
     return <></>;
   }

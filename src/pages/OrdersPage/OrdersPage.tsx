@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './OrdersPage.module.scss';
 import OrderGroup from '../../components/OrderGroup/OrderGroup';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store';
+import { useAppDispatch } from '../../store';
 import useToast from '../../hooks/use-toast';
 import { Payment } from '../../graphql/interfaces/payment';
 import { addToCart } from '../../store/cart-slice';
@@ -31,7 +30,7 @@ const fetchGetPaymentWithItems = async ({ pageParam = 1 }): Promise<PaymentWithP
 const OrdersPage = () => {
   const queryClient = useQueryClient();
   const { toast, toastConatiner } = useToast();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
   const [payments, setPayments] = useState<Payment[]>([]);
   const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useInfiniteQuery(

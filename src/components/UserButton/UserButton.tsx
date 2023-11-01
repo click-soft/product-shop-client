@@ -1,18 +1,16 @@
 import IconButton from '../../ui/IconButton/IconButton';
 import { AiOutlineUser } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import { modalActions } from '../../store/modal-slice';
 import useResizeWindow from '../../hooks/use-resize-window';
-import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import UserModal from '../UserModal/UserModal';
 
 const UserButton = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const { isMobile } = useResizeWindow();
   const [mouseEntered, setMouseEntered] = useState(false);
-  const showUserModal = useSelector<RootState>((state) => state.modal.showUserModal);
+  const showUserModal = useAppSelector((state) => state.modal.showUserModal);
 
   function showModal() {
     dispatch(modalActions.showUser());

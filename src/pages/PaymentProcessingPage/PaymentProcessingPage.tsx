@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import PaymentSuccessProg from '../../components/PaymentSuccessProg/PaymentSuccessProg';
 import styles from './PaymentProcessingPage.module.scss';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store';
+import { useAppDispatch } from '../../store';
 import useCheckout from '../../hooks/use-checkout';
 import { deleteCartItems } from '../../store/cart-slice';
 
 const PaymentProcessingPage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [error, setError] = useState<{ code?: string; message?: string }>();
   const [searchParams] = useSearchParams();
   const { mutateCheckout } = useCheckout({

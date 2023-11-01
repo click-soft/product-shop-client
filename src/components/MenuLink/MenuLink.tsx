@@ -1,18 +1,15 @@
 import styles from './MenuLink.module.scss';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store';
+import { useAppDispatch } from '../../store';
 import { modalActions } from '../../store/modal-slice';
 import { menuObject } from '../../shared/text-mapping';
 import useResizeWindow from '../../hooks/use-resize-window';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 interface MenuLinkProps {
   isDropdown: boolean;
 }
 const MenuLink: React.FC<MenuLinkProps> = (props) => {
   const { isMobile } = useResizeWindow();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const linkClickHandler = (key: string) => {
     scrollToTargetAdjusted(key);
 

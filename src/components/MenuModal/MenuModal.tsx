@@ -1,10 +1,9 @@
 import DownModal from '../../ui/DownModal/DownModal';
-import { RootState } from '../../store';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../store';
 import MenuLink from '../MenuLink/MenuLink';
 
 const MenuModal = () => {
-  const showMenuModal = useSelector<RootState>((state) => state.modal.showMenuModal);
+  const showMenuModal = useAppSelector((state) => state.modal.showMenuModal);
 
   if (!showMenuModal) {
     return <></>;

@@ -1,9 +1,7 @@
 import DownModal from '../../ui/DownModal/DownModal';
-import { useSelector } from 'react-redux';
-import store, { AppDispatch, RootState } from '../../store';
+import store, { useAppSelector } from '../../store';
 import styles from './UserModal.module.scss';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { modalActions } from '../../store/modal-slice';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import { BiBasket } from 'react-icons/bi';
@@ -15,8 +13,7 @@ import classNames from 'classnames';
 
 const UserModal = () => {
   const logout = useLogout();
-  const showUserModal = useSelector<RootState, boolean>((state) => state.modal.showUserModal);
-
+  const showUserModal = useAppSelector<boolean>((state) => state.modal.showUserModal);
   const user = useGetLoginedUser(showUserModal);
 
   if (!showUserModal) {

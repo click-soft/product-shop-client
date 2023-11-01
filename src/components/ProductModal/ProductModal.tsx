@@ -1,11 +1,10 @@
 import Modal from '../../ui/Modal/Modal';
 import { useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
-import { useDispatch } from 'react-redux';
+import { RootState, useAppDispatch, useAppSelector } from '../../store';
 import { modalActions } from '../../store/modal-slice';
 import styles from './ProductModal.module.scss';
 import ProductListSub from '../../interfaces/ProductListSub';
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { addToCart } from '../../store/cart-slice';
 import CheckBox from '../../ui/CheckBox/CheckBox';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
@@ -17,13 +16,13 @@ import ServiceInfo from '../ServiceInfo/ServiceInfo';
 
 const ProductModal = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(2);
   const [fitChecked, setFitChecked] = useState<boolean>(false);
-  const showProductModal = useSelector<RootState, boolean>((state) => state.modal.showProductModal);
+  const showProductModal = useAppSelector<boolean>((state) => state.modal.showProductModal);
   const { isFitProduct, defaultFit, defaultQuantity } = useProductState(showProductModal);
-  const productData = useSelector<RootState, ProductListSub>((state) => state.modal.data!);
+  const productData = useAppSelector<ProductListSub>((state) => state.modal.data!);
 
   useEffect(() => {
     if (!showProductModal) return;
@@ -124,7 +123,7 @@ const useProductState = (isShown: boolean) => {
   const user = useGetLoginedUser(isShown);
   const [defaultFit, setDefaultFit] = useState(false);
   const [defaultQuantity, setDefaultQuantity] = useState(2);
-  const isFitProduct = useSelector<RootState, boolean>((state) => ['A', 'B'].includes(state.modal.productCode ?? ''));
+  const isFitProduct = useAppSelector<boolean>((state) => ['A', 'B'].includes(state.modal.productCode ?? ''));
 
   useEffect(() => {
     if (!isShown || !user) return;
