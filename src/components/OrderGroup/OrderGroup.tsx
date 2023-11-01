@@ -97,7 +97,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, i
   async function cancelOrderHandler() {
     if (!window.confirm('주문을 취소하시겠습니까?')) return;
 
-    if (payment.virtual) {
+    if (payment.virtual && payment.sendType !== '결제대기') {
       setShowRefundModal(true);
     } else {
       cancel();
