@@ -6,10 +6,9 @@ import { Button, TextField } from '@mui/material';
 import useGetManagers from '../../../hooks/use-get-managers';
 import classNames from 'classnames';
 import ChildrenProps from '../../../interfaces/ChildrenProps';
-
 interface AdminSearchFormProps extends ChildrenProps {
-  onSubmit: (value: FormValues) => void;
   textLabel: string;
+  onSubmit: (formValues: FormValues) => void;
 }
 
 const AdminSearchForm: React.FC<AdminSearchFormProps> = (props) => {
@@ -26,14 +25,14 @@ const AdminSearchForm: React.FC<AdminSearchFormProps> = (props) => {
     });
   }
 
+  function submitHandler(event: React.FormEvent<HTMLFormElement>): void {
+    event.preventDefault();
+
+    props.onSubmit(formValues);
+  }
+
   return (
-    <form
-      className={classNames(styles.search_wrapper, props.className)}
-      onSubmit={(e) => {
-        e.preventDefault();
-        props.onSubmit(formValues);
-      }}
-    >
+    <form className={classNames(styles.search_wrapper, props.className)} onSubmit={submitHandler}>
       <DateRangePicker className={styles.date_picker} onDateChange={dataChangeHandler} />
       <MuiSelect
         className={styles.select}

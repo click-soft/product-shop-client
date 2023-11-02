@@ -3,14 +3,13 @@ import Card from '../../ui/Card/Card';
 import styles from './Login.module.scss';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import TextInput from '../../ui/TextInput/TextInput';
-import useToast from '../../hooks/use-toast';
 import useLogin from '../../hooks/use-login';
 import CircleLoading from '../Loading/CircleLoading';
 import classNames from 'classnames';
+import { toast } from 'react-toastify';
 
 function Login() {
   const navigate = useNavigate();
-  const { toast, toastConatiner } = useToast();
   const [inputs, setInputs] = useState({ id: '', password: '' });
   const passwordRef = useRef<HTMLInputElement>(null);
   const [searchQuery] = useSearchParams();
@@ -75,7 +74,6 @@ function Login() {
   return (
     <>
       {loading && <CircleLoading />}
-      {toastConatiner}
       <Card className={styles.card}>
         <div className={styles.container}>
           <h2>Login Account</h2>
@@ -84,7 +82,7 @@ function Login() {
               {inputBox}
               <TextInput
                 ref={passwordRef}
-                className={classNames(styles.password, styles.text_input) }
+                className={classNames(styles.password, styles.text_input)}
                 name="password"
                 type="password"
                 placeholder="비밀번호"

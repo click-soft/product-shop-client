@@ -6,6 +6,7 @@ import paymentSlice from './payment-slice';
 import ordersSlice from './orders-slice';
 import errorSlice from './error-slice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import adminOrderSlice from './adminOrderSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     payment: paymentSlice.reducer,
     orders: ordersSlice.reducer,
     error: errorSlice.reducer,
+    adminOrder: adminOrderSlice.reducer,
   },
 });
 

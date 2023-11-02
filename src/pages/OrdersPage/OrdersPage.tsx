@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './OrdersPage.module.scss';
 import OrderGroup from '../../components/OrderGroup/OrderGroup';
 import { useAppDispatch } from '../../store';
-import useToast from '../../hooks/use-toast';
 import { Payment } from '../../graphql/interfaces/payment';
 import { addToCart } from '../../store/cart-slice';
 import { useLazyQuery } from '@apollo/client';
@@ -14,6 +13,7 @@ import PaymentWithPage from '../../graphql/interfaces/payments-with-page';
 import useIntersectionObserver from '../../hooks/use-intersection-observer';
 import { updateOrderCancel } from '../../utils/payment-utils';
 import useSocketIo from '../../hooks/use-socket-io';
+import { toast } from 'react-toastify';
 
 const QUERY_KEY = 'getPaymentWithItems';
 
@@ -29,7 +29,6 @@ const fetchGetPaymentWithItems = async ({ pageParam = 1 }): Promise<PaymentWithP
 
 const OrdersPage = () => {
   const queryClient = useQueryClient();
-  const { toast, toastConatiner } = useToast();
   const dispatch = useAppDispatch();
   const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
   const [payments, setPayments] = useState<Payment[]>([]);
@@ -133,7 +132,6 @@ const OrdersPage = () => {
 
   return (
     <>
-      {toastConatiner}
       <div className={styles.main}>
         <ul className={styles['order-ul']}>
           {orderGroupsComponents}

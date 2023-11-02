@@ -9,7 +9,7 @@ import LoginMsgCard from '../../components/Login/LoginMsgCard/LoginMsgCard';
 import ErrorText from '../../ui/ErrorText/ErrorText';
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { GET_ACCOUNT_EXISTS, SAVE_ACCOUNT } from '../../graphql/queries/account';
-import useToast from '../../hooks/use-toast';
+import { toast } from 'react-toastify';
 
 const SignupPage = () => {
   const [ykiho, setYkiho] = useState('');
@@ -22,7 +22,6 @@ const SignupPage = () => {
   const [getAccount] = useLazyQuery(GET_ACCOUNT_EXISTS);
   const [saveAccount, { error: saveAccountError, data: saveAccountData }] = useMutation(SAVE_ACCOUNT);
   const navigate = useNavigate();
-  const { toast, toastConatiner } = useToast();
   const isEqualPassword = pwd === confirmPwd;
 
   useEffect(() => {
@@ -80,7 +79,6 @@ const SignupPage = () => {
 
   return (
     <>
-      {toastConatiner}
       <Card className={styles.container}>
         <Link to={'../login'} className={styles.to_back}>
           <AiOutlineClose className={styles.exit} />

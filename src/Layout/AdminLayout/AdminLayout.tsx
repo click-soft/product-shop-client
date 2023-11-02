@@ -4,11 +4,13 @@ import AdminHeader from './Header/AdminHeader';
 
 const AdminLayout = () => {
   return (
-    <BaseLayout
-      headerComponent={<AdminHeader />}
-      // footerComponent={}
-      leftMenuComponent={<AdminMenu />}
-    />
+    <>
+      <BaseLayout
+        headerComponent={<AdminHeader />}
+        // footerComponent={}
+        leftMenuComponent={<AdminMenu />}
+      />
+    </>
   );
 };
 

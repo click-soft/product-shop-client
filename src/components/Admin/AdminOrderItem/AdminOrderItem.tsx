@@ -8,23 +8,27 @@ import ChildrenProps from '../../../interfaces/ChildrenProps';
 import InnerSelect from './Components/DeliverySelect/DeliverySelect';
 import deliveryMethods from '../../../constants/deliveryMethods';
 import dayjs from 'dayjs';
+import useProductUpdate from '../../../hooks/adminOrder/useProductUpdate';
 
 interface AdminOrderItemProps {
   product: Product;
   managers: Em[];
-  onValueChange: (args: AdminOrderArgs) => void;
 }
 
-const AdminOrderItem: React.FC<AdminOrderItemProps> = ({ product, managers, onValueChange }) => {
+const AdminOrderItem: React.FC<AdminOrderItemProps> = ({ product, managers }) => {
+  const { fetchUpdateProduct } = useProductUpdate();
   const createDateString = dayjs(product.createDt).format('YYYY-MM-DD HH:mm');
-
-  const managerObject = managers.reduce(
+  const managerObject = managers?.reduce(
     (object: { [key: string]: string }, m: Em) => {
       object[m.code] = m.name;
       return object;
     },
     { '': '' }
   );
+
+  function valueChangeHandler(args: AdminOrderArgs) {
+    fetchUpdateProduct(args, product);
+  }
 
   return (
     <li className={styles.list_item}>
@@ -56,14 +60,14 @@ const AdminOrderItem: React.FC<AdminOrderItemProps> = ({ product, managers, onVa
         <InnerSelect
           object={deliveryMethods}
           value={product.orderCheck}
-          onChange={(value) => onValueChange({ type: '배송방법', value })}
+          onChange={(value) => valueChangeHandler({ type: '배송방법', value })}
         />
       </DataBox>
       <DataBox label="배송자">
         <InnerSelect
           object={managerObject}
           value={product.seller}
-          onChange={(value) => onValueChange({ type: '배송자', value })}
+          onChange={(value) => valueChangeHandler({ type: '배송자', value })}
         />
       </DataBox>
       <DataBox label="완료여부">
