@@ -44,3 +44,22 @@ export const getCartWithProduct = async (): Promise<Cart | undefined> => {
 
   return response.data.getCartWithProduct;
 };
+
+export const GET_CART_WITH_RRODUCT = gql`
+  {
+    getCartWithProduct {
+      id
+      cartItems {
+        id
+        quantity
+        fit
+        product {
+          smCode
+          smMyung
+          danga
+          danwi
+        }
+      }
+    }
+  }
+`;

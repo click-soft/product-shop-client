@@ -1,0 +1,42 @@
+.caption {
+  padding-bottom: 20px;
+  font-size: var(--fs-2xl);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  // max-width: 80rem;
+  table {
+    max-width: 60rem;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px;
+  }
+
+  th {
+    border-top: 1px solid var(--color-blue-400);
+    border-bottom: 1px solid var(--color-blue-400);
+    margin: 0;
+    padding: 10px 0;
+    background-color: var(--color-blue-200);
+  }
+
+  tr {
+    border-bottom: 1px solid var(--color-blue-400);
+  }
+}
+
+.first-column-header {
+  span {
+    position: absolute;
+  }
+}
+
+.first-column {
+  text-align: center;
+}
+
+.last-column {
+  text-align: center;
+}
