@@ -2,7 +2,7 @@ import styles from './AdminOrderPage.module.scss';
 import CircleLoading from '../../components/Loading/CircleLoading';
 import { useAppSelector } from '../../store';
 import AdminOrderList from '../../components/Admin/AdminOrderList/AdminOrderList';
-import AdminOrderForm from '../../components/AdminOrderForm/AdminOrderForm';
+import AdminOrderForm from '../../components/Admin/AdminOrderForm/AdminOrderForm';
 
 const AdminOrderPage = () => {
   const state = useAppSelector((state) => state.adminOrder);

@@ -1,0 +1,29 @@
+@import '../../../index.scss';
+
+$margin-bottom: 8px;
+
+.title_container {
+  position: relative;
+  padding: 20px 0;
+}
+
+.title {
+  position: relative;
+  text-align: center;
+}
+
+
+.input_style {
+  margin-bottom: $margin-bottom;
+}
+
+.signup {
+  @include custom-button;
+  width: 100%;
+  padding: 8px;
+  text-align: center;
+}
+
+.error {
+  margin-bottom: $margin-bottom;
+}

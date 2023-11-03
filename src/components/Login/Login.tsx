@@ -62,10 +62,9 @@ function Login() {
   ) : (
     <TextInput
       className={styles.text_input}
-      placeholder="요양기관 기호"
+      placeholder="요양기관 OR 사업자기호"
       name="id"
-      // value={inputValue}
-      maxLength={8}
+      maxLength={10}
       onChange={inputChangeHandler}
       onKeyDown={keyDownHandler}
     />

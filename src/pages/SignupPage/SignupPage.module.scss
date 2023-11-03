@@ -1,7 +1,5 @@
 @import '../../index.scss';
 
-$margin-bottom: 8px;
-
 .container {
   position: fixed;
   left: 50%;
@@ -15,16 +13,6 @@ $margin-bottom: 8px;
   }
 }
 
-.title_container {
-  position: relative;
-  padding: 20px 0;
-}
-
-.title {
-  position: relative;
-  text-align: center;
-}
-
 .to_back {
   position: absolute;
   top: 10px;
@@ -36,19 +24,4 @@ $margin-bottom: 8px;
   width: 1.5rem;
   text-decoration: none;
   color: var(--color-blue-900);
-}
-
-.input_style {
-  margin-bottom: $margin-bottom;
-}
-
-.signup {
-  @include custom-button;
-  width: 100%;
-  padding: 8px;
-  text-align: center;
-}
-
-.error {
-  margin-bottom: $margin-bottom;
 }
