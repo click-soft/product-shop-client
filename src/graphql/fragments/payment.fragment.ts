@@ -35,6 +35,7 @@ export const GET_PAYMENTS_FIELDS = gql`
     approvedAt
     sendType
     cancel
+    test
     virtual {
       ...PaymentVirtualField
     }

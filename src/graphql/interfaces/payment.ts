@@ -15,6 +15,7 @@ export interface Payment {
   cancel: boolean;
   paymentItems: PaymentItem[];
   virtual?: VirtualAccount | null;
+  test?: number;
   cs?: Cs;
 }
 

@@ -112,6 +112,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, i
           <div className={styles['order-id']}>주문번호 : {payment.orderId}</div>
           <div className={sendTypeClasses.join(' ')}>{sendType}</div>
         </div>
+        {payment.test && <div className={styles.test_order}>[테스트{payment.test}] 환경에서 생성되었습니다.</div>}
         <div className={styles['order-body-wrapper']}>
           <ul>{orderItems}</ul>
         </div>

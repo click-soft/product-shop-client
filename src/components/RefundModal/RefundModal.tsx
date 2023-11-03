@@ -54,6 +54,8 @@ const RefundModal: React.FC<RefundModalProps> = (props) => {
           </label>
           <input ref={holderNameRef} className={styles.data} id="holder_input" type="text" />
         </section>
+
+        <div className={styles.info} >영입일 기준 총 2일이 소요됩니다.</div>
         <div className={styles.button_container}>
           <button type="submit" className={styles.refund_button}>
             환불
@@ -63,6 +65,8 @@ const RefundModal: React.FC<RefundModalProps> = (props) => {
           </button>
         </div>
       </form>
+
+    
     </Modal>
   );
 };

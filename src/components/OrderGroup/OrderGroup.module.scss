@@ -115,3 +115,11 @@ $color-blue: var(--color-blue-500);
   font-weight: bold;
   color: var(--color-blue-900);
 }
+
+.test_order{
+  color: var(--color-rose-500);
+  padding: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(red, $alpha: 0.2);
+}
