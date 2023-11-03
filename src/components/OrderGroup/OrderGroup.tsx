@@ -17,34 +17,56 @@ interface OrderGroupProps {
   isAdmin?: boolean;
 }
 
-const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, isAdmin }) => {
-  const longDateString = moment(payment.requestedAt).format('YYYY-MM-DD HH:mm');
-  const sendTypeClasses = [styles['send-type-base']];
-  const [showRefundModal, setShowRefundModal] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const dispatch = useAppDispatch();
-
-  let sendType = payment.sendType.toString();
-
+function getSendType(payment: Payment) {
   if (payment.cancel) {
-    sendType = '주문 취소';
-    sendTypeClasses.push(styles['send-type-cancel']);
-  } else {
-    switch (payment.sendType) {
-      case '배송중':
-        sendTypeClasses.push(styles['send-type-ing']);
-        break;
-      case '배송완료':
-        sendTypeClasses.push(styles['send-type-end']);
-        break;
+    return '주문취소';
+  }
+
+  if (['결제대기', '주문확인'].includes(payment.sendType)) {
+    const items = payment.paymentItems;
+    const isOrdered = items.some((pi) => pi.product?.etc1?.startsWith('1'));
+    const isWaybill = items.some((pi) => pi.product?.orderCheck === '0' && pi.product?.bigo?.trim() !== '');
+
+    if (isOrdered) {
+      return '상품준비중';
+    }
+
+    if (isWaybill) {
+      return '배송중';
     }
   }
 
+  return payment.sendType;
+}
+
+function getSendTypeClassNames(sendType: string) {
+  const sendTypeClasses = [styles['send-type-base']];
+
+  switch (sendType) {
+    case '주문취소':
+      return sendTypeClasses.concat(styles['send-type-cancel']);
+    case '상품준비중':
+    case '배송중':
+      return sendTypeClasses.concat(styles['send-type-ing']);
+    case '배송완료':
+      return sendTypeClasses.concat(styles['send-type-end']);
+  }
+
+  return sendTypeClasses;
+}
+
+const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, isAdmin }) => {
+  const dispatch = useAppDispatch();
+  const longDateString = moment(payment.requestedAt).format('YYYY-MM-DD HH:mm');
+  const [showRefundModal, setShowRefundModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const sendType = getSendType(payment);
+  const sendTypeClasses = getSendTypeClassNames(sendType);
   const orderItems = payment.paymentItems.map((item, i) => {
     return <OrderItem key={item.id} item={item} setSeparator={i > 0} cancel={payment.cancel} />;
   });
 
-  const canCancel = !payment.cancel && ['결제대기', '주문확인'].includes(payment.sendType);
+  const canCancel = !payment.cancel && ['결제대기', '주문확인'].includes(sendType);
 
   const cancelButtonComponent = (
     <button className={styles['cancel-button']} onClick={cancelOrderHandler}>
@@ -96,7 +118,7 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, i
   async function cancelOrderHandler() {
     if (!window.confirm('주문을 취소하시겠습니까?')) return;
 
-    if (payment.virtual && payment.sendType !== '결제대기') {
+    if (payment.virtual && sendType !== '결제대기') {
       setShowRefundModal(true);
     } else {
       cancel();

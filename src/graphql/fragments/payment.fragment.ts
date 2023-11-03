@@ -46,7 +46,9 @@ export const GET_PAYMENTS_FIELDS = gql`
       quantity
       amount
       product {
+        orderCheck
         bigo
+        etc1
       }
     }
   }
