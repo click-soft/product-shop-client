@@ -8,8 +8,6 @@ function getEnvironment(): 'test' | 'production' | 'development' {
   }
 }
 
-console.log(process.env);
-
 export const environment = getEnvironment();
 export const TOSSPAYMENTS_CLIENT_KEY =
   environment === 'production'
