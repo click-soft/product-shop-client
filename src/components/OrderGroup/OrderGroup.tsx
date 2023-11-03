@@ -24,15 +24,14 @@ function getSendType(payment: Payment) {
 
   if (['결제대기', '주문확인'].includes(payment.sendType)) {
     const items = payment.paymentItems;
-    const isOrdered = items.some((pi) => pi.product?.etc1?.startsWith('1'));
     const isWaybill = items.some((pi) => pi.product?.orderCheck === '0' && pi.product?.bigo?.trim() !== '');
-
-    if (isOrdered) {
-      return '상품준비중';
-    }
-
     if (isWaybill) {
       return '배송중';
+    }
+
+    const isOrdered = items.some((pi) => pi.product?.etc1?.startsWith('1'));
+    if (isOrdered) {
+      return '상품준비중';
     }
   }
 
