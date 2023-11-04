@@ -3,7 +3,7 @@ import styles from './ProductList.module.scss';
 import ProductListSub from '../../../interfaces/ProductListSub';
 import ChildrenProps from '../../../interfaces/ChildrenProps';
 import ProductItem from '../ProductItem/ProductItem';
-import { menuObject } from '../../../shared/text-mapping';
+import { menuObject } from '../../../data/text-mapping';
 
 interface ProductListProps extends ChildrenProps {
   prodCode: string;

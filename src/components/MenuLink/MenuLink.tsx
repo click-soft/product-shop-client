@@ -1,7 +1,7 @@
 import styles from './MenuLink.module.scss';
 import { useAppDispatch } from '../../store';
 import { modalActions } from '../../store/modal-slice';
-import { menuObject } from '../../shared/text-mapping';
+import { menuObject } from '../../data/text-mapping';
 import useResizeWindow from '../../hooks/use-resize-window';
 
 interface MenuLinkProps {

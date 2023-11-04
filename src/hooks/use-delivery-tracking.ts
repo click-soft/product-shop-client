@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { deliveryData as deliveryTrackingData } from '../shared/text-mapping';
+import { deliveryData as deliveryTrackingData } from '../data/text-mapping';
 import { TrackingResult } from '../interfaces/tracking';
 
 const BASE_URL = 'https://apis.tracker.delivery/carriers';

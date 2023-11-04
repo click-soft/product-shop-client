@@ -6,7 +6,7 @@ import { ymdToShortString } from '../../../utils/parse';
 import Em from '../../../graphql/interfaces/em';
 import ChildrenProps from '../../../interfaces/ChildrenProps';
 import InnerSelect from './Components/DeliverySelect/DeliverySelect';
-import deliveryMethods from '../../../constants/deliveryMethods';
+import deliveryMethods from '../../../data/deliveryMethods';
 import dayjs from 'dayjs';
 import useProductUpdate from '../../../hooks/adminOrder/useProductUpdate';
 
