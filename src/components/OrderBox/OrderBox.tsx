@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './OrderGroup.module.scss';
+import styles from './OrderBox.module.scss';
 import Card from '../../ui/Card/Card';
 import moment from 'moment';
 import OrderItem from '../OrderItem/OrderItem';
@@ -9,10 +9,11 @@ import CircleLoading from '../Loading/CircleLoading';
 import { cancelOrder, refundOrder } from '../../store/orders-slice';
 import RefundModal from '../RefundModal/RefundModal';
 import { useAppDispatch } from '../../store';
+import { OrderCancelArgs } from '../../hooks/orders/useOrders';
 
 interface OrderGroupProps {
   payment: Payment;
-  onCancel: (state: 'success' | 'error', message: string) => void;
+  onCancel: (args: OrderCancelArgs) => void;
   onReorder?: () => void;
   isAdmin?: boolean;
 }
@@ -79,9 +80,9 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, i
     dispatch(cancelOrder({ payment, cancelReason: '미선택' }))
       .unwrap()
       .then(() => {
-        onCancel('success', '취소되었습니다.');
+        onCancel({ state: 'success', message: '취소되었습니다.' });
       })
-      .catch((error: any) => onCancel('error', error.message))
+      .catch((error: any) => onCancel({ state: 'error', message: error.message }))
       .then(() => setLoading(false));
   }
 
@@ -107,10 +108,10 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, i
     )
       .unwrap()
       .then(() => {
-        onCancel('success', '환불되었습니다.');
+        onCancel({ state: 'success', message: '환불되었습니다.' });
         setShowRefundModal(false);
       })
-      .catch((error: any) => onCancel('error', error.message))
+      .catch((error: any) => onCancel({ state: 'error', message: error.message }))
       .then(() => setLoading(false));
   }
 

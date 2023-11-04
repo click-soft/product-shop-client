@@ -3,7 +3,7 @@ import useAdminWebOrdersInfiniteQuery, {
   GET_AMDIN_PAYMENTS_KEY,
 } from '../../../hooks/adminWebOrders/useAdminWebOrdersInfiniteQuery';
 import useAdminWebOrdersStore from '../../../store/adminWebOrdersStore';
-import OrderGroup from '../../OrderGroup/OrderGroup';
+import OrderGroup from '../../OrderBox/OrderBox';
 import styles from './AdminWebOrdersList.module.scss';
 import { useQueryClient } from 'react-query';
 import { useEffect } from 'react';
@@ -19,7 +19,7 @@ const AdminWebOrdersList = () => {
         <OrderGroup
           isAdmin
           payment={p}
-          onCancel={(state, message) => {
+          onCancel={({ state, message }) => {
             toast[state](message);
             if (state === 'success') {
               queryClient.removeQueries(GET_AMDIN_PAYMENTS_KEY);

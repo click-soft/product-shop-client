@@ -1,16 +1,16 @@
 import React from 'react';
-import styles from './Products.module.scss';
-import ProductListSub from '../../interfaces/ProductListSub';
-import ChildrenProps from '../../interfaces/ChildrenProps';
-import ProductItem from '../Product/ProductItem';
-import { menuObject } from '../../shared/text-mapping';
+import styles from './ProductList.module.scss';
+import ProductListSub from '../../../interfaces/ProductListSub';
+import ChildrenProps from '../../../interfaces/ChildrenProps';
+import ProductItem from '../ProductItem/ProductItem';
+import { menuObject } from '../../../shared/text-mapping';
 
-interface ProductsProps extends ChildrenProps {
+interface ProductListProps extends ChildrenProps {
   prodCode: string;
   prds: ProductListSub[];
 }
 
-const Products: React.FC<ProductsProps> = (props) => {
+const ProductList: React.FC<ProductListProps> = (props) => {
   const title = menuObject[props.prodCode];
 
   const components = props.prds.map((pls) => {
@@ -27,4 +27,4 @@ const Products: React.FC<ProductsProps> = (props) => {
   );
 };
 
-export default Products;
+export default ProductList;
