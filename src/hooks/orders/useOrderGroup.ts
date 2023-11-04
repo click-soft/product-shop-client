@@ -43,7 +43,7 @@ const useOrderGroup = (payment: Payment) => {
 
     const response = await dispatch(cancelOrder({ payment, cancelReason: '미선택' }));
     if (response.meta.requestStatus === 'rejected') {
-      callback({ state: 'error', message: (response as any).message });
+      callback({ state: 'error', message: (response as any).error.message });
     } else {
       callback({ state: 'success', message: '취소되었습니다.' });
     }
