@@ -12,7 +12,7 @@ const useOrderGroup = (payment: Payment) => {
   const sendType = getSendType(payment);
   const requestedAtString = dayjs(payment.requestedAt).format('YYYY-MM-DD HH:mm');
   const isValidCancel = !payment.cancel && ['결제대기', '주문확인'].includes(sendType);
-  
+
   function validRefund() {
     return payment.virtual && sendType !== '결제대기';
   }
@@ -39,36 +39,37 @@ const useOrderGroup = (payment: Payment) => {
   }
 
   async function cancel(callback: (args: OrderCancelArgs) => void) {
-    try {
-      setLoading(true);
-      await dispatch(cancelOrder({ payment, cancelReason: '미선택' }));
+    setLoading(true);
+
+    const response = await dispatch(cancelOrder({ payment, cancelReason: '미선택' }));
+    if (response.meta.requestStatus === 'rejected') {
+      callback({ state: 'error', message: (response as any).message });
+    } else {
       callback({ state: 'success', message: '취소되었습니다.' });
-    } catch (error: any) {
-      callback({ state: 'error', message: error.message });
-    } finally {
-      setLoading(false);
     }
+
+    setLoading(false);
   }
 
   async function refund({ bank, accountNumber, holderName }: RefundType, callback: (args: OrderCancelArgs) => void) {
     setLoading(true);
 
-    try {
-      await dispatch(
-        refundOrder({
-          paymentId: payment.id,
-          bank,
-          accountNumber: accountNumber,
-          holderName,
-          cancelReason: '사용자의 요청으로 인한 환불',
-        })
-      );
+    const response = await dispatch(
+      refundOrder({
+        paymentId: payment.id,
+        bank,
+        accountNumber: accountNumber,
+        holderName,
+        cancelReason: '사용자의 요청으로 인한 환불',
+      })
+    );
+
+    if (response.meta.requestStatus === 'rejected') {
+      callback({ state: 'error', message: (response as any).error.message });
+    } else {
       callback({ state: 'success', message: '환불되었습니다.' });
-    } catch (error: any) {
-      callback({ state: 'error', message: error.message });
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
   }
 
   return {
