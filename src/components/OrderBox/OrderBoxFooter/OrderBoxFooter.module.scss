@@ -1,0 +1,51 @@
+@import '../../../index.scss';
+
+.footer {
+  padding: 20px 40px;
+  box-shadow: 0px -1px 3px rgba($color: rgb(92, 92, 255), $alpha: 0.3);
+}
+
+.label_text {
+  display: flex;
+  justify-content: space-between;
+
+  .label {
+    width: 80px;
+    font-weight: bold;
+  }
+}
+
+.reorder_button,
+.cancel_button {
+  width: 100%;
+  height: 38px;
+  margin-top: 10px;
+}
+
+.cancel_button {
+  @include custom-button($backgroundColor: var(--color-rose-500), $activeBackgroundColor: red);
+}
+
+.reorder_button {
+  @include custom-button(
+    $backgroundColor: white,
+    $activeBackgroundColor: Azure,
+    $color: var(--color-green-800),
+    $borderColor: var(--color-green-600)
+  );
+}
+
+.virtual_info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  padding: 15px;
+  background-color: var(--color-red-500);
+  box-shadow: 0px 0px 4px rgba($color: rgb(92, 92, 255), $alpha: 0.8);
+}
+
+.virtual_info__title {
+  text-align: center;
+  font-weight: bold;
+  color: var(--color-blue-900);
+}

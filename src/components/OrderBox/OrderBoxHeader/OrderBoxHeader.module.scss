@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sz-2) var(--sz-2);
+  box-shadow: 1px 2px 4px rgba($color: rgb(92, 92, 255), $alpha: 0.3);
+  font-weight: bold;
+  background-color: var(--color-amber-400);
+  color: var(--color-amber-900);
+}
+
+.test_order {
+  color: var(--color-rose-500);
+  padding: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(red, $alpha: 0.2);
+}
+
+.send_type_base {
+  font-weight: normal;
+  font-size: var(--fs-xs);
+  color: var(--color-gray-500);
+  border-radius: 4px;
+  border: 1px solid white;
+  padding: 4px;
+  background-color: white;
+}
+
+.send_type_ing {
+  color: white;
+  background-color: var(--color-blue-400);
+}
+
+.send_type_end {
+  color: white;
+  background-color: var(--color-green-600);
+}
+
+.send_type_cancel {
+  color: white;
+  border: 1px solid white;
+  background-color: var(--color-rose-500);
+}

@@ -1,128 +1,38 @@
 import React, { useState } from 'react';
 import styles from './OrderBox.module.scss';
 import Card from '../../ui/Card/Card';
-import moment from 'moment';
-import OrderItem from '../OrderItem/OrderItem';
 import { Payment } from '../../graphql/interfaces/payment';
-import bankData from '../../data/bankData';
 import CircleLoading from '../Loading/CircleLoading';
-import { cancelOrder, refundOrder } from '../../store/orders-slice';
-import RefundModal from '../RefundModal/RefundModal';
-import { useAppDispatch } from '../../store';
+import RefundModal, { RefundType } from '../RefundModal/RefundModal';
 import { OrderCancelArgs } from '../../hooks/orders/useOrders';
+import useOrderGroup from '../../hooks/orders/useOrderGroup';
+import OrderItemList from './OrderItemList/OrderItemList';
+import OrderBoxHeader from './OrderBoxHeader/OrderBoxHeader';
+import OrderBoxFooter from './OrderBoxFooter/OrderBoxFooter';
 
-interface OrderGroupProps {
+interface Props {
   payment: Payment;
   onCancel: (args: OrderCancelArgs) => void;
   onReorder?: () => void;
   isAdmin?: boolean;
 }
 
-function getSendType(payment: Payment) {
-  if (payment.cancel) {
-    return '주문취소';
-  }
-
-  if (['결제대기', '주문확인'].includes(payment.sendType)) {
-    const items = payment.paymentItems;
-    const isWaybill = items.some((pi) => pi.product?.orderCheck === '0' && pi.product?.bigo?.trim() !== '');
-    if (isWaybill) {
-      return '배송중';
-    }
-
-    const isOrdered = items.some((pi) => pi.product?.etc1?.startsWith('1'));
-    if (isOrdered) {
-      return '상품준비중';
-    }
-  }
-
-  return payment.sendType;
-}
-
-function getSendTypeClassNames(sendType: string) {
-  const sendTypeClasses = [styles['send-type-base']];
-
-  switch (sendType) {
-    case '주문취소':
-      return sendTypeClasses.concat(styles['send-type-cancel']);
-    case '상품준비중':
-    case '배송중':
-      return sendTypeClasses.concat(styles['send-type-ing']);
-    case '배송완료':
-      return sendTypeClasses.concat(styles['send-type-end']);
-  }
-
-  return sendTypeClasses;
-}
-
-const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, isAdmin }) => {
-  const dispatch = useAppDispatch();
-  const longDateString = moment(payment.requestedAt).format('YYYY-MM-DD HH:mm');
+const OrderBox: React.FC<Props> = ({ payment, onCancel, onReorder, isAdmin }) => {
+  const { loading, sendType, requestedAtString, isValidCancel, validRefund, cancel, refund } = useOrderGroup(payment);
   const [showRefundModal, setShowRefundModal] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const sendType = getSendType(payment);
-  const sendTypeClasses = getSendTypeClassNames(sendType);
-  const orderItems = payment.paymentItems.map((item, i) => {
-    return <OrderItem key={item.id} item={item} setSeparator={i > 0} cancel={payment.cancel} />;
-  });
-
-  const canCancel = !payment.cancel && ['결제대기', '주문확인'].includes(sendType);
-
-  const cancelButtonComponent = (
-    <button className={styles['cancel-button']} onClick={cancelOrderHandler}>
-      주문취소
-    </button>
-  );
-
-  function cancel() {
-    setLoading(true);
-
-    dispatch(cancelOrder({ payment, cancelReason: '미선택' }))
-      .unwrap()
-      .then(() => {
-        onCancel({ state: 'success', message: '취소되었습니다.' });
-      })
-      .catch((error: any) => onCancel({ state: 'error', message: error.message }))
-      .then(() => setLoading(false));
-  }
-
-  function refundHandler({
-    bank,
-    accountNumber,
-    holderName,
-  }: {
-    bank: string;
-    accountNumber: string;
-    holderName: string;
-  }) {
-    setLoading(true);
-
-    dispatch(
-      refundOrder({
-        paymentId: payment.id,
-        bank,
-        accountNumber: accountNumber,
-        holderName,
-        cancelReason: '사용자의 요청으로 인한 환불',
-      })
-    )
-      .unwrap()
-      .then(() => {
-        onCancel({ state: 'success', message: '환불되었습니다.' });
-        setShowRefundModal(false);
-      })
-      .catch((error: any) => onCancel({ state: 'error', message: error.message }))
-      .then(() => setLoading(false));
-  }
 
   async function cancelOrderHandler() {
-    if (!window.confirm('주문을 취소하시겠습니까?')) return;
-
-    if (payment.virtual && sendType !== '결제대기') {
-      setShowRefundModal(true);
-    } else {
-      cancel();
+    if (validRefund()) {
+      return setShowRefundModal(true);
     }
+    cancel(onCancel);
+  }
+
+  function refundHandler(refundType: RefundType): void {
+    refund(refundType, (args) => {
+      if (args.state === 'success') setShowRefundModal(false);
+      onCancel(args);
+    });
   }
 
   return (
@@ -130,55 +40,19 @@ const OrderGroup: React.FC<OrderGroupProps> = ({ payment, onCancel, onReorder, i
       {loading && <CircleLoading />}
       {showRefundModal && <RefundModal onClose={() => setShowRefundModal(false)} onRefund={refundHandler} />}
       <Card className={styles['orders-container']}>
-        <div className={styles['order-title-wrapper']}>
-          <div className={styles['order-id']}>주문번호 : {payment.orderId}</div>
-          <div className={sendTypeClasses.join(' ')}>{sendType}</div>
-        </div>
-        {payment.test && <div className={styles.test_order}>[테스트{payment.test}] 환경에서 생성되었습니다.</div>}
-        <div className={styles['order-body-wrapper']}>
-          <ul>{orderItems}</ul>
-        </div>
-        <div className={styles.footer}>
-          {isAdmin && (
-            <>
-              <LabelText label="요양기호" text={payment.ykiho} />
-              <LabelText label="거래처명칭" text={payment.cs?.myung} />
-            </>
-          )}
-          <LabelText label="주문방법" text={payment.method} />
-          <LabelText label="주문일시" text={longDateString} />
-          <LabelText label="총 비용" text={payment.amount.toLocaleString()} />
-
-          {payment.virtual && payment.sendType === '결제대기' && !payment.cancel && (
-            <Card className={`${styles.virtual_info}`}>
-              <div className={styles.virtual_info__title}>가상계좌</div>
-              <LabelText label="은행" text={bankData[payment.virtual.bankCode]} />
-              <LabelText label="계좌번호" text={payment.virtual?.accountNumber} />
-              <LabelText label="만료일시" text={moment(payment.virtual.dueDate).format('YYYY-MM-DD HH:mm:ss')} />
-            </Card>
-          )}
-
-          {!isAdmin && canCancel && cancelButtonComponent}
-          {isAdmin && !payment.cancel && cancelButtonComponent}
-
-          {!canCancel && !isAdmin && (
-            <button className={styles['reorder-button']} onClick={onReorder}>
-              재주문
-            </button>
-          )}
-        </div>
+        <OrderBoxHeader payment={payment} sendType={sendType} />
+        <OrderItemList payment={payment} />
+        <OrderBoxFooter
+          payment={payment}
+          isAdmin={isAdmin}
+          isValidCancel={isValidCancel}
+          requestedAtString={requestedAtString}
+          onCancel={cancelOrderHandler}
+          onReorder={() => onReorder?.()}
+        />
       </Card>
     </>
   );
 };
 
-const LabelText = ({ label, text }: { label: string; text?: string }) => {
-  return (
-    <div className={styles['label-text']}>
-      <div className={styles.label}>{label}</div>
-      <div className={styles.text}>{text}</div>
-    </div>
-  );
-};
-
-export default OrderGroup;
+export default OrderBox;

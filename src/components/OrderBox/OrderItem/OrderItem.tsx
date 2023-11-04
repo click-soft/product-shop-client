@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styles from './OrderItem.module.scss';
-import { PaymentItem } from '../../interfaces/PaymentItemType';
-import useDeliveryTracking, { TrackingType } from '../../hooks/use-delivery-tracking';
-import TrackingModal from '../TrackingModal/TrackingModal';
+import styles from './OrderItem.module.scss'
+import { PaymentItem } from '../../../interfaces/PaymentItemType';
+import useDeliveryTracking, { TrackingType } from '../../../hooks/use-delivery-tracking';
+import TrackingModal from '../../TrackingModal/TrackingModal';
 
 interface OrderItemProps {
   item: PaymentItem;

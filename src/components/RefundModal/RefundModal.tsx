@@ -5,8 +5,9 @@ import bankData from '../../data/bankData';
 
 interface RefundModalProps {
   onClose: () => void;
-  onRefund: ({ bank, accountNumber, holderName }: { bank: string; accountNumber: string; holderName: string }) => void;
+  onRefund: (refund: RefundType) => void;
 }
+
 const RefundModal: React.FC<RefundModalProps> = (props) => {
   const bankRef = useRef<HTMLSelectElement | null>(null);
   const accountNumberRef = useRef<HTMLInputElement | null>(null);
@@ -73,4 +74,5 @@ const RefundModal: React.FC<RefundModalProps> = (props) => {
   );
 };
 
+export type RefundType = { bank: string; accountNumber: string; holderName: string };
 export default RefundModal;

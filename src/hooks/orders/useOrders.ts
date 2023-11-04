@@ -6,10 +6,11 @@ import useOrdersStore from '../../store/ordersStore';
 import { GET_PAYMENT_ITEM_CODE } from '../../graphql/queries/payment-item';
 import { useLazyQuery } from '@apollo/client';
 import { addToCart } from '../../store/cart-slice';
-import useSocketIo from '../use-socket-io';
+import { useAppDispatch } from '../../store';
 
 const useOrders = () => {
-  const { cancelPayment, updateSendType } = useOrdersStore();
+  const dispatch = useAppDispatch();
+  const { cancelPayment } = useOrdersStore();
   const queryClient = useQueryClient();
   const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
 
@@ -54,6 +55,3 @@ export type OrderCancelArgs = {
 };
 
 export default useOrders;
-function dispatch(arg0: any) {
-  throw new Error('Function not implemented.');
-}
