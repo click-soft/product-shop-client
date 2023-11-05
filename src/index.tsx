@@ -14,12 +14,13 @@ import client from './graphql/apollo-client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import ThemeProvider from './ui/ThemeProvider/ThemeProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,      
+      refetchOnWindowFocus: false,
       retry: 0,
     },
   },
@@ -30,7 +31,9 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <ApolloProvider client={client}>
         <Provider store={store}>
-          <App />
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
         </Provider>
       </ApolloProvider>
     </QueryClientProvider>
