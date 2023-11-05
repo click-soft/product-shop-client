@@ -3,9 +3,7 @@
   top: var(--header-height);
   right: 0;
   min-width: 22rem;
-  background-color: rgba($color: rgb(69, 69, 255), $alpha: 0.5);
-  // overflow: hidden;
-  // height: 40rem;
+  background-color: var(--color-white);
   animation: down 0.5s ease-in forwards;
   z-index: 10000;
 }
