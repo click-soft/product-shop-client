@@ -18,8 +18,6 @@ import PaymentLayout from './Layout/PaymentLayout/PaymentLayout';
 import RootLayout from './Layout/RootLayout/RootLayout';
 import AdminOrderPage from './pages/AdminOrderPage/AdminOrderPage';
 import AdminWebOrdersPage from './pages/AdminWebOrdersPage/AdminWebOrdersPage';
-import useThemeStore from './store/themeStore';
-import { useEffect } from 'react';
 
 const router = createBrowserRouter([
   {

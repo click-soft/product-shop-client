@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 export const CS_FIELD = gql`
   fragment CsField on CsType {
-    gubun
+    jisa
     code
     myung
     daepyo

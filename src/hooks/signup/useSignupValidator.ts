@@ -5,7 +5,7 @@ const useSignupValidator = () => {
   const { id, pwd, confirmPwd, isIdExists, setIdError, setPwdError } = useSignupStore();
   const [pwdChanged, setPwdChanged] = useState<HTMLInputElement[]>([]);
   const isEqualPassword = pwd === confirmPwd;
-  const isValidSave = !!(id && !isIdExists && isEqualPassword);
+  const isValidSave = !!(id && !isIdExists && isEqualPassword && pwd);
 
   function setPwdChangedElem(elem: HTMLInputElement) {
     setPwdChanged((p) => {
