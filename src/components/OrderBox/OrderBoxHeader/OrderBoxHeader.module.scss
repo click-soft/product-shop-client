@@ -1,3 +1,13 @@
+:root {
+  --theme-bg-test-order-box-header: var(--color-rose-200);
+  --theme-text-test-order-box-header: var(--color-rose-500);
+}
+
+:root[color-theme='dark'] {
+  --theme-bg-test-order-box-header: var(--color-rose-900);
+  --theme-text-test-order-box-header: var(--color-rose-200);
+}
+
 .wrapper {
   display: flex;
   justify-content: space-between;
@@ -5,16 +15,16 @@
   padding: var(--sz-2) var(--sz-2);
   box-shadow: 1px 2px 4px rgba($color: rgb(92, 92, 255), $alpha: 0.3);
   font-weight: bold;
-  background-color: var(--color-amber-400);
-  color: var(--color-amber-900);
+  background-color: var(--theme-bg-amber-400);
+  color: var(--theme-text-amber-900);
 }
 
 .test_order {
-  color: var(--color-rose-500);
+  color: var(--theme-text-test-order-box-header);
   padding: 0.5rem;
   font-weight: bold;
   text-align: center;
-  background-color: rgba(red, $alpha: 0.2);
+  background-color: var(--theme-bg-test-order-box-header);
 }
 
 .send_type_base {

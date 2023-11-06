@@ -21,7 +21,7 @@ $color-gray : var(--color-gray-500);
 
 .title {
   font-size: 1rem;
-  color: var(--color-blue-500);
+  color: var(--theme-blue-600);
 
   &.error {
     color: var(--color-red-500);

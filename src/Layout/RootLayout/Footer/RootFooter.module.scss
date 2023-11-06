@@ -26,7 +26,7 @@
 }
 
 .corporate {
-  color: black;
+  color: var(--theme-text-black);
   font-size: var(--fs-base);
   padding-bottom: 6px;
 }
@@ -40,6 +40,6 @@
 }
 
 .copyright {
-  color: black;
+  color: var(--theme-text-black);
   font-size: var(--fs-xs);
 }

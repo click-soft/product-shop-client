@@ -4,10 +4,11 @@
 
 .main__text {
   font-size: var(--fs-3xl);
-  color: var(--color-blue-500);
+  color: var(--theme-blue-600);
   font-weight: bold;
 }
 
 .main__description {
+  color: var(--theme-text-black);
   padding-top: 20px;
 }

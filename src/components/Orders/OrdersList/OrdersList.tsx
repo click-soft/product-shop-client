@@ -16,7 +16,7 @@ const OrdersList = () => {
   });
 
   return (
-    <ul className={styles['order_ul']}>
+    <ul className={styles.order_ul}>
       {orderGroupsComponents}
       <li>{observerComponent}</li>
     </ul>

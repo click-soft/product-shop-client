@@ -1,22 +1,7 @@
 :root {
   --radius-primary: 4px;
-  --backcolor-primary: rgb(233, 237, 249);
   --cart-view-height: 5rem;
   --header-height: 48px;
-}
-
-:root[color-theme='dark'] {
-  --backcolor-primary: rgb(68, 70, 84);
-  --color-white: rgb(69, 73, 87);
-
-  --color-gray-100: rgb(54, 54, 54);
-  --color-gray-500: rgb(179, 179, 179);
-
-  --color-blue-400: rgb(150, 170, 220);
-  --color-blue-500: rgb(170, 190, 220);
-  --color-blue-900: rgb(190, 220, 250);
-
-  --color-rose-500: rgb(255, 214, 214);
 }
 
 * {

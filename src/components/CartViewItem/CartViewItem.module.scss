@@ -1,23 +1,31 @@
 @import '../../index.scss';
 
-.cart-item {
+:root {
+  --theme-bd-bt-cart-view-item: var(--color-blue-200);
+}
+
+:root[color-theme='dark'] {
+  --theme-bd-bt-cart-view-item: rgb(101, 99, 112);
+}
+
+.cart_item {
   display: flex;
 }
 
-.cart-item__icon {
+.cart_item__icon {
   width: 30px;
   height: 30px;
   margin: 10px;
 }
 
-.cart-item {
+.cart_item {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.cart-item__head,
-.cart-item__body {
+.cart_item__head,
+.cart_item__body {
   flex: 1;
   display: flex;
   align-items: center;
@@ -25,22 +33,22 @@
   justify-content: space-between;
 }
 
-.cart-item__body__left {
+.cart_item__body__left {
   display: flex;
   align-items: center;
 }
 
 @media (min-width: 768px) {
-  .cart-item__head,
-  .cart-item__body {
+  .cart_item__head,
+  .cart_item__body {
     flex: 1;
     display: flex;
     align-items: center;
   }
 }
 
-.cart-item__head {
-  border-bottom: 1px solid var(--color-blue-200);
+.cart_item__head {
+  border-bottom: 1px solid var(--theme-bd-bt-cart-view-item);
 }
 
 .detail__head__product {
@@ -52,43 +60,45 @@
   display: flex;
 }
 
-.product-name {
+.product_name {
+  color: var(--theme-text-black);
   font-weight: bold;
   font-size: var(--fs-xl);
 }
 
-.product-info {
+.product_info {
   @include fit-mark;
   margin: 4px 4px 0 0;
 }
 
-.unit-style {
+.unit_style {
   @include box-mark;
   margin: 4px 4px 0 0;
 }
 
-.cart-item__body__price {
-  color: var(--color-gray-500);
+.cart_item__body__price {
+  color: var(--theme-text-gray);
   margin-right: 4px;
 }
 
-.cart-item__body__combo {
+.cart_item__body__combo {
   width: 50px;
-  border: 1px solid var(--color-blue-400);
+  border: 1px solid var(--theme-blue-400);
   border-radius: 4px;
   padding: 4px;
   outline: none;
 }
 
-.first-column {
+.first_column {
   text-align: center;
 }
 
-.last-column {
+.last_column {
+  color: var(--theme-text-black);
   text-align: center;
 }
 
-.cancel-button {
-  @include custom-button($backgroundColor: var(--color-rose-500), $activeBackgroundColor: var(--color-red-500));
+.cancel_button {
+  @include red-button;
   padding: 4px;
 }

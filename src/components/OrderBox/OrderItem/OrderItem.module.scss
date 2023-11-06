@@ -7,20 +7,21 @@ $color-gray: var(--color-gray-500);
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  color: var(--theme-text-black);
 }
 
 .separator {
-  border-top: 1px solid rgba($color: gray, $alpha: 0.3);
+  border-top: 1px solid rgba($color: black, $alpha: 0.1);
 }
 
 .name {
   font-size: var(--fs-base);
   padding-bottom: 6px;
-
+  
   span {
     margin-left: 6px;
     font-weight: bold;
-    color: var(--color-red-700);
+    color: var(--theme-text-rose-500);
   }
 }
 

@@ -28,7 +28,11 @@
 }
 
 .add-and-to-cart-button {
-  @include custom-button($color: white, $backgroundColor: var(--color-green-600), $activeBackgroundColor: var(--color-green-800));
+  @include custom-button(
+    $color: white,
+    $backgroundColor: var(--color-green-600),
+    $activeBackgroundColor: var(--color-green-800)
+  );
 }
 
 .to-cart-button {
@@ -58,7 +62,7 @@
 .service_info {
   text-align: center;
   font-size: var(--fs-xs);
-  color: var(--color-blue-800);
+  color: var(--theme-text-blue-900);
   text-decoration: underline;
 
   &:hover {

@@ -1,3 +1,4 @@
+import './styles/css/theme.css';
 import './styles/css/font-size.css';
 import './styles/css/font-family.css';
 import './styles/css/color.css';

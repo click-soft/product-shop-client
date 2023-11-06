@@ -18,16 +18,17 @@
       z-index: 1;
       width: 100%;
     }
-
-    main {
-      padding-top: var(--header-height, 0);
-      flex-grow: 1;
-    }
   }
 
   // footer {
   //   height: 60px;
   // }
+}
+
+.main {
+  background-color: var(--theme-bg-primary);
+  padding-top: var(--header-height, 0);
+  flex-grow: 1;
 }
 
 @media (min-width: 768px) {

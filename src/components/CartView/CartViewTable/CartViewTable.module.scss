@@ -1,4 +1,15 @@
+:root {
+  --theme-bg-cart-view-th: var(--color-blue-200);
+  --theme-bd-cart-view-tr: var(--color-blue-400);
+}
+
+:root[color-theme='dark'] {
+  --theme-bg-cart-view-th: rgb(44, 42, 56);
+  --theme-bd-cart-view-tr: rgb(133, 130, 146);
+}
+
 .caption {
+  color: var(--theme-text-black);
   padding-bottom: 20px;
   font-size: var(--fs-2xl);
 }
@@ -15,15 +26,16 @@
   }
 
   th {
-    border-top: 1px solid var(--color-blue-400);
-    border-bottom: 1px solid var(--color-blue-400);
+    border-top: 1px solid var(--theme-blue-400);
+    border-bottom: 1px solid var(--theme-blue-400);
     margin: 0;
     padding: 10px 0;
-    background-color: var(--color-blue-200);
+    color: var(--theme-text-black);
+    background-color: var(--theme-bg-cart-view-th);
   }
 
   tr {
-    border-bottom: 1px solid var(--color-blue-400);
+    border-bottom: 1px solid var(--theme-bd-cart-view-tr);
   }
 }
 

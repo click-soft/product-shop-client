@@ -5,8 +5,9 @@
   flex-wrap: wrap;
   margin: 10px;
   border-radius: 4px;
-  box-shadow: 1px 2px 4px rgba(black, 0.1);
+  box-shadow: 1px 2px 4px rgba(var(--theme-rgb-black), 0.1);
   padding: 5px 10px;
+  color: var(--theme-text-black);
   background-color: white;
 
   .date_picker,
@@ -20,7 +21,7 @@
     min-width: 100px;
   }
 
-  .text {
+  .text {    
     width: 150px;
   }
 

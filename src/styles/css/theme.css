@@ -1,0 +1,51 @@
+:root {
+  --theme-bg-white: white;
+  --theme-bg-primary: var(--color-blue-50);
+  --theme-bg-blue-600: var(--color-blue-600);
+  --theme-bg-card: rgb(255, 255, 255);
+  --theme-bg-blue-200: var(--color-blue-200);
+  --theme-bg-amber-400: var(--color-amber-400);
+  --theme-bg-virtual-card: var(--color-rose-100);
+  --theme-bg-input: var(--color-white);
+  --theme-bg-buy-area: var(--color-blue-600);
+
+  --theme-text-white: var(--color-white);
+  --theme-text-black: black;
+  --theme-text-gray: var(--color-gray-500);
+  --theme-text-blue-900: var(--color-blue-900);
+  --theme-text-rose-500: var(--color-rose-500);
+  --theme-text-amber-900: var(--color-amber-900);
+
+  --theme-blue-400: var(--color-blue-400);
+  --theme-blue-500: var(--color-blue-500);
+  --theme-blue-600: var(--color-blue-600);
+
+  --theme-rgb-black: 0, 0, 0;
+}
+
+:root[color-theme='dark'] {
+  --theme-bg-white: rgb(44, 44, 44);
+  --theme-bg-primary: rgb(52, 53, 65);
+  --theme-bg-blue-600: rgb(50, 54, 97);
+  --theme-bg-card: rgb(36, 36, 39);
+  --theme-bg-blue-200: rgb(9, 13, 56);
+  --theme-bg-amber-400: rgb(37, 24, 14);
+  --theme-bg-virtual-card: rgb(59, 59, 59);
+  --theme-bg-input: rgb(64, 65, 79);
+  --theme-bg-buy-area: var(--color-blue-950);
+
+  --theme-text-white: black;
+  --theme-text-black: white;
+  --theme-text-gray: var(--color-gray-400);
+  --theme-text-blue-900: rgb(174, 207, 247);
+  --theme-text-rose-500: rgb(255, 218, 218);
+  --theme-text-amber-900: var(--color-amber-50);
+
+  --theme-blue-400: rgb(77, 89, 117);
+  --theme-blue-500: rgb(223, 235, 253);
+  --theme-blue-600: rgb(197, 217, 248);
+
+  --theme-rgb-black: 255, 255, 255;
+  /* --color-gray-100: rgb(54, 54, 54); */
+  /* --color-gray-500: rgb(179, 179, 179); */
+}

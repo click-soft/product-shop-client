@@ -13,10 +13,11 @@
   font-size: var(--fs-3xl);
   font-weight: bold;
   padding-bottom: 20px;
-  color: var(--color-blue-900);
+  color: var(--theme-text-blue-900);
 }
 
 .order_id {
+  color: var(--theme-text-black);
   font-size: var(--fs-xl);
   padding: 20px;
 }
@@ -36,7 +37,7 @@
   text-align: center;
   font-size: var(--fs-xl);
   font-weight: bold;
-  color: var(--color-blue-900);
+  color: var(--theme-text-blue-900);
 }
 
 .detail_section {
@@ -55,12 +56,13 @@
   padding: 5px 0;
   .label {
     width: 70px;
-    color: var(--color-gray-500);
+    color: var(--theme-text-gray);
   }
   .text {
+    color: var(--theme-text-black);
     font-weight: bold;
     &.highlight_text {
-      color: var(--color-rose-500);
+      color: var(--theme-text-rose-500);
     }
   }
 }
@@ -95,10 +97,6 @@
 }
 
 .nav_main {
-  @include custom-button(
-    $color: white,
-    $backgroundColor: var(--color-rose-500),
-    $activeBackgroundColor: var(--color-red-500)
-  );
+  @include red-button;
   margin-left: 5px;
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import CartItem from '../../interfaces/CartItem';
 import styles from './CartViewItem.module.scss';
-import ProductQuantitySelect from '../ProductQuantitySelect/ProductQuantitySelect';
 import NumericCombo from '../../ui/NumericCombo/NumericCombo';
 interface CartViewItemProps {
   cartItem: CartItem;
@@ -21,23 +20,23 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
 
   return (
     <tr key={ci.id}>
-      <td className={styles['first-column']}>
+      <td className={styles.first_column}>
         <input type="checkbox" checked={props.checked} onChange={checkChangeHandler} />
       </td>
-      <td className={styles['second-column']} colSpan={2}>
-        <div className={styles['cart-item']}>
-          <div className={styles['cart-item__head']}>
-            <div className={styles['detail__head__product']}>
-              <div className={styles['product-name']}>{ci.product?.smMyung}</div>
-              <div className={styles['detail__head__product__info']}>
-                {ci.fit && <div className={styles['product-info']}>맞춤주문</div>}
-                {ci.product?.danwi && <div className={`${styles['unit-style']}`}>Box</div>}
+      <td colSpan={2}>
+        <div className={styles.cart_item}>
+          <div className={styles.cart_item__head}>
+            <div className={styles.detail__head__product}>
+              <div className={styles.product_name}>{ci.product?.smMyung}</div>
+              <div className={styles.detail__head__product__info}>
+                {ci.fit && <div className={styles.product_info}>맞춤주문</div>}
+                {ci.product?.danwi && <div className={`${styles.unit_style}`}>Box</div>}
               </div>
             </div>
           </div>
-          <div className={styles['cart-item__body']}>
-            <div className={styles['cart-item__body__left']}>
-              <div className={styles['cart-item__body__price']}>{ci.product?.danga?.toLocaleString()}원</div>
+          <div className={styles.cart_item__body}>
+            <div className={styles.cart_item__body__left}>
+              <div className={styles.cart_item__body__price}>{ci.product?.danga?.toLocaleString()}원</div>
               <NumericCombo value={ci.quantity} onValueChange={(v) => props.onCountChange(ci.id!, v)} isFit={ci.fit} />
               {/* <ProductQuantitySelect
                 value={ci.quantity}
@@ -46,13 +45,13 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
               /> */}
             </div>
 
-            <button className={styles['cancel-button']} onClick={props.onCancel.bind(null, ci.id!)}>
+            <button className={styles.cancel_button} onClick={props.onCancel.bind(null, ci.id!)}>
               취소
             </button>
           </div>
         </div>
       </td>
-      <td className={styles['last-column']}>{totalPrice.toLocaleString()}원</td>
+      <td className={styles.last_column}>{totalPrice.toLocaleString()}원</td>
     </tr>
   );
 };

@@ -19,11 +19,12 @@
 }
 
 .checkout-amount-wrapper {
+  color: var(--theme-text-black);
   margin-bottom: 10px;
 }
 
 .checkout-amount {
   font-size: var(--fs-xl);
   font-weight: bold;
-  color: var(--color-blue-900);
+  color: var(--theme-text-blue-900);
 }

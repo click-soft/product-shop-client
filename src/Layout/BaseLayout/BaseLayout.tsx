@@ -37,7 +37,7 @@ const BaseLayout: React.FC<BaseLayoutProps> = ({ leftMenuComponent, headerCompon
       )}
       <div className={styles.wrapper_center}>
         {headerComponent && <header ref={headerRef}>{headerComponent}</header>}
-        <main>
+        <main className={styles.main}>
           <Outlet />
         </main>
         {footerComponent && <footer>{footerComponent}</footer>}

@@ -1,6 +1,6 @@
 .button_container {
   position: relative;
-  background-color: white;
+  background-color: var(--theme-bg-white);
 
   :hover {
     color: var(--color-blue-600);
@@ -14,7 +14,7 @@
 }
 
 .button {
-  color: var(--color-blue-900);
+  color: var(--theme-text-blue-900);
   height: 48px;
   padding: 10px;
   display: flex;

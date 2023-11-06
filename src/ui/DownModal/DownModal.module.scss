@@ -3,7 +3,7 @@
   top: var(--header-height);
   right: 0;
   min-width: 22rem;
-  background-color: var(--color-white);
+  background-color: var(--theme-bg-card);
   animation: down 0.5s ease-in forwards;
   z-index: 10000;
 }

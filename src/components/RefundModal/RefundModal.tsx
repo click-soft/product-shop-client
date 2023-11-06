@@ -37,7 +37,7 @@ const RefundModal: React.FC<RefundModalProps> = (props) => {
           <label htmlFor="bank_select" className={styles.label}>
             은행
           </label>
-          <select ref={bankRef} className={styles.data} id="bank_select">
+          <select ref={bankRef} className={styles.input} id="bank_select">
             {bankOptionsComponents}
           </select>
         </section>
@@ -47,7 +47,7 @@ const RefundModal: React.FC<RefundModalProps> = (props) => {
           </label>
           <input
             ref={accountNumberRef}
-            className={styles.data}
+            className={styles.input}
             id="accnum_input"
             type="text"
             placeholder="`-` 없이 작성"
@@ -57,7 +57,7 @@ const RefundModal: React.FC<RefundModalProps> = (props) => {
           <label htmlFor="holder_input" className={styles.label}>
             예금주
           </label>
-          <input ref={holderNameRef} className={styles.data} id="holder_input" type="text" />
+          <input ref={holderNameRef} className={styles.input} id="holder_input" type="text" />
         </section>
 
         <div className={styles.info}>영입일 기준 총 2일이 소요됩니다.</div>
