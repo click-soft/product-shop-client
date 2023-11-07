@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './CenterLayout.module.scss';
 import { Outlet } from 'react-router-dom';
-import { Card } from '@mui/material';
+import Card from '../../ui/Card/Card';
 
 const CenterLayout = () => {
   return (
