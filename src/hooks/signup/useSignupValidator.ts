@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
 import useSignupStore from '../../store/signupStore';
+import { validEmail } from '../../utils/validation';
 
 const useSignupValidator = () => {
-  const { id, pwd, confirmPwd, isIdExists, setIdError, setPwdError } = useSignupStore();
+  const { id, pwd, email, confirmPwd, isIdExists, setIdError, setPwdError } = useSignupStore();
   const [pwdChanged, setPwdChanged] = useState<HTMLInputElement[]>([]);
+
+  const isValidEmail = validEmail(email);
   const isEqualPassword = pwd === confirmPwd;
-  const isValidSave = !!(id && !isIdExists && isEqualPassword && pwd);
+  const isValidSave = !!(id && !isIdExists && isEqualPassword && pwd && isValidEmail);
 
   function setPwdChangedElem(elem: HTMLInputElement) {
     setPwdChanged((p) => {
       if (p.some((input) => input === elem)) return p;
       return p.concat(elem);
     });
-  }
+  } 
 
   useEffect(() => {
     if (pwdChanged.length === 2 && !isEqualPassword) {
@@ -28,6 +31,7 @@ const useSignupValidator = () => {
 
   return {
     isValidSave,
+    isValidEmail,
     setPwdChangedElem,
   };
 };

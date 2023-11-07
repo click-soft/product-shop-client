@@ -5,6 +5,7 @@ import UserProfile, { parseUserProfile } from '../../interfaces/UserProfile';
 import { GET_ACCOUNT_EXISTS, SAVE_ACCOUNT } from '../../graphql/queries/account';
 import useSignupStore from '../../store/signupStore';
 import { toast } from 'react-toastify';
+import SaveAccountArgs from '../../graphql/dto/saveAccount.args';
 
 const useSignupService = () => {
   const { id, setIsIdExists } = useSignupStore();
@@ -19,6 +20,7 @@ const useSignupService = () => {
 
     setIsIdExists(false);
 
+    if (!id) return;
     if (id.length === 8) {
       ykiho = id;
     }
@@ -35,14 +37,13 @@ const useSignupService = () => {
   }
 
   function save(
-    userId: string,
-    password: string,
+    args: SaveAccountArgs,
     callback: {
       onSuccess: () => void;
       onFail: (error: any) => void;
     }
   ) {
-    saveAccount({ variables: { userId, password } })
+    saveAccount({ variables: { ...args } })
       .then((response) => {
         if (response.errors) {
           throw new Error(response.errors[0].message);

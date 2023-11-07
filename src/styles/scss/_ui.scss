@@ -1,0 +1,4 @@
+@mixin card {
+  border-radius: 0.5rem;
+  box-shadow: 1px 2px 3px rgba($color: var(--theme-rgb-black), $alpha: 0.15);
+}

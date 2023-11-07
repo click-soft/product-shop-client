@@ -1,9 +1,5 @@
 @import '../../index.scss';
 
-.card {
-  position: relative;
-}
-
 .select-mode {
   text-align: center;
 
@@ -26,8 +22,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem 2rem 1rem 2rem;
-  min-width: 20rem;
+
   h2 {
     margin: 0;
     color: var(--theme-blue-600);
@@ -64,7 +59,13 @@
   margin-top: 4px !important;
 }
 
-.signup {
+.link_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.link {
   font-size: var(--fs-xs);
   margin-top: 10px;
   text-align: center;

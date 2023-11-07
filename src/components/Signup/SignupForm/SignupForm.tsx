@@ -11,8 +11,21 @@ import useSignupService from '../../../hooks/signup/useSignupService';
 
 const SignupForm = () => {
   const navigate = useNavigate();
-  const { id, pwd, confirmPwd, idError, pwdError, setId, setPwd, setConfirmPwd } = useSignupStore();
-  const { isValidSave, setPwdChangedElem } = useSignupValidator();
+  const {
+    id,
+    pwd,
+    email,
+    isEmailFocused,
+    confirmPwd,
+    idError,
+    pwdError,
+    setId,
+    setPwd,
+    setEmail,
+    setConfirmPwd,
+    setIsEmailFocused,
+  } = useSignupStore();
+  const { isValidSave, isValidEmail, setPwdChangedElem } = useSignupValidator();
   const { user, save } = useSignupService();
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
@@ -20,10 +33,13 @@ const SignupForm = () => {
 
     if (!isValidSave) return;
 
-    save(id, pwd, {
-      onSuccess: () => navigate('../login'),
-      onFail: (error) => toast.error(error?.message),
-    });
+    save(
+      { userId: id, password: pwd, email },
+      {
+        onSuccess: () => navigate('../login'),
+        onFail: (error) => toast.error(error?.message),
+      }
+    );
   }
 
   function pwdFocusHandler(e: React.FocusEvent<HTMLInputElement, Element>): void {
@@ -68,6 +84,15 @@ const SignupForm = () => {
         onChange={(e) => setConfirmPwd(e.target.value)}
       />
       {pwdError && <ErrorText className={styles.error} error={pwdError} />}
+      <TextInput
+        className={styles.input_style}
+        placeholder="E-Mail"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        onBlur={setIsEmailFocused}
+      />
+      {isEmailFocused && !isValidEmail && <ErrorText className={styles.error} error="이메일 형식을 확인하세요." />}
       <button className={styles.signup} disabled={!isValidSave}>
         가입하기
       </button>

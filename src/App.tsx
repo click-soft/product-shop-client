@@ -18,6 +18,9 @@ import PaymentLayout from './Layout/PaymentLayout/PaymentLayout';
 import RootLayout from './Layout/RootLayout/RootLayout';
 import AdminOrderPage from './pages/AdminOrderPage/AdminOrderPage';
 import AdminWebOrdersPage from './pages/AdminWebOrdersPage/AdminWebOrdersPage';
+import FindPasswordPage from './pages/FindPasswordPage/FindPasswordPage';
+import CenterLayout from './Layout/CenterLayout/CenterLayout';
+import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
 
 const router = createBrowserRouter([
   {
@@ -47,13 +50,27 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: '/login',
-        element: <LoginPage />,
-        loader: checkLoginLoader,
-      },
-      {
-        path: '/signup',
-        element: <SignupPage />,
+        path: '/',
+        element: <CenterLayout />,
+        children: [
+          {
+            path: '/login',
+            element: <LoginPage />,
+            loader: checkLoginLoader,
+          },
+          {
+            path: '/signup',
+            element: <SignupPage />,
+          },
+          {
+            path: '/find-password',
+            element: <FindPasswordPage />,
+          },
+          {
+            path: '/change-password',
+            element: <ChangePasswordPage />,
+          },
+        ],
       },
       {
         path: '/payment',

@@ -1,0 +1,16 @@
+@import '../../../index.scss';
+.message {
+  margin: 0.8rem 0;
+  padding: 1rem;
+  @include card;
+}
+
+.success {
+  color: var(--theme-text-blue-900);
+  background-color: var(--theme-bg-input);
+}
+
+.error {
+  color: var(--color-rose-700);
+  background-color: var(--color-rose-200);
+}

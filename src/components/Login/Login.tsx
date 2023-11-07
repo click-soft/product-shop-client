@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import Card from '../../ui/Card/Card';
 import styles from './Login.module.scss';
 import { Link } from 'react-router-dom';
 import TextInput from '../../ui/TextInput/TextInput';
@@ -29,37 +28,40 @@ function Login() {
   return (
     <>
       {loading && <CircleLoading />}
-      <Card className={styles.card}>
-        <div className={styles.container}>
-          <h2>Login Account</h2>
-          <form className={styles.login_form} onSubmit={submitHandler}>
-            <div className={styles.ykiho_form}>
-              <TextInput
-                className={styles.text_input}
-                placeholder="요양기관 OR 사업자기호"
-                name="id"
-                maxLength={10}
-                onChange={(e) => setUserId(e.target.value)}
-                onKeyDown={keyDownHandler}
-              />
-              <TextInput
-                ref={passwordRef}
-                className={classNames(styles.password, styles.text_input)}
-                name="password"
-                type="password"
-                placeholder="비밀번호"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <button className={`${styles.login_button} blue-button`} id="btn-login" disabled={loading}>
-                로그인
-              </button>
-              <Link className={styles.signup} to={'../signup'}>
+      <div className={styles.container}>
+        <h2>Login Account</h2>
+        <form className={styles.login_form} onSubmit={submitHandler}>
+          <div className={styles.ykiho_form}>
+            <TextInput
+              className={styles.text_input}
+              placeholder="요양기관 OR 사업자기호"
+              name="id"
+              maxLength={10}
+              onChange={(e) => setUserId(e.target.value)}
+              onKeyDown={keyDownHandler}
+            />
+            <TextInput
+              ref={passwordRef}
+              className={classNames(styles.password, styles.text_input)}
+              name="password"
+              type="password"
+              placeholder="비밀번호"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button className={`${styles.login_button} blue-button`} id="btn-login" disabled={loading}>
+              로그인
+            </button>
+            <div className={styles.link_wrapper}>
+              <Link className={styles.link} to={'../signup'}>
                 회원가입
               </Link>
+              <Link className={styles.link} to={'../find-password'}>
+                비밀번호찾기
+              </Link>
             </div>
-          </form>
-        </div>
-      </Card>
+          </div>
+        </form>
+      </div>
     </>
   );
 }
