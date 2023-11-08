@@ -28,7 +28,7 @@ const useLogin = () => {
       if (id) {
         setUserId(paramUserId);
       } else {
-        navigate(`/signup?userId=${paramUserId}`);
+        navigate(`/signup?uid=${paramUserId}`);
       }
     });
   }, [paramUserId]);
