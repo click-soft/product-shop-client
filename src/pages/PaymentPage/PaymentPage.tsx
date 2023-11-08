@@ -4,10 +4,10 @@ import { PaymentWidgetInstance, loadPaymentWidget } from '@tosspayments/payment-
 import Card from '../../ui/Card/Card';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
-import moment from 'moment';
 import useCheckout from '../../hooks/use-checkout';
 import { LocalStoragekey } from '../../utils/enums';
 import { TOSSPAYMENTS_CLIENT_KEY } from '../../config';
+import dayjs from 'dayjs';
 const selector = '#payment-widget';
 
 const PaymentPage = () => {
@@ -48,7 +48,7 @@ const PaymentPage = () => {
   async function checkoutHandler() {
     const paymentWidget = paymentWidgetRef.current;
     const randInt = Math.floor(Math.random() * 10000);
-    const currentDt = moment(new Date()).format('YYMMDDHHmmssSSS');
+    const currentDt = dayjs(new Date()).format('YYMMDDHHmmssSSS');
     const orderId = `${currentDt}${randInt}`;
 
     setCheckoutDataSession({ checkoutState });

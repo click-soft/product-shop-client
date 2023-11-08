@@ -7,8 +7,7 @@ const ChangePasswordPage = () => {
   return (
     <>
       <h2 className={styles.title}>비밀번호 변경</h2>
-      <ChangePasswordForm />
-      
+      <ChangePasswordForm />      
     </>
   );
 };

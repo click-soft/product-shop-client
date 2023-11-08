@@ -1,9 +1,9 @@
 import styles from './PaymentSuccessComplete.module.scss';
 import Card from '../../ui/Card/Card';
-import moment from 'moment';
 import { NavLink } from 'react-router-dom';
 import { Payment } from '../../graphql/interfaces/payment';
 import bankData from '../../data/bankData';
+import dayjs from 'dayjs';
 
 interface PaymentSuccessCompleteProps {
   orderData: Payment;
@@ -11,7 +11,7 @@ interface PaymentSuccessCompleteProps {
 const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({ orderData }) => {
   // const { checkoutData } = useCheckout({ isSession: true });
   // const checkoutState = checkoutData?.checkoutState;
-  const ymd = moment(orderData.requestedAt).format('YYYY-MM-DD');
+  const ymd = dayjs(orderData.requestedAt).format('YYYY-MM-DD');
   return (
     <>
       <div className={styles.wrapper}>
@@ -36,7 +36,7 @@ const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({ orderDa
               <div className={styles.virtual_info__title}>가상계좌</div>
               <LabelText label="은행" text={bankData[orderData.virtual?.bankCode]} />
               <LabelText label="계좌번호" text={orderData.virtual?.accountNumber} />
-              <LabelText label="만료일시" text={moment(orderData.virtual?.dueDate).format('YYYY-MM-DD HH:mm:ss')} />
+              <LabelText label="만료일시" text={dayjs(orderData.virtual?.dueDate).format('YYYY-MM-DD HH:mm:ss')} />
             </section>
           </Card>
         )}

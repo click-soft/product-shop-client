@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './SignupForm.module.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import TextInput from '../../../ui/TextInput/TextInput';
 import LoginMsgCard from '../../Login/LoginMsgCard/LoginMsgCard';
@@ -8,25 +8,23 @@ import ErrorText from '../../../ui/ErrorText/ErrorText';
 import useSignupStore from '../../../store/signupStore';
 import useSignupValidator from '../../../hooks/signup/useSignupValidator';
 import useSignupService from '../../../hooks/signup/useSignupService';
+import usePasswordValidator from '../../../hooks/usePasswordValidator';
 
 const SignupForm = () => {
   const navigate = useNavigate();
   const {
-    id,
-    pwd,
-    email,
-    isEmailFocused,
-    confirmPwd,
-    idError,
-    pwdError,
-    setId,
-    setPwd,
-    setEmail,
-    setConfirmPwd,
-    setIsEmailFocused,
-  } = useSignupStore();
-  const { isValidSave, isValidEmail, setPwdChangedElem } = useSignupValidator();
+    password,
+    confirmPassword,
+    passwordError,
+    isValidPassword,
+    handlePasswordChange,
+    handleConfirmPasswordChange,
+  } = usePasswordValidator();
+  const { id, email, isEmailFocused, idError, setId, setEmail, setIsEmailFocused } = useSignupStore();
+  const { isValidSave, isValidEmail } = useSignupValidator(isValidPassword);
   const { user, save } = useSignupService();
+  const [params] = useSearchParams();
+  const paramId = params.get('userid') as string;
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -34,7 +32,7 @@ const SignupForm = () => {
     if (!isValidSave) return;
 
     save(
-      { userId: id, password: pwd, email },
+      { userId: id, password: password, email },
       {
         onSuccess: () => navigate('../login'),
         onFail: (error) => toast.error(error?.message),
@@ -42,9 +40,11 @@ const SignupForm = () => {
     );
   }
 
-  function pwdFocusHandler(e: React.FocusEvent<HTMLInputElement, Element>): void {
-    setPwdChangedElem(e.target);
-  }
+  useEffect(() => {
+    if (!paramId) return;
+
+    setId(paramId);
+  }, [paramId]);
 
   return (
     <form onSubmit={submitHandler}>
@@ -71,19 +71,17 @@ const SignupForm = () => {
         className={styles.input_style}
         placeholder="비밀번호"
         type="password"
-        value={pwd}
-        onFocus={pwdFocusHandler}
-        onChange={(e) => setPwd(e.target.value)}
+        value={password}
+        onChange={handlePasswordChange}
       />
       <TextInput
         className={styles.input_style}
         placeholder="비밀번호 확인"
         type="password"
-        value={confirmPwd}
-        onFocus={pwdFocusHandler}
-        onChange={(e) => setConfirmPwd(e.target.value)}
+        value={confirmPassword}
+        onChange={handleConfirmPasswordChange}
       />
-      {pwdError && <ErrorText className={styles.error} error={pwdError} />}
+      {passwordError && <ErrorText className={styles.error} error={passwordError} />}
       <TextInput
         className={styles.input_style}
         placeholder="E-Mail"

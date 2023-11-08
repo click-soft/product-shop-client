@@ -23,6 +23,11 @@ const ChangePasswordForm = () => {
 
   const { errorMessage, loading, changeSuccess, fetchChangePassword } = useChangePassword(password);
 
+  function changePasswordHandler(e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+    fetchChangePassword();
+  }
+
   if (changeSuccess) {
     return <ChangeResult message="성공적으로 비밀번호가 변경되었습니다." />;
   }
@@ -31,15 +36,9 @@ const ChangePasswordForm = () => {
     return <ChangeResult message={errorMessage} isError={true} />;
   }
 
-  function changePasswordHandler(e: React.FormEvent<HTMLFormElement>): void {
-    e.preventDefault();
-    fetchChangePassword();
-  }
-
   return (
     <>
       {loading && <CircleLoading />}
-      {errorMessage && <div>{errorMessage}</div>}
       {!loading && !errorMessage && (
         <form onSubmit={changePasswordHandler}>
           <TextInput
