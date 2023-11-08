@@ -17,7 +17,7 @@ const useLogin = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [params] = useSearchParams();
-  const paramUserId = params.get('userId');
+  const paramUserId = params.get('uid');
   const [getAccount] = useLazyQuery(GET_ACCOUNT_EXISTS);
 
   useEffect(() => {

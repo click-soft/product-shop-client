@@ -24,7 +24,7 @@ const SignupForm = () => {
   const { isValidSave, isValidEmail } = useSignupValidator(isValidPassword);
   const { user, save } = useSignupService();
   const [params] = useSearchParams();
-  const paramUserId = params.get('userId') as string;
+  const paramUserId = params.get('uid') as string;
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();

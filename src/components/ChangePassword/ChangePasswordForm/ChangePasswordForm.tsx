@@ -69,7 +69,7 @@ const ChangePasswordForm = () => {
 
 const useChangePassword = (password: string) => {
   const [params] = useSearchParams();
-  const userId = params.get('userId');
+  const userId = params.get('uid');
   const token = params.get('key');
   const [errorMessage, setErrorMessage] = useState<string>();
   const { data, loading, error } = useQuery(VALID_CHANGE_PASSWORD, { variables: { userId, token } });
