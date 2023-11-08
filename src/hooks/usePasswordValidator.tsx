@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { validatePassword } from '../utils/password-validator';
 
 const usePasswordValidator = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [blurPasswords, setBlurPasswords] = useState<Set<HTMLInputElement>>(new Set());
   const [passwordError, setPasswordError] = useState('');
+  const { validate, errorMessage } = validatePassword(password);
   const isEqual = password == confirmPassword;
   const isEmpty = !password;
 
@@ -35,14 +37,13 @@ const usePasswordValidator = () => {
 
     if (!isEqual) {
       setPasswordError('비밀번호가 일치하지 않습니다.');
-    } else if (isEmpty) {
-      setPasswordError('비밀번호를 입력하세요.');
     } else {
-      setPasswordError('');
+      setPasswordError(errorMessage ?? '');
     }
   }, [password, confirmPassword]);
 
-  const isValidPassword = !isEmpty && blurPasswords.size === 2 && isEqual;
+  const isValidPassword = !isEmpty && blurPasswords.size === 2 && isEqual && !!validate;
+
   return {
     password,
     confirmPassword,
