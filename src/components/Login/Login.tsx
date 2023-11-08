@@ -1,16 +1,14 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './Login.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import TextInput from '../../ui/TextInput/TextInput';
 import useLogin from '../../hooks/login/use-login';
 import CircleLoading from '../Loading/CircleLoading';
 import classNames from 'classnames';
 
 function Login() {
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
+  const { userId, password, loading, login, handleUserIdChange, handlePasswordChange } = useLogin();
   const passwordRef = useRef<HTMLInputElement>(null);
-  const { login, loading } = useLogin();
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -37,7 +35,8 @@ function Login() {
               placeholder="요양기관 OR 사업자기호"
               name="id"
               maxLength={10}
-              onChange={(e) => setUserId(e.target.value)}
+              value={userId}
+              onChange={handleUserIdChange}
               onKeyDown={keyDownHandler}
             />
             <TextInput
@@ -46,7 +45,7 @@ function Login() {
               name="password"
               type="password"
               placeholder="비밀번호"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePasswordChange}
             />
             <button className={`${styles.login_button} blue-button`} id="btn-login" disabled={loading}>
               로그인

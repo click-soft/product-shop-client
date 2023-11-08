@@ -24,7 +24,7 @@ const SignupForm = () => {
   const { isValidSave, isValidEmail } = useSignupValidator(isValidPassword);
   const { user, save } = useSignupService();
   const [params] = useSearchParams();
-  const paramId = params.get('userid') as string;
+  const paramUserId = params.get('userId') as string;
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -41,10 +41,10 @@ const SignupForm = () => {
   }
 
   useEffect(() => {
-    if (!paramId) return;
+    if (!paramUserId) return;
 
-    setId(paramId);
-  }, [paramId]);
+    setId(paramUserId);
+  }, [paramUserId]);
 
   return (
     <form onSubmit={submitHandler}>
