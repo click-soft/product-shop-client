@@ -1,0 +1,39 @@
+.wrapper {
+  position: fixed;
+  z-index: 10000;
+  width: max-content;
+  height: max-content;
+  padding: 1rem;
+  background-color: var(--theme-bg-white);
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 16px rgba(var(--theme-rgb-black), 0.3);
+  opacity: 0;
+  animation: close 0.2s ease-in-out forwards;
+  overflow: hidden;
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes close {
+  0% {
+    opacity: 1;
+    display: block;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.open {
+  animation: open 0.2s ease-in-out forwards;
+}

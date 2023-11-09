@@ -1,9 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const useScrollWindow = (callback: ({ x, y }: { x: number; y: number }) => void): void => {
+type ScrollType = {
+  x: number;
+  y: number;
+};
+
+const useScrollWindow = (callback?: ({ x, y }: ScrollType) => void) => {
+  const [scroll, setScroll] = useState<ScrollType>();
+
   useEffect(() => {
     const handleScroll = () => {
-      callback({ x: window.scrollX, y: window.scrollY });
+      const scroll = { x: window.scrollX, y: window.scrollY };
+      setScroll(scroll);
+      callback?.(scroll);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -11,6 +20,7 @@ const useScrollWindow = (callback: ({ x, y }: { x: number; y: number }) => void)
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  return { scroll };
 };
 
 export default useScrollWindow;

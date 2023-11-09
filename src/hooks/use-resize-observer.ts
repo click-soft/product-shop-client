@@ -37,6 +37,8 @@ const useResizeObserver = (ref: React.RefObject<HTMLElement>, args?: UseResizeOb
       args?.onWidthChange?.(entry?.contentRect.width);
     }
   }, [entry?.contentRect.width]);
+
+  return { entry };
 };
 
 export default useResizeObserver;
