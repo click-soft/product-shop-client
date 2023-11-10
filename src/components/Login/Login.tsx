@@ -32,7 +32,7 @@ function Login() {
           <div className={styles.ykiho_form}>
             <TextInput
               className={styles.text_input}
-              placeholder="요양기관 OR 사업자기호"
+              placeholder="요양기관 or 사업자기호"
               name="id"
               maxLength={10}
               value={userId}

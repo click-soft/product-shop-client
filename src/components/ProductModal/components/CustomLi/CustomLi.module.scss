@@ -1,9 +1,12 @@
 .li {
   color: var(--theme-text-black);
+  display: flex;
+  align-items: center;
 }
 
 .title-span {
   min-width: 80px;
+  height: 1rem;
 }
 
 .colon-span {

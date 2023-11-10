@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { validatePassword } from '../utils/password-validator';
+import { validPassword } from 'kbr-validator';
 
 const usePasswordValidator = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [blurPasswords, setBlurPasswords] = useState<Set<HTMLInputElement>>(new Set());
   const [passwordError, setPasswordError] = useState('');
-  const { validate, errorMessage } = validatePassword(password);
+  const { validate, errorMessage } = validPassword(password);
   const isEqual = password == confirmPassword;
   const isEmpty = !password;
 
