@@ -54,7 +54,7 @@ const DropDown: React.FC<Props> = ({ children, targetElement, onOutsideClick }) 
     const openedTime = new Date().getTime();
     const handleOutsideClick = (event: any) => {
       if (targetElement && event.target?.closest('#userDropDownComponent')) {
-        return console.log('inner clicked');
+        return;
       }
 
       const timeDifference = new Date().getTime() - openedTime;

@@ -11,13 +11,11 @@ import { useAppDispatch } from '../../store';
 const useOrders = () => {
   const dispatch = useAppDispatch();
   const { cancelPayment } = useOrdersStore();
-  const queryClient = useQueryClient();
   const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
 
   function cancelHandler(payment: Payment, { state, message }: OrderCancelArgs): void {
     toast[state](message);
     if (state === 'success') {
-      queryClient.removeQueries(GET_PAYMENT_WITH_ITEMS_QUERY_KEY);
       cancelPayment(payment);
     }
   }

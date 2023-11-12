@@ -1,5 +1,4 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import CartProduct from '../interfaces/CartItem';
 import { cartItemsCount } from '../graphql/queries/cart';
 import { ADD_TO_CART } from '../graphql/mutates/cart';
 import client from '../graphql/apollo-client';
@@ -25,10 +24,6 @@ const cartSlice = createSlice({
     builder.addCase(fetchGetItemsCount.rejected, (state) => {
       state.itemsCount = undefined;
     });
-
-    builder.addCase(addToCart.fulfilled, (state, action) => {
-      state.itemsCount = (state.itemsCount ?? 0) + action.payload.quantity;
-    });
   },
 });
 
@@ -38,7 +33,7 @@ type AddToCartArgs = {
   fit: boolean;
 };
 
-export const addToCart = createAsyncThunk('cart-slice/addToCart', async (args: AddToCartArgs) => {
+export const addToCart = createAsyncThunk('cart-slice/addToCart', async (args: AddToCartArgs, thunkAPI) => {
   const response = await client.mutate({
     mutation: ADD_TO_CART,
     variables: {
@@ -47,9 +42,8 @@ export const addToCart = createAsyncThunk('cart-slice/addToCart', async (args: A
   });
 
   if (response.data?.addToCart?.message === 'success') {
-    return { quantity: args.quantity };
-  } else {
-    return { quantity: 0 };
+    const dispatch = thunkAPI.dispatch as AppDispatch;
+    dispatch(fetchGetItemsCount());
   }
 });
 
