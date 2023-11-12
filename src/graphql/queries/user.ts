@@ -17,6 +17,8 @@ export const getUser = async (): Promise<UserProfile | undefined> => {
             fitCherbang
             fitYoungsu
             admin
+            email
+            useBNPL
             exp
           }
         }

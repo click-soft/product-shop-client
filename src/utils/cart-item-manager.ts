@@ -1,4 +1,5 @@
 import CartItem from '../interfaces/CartItem';
+import { CheckoutState } from '../store/checkoutStore';
 
 export default class CartItemManager {
   constructor(public cartItems?: CartItem[]) {}
@@ -22,5 +23,14 @@ export default class CartItemManager {
   public get orderName(): string {
     const orderNames = this.cartItems?.map((ci) => `${ci.product?.smMyung}${ci.fit ? '[맞춤주문]' : ''}`);
     return orderNames?.join('|') ?? '';
+  }
+
+  public get checkoutState(): CheckoutState {
+    return {
+      cartItems: this.cartItems!,
+      orderName: this.orderName,
+      totalPrice: this.totalPrice,
+      totalQuantity: this.totalQuantity,
+    };
   }
 }

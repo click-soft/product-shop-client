@@ -23,6 +23,10 @@
   font-size: var(--fs-xs);
   text-align: center;
   width: 100%;
+  line-height: 1.5;
+  strong {
+    font-weight: bold;
+  }
 }
 
 .corporate {

@@ -14,7 +14,7 @@ const useOrderGroup = (payment: Payment) => {
   const isValidCancel = !payment.cancel && ['결제대기', '주문확인'].includes(sendType);
 
   function validRefund() {
-    return payment.virtual && sendType !== '결제대기';
+    return payment.method === '가상계좌' && sendType !== '결제대기';
   }
 
   function getSendType(payment: Payment) {

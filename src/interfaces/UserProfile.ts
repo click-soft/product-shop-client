@@ -8,6 +8,8 @@ export default interface UserProfile {
   fitCherbang: boolean;
   fitYoungsu: boolean;
   admin?: boolean;
+  email?: string;
+  useBNPL?: boolean;
 }
 
 export const parseUserProfile = (data: any): UserProfile => {

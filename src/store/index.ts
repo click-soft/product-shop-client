@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import modalSlice from './modal-slice';
 import cartSlice from './cart-slice';
-import paymentSlice from './payment-slice';
 import ordersSlice from './orders-slice';
 import errorSlice from './error-slice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
@@ -12,7 +11,6 @@ const store = configureStore({
   reducer: {
     modal: modalSlice.reducer,
     cart: cartSlice.reducer,
-    payment: paymentSlice.reducer,
     orders: ordersSlice.reducer,
     error: errorSlice.reducer,
     adminOrder: adminOrderSlice.reducer,

@@ -5,6 +5,7 @@ type State = {
   cart?: Cart;
   loading: boolean;
   checkedIds: number[];
+  checkBNPL: boolean;
   initialized: boolean;
 };
 
@@ -13,6 +14,7 @@ type Action = {
   setLoading: (loading: boolean) => void;
   setCheck: (id: number, checked: boolean) => void;
   setCheckAll: (checked: boolean) => void;
+  setCheckBNPL: (checked: boolean) => void;
   setInitialized: () => void;
   clear: () => void;
 };
@@ -21,6 +23,7 @@ const initialState: State = {
   cart: undefined,
   loading: false,
   checkedIds: [],
+  checkBNPL: false,
   initialized: false,
 };
 
@@ -51,6 +54,7 @@ const useCartViewStore = create<State & Action>((set) => ({
 
       return { checkedIds: ids ?? [] };
     }),
+  setCheckBNPL: (checked) => set({ checkBNPL: checked }),
   setInitialized: () => set({ initialized: true }),
   clear: () => set(initialState),
 }));

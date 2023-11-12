@@ -58,35 +58,3 @@ export const REFUND_ORDER = gql`
     }
   }
 `;
-
-export const checkout = async (input: CheckoutInput): Promise<CheckoutResult> => {
-  const response = await client.mutate({
-    mutation: CHECKOUT,
-    variables: input,
-  });
-
-  return response.data.checkout;
-};
-
-// export const cancelOrder = async (
-//   { paymentId, paymentKey, cancelReason }: {
-//     paymentId: number,
-//     paymentKey: string,
-//     cancelReason: string
-//   }): Promise<CheckoutResult> => {
-//   const response = await client.mutate({
-//     mutation: CANCEL_ORDER,
-//     variables: { paymentId, paymentKey, cancelReason },
-//   });
-
-//   if (response.errors) {
-//     const err = response.errors[0];
-//     return {
-//       success: false,
-//       errorCode: "error",
-//       errorMessage: err.message,
-//     }
-//   } else {
-//     return response.data.cancelOrder;
-//   }
-// }

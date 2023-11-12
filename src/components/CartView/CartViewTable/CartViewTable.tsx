@@ -28,7 +28,7 @@ const CartViewTable = () => {
 
         <thead className={styles.head}>
           <tr>
-            <th className={`${styles['first-column']} ${styles['first-column-header']}`}>
+            <th className={`${styles.first_column} ${styles.first_column_header}`}>
               <label>
                 <input type="checkbox" checked={allCheck} onChange={(e) => allCheckChangeHandler(e.target.checked)} />
                 <span>전체</span>

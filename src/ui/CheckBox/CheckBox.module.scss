@@ -10,9 +10,9 @@
 }
 
 // 체크박스 디폴트 이미지 적용
-input[id='checkbox'] {
+.checkbox input[id='checkbox'] {
   display: inline-block;
   width: 20px;
   height: 20px;
-  vertical-align: top;
+  vertical-align: top; 
 }

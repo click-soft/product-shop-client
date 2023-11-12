@@ -9,9 +9,8 @@ interface PaymentSuccessCompleteProps {
   orderData: Payment;
 }
 const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({ orderData }) => {
-  // const { checkoutData } = useCheckout({ isSession: true });
-  // const checkoutState = checkoutData?.checkoutState;
   const ymd = dayjs(orderData.requestedAt).format('YYYY-MM-DD');
+  
   return (
     <>
       <div className={styles.wrapper}>

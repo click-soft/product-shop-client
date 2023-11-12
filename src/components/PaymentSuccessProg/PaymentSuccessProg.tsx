@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './PaymentSuccessProg.module.scss';
 const PaymentSuccessProg = () => {
   return (

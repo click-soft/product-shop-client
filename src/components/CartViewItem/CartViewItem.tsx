@@ -51,7 +51,9 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
           </div>
         </div>
       </td>
-      <td className={styles.last_column}>{totalPrice.toLocaleString()}원</td>
+      <td className={styles.last_column}>
+        <div>{totalPrice.toLocaleString()}원</div>
+      </td>
     </tr>
   );
 };
