@@ -8,7 +8,7 @@ export const UPDATE_CART_ITEM_QUANTITY = gql`
   }
 `;
 
-export const DELETE_CART_ITEM = gql`
+export const DELETE_CART_ITEMS = gql`
   mutation ($ids: [Int!]!) {
     deleteCartItems(ids: $ids) {
       raw

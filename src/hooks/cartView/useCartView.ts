@@ -3,12 +3,11 @@ import { GET_CART_WITH_RRODUCT } from '../../graphql/queries/cart';
 import { useEffect, useState } from 'react';
 import Cart from '../../interfaces/Cart';
 import useCartViewStore from '../../store/cartViewStore';
-import { useAppDispatch } from '../../store';
-import { deleteCartItems, updateCartItemQuantity } from '../../store/cart-slice';
 import { toast } from 'react-toastify';
+import useCart from '../useCart';
 
 const useCartView = () => {
-  const dispatch = useAppDispatch();
+  const { fetchDeleteCartItems, fetchUpdateCartItemQuantity } = useCart();
   const { cart, initialized, setCart, setLoading, setCheckAll, setInitialized } = useCartViewStore();
   const { data, error, loading, refetch } = useQuery(GET_CART_WITH_RRODUCT, { fetchPolicy: 'no-cache' });
 
@@ -35,7 +34,7 @@ const useCartView = () => {
   }, [error]);
 
   async function deleteCartItemById(id: number) {
-    await dispatch(deleteCartItems([id])).unwrap();
+    await fetchDeleteCartItems([id]);
     await refetch();
   }
 
@@ -45,7 +44,7 @@ const useCartView = () => {
 
     if (isNotChanged) return;
 
-    await dispatch(updateCartItemQuantity({ id: cartItemId, quantity })).unwrap();
+    await fetchUpdateCartItemQuantity({ id: cartItemId, quantity });
     await refetch();
   }
 

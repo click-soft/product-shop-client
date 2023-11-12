@@ -1,15 +1,12 @@
-import { useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
-import { GET_PAYMENT_WITH_ITEMS_QUERY_KEY } from './useOrdersInfiniteQuery';
 import { Payment } from '../../graphql/interfaces/payment';
 import useOrdersStore from '../../store/ordersStore';
 import { GET_PAYMENT_ITEM_CODE } from '../../graphql/queries/payment-item';
 import { useLazyQuery } from '@apollo/client';
-import { addToCart } from '../../store/cart-slice';
-import { useAppDispatch } from '../../store';
+import useCart from '../useCart';
 
 const useOrders = () => {
-  const dispatch = useAppDispatch();
+  const { fetchAddToCart } = useCart();
   const { cancelPayment } = useOrdersStore();
   const [getPaymentItemCode] = useLazyQuery(GET_PAYMENT_ITEM_CODE);
 
@@ -29,13 +26,11 @@ const useOrders = () => {
         const code = result.data?.getPaymentItemById?.code;
         if (!code) continue;
 
-        await dispatch(
-          addToCart({
-            code: code,
-            fit: item.fit,
-            quantity: item.quantity,
-          })
-        );
+        await fetchAddToCart({
+          code: code,
+          fit: item.fit,
+          quantity: item.quantity,
+        });
       }
     }
     reorder();

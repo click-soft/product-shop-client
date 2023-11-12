@@ -3,16 +3,16 @@ import styles from './CartButton.module.scss';
 import IconButton from '../../ui/IconButton/IconButton';
 import { BsCart2 } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { fetchGetItemsCount } from '../../store/cart-slice';
 import { modalActions } from '../../store/modal-slice';
 import useResizeWindow from '../../hooks/use-resize-window';
 import CartModal from '../CartModal/CartModal';
+import useCart from '../../hooks/useCart';
 
 const CartButton = () => {
+  const { itemsCount, fetchCartItemsCount } = useCart();
   const [animation, setAnimation] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const [mouseEntered, setMouseEntered] = useState(false);
-  const itemsCount = useAppSelector<number | undefined>((state) => state.cart.itemsCount);
   const showCartModal = useAppSelector((state) => state.modal.showCartModal);
   const { isMobile } = useResizeWindow();
   function clickHandler() {
@@ -20,7 +20,7 @@ const CartButton = () => {
   }
 
   useEffect(() => {
-    dispatch(fetchGetItemsCount());
+    fetchCartItemsCount();
   }, []);
 
   useEffect(() => {

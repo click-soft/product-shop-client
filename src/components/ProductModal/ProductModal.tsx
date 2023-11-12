@@ -1,11 +1,9 @@
 import Modal from '../../ui/Modal/Modal';
-import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch, useAppSelector } from '../../store';
 import { modalActions } from '../../store/modal-slice';
 import styles from './ProductModal.module.scss';
 import ProductListSub from '../../interfaces/ProductListSub';
 import React, { useEffect, useState } from 'react';
-import { addToCart } from '../../store/cart-slice';
 import CheckBox from '../../ui/CheckBox/CheckBox';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import CustomLi from './components/CustomLi/CustomLi';
@@ -13,8 +11,10 @@ import { useNavigate } from 'react-router-dom';
 import ProductQuantitySelect from '../ProductQuantitySelect/ProductQuantitySelect';
 import Drawer from '../../ui/Drawer/Drawer';
 import ServiceInfo from '../ServiceInfo/ServiceInfo';
+import useCart from '../../hooks/useCart';
 
 const ProductModal = () => {
+  const { fetchAddToCart } = useCart();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [show, setShow] = useState(false);
@@ -46,13 +46,11 @@ const ProductModal = () => {
   };
 
   const addItemToCart = async () => {
-    await dispatch(
-      addToCart({
-        code: productData.smCode,
-        quantity,
-        fit: fitChecked ?? false,
-      })
-    );
+    await fetchAddToCart({
+      code: productData.smCode,
+      quantity,
+      fit: fitChecked ?? false,
+    });
 
     closeHandler();
   };

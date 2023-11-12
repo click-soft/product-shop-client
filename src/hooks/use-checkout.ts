@@ -1,27 +1,22 @@
-import { CheckoutCartItemInput, CheckoutInput, CheckoutResult } from '../graphql/interfaces/checkout';
+import { CheckoutResult } from '../graphql/interfaces/checkout';
 import useCheckoutStore, { CheckoutState } from '../store/checkoutStore';
 import { useAppDispatch } from '../store';
-import { deleteCartItems } from '../store/cart-slice';
 import { useMutation } from '@apollo/client';
 import { CHECKOUT } from '../graphql/mutates/payment';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import TossQueryParser from '../utils/tossQueryParser';
 import CartProduct from '../interfaces/CartItem';
+import useCart from './useCart';
 
 const useCheckout = () => {
-  const dispatch = useAppDispatch();
+  const { fetchDeleteCartItems } = useCart();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
   const [searchParams] = useSearchParams();
   const checkoutState = useCheckoutStore<CheckoutState>((state) => state);
   const [checkout, { error, loading }] = useMutation(CHECKOUT);
   const { cartItems, orderName, totalQuantity } = checkoutState;
-
-  async function fetchDeleteCartItems(items: CartProduct[]) {
-    const ids: number[] = items?.map((item) => item.id!)!;
-    dispatch(deleteCartItems(ids));
-  }
 
   async function fetchCheckout() {
     const query = new TossQueryParser(searchParams);
@@ -63,7 +58,8 @@ const useCheckout = () => {
     const result: CheckoutResult = response.data?.checkout;
 
     if (result.success) {
-      await fetchDeleteCartItems(args.items);
+      const ids: number[] = args.items?.map((item) => item.id!)!;
+      await fetchDeleteCartItems(ids);
       navigate(`/payment/success/${args.orderId}`);
     } else {
       throw new Error(result.errorMessage);
