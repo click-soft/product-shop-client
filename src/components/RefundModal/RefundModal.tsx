@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Modal from '../../ui/Modal/Modal';
 import styles from './RefundModal.module.scss';
-import bankData from '../../data/bankData';
+import bankData from '../../data/bank-data';
 
 interface RefundModalProps {
   onClose: () => void;

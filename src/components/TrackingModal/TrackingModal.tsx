@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import styles from './TrackingModal.module.scss';
 import { Box, CircularProgress, Fade, Modal } from '@mui/material';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import useDeliveryTracking, { TrackingType } from '../../hooks/use-delivery-tracking';
 import { TrackingResult } from '../../interfaces/tracking';
 import dayjs from 'dayjs';

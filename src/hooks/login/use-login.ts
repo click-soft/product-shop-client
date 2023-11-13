@@ -1,7 +1,7 @@
 import { useLazyQuery, useMutation } from '@apollo/client';
 import client from '../../graphql/apollo-client';
 import { LOGIN } from '../../graphql/mutates/auth';
-import LoginArgs from '../../graphql/dto/login-args';
+import LoginArgs from '../../graphql/dto/login.args';
 import { useEffect, useState } from 'react';
 import { LocalStoragekey } from '../../utils/enums';
 import { useNavigate, useSearchParams } from 'react-router-dom';

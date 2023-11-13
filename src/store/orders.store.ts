@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { Payment } from '../graphql/interfaces/payment';
-import { updateCancel } from '../utils/payment-utils';
+import { updateCancel } from '../utils/payment.utils';
 
 interface State {
   payments: Payment[];

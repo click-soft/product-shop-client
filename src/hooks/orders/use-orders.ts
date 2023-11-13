@@ -1,9 +1,9 @@
 import { toast } from 'react-toastify';
 import { Payment } from '../../graphql/interfaces/payment';
-import useOrdersStore from '../../store/ordersStore';
+import useOrdersStore from '../../store/orders.store';
 import { GET_PAYMENT_ITEM_CODE } from '../../graphql/queries/payment-item';
 import { useLazyQuery } from '@apollo/client';
-import useCart from '../useCart';
+import useCart from '../use-cart';
 
 const useOrders = () => {
   const { fetchAddToCart } = useCart();

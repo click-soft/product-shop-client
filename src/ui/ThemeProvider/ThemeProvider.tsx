@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import ChildrenProps from '../../interfaces/ChildrenProps';
-import useThemeStore from '../../store/themeStore';
+import ChildrenProps from '../../interfaces/children-props';
+import useThemeStore from '../../store/theme.store';
 import { environment } from '../../config';
 
 const ThemeProvider: React.FC<ChildrenProps> = ({ children }) => {

@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useState, useImperativeHandle } from 'react';
 import styles from './Drawer.module.scss';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import Backdrop from '../Backdrop/Backdrop';
 import classNames from 'classnames';
 import ReactDOM from 'react-dom';

@@ -1,5 +1,5 @@
 import React from 'react';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import styles from './Modal.module.scss';
 import Card from '../Card/Card';
 import Backdrop from '../Backdrop/Backdrop';

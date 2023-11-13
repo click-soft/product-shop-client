@@ -2,7 +2,7 @@ import styles from './PaymentSuccessComplete.module.scss';
 import Card from '../../ui/Card/Card';
 import { NavLink } from 'react-router-dom';
 import { Payment } from '../../graphql/interfaces/payment';
-import bankData from '../../data/bankData';
+import bankData from '../../data/bank-data';
 import dayjs from 'dayjs';
 
 interface PaymentSuccessCompleteProps {
@@ -10,7 +10,7 @@ interface PaymentSuccessCompleteProps {
 }
 const PaymentSuccessComplete: React.FC<PaymentSuccessCompleteProps> = ({ orderData }) => {
   const ymd = dayjs(orderData.requestedAt).format('YYYY-MM-DD');
-  
+
   return (
     <>
       <div className={styles.wrapper}>

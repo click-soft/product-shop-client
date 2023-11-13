@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './DropDown.module.scss';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import useResizeWindow from '../../hooks/use-resize-window';
 import classNames from 'classnames';
 import useScrollWindow from '../../hooks/use-scroll-window';

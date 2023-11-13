@@ -4,7 +4,7 @@ import { AdminOrderArgs } from '../../components/Admin/AdminOrderItem/AdminOrder
 import Product from '../../graphql/interfaces/product';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { useEffect } from 'react';
-import { adminOrderAction } from '../../store/adminOrderSlice';
+import { adminOrderAction } from '../../store/admin-order-slice';
 import { toast } from 'react-toastify';
 
 const useProductUpdate = () => {

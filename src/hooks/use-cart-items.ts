@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../store';
-import CartItem from '../interfaces/CartItem';
+import CartItem from '../interfaces/cart-item';
 import { getCartWithProduct } from '../graphql/queries/cart';
 
 const useCartItems = () => {

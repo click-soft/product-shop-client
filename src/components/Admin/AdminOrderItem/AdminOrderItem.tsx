@@ -4,11 +4,11 @@ import styles from './AdminOrderItem.module.scss';
 import Product from '../../../graphql/interfaces/product';
 import { ymdToShortString } from '../../../utils/parse';
 import Em from '../../../graphql/interfaces/em';
-import ChildrenProps from '../../../interfaces/ChildrenProps';
+import ChildrenProps from '../../../interfaces/children-props';
 import InnerSelect from './Components/DeliverySelect/DeliverySelect';
-import deliveryMethods from '../../../data/deliveryMethods';
+import deliveryMethods from '../../../data/delivery-methods';
 import dayjs from 'dayjs';
-import useProductUpdate from '../../../hooks/adminOrder/useProductUpdate';
+import useProductUpdate from '../../../hooks/adminOrder/use-product-update';
 
 interface AdminOrderItemProps {
   product: Product;

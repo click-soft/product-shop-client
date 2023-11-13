@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { type } from 'os';
-import ProductListSub from '../interfaces/ProductListSub';
+import ProductListSub from '../interfaces/product-list-sub';
 
 interface ProductPayload {
   productCode?: string;

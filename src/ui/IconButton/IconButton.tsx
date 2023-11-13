@@ -1,7 +1,7 @@
 import { CSSProperties, MouseEventHandler, useEffect, useState } from 'react';
 import { IconType } from 'react-icons';
 import styles from './IconButton.module.scss';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import classNames from 'classnames';
 import useResizeWindow from '../../hooks/use-resize-window';
 import { RootState, useAppSelector } from '../../store';

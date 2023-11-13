@@ -5,10 +5,10 @@ import { toast } from 'react-toastify';
 import TextInput from '../../../ui/TextInput/TextInput';
 import LoginMsgCard from '../../Login/LoginMsgCard/LoginMsgCard';
 import ErrorText from '../../../ui/ErrorText/ErrorText';
-import useSignupStore from '../../../store/signupStore';
-import useSignupValidator from '../../../hooks/signup/useSignupValidator';
-import useSignupService from '../../../hooks/signup/useSignupService';
-import usePasswordValidator from '../../../hooks/usePasswordValidator';
+import useSignupStore from '../../../store/signup.store';
+import useSignupValidator from '../../../hooks/signup/use-signup-validator';
+import useSignupService from '../../../hooks/signup/use-signup-service';
+import usePasswordValidator from '../../../hooks/use-password-validator';
 
 const SignupForm = () => {
   const navigate = useNavigate();

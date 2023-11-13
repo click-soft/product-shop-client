@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ErrorText.module.scss';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 
 interface ErrorTextProps extends ChildrenProps {
   error: string;

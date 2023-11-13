@@ -3,7 +3,7 @@ import client from '../../graphql/apollo-client';
 import GetAdminProductsArgs from '../../graphql/dto/get-admin-products.args';
 import { GET_ADMIN_PRODUCTS } from '../../graphql/queries/product';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { adminOrderAction } from '../../store/adminOrderSlice';
+import { adminOrderAction } from '../../store/admin-order-slice';
 import useIntersectionObserver from '../use-intersection-observer';
 import ProductsWithPage from '../../graphql/interfaces/products-with-page';
 import { toast } from 'react-toastify';

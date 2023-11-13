@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useSignupStore from '../../store/signupStore';
+import useSignupStore from '../../store/signup.store';
 import { validEmail } from '../../utils/validation';
 
 const useSignupValidator = (isValidPassword: boolean) => {

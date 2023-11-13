@@ -1,6 +1,6 @@
 import React from 'react';
 import TextInput from '../../../ui/TextInput/TextInput';
-import useFindPassword from '../../../hooks/findPassword/useFindPassword';
+import useFindPassword from '../../../hooks/findPassword/use-find-password';
 import styles from './FindPasswordForm.module.scss';
 import CircleLoading from '../../Loading/CircleLoading';
 

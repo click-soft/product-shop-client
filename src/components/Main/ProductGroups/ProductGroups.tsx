@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductsByBunryu from '../../../interfaces/ProductsByBunryu';
+import ProductsByBunryu from '../../../interfaces/products-by-bunryu';
 import ProductList from '../ProductList/ProductList';
 
 interface ProductGroupsProps {

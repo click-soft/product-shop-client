@@ -1,5 +1,5 @@
 import { GiHamburgerMenu } from 'react-icons/gi';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import IconButton from '../../ui/IconButton/IconButton';
 import { useAppDispatch } from '../../store';
 import { modalActions } from '../../store/modal-slice';

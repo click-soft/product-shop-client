@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { modalActions } from '../../store/modal-slice';
 import useResizeWindow from '../../hooks/use-resize-window';
 import CartModal from '../CartModal/CartModal';
-import useCart from '../../hooks/useCart';
+import useCart from '../../hooks/use-cart';
 
 const CartButton = () => {
   const { itemsCount, fetchCartItemsCount } = useCart();

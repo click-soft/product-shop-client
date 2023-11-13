@@ -1,4 +1,4 @@
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import styles from './DownModal.module.scss';
 import Card from '../Card/Card';
 import Backdrop from '../Backdrop/Backdrop';

@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
-import UserProfile from '../../interfaces/UserProfile';
+import UserProfile from '../../interfaces/user-profile';
 import { CS_FIELD } from '../fragments/user.fragment';
 
 export const getUser = async (): Promise<UserProfile | undefined> => {

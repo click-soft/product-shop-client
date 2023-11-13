@@ -1,5 +1,5 @@
 import { DependencyList, useEffect, useState } from 'react';
-import UserProfile from '../interfaces/UserProfile';
+import UserProfile from '../interfaces/user-profile';
 import { getUser } from '../graphql/queries/user';
 
 export default function useGetLoginedUser(load: boolean) {

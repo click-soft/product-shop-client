@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import GetAdminPaymentsArgs from '../graphql/dto/get-admin-payments-args';
+import GetAdminPaymentsArgs from '../graphql/dto/get-admin-payments.args';
 import { Payment } from '../graphql/interfaces/payment';
-import { updateCancel } from '../utils/payment-utils';
+import { updateCancel } from '../utils/payment.utils';
 
 type State = {
   payments: Payment[];

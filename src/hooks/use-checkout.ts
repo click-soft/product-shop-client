@@ -1,13 +1,13 @@
 import { CheckoutResult } from '../graphql/interfaces/checkout';
-import useCheckoutStore, { CheckoutState } from '../store/checkoutStore';
+import useCheckoutStore, { CheckoutState } from '../store/checkout.store';
 import { useAppDispatch } from '../store';
 import { useMutation } from '@apollo/client';
 import { CHECKOUT } from '../graphql/mutates/payment';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import TossQueryParser from '../utils/tossQueryParser';
-import CartProduct from '../interfaces/CartItem';
-import useCart from './useCart';
+import TossQueryParser from '../utils/toss-query-parser';
+import CartProduct from '../interfaces/cart-item';
+import useCart from './use-cart';
 
 const useCheckout = () => {
   const { fetchDeleteCartItems } = useCart();

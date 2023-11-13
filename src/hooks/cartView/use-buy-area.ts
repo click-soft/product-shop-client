@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import CartItemManager from '../../utils/cart-item-manager';
-import useCartViewStore from '../../store/cartViewStore';
+import useCartViewStore from '../../store/cart-view.store';
 import { useNavigate } from 'react-router-dom';
 import useCheckout from '../use-checkout';
-import { getOrderId } from '../../utils/tossPaymentsUtils';
+import { getOrderId } from '../../utils/toss-payments.utils';
 import useGetLoginedUser from '../use-get-logined-user';
 
 const useBuyArea = () => {

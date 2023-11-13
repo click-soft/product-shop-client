@@ -1,5 +1,5 @@
 import CircleLoading from '../../components/Loading/CircleLoading';
-import useMainQuery from '../../hooks/main/useMainQuery';
+import useMainQuery from '../../hooks/main/use-main-query';
 import ProductGroups from '../../components/Main/ProductGroups/ProductGroups';
 
 function MainPage() {

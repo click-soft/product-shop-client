@@ -1,9 +1,9 @@
 import { useLazyQuery, useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { GET_CS } from '../../graphql/queries/user';
-import UserProfile, { parseUserProfile } from '../../interfaces/UserProfile';
+import UserProfile, { parseUserProfile } from '../../interfaces/user-profile';
 import { GET_ACCOUNT_EXISTS, SAVE_ACCOUNT } from '../../graphql/queries/account';
-import useSignupStore from '../../store/signupStore';
+import useSignupStore from '../../store/signup.store';
 import { toast } from 'react-toastify';
 import SaveAccountArgs from '../../graphql/dto/saveAccount.args';
 

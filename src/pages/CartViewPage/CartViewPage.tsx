@@ -1,7 +1,7 @@
 import BuyArea from '../../components/BuyArea/BuyArea';
 import CircleLoading from '../../components/Loading/CircleLoading';
 import CartViewTable from '../../components/CartView/CartViewTable/CartViewTable';
-import useCartViewStore from '../../store/cartViewStore';
+import useCartViewStore from '../../store/cart-view.store';
 import { useEffect } from 'react';
 import EmptyCartView from '../../components/EmptyCartView/EmptyCartView';
 

@@ -1,7 +1,7 @@
 import styles from './ChangePasswordForm.module.scss';
 import TextInput from '../../../ui/TextInput/TextInput';
 import ErrorText from '../../../ui/ErrorText/ErrorText';
-import usePasswordValidator from '../../../hooks/usePasswordValidator';
+import usePasswordValidator from '../../../hooks/use-password-validator';
 import { useMutation, useQuery } from '@apollo/client';
 import { CHANGE_PASSWORD, VALID_CHANGE_PASSWORD } from '../../../graphql/queries/account';
 import { Link, useSearchParams } from 'react-router-dom';

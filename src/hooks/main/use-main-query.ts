@@ -2,7 +2,7 @@ import useGetLoginedUser from '../use-get-logined-user';
 import { GET_RPDUCTS_BUNRYU_LIST } from '../../graphql/queries/product';
 import { useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
-import ProductsByBunryu from '../../interfaces/ProductsByBunryu';
+import ProductsByBunryu from '../../interfaces/products-by-bunryu';
 import { toast } from 'react-toastify';
 
 const useMainQuery = () => {

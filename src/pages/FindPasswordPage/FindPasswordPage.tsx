@@ -1,7 +1,7 @@
 import styles from './FindPasswordPage.module.scss';
 import FindPasswordForm from '../../components/FindPassword/FindPasswordForm/FindPasswordForm';
 import FindPasswordSended from '../../components/FindPassword/FindPasswordSended/FindPasswordSended';
-import useFindPasswordStore from '../../store/findPasswordStore';
+import useFindPasswordStore from '../../store/find-password.store';
 import ToBackXButton from '../../components/ToBackXButton/ToBackXButton';
 
 const FindPasswordPage = () => {

@@ -5,7 +5,7 @@ import MuiSelect from '../../../ui/MUI/MuiSelect/MuiSelect';
 import { Button, TextField } from '@mui/material';
 import useGetManagers from '../../../hooks/use-get-managers';
 import classNames from 'classnames';
-import ChildrenProps from '../../../interfaces/ChildrenProps';
+import ChildrenProps from '../../../interfaces/children-props';
 interface AdminSearchFormProps extends ChildrenProps {
   textLabel: string;
   onSubmit: (formValues: FormValues) => void;

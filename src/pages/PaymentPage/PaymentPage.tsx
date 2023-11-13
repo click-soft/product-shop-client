@@ -1,7 +1,7 @@
 import styles from './PaymentPage.module.scss';
 import Card from '../../ui/Card/Card';
 import { useNavigate } from 'react-router-dom';
-import useTossWidget from '../../hooks/useTossWidget';
+import useTossWidget from '../../hooks/use-toss-widget';
 import { toast } from 'react-toastify';
 
 const PaymentPage = () => {

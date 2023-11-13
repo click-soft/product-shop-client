@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './OrderBoxFooter.module.scss';
 import { Payment } from '../../../graphql/interfaces/payment';
-import bankData from '../../../data/bankData';
+import bankData from '../../../data/bank-data';
 import dayjs from 'dayjs';
 import Card from '../../../ui/Card/Card';
 

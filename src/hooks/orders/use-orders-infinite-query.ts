@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import useIntersectionObserver from '../use-intersection-observer';
 import { useEffect } from 'react';
 import { Payment } from '../../graphql/interfaces/payment';
-import useOrdersStore from '../../store/ordersStore';
+import useOrdersStore from '../../store/orders.store';
 import useSocketIo from '../use-socket-io';
 
 const fetchGetPaymentWithItems = async ({ pageParam = 1 }): Promise<PaymentWithPage> => {

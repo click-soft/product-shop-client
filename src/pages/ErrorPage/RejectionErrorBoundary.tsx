@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import { useAppSelector } from '../../store';
 import { ErrorArgs } from '../../store/error-slice';
 import { useErrorBoundary } from 'react-error-boundary';

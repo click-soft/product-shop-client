@@ -1,6 +1,6 @@
 import CartViewItems from '../../CartViewItem/CartViewItem';
-import useCartView from '../../../hooks/cartView/useCartView';
-import useCartViewStore from '../../../store/cartViewStore';
+import useCartView from '../../../hooks/cartView/use-cart-view';
+import useCartViewStore from '../../../store/cart-view.store';
 
 const CartViewBody = () => {
   const { cart, updateQuantity, deleteCartItemById } = useCartView();

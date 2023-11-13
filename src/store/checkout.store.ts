@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import CartItem from '../interfaces/CartItem';
+import CartItem from '../interfaces/cart-item';
 
 type Actions = {
   setData: (data: CheckoutState) => void;

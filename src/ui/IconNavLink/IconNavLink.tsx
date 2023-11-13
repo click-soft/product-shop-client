@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './IconNavLink.module.scss';
 import { NavLink } from 'react-router-dom';
 import { IconType } from 'react-icons';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import classNames from 'classnames';
 
 interface IconNavLinkProps extends ChildrenProps {

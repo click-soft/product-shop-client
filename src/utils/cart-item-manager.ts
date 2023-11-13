@@ -1,5 +1,5 @@
-import CartItem from '../interfaces/CartItem';
-import { CheckoutState } from '../store/checkoutStore';
+import CartItem from '../interfaces/cart-item';
+import { CheckoutState } from '../store/checkout.store';
 
 export default class CartItemManager {
   constructor(public cartItems?: CartItem[]) {}

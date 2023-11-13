@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useEffect } from 'react';
 import styles from './Backdrop.module.scss';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import ReactDOM from 'react-dom';
 
 interface BackdropProps extends ChildrenProps {

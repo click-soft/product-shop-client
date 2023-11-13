@@ -1,4 +1,4 @@
-import ChildrenProps from '../../../interfaces/ChildrenProps';
+import ChildrenProps from '../../../interfaces/children-props';
 import styles from './RootHeader.module.scss';
 import MenuButton from '../../../components/MenuButton/MenuButton';
 import CartButton from '../../../components/CartButton/CartButton';
@@ -9,7 +9,7 @@ import { Link, useLocation } from 'react-router-dom';
 import MenuLink from '../../../components/MenuLink/MenuLink';
 import { useEffect, useRef, useState } from 'react';
 import useScrollWindow from '../../../hooks/use-scroll-window';
-import useThemeStore from '../../../store/themeStore';
+import useThemeStore from '../../../store/theme.store';
 
 const RootHeader: React.FC<ChildrenProps> = () => {
   const location = useLocation();

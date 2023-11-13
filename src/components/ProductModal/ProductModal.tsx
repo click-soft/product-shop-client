@@ -2,7 +2,7 @@ import Modal from '../../ui/Modal/Modal';
 import { RootState, useAppDispatch, useAppSelector } from '../../store';
 import { modalActions } from '../../store/modal-slice';
 import styles from './ProductModal.module.scss';
-import ProductListSub from '../../interfaces/ProductListSub';
+import ProductListSub from '../../interfaces/product-list-sub';
 import React, { useEffect, useState } from 'react';
 import CheckBox from '../../ui/CheckBox/CheckBox';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import ProductQuantitySelect from '../ProductQuantitySelect/ProductQuantitySelect';
 import Drawer from '../../ui/Drawer/Drawer';
 import ServiceInfo from '../ServiceInfo/ServiceInfo';
-import useCart from '../../hooks/useCart';
+import useCart from '../../hooks/use-cart';
 
 const ProductModal = () => {
   const { fetchAddToCart } = useCart();

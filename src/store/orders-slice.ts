@@ -3,7 +3,7 @@ import { GET_PAYMENT_WITH_ITEMS } from '../graphql/queries/payment';
 import { CANCEL_ORDER, REFUND_ORDER } from '../graphql/mutates/payment';
 import { CheckoutResult } from '../graphql/interfaces/checkout';
 import { Payment } from '../graphql/interfaces/payment';
-import RefundOrderArgs from '../graphql/dto/refund-order-args';
+import RefundOrderArgs from '../graphql/dto/refund-order.args';
 import client from '../graphql/apollo-client';
 
 interface OrdersState {

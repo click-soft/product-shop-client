@@ -1,4 +1,4 @@
-import ProductListSub from '../../../interfaces/ProductListSub';
+import ProductListSub from '../../../interfaces/product-list-sub';
 import styles from './ProductItem.module.scss';
 import { useDispatch } from 'react-redux';
 import { modalActions } from '../../../store/modal-slice';

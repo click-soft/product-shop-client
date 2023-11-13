@@ -1,4 +1,4 @@
-import ProductListSub from '../../interfaces/ProductListSub';
+import ProductListSub from '../../interfaces/product-list-sub';
 import Cs from './cs';
 
 export default interface Product {

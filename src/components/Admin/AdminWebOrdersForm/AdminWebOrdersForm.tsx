@@ -1,10 +1,10 @@
 import React from 'react';
 import AdminSearchForm, { FormValues } from '../AdminSearchForm/AdminSearchForm';
 import { isNuemric } from '../../../utils/strings';
-import useAdminWebOrdersStore from '../../../store/adminWebOrdersStore';
+import useAdminWebOrdersStore from '../../../store/admin-web-orders.store';
 import useGetLoginedUser from '../../../hooks/use-get-logined-user';
 import dayjs from 'dayjs';
-import { GET_AMDIN_PAYMENTS_KEY } from '../../../hooks/adminWebOrders/useAdminWebOrdersInfiniteQuery';
+import { GET_AMDIN_PAYMENTS_KEY } from '../../../hooks/adminWebOrders/use-admin-web-orders-infinite-query';
 import { useQueryClient } from 'react-query';
 
 const AdminWebOrdersForm = () => {

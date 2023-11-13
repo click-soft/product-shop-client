@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './BuyArea.module.scss';
 import CheckBox from '../../ui/CheckBox/CheckBox';
-import useBuyArea from '../../hooks/cartView/useBuyArea';
+import useBuyArea from '../../hooks/cartView/use-buy-area';
 
 const BuyArea: React.FC = () => {
   const { useBNPL, disabled, checkBNPL, currencyTotalPrice, handleBuy, handleBNPLChange } = useBuyArea();

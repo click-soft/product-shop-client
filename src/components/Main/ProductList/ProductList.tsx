@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './ProductList.module.scss';
-import ProductListSub from '../../../interfaces/ProductListSub';
-import ChildrenProps from '../../../interfaces/ChildrenProps';
+import ProductListSub from '../../../interfaces/product-list-sub';
+import ChildrenProps from '../../../interfaces/children-props';
 import ProductItem from '../ProductItem/ProductItem';
 import { menuObject } from '../../../data/text-mapping';
-import useThemeStore from '../../../store/themeStore';
+import useThemeStore from '../../../store/theme.store';
 import classNames from 'classnames';
-import useTheme from '../../../hooks/theme/useTheme';
+import useTheme from '../../../hooks/theme/use-theme';
 
 interface ProductListProps extends ChildrenProps {
   prodCode: string;

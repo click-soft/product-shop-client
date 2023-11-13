@@ -1,7 +1,7 @@
 import AdminSearchForm, { FormValues } from '../AdminSearchForm/AdminSearchForm';
 import dayjs from 'dayjs';
-import { adminOrderAction } from '../../../store/adminOrderSlice';
-import { ADMIN_QUERY_KEY } from '../../../hooks/adminOrder/useAdminOrderInfiniteQuery';
+import { adminOrderAction } from '../../../store/admin-order-slice';
+import { ADMIN_QUERY_KEY } from '../../../hooks/adminOrder/use-admin-order-infinite-query';
 import { useQueryClient } from 'react-query';
 import { useAppDispatch } from '../../../store';
 

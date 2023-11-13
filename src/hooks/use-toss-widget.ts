@@ -2,12 +2,12 @@ import { useEffect, useRef } from 'react';
 import { PaymentWidgetInstance, loadPaymentWidget } from '@tosspayments/payment-widget-sdk';
 import { TOSSPAYMENTS_CLIENT_KEY } from '../config';
 import { LocalStoragekey } from '../utils/enums';
-import useCheckoutStore, { CheckoutState } from '../store/checkoutStore';
+import useCheckoutStore, { CheckoutState } from '../store/checkout.store';
 import useGetLoginedUser from './use-get-logined-user';
 import dayjs from 'dayjs';
-import { SuccessFailCallback } from '../types/callbackType';
+import { SuccessFailCallback } from '../types/callback-type';
 import { useLocation } from 'react-router-dom';
-import { getOrderId } from '../utils/tossPaymentsUtils';
+import { getOrderId } from '../utils/toss-payments.utils';
 
 const selector = '#payment-widget';
 

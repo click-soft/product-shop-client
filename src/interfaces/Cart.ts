@@ -1,4 +1,4 @@
-import CartItem from './CartItem';
+import CartItem from './cart-item';
 
 export default interface Cart {
   id: number;

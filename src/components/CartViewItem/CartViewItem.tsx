@@ -1,5 +1,5 @@
 import React from 'react';
-import CartItem from '../../interfaces/CartItem';
+import CartItem from '../../interfaces/cart-item';
 import styles from './CartViewItem.module.scss';
 import NumericCombo from '../../ui/NumericCombo/NumericCombo';
 interface CartViewItemProps {

@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler } from 'react';
 import styles from './CheckBox.module.scss';
-import ChildrenProps from '../../interfaces/ChildrenProps';
+import ChildrenProps from '../../interfaces/children-props';
 import classNames from 'classnames';
 
 interface CheckBoxProps extends ChildrenProps {

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import Cart from '../interfaces/Cart';
+import Cart from '../interfaces/cart';
 
 type State = {
   cart?: Cart;

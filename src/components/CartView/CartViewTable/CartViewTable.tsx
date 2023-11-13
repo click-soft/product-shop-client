@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './CartViewTable.module.scss';
 import CartViewBody from '../CartViewBody/CartViewBody';
-import useCartViewStore from '../../../store/cartViewStore';
+import useCartViewStore from '../../../store/cart-view.store';
 
 const CartViewTable = () => {
   const { cart, checkedIds, setCheckAll } = useCartViewStore();

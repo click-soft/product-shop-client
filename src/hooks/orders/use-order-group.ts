@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useAppDispatch } from '../../store';
 import { cancelOrder, refundOrder } from '../../store/orders-slice';
 import { RefundType } from '../../components/RefundModal/RefundModal';
-import { OrderCancelArgs } from './useOrders';
+import { OrderCancelArgs } from './use-orders';
 
 const useOrderGroup = (payment: Payment) => {
   const dispatch = useAppDispatch();

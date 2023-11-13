@@ -1,6 +1,6 @@
 import styles from './OrdersPage.module.scss';
 import OrdersList from '../../components/Orders/OrdersList/OrdersList';
-import useOrdersStore from '../../store/ordersStore';
+import useOrdersStore from '../../store/orders.store';
 import { useEffect } from 'react';
 
 const OrdersPage = () => {

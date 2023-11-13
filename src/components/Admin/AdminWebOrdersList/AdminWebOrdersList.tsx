@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
 import useAdminWebOrdersInfiniteQuery, {
   GET_AMDIN_PAYMENTS_KEY,
-} from '../../../hooks/adminWebOrders/useAdminWebOrdersInfiniteQuery';
-import useAdminWebOrdersStore from '../../../store/adminWebOrdersStore';
+} from '../../../hooks/adminWebOrders/use-admin-web-orders-infinite-query';
+import useAdminWebOrdersStore from '../../../store/admin-web-orders.store';
 import OrderBox from '../../OrderBox/OrderBox';
 import styles from './AdminWebOrdersList.module.scss';
 import { useQueryClient } from 'react-query';
