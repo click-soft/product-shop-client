@@ -1,6 +1,7 @@
 import CartViewItems from '../../CartViewItem/CartViewItem';
 import useCartView from '../../../hooks/cartView/use-cart-view';
 import useCartViewStore from '../../../store/cart-view.store';
+import CartProduct from '../../../interfaces/cart-item';
 
 const CartViewBody = () => {
   const { cart, updateQuantity, deleteCartItemById } = useCartView();
@@ -17,7 +18,7 @@ const CartViewBody = () => {
     setCheck(id, checked);
   }
 
-  const itemComponents = cart?.cartItems.map((ci) => {
+  const itemComponents = cart?.cartItems.map((ci: CartProduct) => {
     return (
       <CartViewItems
         key={ci.id}
