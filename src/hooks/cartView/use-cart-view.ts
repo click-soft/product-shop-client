@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { GET_CART_WITH_RRODUCT } from '../../graphql/queries/cart';
 import { useEffect, useState } from 'react';
-import Cart from '../../interfaces/cart-';
+import Cart from '../../interfaces/cart';
 import useCartViewStore from '../../store/cart-view.store';
 import { toast } from 'react-toastify';
 import useCart from '../use-cart';

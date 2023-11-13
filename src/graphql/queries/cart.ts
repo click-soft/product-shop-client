@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
-import Cart from '../../interfaces/cart-';
+import Cart from '../../interfaces/cart';
 
 export const CART_ITEMS_COUNT = gql`
   {
