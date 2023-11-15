@@ -21,6 +21,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
   const [isInit, setIsInit] = useState(true);
   const [value, setValue] = useState(1);
   const textRef = useRef<HTMLInputElement>(null);
+  const testRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState('');
   const [comboValue, setComboValue] = useState<number | string>(1);
   const isCustom = comboValue === 'custom' || +comboValue > 10;
@@ -81,7 +82,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
   }, [comboValue, setValue, setInputValue]);
 
   useEffect(() => {
-    if (isCustom) textRef.current?.focus();
+    if (isCustom) testRef.current?.focus();
   }, [isCustom]);
 
   function mouseLeaveHandler(): void {
@@ -130,6 +131,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
           <option value={'custom'}>직접입력</option>
         </select>
       )}
+      <input type="text" ref={testRef} value={'test'} />
       <input type="hidden" value={value} />
     </>
   );
