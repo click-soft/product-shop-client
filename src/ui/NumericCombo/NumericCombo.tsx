@@ -131,7 +131,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
           <option value={'custom'}>직접입력</option>
         </select>
       )}
-      <input type="text" ref={testRef} value={'test'} />
+      <input className={styles.testinput} type="text" ref={testRef} value={'test'} />
       <input type="hidden" value={value} />
     </>
   );

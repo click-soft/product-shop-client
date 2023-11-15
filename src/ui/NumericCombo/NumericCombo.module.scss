@@ -18,3 +18,11 @@
   margin-top: 2px;
   height: 28px;
 }
+
+.testinput {
+  &:focus,
+  &:active {
+    color: red;
+    background-color: blue;
+  }
+}
