@@ -1,0 +1,9 @@
+@import '../../../index.scss';
+
+.container {
+  @include header;
+}
+
+.center {
+  @include header_center;
+}

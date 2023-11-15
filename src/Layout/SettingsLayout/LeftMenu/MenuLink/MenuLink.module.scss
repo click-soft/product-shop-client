@@ -1,0 +1,21 @@
+.item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  margin: 0.1rem 0;
+  border-radius: var(--rounded);
+  width: 100%;
+  color: var(--theme-text-gray-900);
+
+  &:hover {
+    background-color: var(--theme-bg-gray-50);
+  }
+}
+
+.active {
+  background-color: var(--theme-bg-gray-100);
+}
+
+.icon_wrapper{
+  margin-left: 0.5rem;
+}

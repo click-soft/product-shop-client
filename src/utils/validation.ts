@@ -1,4 +1,4 @@
 export function validEmail(email: string) {
-  const pattern = /^[A-Za-z0-9_.-]+@[A-Za-z0-9-]+.[A-za-z0-9-]+/;
+  const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return !!pattern.test(email);
 }

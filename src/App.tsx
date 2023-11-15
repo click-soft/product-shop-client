@@ -3,7 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MainPage from './pages/MainPage/MainPage';
 import { createBrowserRouter } from 'react-router-dom';
-import { checkAdminLoader, checkAuthLoader, checkLoginLoader } from './utils/auth';
+import { checkAdminLoader, checkAuthLoader, checkLoginLoader } from './utils/loaders/auth';
 import CartViewPage from './pages/CartViewPage/CartViewPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import PaymentPage from './pages/PaymentPage/PaymentPage';
@@ -21,6 +21,8 @@ import AdminWebOrdersPage from './pages/AdminWebOrdersPage/AdminWebOrdersPage';
 import FindPasswordPage from './pages/FindPasswordPage/FindPasswordPage';
 import CenterLayout from './Layout/CenterLayout/CenterLayout';
 import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
+import SettingsLayout from './Layout/SettingsLayout/SettingsLayout';
+import SettingsProfilePage from './pages/SettingsProfilePage/SettingsProfilePage';
 
 const router = createBrowserRouter([
   {
@@ -92,6 +94,17 @@ const router = createBrowserRouter([
           {
             path: 'fail',
             element: <PaymentFailPage />,
+          },
+        ],
+      },
+      {
+        path: 'settings',
+        element: <SettingsLayout />,
+        loader: checkAuthLoader,
+        children: [
+          {
+            path: 'profile',
+            element: <SettingsProfilePage />,
           },
         ],
       },

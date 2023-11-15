@@ -2,11 +2,11 @@ import { useInfiniteQuery } from 'react-query';
 import client from '../../graphql/apollo-client';
 import GetAdminPaymentsArgs from '../../graphql/dto/get-admin-payments.args';
 import PaymentWithPage from '../../graphql/interfaces/payments-with-page';
-import { GET_ADMIN_PAYMENTS } from '../../graphql/queries/payment';
 import useAdminWebOrdersStore from '../../store/admin-web-orders.store';
 import { toast } from 'react-toastify';
 import useIntersectionObserver from '../use-intersection-observer';
 import { useEffect } from 'react';
+import { GET_ADMIN_PAYMENTS } from '../../graphql/gql/payment';
 
 const fetchGetAdminPayments = async (page: number, variables: GetAdminPaymentsArgs): Promise<PaymentWithPage> => {
   const result = await client.query({

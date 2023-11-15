@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { GET_PAYMENT_WITH_ITEMS } from '../graphql/queries/payment';
-import { CANCEL_ORDER, REFUND_ORDER } from '../graphql/mutates/payment';
 import { CheckoutResult } from '../graphql/interfaces/checkout';
 import { Payment } from '../graphql/interfaces/payment';
 import RefundOrderArgs from '../graphql/dto/refund-order.args';
 import client from '../graphql/apollo-client';
+import { CANCEL_ORDER, GET_PAYMENT_WITH_ITEMS, REFUND_ORDER } from '../graphql/gql/payment';
 
 interface OrdersState {
   payments: Payment[];

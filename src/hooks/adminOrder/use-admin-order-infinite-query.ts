@@ -1,13 +1,13 @@
 import { useInfiniteQuery } from 'react-query';
 import client from '../../graphql/apollo-client';
 import GetAdminProductsArgs from '../../graphql/dto/get-admin-products.args';
-import { GET_ADMIN_PRODUCTS } from '../../graphql/queries/product';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { adminOrderAction } from '../../store/admin-order-slice';
 import useIntersectionObserver from '../use-intersection-observer';
 import ProductsWithPage from '../../graphql/interfaces/products-with-page';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
+import { GET_ADMIN_PRODUCTS } from '../../graphql/gql/product';
 
 const fetchGetAdminProducts = async (page: number, variables: GetAdminProductsArgs): Promise<ProductsWithPage> => {
   const result = await client.query({

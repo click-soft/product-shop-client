@@ -8,8 +8,8 @@ import { RootState, useAppSelector } from '../../store';
 import { useSelector } from 'react-redux';
 
 interface IconButtonProps extends ChildrenProps {
-  style?: CSSProperties;
   icon: IconType;
+  style?: CSSProperties;
   text?: string;
   onClick?: MouseEventHandler | undefined;
   onMouseEnter?: () => void;

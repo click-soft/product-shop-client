@@ -2,8 +2,7 @@ import styles from './PaymentSuccessPage.module.scss';
 import PaymentSuccessComplete from '../../components/PaymentSuccessComplete/PaymentSuccessComplete';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { GET_ORDER_COMPLETED } from '../../graphql/queries/payment';
-import { Payment } from '../../graphql/interfaces/payment';
+import { GET_ORDER_COMPLETED } from '../../graphql/gql/payment';
 
 const PaymentSuccessPage = () => {
   const params = useParams();

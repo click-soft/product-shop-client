@@ -2,10 +2,10 @@ import { ApolloClient, HttpLink, InMemoryCache, Observable, concat, fromPromise 
 import { setContext } from '@apollo/client/link/context';
 import { LocalStoragekey } from '../utils/enums';
 import { onError } from '@apollo/client/link/error';
-import { refresh } from './mutates/auth';
 import { environment } from '../config';
 import store from '../store';
 import { errorActions } from '../store/error-slice';
+import { refresh } from './gql/auth';
 
 const httpLink = new HttpLink({
   uri: `${process.env.REACT_APP_BACKEND_URL}/graphql`,

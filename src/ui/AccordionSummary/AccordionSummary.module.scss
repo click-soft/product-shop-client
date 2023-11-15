@@ -1,0 +1,27 @@
+.accordion_summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 3rem;
+  padding: 1.5rem 0;
+}
+
+.title {
+  color: var(--theme-text-gray-900);
+  font-size: var(--fs-base);
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: var(--theme-text-gray);
+  font-size: var(--fs-sm);
+}
+
+.icon {
+  color: var(--theme-text-gray-900);
+  transition: transform 0.3s;
+}
+
+.open {
+  transform: rotate(-180deg);
+}

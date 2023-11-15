@@ -10,6 +10,7 @@ import React from 'react';
 import { IconType } from 'react-icons';
 import { MdManageAccounts } from 'react-icons/md';
 import classNames from 'classnames';
+import { IoSettingsOutline } from 'react-icons/io5';
 
 const UserModal = () => {
   const logout = useLogout();
@@ -26,7 +27,12 @@ const UserModal = () => {
         <div className={styles.container}>
           <div className={styles.header}>
             <div className={styles.header__left}>
-              <div className={styles.header__left__title}>{user?.name}</div>
+              <div className={styles.header__left__title}>
+                <div>{user?.name}</div>
+                <Link to={'/settings/profile'} className={styles.setting_link}>
+                  <IoSettingsOutline />
+                </Link>
+              </div>
               <div className={styles.header__left__sub}>{user?.ykiho}</div>
               <div className={styles.header__left__sub}>{user?.saupkiho}</div>
             </div>

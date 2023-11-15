@@ -1,8 +1,8 @@
 import { redirect } from 'react-router-dom';
-import { getUser } from '../graphql/queries/user';
-import { LocalStoragekey } from './enums';
-import store from '../store';
-import { errorActions } from '../store/error-slice';
+import { LocalStoragekey } from '../enums';
+import store from '../../store';
+import { errorActions } from '../../store/error-slice';
+import getUserQuery from '../../graphql/queries/account/get-user.query';
 
 const checkAuth = async (): Promise<boolean> => {
   const usr = localStorage.getItem(LocalStoragekey.USR);
@@ -29,7 +29,7 @@ export async function checkLoginLoader() {
 }
 
 export async function checkAdminLoader() {
-  const user = await getUser();
+  const user = await getUserQuery();
   const isAdmin = user?.admin;
 
   if (isAdmin) {

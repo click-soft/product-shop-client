@@ -32,6 +32,12 @@ const usePasswordValidator = () => {
     setBlurPasswords((prevSet) => prevSet.add(elem));
   }
 
+  function clear() {
+    setPassword('');
+    setConfirmPassword('');
+    setBlurPasswords(new Set());
+  }
+
   useEffect(() => {
     if (blurPasswords.size !== 2) return;
 
@@ -49,6 +55,7 @@ const usePasswordValidator = () => {
     confirmPassword,
     passwordError,
     isValidPassword,
+    clear,
     handlePasswordChange,
     handleConfirmPasswordChange,
     handlerPasswordBlur,

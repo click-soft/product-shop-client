@@ -1,5 +1,11 @@
 import { gql } from '@apollo/client';
 
+export const SEND_CHANGE_PASSWORD_EMAIL = gql`
+  mutation ($userId: String!) {
+    sendChangePasswordEmail(userId: $userId)
+  }
+`;
+
 export const GET_ACCOUNT_EXISTS = gql`
   query ($userId: String!) {
     getAccount(userId: $userId) {
@@ -35,6 +41,23 @@ export const CHANGE_PASSWORD = gql`
   mutation ($userId: String!, $password: String!) {
     changePassword(userId: $userId, password: $password) {
       affected
+    }
+  }
+`;
+
+export const CHANGE_EMAIL = gql`
+  mutation ($newEmail: String!) {
+    changeEmail(newEmail: $newEmail) {
+      affected
+    }
+  }
+`;
+
+export const VERIFY_ACCOUNT = gql`
+  query ($userId: String!, $password: String!) {
+    verifyAccount(userId: $userId, password: $password) {
+      id
+      userId
     }
   }
 `;

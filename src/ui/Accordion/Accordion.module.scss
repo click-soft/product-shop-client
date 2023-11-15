@@ -1,0 +1,27 @@
+@import '../../index.scss';
+.accordion {
+  @include card;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  background-color: var(--theme-bg-white);
+  border-radius: var(--rounded);
+  overflow: hidden;
+  padding: 0 1.5rem;
+}
+
+.rounded_top {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.rounded_bottom {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.separator {
+  border-top: 1px solid var(--theme-bg-gray-100);
+}

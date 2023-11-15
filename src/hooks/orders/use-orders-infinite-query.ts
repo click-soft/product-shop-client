@@ -1,13 +1,13 @@
 import { useInfiniteQuery } from 'react-query';
 import client from '../../graphql/apollo-client';
 import PaymentWithPage from '../../graphql/interfaces/payments-with-page';
-import { GET_PAYMENT_WITH_ITEMS } from '../../graphql/queries/payment';
 import { toast } from 'react-toastify';
 import useIntersectionObserver from '../use-intersection-observer';
 import { useEffect } from 'react';
 import { Payment } from '../../graphql/interfaces/payment';
 import useOrdersStore from '../../store/orders.store';
 import useSocketIo from '../use-socket-io';
+import { GET_PAYMENT_WITH_ITEMS } from '../../graphql/gql/payment';
 
 const fetchGetPaymentWithItems = async ({ pageParam = 1 }): Promise<PaymentWithPage> => {
   const result = await client.query({

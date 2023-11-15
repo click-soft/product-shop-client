@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../store';
 import CartItem from '../interfaces/cart-item';
-import { getCartWithProduct } from '../graphql/queries/cart';
+import { getCartWithProduct } from '../graphql/gql/cart';
 
 const useCartItems = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>();

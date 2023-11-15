@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { LOGOUT } from '../graphql/mutates/auth';
 import { modalActions } from '../store/modal-slice';
 import { useMutation } from '@apollo/client';
 import { LocalStoragekey } from '../utils/enums';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { LOGOUT } from '../graphql/gql/auth';
 
 const useLogout = () => {
   const dispatch = useDispatch();

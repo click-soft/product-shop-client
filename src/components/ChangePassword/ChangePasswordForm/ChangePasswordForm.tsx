@@ -2,12 +2,9 @@ import styles from './ChangePasswordForm.module.scss';
 import TextInput from '../../../ui/TextInput/TextInput';
 import ErrorText from '../../../ui/ErrorText/ErrorText';
 import usePasswordValidator from '../../../hooks/use-password-validator';
-import { useMutation, useQuery } from '@apollo/client';
-import { CHANGE_PASSWORD, VALID_CHANGE_PASSWORD } from '../../../graphql/queries/account';
-import { Link, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import CircleLoading from '../../Loading/CircleLoading';
 import ChangeResult from '../ChangeResult/ChangeResult';
+import useChangePasswordForm from '../../../hooks/changePassword/use-change-password-form';
 
 const ChangePasswordForm = () => {
   const {
@@ -21,14 +18,14 @@ const ChangePasswordForm = () => {
     handlerConfirmPasswordBlur,
   } = usePasswordValidator();
 
-  const { errorMessage, loading, changeSuccess, fetchChangePassword } = useChangePassword(password);
+  const { errorMessage, loading, success, fetchChangePassword } = useChangePasswordForm(password);
 
   function changePasswordHandler(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     fetchChangePassword();
   }
 
-  if (changeSuccess) {
+  if (success) {
     return <ChangeResult message="성공적으로 비밀번호가 변경되었습니다." />;
   }
 
@@ -65,57 +62,6 @@ const ChangePasswordForm = () => {
       )}
     </>
   );
-};
-
-const useChangePassword = (password: string) => {
-  const [params] = useSearchParams();
-  const userId = params.get('uid');
-  const token = params.get('key');
-  const [errorMessage, setErrorMessage] = useState<string>();
-  const { data, loading, error } = useQuery(VALID_CHANGE_PASSWORD, { variables: { userId, token } });
-  const [changePassword, { data: changePasswordData, error: changePasswordError }] = useMutation(CHANGE_PASSWORD);
-  const [changeSuccess, setChangeSuccess] = useState(false);
-
-  function fetchChangePassword() {
-    changePassword({ variables: { userId, password } });
-  }
-
-  useEffect(() => {
-    if (data) {
-      const isValid: boolean = data?.validChangePassword;
-      if (!isValid) {
-        setErrorMessage('비밀번호 변경 권한이 없습니다.');
-      }
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (error) {
-      setErrorMessage('비밀번호 변경 권한이 없습니다.');
-    }
-  }, [error]);
-
-  useEffect(() => {
-    if (!changePasswordData) return;
-
-    const affected: number = changePasswordData.changePassword;
-    if (affected) {
-      setChangeSuccess(true);
-    }
-  }, [changePasswordData]);
-
-  useEffect(() => {
-    if (changePasswordError) {
-      setErrorMessage(changePasswordError.message);
-    }
-  }, [changePasswordError]);
-
-  return {
-    loading,
-    errorMessage,
-    changeSuccess,
-    fetchChangePassword,
-  };
 };
 
 export default ChangePasswordForm;

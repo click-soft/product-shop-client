@@ -1,10 +1,10 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import AdminMenu from './AdminMenu';
-import { LOGOUT } from '../../../graphql/mutates/auth';
 import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 import { LocalStoragekey } from '../../../utils/enums';
+import { LOGOUT } from '../../../graphql/gql/auth';
 
 const mocks = [
   {

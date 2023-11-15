@@ -1,11 +1,11 @@
 import { useMutation } from '@apollo/client';
-import { UPDATE_PRODUCT } from '../../graphql/mutates/product';
 import { AdminOrderArgs } from '../../components/Admin/AdminOrderItem/AdminOrderItem';
 import Product from '../../graphql/interfaces/product';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { useEffect } from 'react';
 import { adminOrderAction } from '../../store/admin-order-slice';
 import { toast } from 'react-toastify';
+import { UPDATE_PRODUCT } from '../../graphql/gql/product';
 
 const useProductUpdate = () => {
   const dispatch = useAppDispatch();

@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
-import { GET_MANAGERS } from '../graphql/queries/em';
 import Em from '../graphql/interfaces/em';
+import { GET_MANAGERS } from '../graphql/gql/em';
 
 const useGetManagers = () => {
   const { data } = useQuery(GET_MANAGERS);

@@ -1,0 +1,11 @@
+@mixin custom-input {
+  padding: 0.5rem;
+  border-radius: var(--rounded);
+  border: 1px solid var(--theme-blue-400);
+  color: var(--theme-text-black);
+  background-color: var(--theme-bg-white);
+
+  &:focus {
+    border: 2px solid var(--theme-blue-400);
+  }
+}

@@ -1,0 +1,17 @@
+.title {
+  font-weight: normal;
+  font-size: var(--fs-3xl);
+  color: var(--theme-text-black);
+  margin-bottom: 1rem;
+}
+
+.description {
+  color: var(--theme-text-gray);
+}
+
+.sep {
+  height: 1px;
+  width: 100%;
+  background-color: var(--theme-text-lightgray);
+  margin: 2rem 0;
+}

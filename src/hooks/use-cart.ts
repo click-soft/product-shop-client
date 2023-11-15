@@ -1,10 +1,9 @@
 import { useLazyQuery, useMutation } from '@apollo/client';
-import { ADD_TO_CART } from '../graphql/mutates/cart';
 import AddToCartArgs from '../graphql/dto/add-to-cart.args';
-import { CART_ITEMS_COUNT } from '../graphql/queries/cart';
-import { DELETE_CART_ITEMS, UPDATE_CART_ITEM_QUANTITY } from '../graphql/mutates/cart-item';
 import useCartStore from '../store/cart.store';
 import { useEffect } from 'react';
+import { ADD_TO_CART, CART_ITEMS_COUNT } from '../graphql/gql/cart';
+import { DELETE_CART_ITEMS, UPDATE_CART_ITEM_QUANTITY } from '../graphql/gql/cart-item';
 
 const useCart = () => {
   const { itemsCount, setItemsCount } = useCartStore();

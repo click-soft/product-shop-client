@@ -2,3 +2,22 @@
   border-radius: 0.5rem;
   box-shadow: 1px 2px 3px rgba($color: var(--theme-rgb-black), $alpha: 0.15);
 }
+
+@mixin header {
+  color: var(--color-white);
+  background-color: var(--theme-bg-white);
+  width: 100%;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--theme-bd-white);
+  overflow: hidden;
+}
+
+@mixin header_center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -5,6 +5,7 @@ import './styles/css/color.css';
 import './styles/css/size.css';
 import './styles/css/radius.css';
 import './styles/css/line-height.css';
+import './styles/css/custom-element.css';
 import './index.css';
 import ReactDOM from 'react-dom/client';
 import { ApolloProvider } from '@apollo/client';

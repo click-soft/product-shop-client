@@ -11,9 +11,9 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, resetErrorBoundary }) =
     case 404:
       return <NotFoundErrorPage />;
   }
-  switch (error?.message) {
+  switch (error?.message?.toUpperCase()) {
     case 401:
-    case 'Unauthorized':
+    case 'UNAUTHORIZED':
       return <UnauthorizedPage />;
   }
 

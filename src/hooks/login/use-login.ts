@@ -1,13 +1,13 @@
 import { useLazyQuery, useMutation } from '@apollo/client';
 import client from '../../graphql/apollo-client';
-import { LOGIN } from '../../graphql/mutates/auth';
 import LoginArgs from '../../graphql/dto/login.args';
 import { useEffect, useState } from 'react';
 import { LocalStoragekey } from '../../utils/enums';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import TokenResult from '../../graphql/types/token-result';
-import { GET_ACCOUNT_EXISTS } from '../../graphql/queries/account';
+import { LOGIN } from '../../graphql/gql/auth';
+import { GET_ACCOUNT_EXISTS } from '../../graphql/gql/account';
 
 const useLogin = () => {
   const navigate = useNavigate();

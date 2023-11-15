@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  font-size: var(--fs-sm);
+  padding: 1rem 0;
+  color: var(--theme-text-gray);
+}
+
+.children {
+  font-size: var(--fs-sm);
+}

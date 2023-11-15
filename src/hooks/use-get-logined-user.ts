@@ -1,19 +1,33 @@
-import { DependencyList, useEffect, useState } from 'react';
-import UserProfile from '../interfaces/user-profile';
-import { getUser } from '../graphql/queries/user';
+import { useEffect, useState } from 'react';
+import useProfileStore from '../store/user-profile.store';
+import getUserQuery from '../graphql/queries/account/get-user.query';
+
+let isLoading = false;
 
 export default function useGetLoginedUser(load: boolean) {
-  const [user, setUser] = useState<UserProfile>();
+  const { isAuthenticated, user, setUser } = useProfileStore();
+
+  async function fetchGetUser() {
+    if (isLoading) return;
+    isLoading = true;
+    try {
+      const user = await getUserQuery();
+      setUser(user);
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+    isLoading = false;
+  }
 
   useEffect(() => {
-    if (load) {
-      getUser()
-        .then((user) => {
-          setUser(user);
-        })
-        .catch((err) => setUser(undefined));
-    }
-  }, [load]);
+    if (isAuthenticated) return;
+
+    fetchGetUser();
+  }, [isAuthenticated]);
+
+  if (isAuthenticated) {
+    return user;
+  }
 
   return user;
 }

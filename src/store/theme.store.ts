@@ -19,9 +19,7 @@ const useThemeStore = create(
   persist<State & Actions>(
     (set) => ({
       ...initialState,
-      setMode: (mode) =>
-        set(() => {
-          return { mode };
+      setMode: (mode) =>        set(() => {          return { mode };
         }),
     }),
     {
