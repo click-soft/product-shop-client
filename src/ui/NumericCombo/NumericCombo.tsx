@@ -108,10 +108,10 @@ const NumericCombo: React.FC<NumericComboProps> = ({
           )}
         </div>
       ) : (
-        <select className={styles['combo-style']} onChange={comboChangeHandler} value={comboValue} itemType='text'>
+        <select className={styles['combo-style']} onChange={comboChangeHandler} value={comboValue} itemType="text">
           {options.map((i) => {
             return (
-              <option key={i} value={i}>
+              <option key={i} value={i} onTouchStart={(e) => e.preventDefault()}>
                 {i}
               </option>
             );
