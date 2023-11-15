@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './NumericCombo.module.scss';
 import { isNuemric } from '../../utils/strings';
-import DeviceUtils from '../../utils/device.utils';
 
 interface NumericComboProps {
   value?: number;
@@ -25,11 +24,10 @@ const NumericCombo: React.FC<NumericComboProps> = ({
   const [comboValue, setComboValue] = useState<number | string>(1);
   const isCustom = comboValue === 'custom' || +comboValue > 10;
   const isValueChanged = isCustom ? value !== +inputValue : value !== comboValue;
-  const [test, setTest] = useState('');
   function comboChangeHandler(e: React.ChangeEvent<HTMLSelectElement>) {
     if (e.target.value === 'custom') {
-      e.preventDefault();
       setComboValue(e.target.value);
+      setTimeout(() => textRef.current?.focus());
     } else {
       const comboValue = +e.target.value;
       if (comboValue >= minValue && comboValue <= maxValue) {
@@ -81,19 +79,6 @@ const NumericCombo: React.FC<NumericComboProps> = ({
     }
   }, [comboValue, setValue, setInputValue]);
 
-  useEffect(() => {
-    if (isCustom) textRef.current?.focus();
-  }, [isCustom]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTest(document.activeElement?.tagName!);
-    }, 30);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
   function mouseLeaveHandler(): void {
     setInputValue(value.toString());
     setComboValue(value);
@@ -101,20 +86,15 @@ const NumericCombo: React.FC<NumericComboProps> = ({
 
   return (
     <>
-    <div className={styles['input-container']}>
+      {isCustom ? (
+        <div className={styles['input-container']}>
           <input
             ref={textRef}
             type="text"
             className={styles['combo-style']}
-            onBlur={DeviceUtils.isIOS ? undefined : mouseLeaveHandler}
+            onBlur={mouseLeaveHandler}
             onFocus={(e) => e.target.select()}
             value={inputValue}
-            onMouseOut={DeviceUtils.isIOS ? mouseLeaveHandler : undefined}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                countApplyHandler();
-              }
-            }}
             onChange={(e) => setInputValue(e.target.value)}
           />
           {isValueChanged && (
@@ -127,7 +107,8 @@ const NumericCombo: React.FC<NumericComboProps> = ({
             </button>
           )}
         </div>
-        <select className={styles['combo-style']} onChange={comboChangeHandler} value={comboValue}>
+      ) : (
+        <select className={styles['combo-style']} onChange={comboChangeHandler} value={comboValue} itemType='text'>
           {options.map((i) => {
             return (
               <option key={i} value={i}>
@@ -137,7 +118,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
           })}
           <option value={'custom'}>직접입력</option>
         </select>
-      <div>{test}</div>
+      )}
       <input type="hidden" value={value} />
     </>
   );
