@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './NumericCombo.module.scss';
 import { isNuemric } from '../../utils/strings';
 import DeviceUtils from '../../utils/device.utils';
+import useFocus from '../../hooks/use-focus';
 
 interface NumericComboProps {
   value?: number;
@@ -20,18 +21,18 @@ const NumericCombo: React.FC<NumericComboProps> = ({
 }) => {
   const [isInit, setIsInit] = useState(true);
   const [value, setValue] = useState(1);
-  const textRef = useRef<HTMLInputElement>(null);
+  // const textRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState('');
   const [comboValue, setComboValue] = useState<number | string>(1);
   const isCustom = comboValue === 'custom' || +comboValue > 10;
   const isValueChanged = isCustom ? value !== +inputValue : value !== comboValue;
+  const { ref, setIsFocused } = useFocus();
+
   function comboChangeHandler(e: React.ChangeEvent<HTMLSelectElement>) {
     if (e.target.value === 'custom') {
       setComboValue(e.target.value);
 
-      setTimeout(() => {
-        textRef.current?.focus();
-      }, 100);
+      setIsFocused(true);
     } else {
       const comboValue = +e.target.value;
       if (comboValue >= minValue && comboValue <= maxValue) {
@@ -93,7 +94,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
       {isCustom ? (
         <div className={styles['input-container']}>
           <input
-            ref={textRef}
+            ref={ref as any}
             type="text"
             className={styles['combo-style']}
             onBlur={DeviceUtils.isIOS ? undefined : mouseLeaveHandler}
