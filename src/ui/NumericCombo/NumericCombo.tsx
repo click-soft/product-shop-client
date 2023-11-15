@@ -29,10 +29,6 @@ const NumericCombo: React.FC<NumericComboProps> = ({
   function comboChangeHandler(e: React.ChangeEvent<HTMLSelectElement>) {
     if (e.target.value === 'custom') {
       setComboValue(e.target.value);
-
-      setTimeout(() => {
-        textRef.current?.focus();
-      });
     } else {
       const comboValue = +e.target.value;
       if (comboValue >= minValue && comboValue <= maxValue) {
@@ -84,6 +80,10 @@ const NumericCombo: React.FC<NumericComboProps> = ({
     }
   }, [comboValue, setValue, setInputValue]);
 
+  useEffect(() => {
+    if (isCustom) textRef.current?.focus();
+  }, [isCustom]);
+
   function mouseLeaveHandler(): void {
     setInputValue(value.toString());
     setComboValue(value);
@@ -91,21 +91,16 @@ const NumericCombo: React.FC<NumericComboProps> = ({
 
   return (
     <>
-      <button
-        onClick={() => {
-          textRef.current?.focus();
-        }}
-      >test</button>
       {isCustom ? (
         <div className={styles['input-container']}>
           <input
             ref={textRef}
             type="text"
             className={styles['combo-style']}
-            // onBlur={DeviceUtils.isIOS ? undefined : mouseLeaveHandler}
+            onBlur={DeviceUtils.isIOS ? undefined : mouseLeaveHandler}
             onFocus={(e) => e.target.select()}
             value={inputValue}
-            // onMouseOut={DeviceUtils.isIOS ? mouseLeaveHandler : undefined}
+            onMouseOut={DeviceUtils.isIOS ? mouseLeaveHandler : undefined}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 countApplyHandler();
