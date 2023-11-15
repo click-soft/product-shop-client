@@ -101,8 +101,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
 
   return (
     <>
-      {isCustom ? (
-        <div className={styles['input-container']}>
+    <div className={styles['input-container']}>
           <input
             ref={textRef}
             type="text"
@@ -128,7 +127,6 @@ const NumericCombo: React.FC<NumericComboProps> = ({
             </button>
           )}
         </div>
-      ) : (
         <select className={styles['combo-style']} onChange={comboChangeHandler} value={comboValue}>
           {options.map((i) => {
             return (
@@ -139,7 +137,6 @@ const NumericCombo: React.FC<NumericComboProps> = ({
           })}
           <option value={'custom'}>직접입력</option>
         </select>
-      )}
       <div>{test}</div>
       <input type="hidden" value={value} />
     </>
