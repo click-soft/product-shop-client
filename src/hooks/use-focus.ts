@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 
-const useFocus = (defaultFocused = false) => {
-  const ref = useRef<HTMLElement>();
+const useFocus = <T extends HTMLElement>(defaultFocused = false) => {
+  const ref = useRef<T>(null);
   const [isFocused, setIsFocused] = useState(defaultFocused);
 
   useLayoutEffect(() => {
