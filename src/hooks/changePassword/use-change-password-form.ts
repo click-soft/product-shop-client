@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import validChangePasswordQuery from '../../graphql/queries/account/valid-change-password.query';
 import changePasswordMutate from '../../graphql/mutates/account/change-password.mutate';
@@ -30,6 +30,10 @@ const useChangePasswordForm = (password: string) => {
     }
     setLoading(false);
   }
+
+  useEffect(() => {
+    fetchChangePassword();
+  }, []);
 
   return {
     loading,
