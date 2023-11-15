@@ -28,7 +28,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
   function comboChangeHandler(e: React.ChangeEvent<HTMLSelectElement>) {
     if (e.target.value === 'custom') {
       setComboValue(e.target.value);
-      setTimeout(() => textRef.current?.focus());
+      setTimeout(() => textRef.current?.focus(), 1000);
     } else {
       const comboValue = +e.target.value;
       if (comboValue >= minValue && comboValue <= maxValue) {
@@ -93,10 +93,8 @@ const NumericCombo: React.FC<NumericComboProps> = ({
             ref={textRef}
             type="text"
             className={styles['combo-style']}
-            onBlur={DeviceUtils.isIOS ? undefined : mouseLeaveHandler}            
-            onFocus={(e) => {
-              // e.target.select();
-            }}
+            onBlur={DeviceUtils.isIOS ? undefined : mouseLeaveHandler}
+            onFocus={(e) => e.target.select()}
             value={inputValue}
             onMouseOut={DeviceUtils.isIOS ? mouseLeaveHandler : undefined}
             onKeyDown={(e) => {
