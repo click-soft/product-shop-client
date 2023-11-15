@@ -30,11 +30,8 @@ const NumericCombo: React.FC<NumericComboProps> = ({
       setComboValue(e.target.value);
 
       setTimeout(() => {
-        alert('test');
         textRef.current?.focus();
-        alert(`textRef.current : ${textRef.current}`);
-        alert(`textRef.current.className : ${textRef.current?.className}`);
-      }, 1000);
+      }, 100);
     } else {
       const comboValue = +e.target.value;
       if (comboValue >= minValue && comboValue <= maxValue) {
