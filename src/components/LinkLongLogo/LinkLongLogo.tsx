@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './LinkLongLogo.module.scss';
-import logo from '../../assets/images/main_logo.jpg';
+import logo from '../../assets/images/main_logo.png';
 import darkLogo from '../../assets/images/main_logo_dark.png';
 import useThemeStore from '../../store/theme.store';
 import { Link } from 'react-router-dom';

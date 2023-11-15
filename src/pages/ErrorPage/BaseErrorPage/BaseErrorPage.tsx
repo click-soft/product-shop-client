@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './BaseErrorPage.module.scss';
-import mainLogo from '../../../assets/images/main_logo.jpg';
-import { Link, useNavigate } from 'react-router-dom';
+import mainLogo from '../../../assets/images/main_logo.png';
+import { useNavigate } from 'react-router-dom';
 import ChildrenProps from '../../../interfaces/children-props';
 import { redirect } from 'react-router-dom';
 

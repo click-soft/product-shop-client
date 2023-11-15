@@ -11,16 +11,25 @@ const useChangePasswordForm = (password: string) => {
   const [loading, setLoading] = useState<boolean>();
   const [success, setSuccess] = useState<boolean>();
 
+  async function fetchValidChangePassword() {
+    if (!userId || !token) return;
+
+    try {
+      const isValid = await validChangePasswordQuery({ userId, token });
+      if (!isValid) throw new Error();
+      return isValid;
+    } catch {
+      setErrorMessage('비밀번호 변경 권한이 없습니다.');
+      return false;
+    }
+  }
+
   async function fetchChangePassword() {
     if (!userId || !token) return;
 
     setLoading(true);
-    try {
-      const isValid = await validChangePasswordQuery({ userId, token });
-      if (!isValid) throw new Error();
-    } catch {
-      return setErrorMessage('비밀번호 변경 권한이 없습니다.');
-    }
+    const isValid = await fetchValidChangePassword();
+    if (!isValid) return;
 
     try {
       await changePasswordMutate({ userId, password });
@@ -32,7 +41,11 @@ const useChangePasswordForm = (password: string) => {
   }
 
   useEffect(() => {
-    fetchChangePassword();
+    (async () => {
+      setLoading(true);
+      await fetchValidChangePassword();
+      setLoading(false);
+    })();
   }, []);
 
   return {
