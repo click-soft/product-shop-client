@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import useResizeWindow from '../../hooks/use-resize-window';
 import { RootState, useAppSelector } from '../../store';
 import { useSelector } from 'react-redux';
+import useModalStore from '../../store/modal.store';
 
 interface IconButtonProps extends ChildrenProps {
   icon: IconType;
@@ -19,9 +20,7 @@ interface IconButtonProps extends ChildrenProps {
 const IconButton: React.FC<IconButtonProps> = (props) => {
   const { isMobile } = useResizeWindow();
   const [mouseEntered, setMouseEntered] = useState(false);
-  const isModalShown = useAppSelector((state) => {
-    return state.modal.showCartModal || state.modal.showMenuModal || state.modal.showUserModal;
-  });
+  const isModalShown = useModalStore((state) => state.showCartModal || state.showMenuModal || state.showUserModal);
 
   useEffect(() => {
     if (!isModalShown) {

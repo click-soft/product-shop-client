@@ -1,17 +1,16 @@
 import ProductListSub from '../../../interfaces/product-list-sub';
+import useModalStore from '../../../store/modal.store';
 import styles from './ProductItem.module.scss';
-import { useDispatch } from 'react-redux';
-import { modalActions } from '../../../store/modal-slice';
 
 interface ProductItemProps {
   productCode: string;
   productList: ProductListSub;
 }
 const ProductItem: React.FC<ProductItemProps> = (props) => {
+  const { showProduct } = useModalStore();
   const pls = props.productList;
-  const dispatch = useDispatch();
   const itemClickHandler = () => {
-    dispatch(modalActions.showProduct({ productCode: props.productCode, data: pls }));
+    showProduct({ code: props.productCode, data: pls });
   };
 
   return (

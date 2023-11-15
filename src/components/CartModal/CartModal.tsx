@@ -3,18 +3,17 @@ import { BsCartCheck } from 'react-icons/bs';
 import CartItem from '../CartItem/CartItem';
 import { Fragment, useMemo } from 'react';
 import DownModal from '../../ui/DownModal/DownModal';
-import { useAppDispatch, useAppSelector } from '../../store';
 import useCartItems from '../../hooks/use-cart-items';
 import { Link } from 'react-router-dom';
-import { modalActions } from '../../store/modal-slice';
 import CartItemManager from '../../utils/cart-item-manager';
+import useModalStore from '../../store/modal.store';
 
 const Cart = () => {
-  const dispatch = useAppDispatch();
   const { cartItems } = useCartItems();
+  const { showCartModal, clear } = useModalStore();
   const cartItemManager = useMemo(() => new CartItemManager(cartItems), [cartItems]);
-  const showDownModal = useAppSelector((state) => state.modal.showCartModal);
-  if (!showDownModal) {
+
+  if (!showCartModal) {
     return <></>;
   }
 
@@ -27,10 +26,6 @@ const Cart = () => {
     );
   });
 
-  const navToCartHandler = () => {
-    dispatch(modalActions.closeDownAll());
-  };
-
   return (
     <>
       <DownModal>
@@ -42,7 +37,7 @@ const Cart = () => {
               </div>
               <div className={styles.totalPrice}>{`₩${cartItemManager.totalPrice.toLocaleString()}`}</div>
             </div>
-            <Link to="/cart-view" className={styles['shop-button']} onClick={navToCartHandler}>
+            <Link to="/cart-view" className={styles['shop-button']} onClick={clear}>
               <BsCartCheck className={styles['shop-icon']} />
               장바구니 보기
             </Link>

@@ -18,6 +18,7 @@ const ScrollToTop = () => {
 
 const RootLayout = () => {
   ScrollToTop();
+
   return (
     <>
       <ProductModal />

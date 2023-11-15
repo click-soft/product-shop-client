@@ -6,7 +6,7 @@ import useProfile from '../useProfile';
 
 const useSettingsChangeEmail = () => {
   const { user, fetchGetUser } = useProfile();
-  const [email, setEmail] = useState<string>();
+  const [email, setEmail] = useState<string>('');
   const [isValidEmail, setIsValidEmail] = useState<boolean>();
   const [errorMessage, setErrorMessage] = useState<string>();
 
@@ -29,12 +29,12 @@ const useSettingsChangeEmail = () => {
   }
 
   useEffect(() => {
-    setEmail(user?.email);
+    setEmail(user?.email ?? '');
   }, [user?.email]);
 
   useEffect(() => {
     setErrorMessage('');
-    
+
     const isValid = validEmail(email!);
     if (!isValid) {
       setErrorMessage('이메일 형식이 맞지 않습니다.');

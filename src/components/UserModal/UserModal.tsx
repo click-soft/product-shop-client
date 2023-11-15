@@ -2,7 +2,6 @@ import DownModal from '../../ui/DownModal/DownModal';
 import store, { useAppSelector } from '../../store';
 import styles from './UserModal.module.scss';
 import { Link } from 'react-router-dom';
-import { modalActions } from '../../store/modal-slice';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
 import { BiBasket } from 'react-icons/bi';
 import useLogout from '../../hooks/use-logout';
@@ -11,10 +10,11 @@ import { IconType } from 'react-icons';
 import { MdManageAccounts } from 'react-icons/md';
 import classNames from 'classnames';
 import { IoSettingsOutline } from 'react-icons/io5';
+import useModalStore from '../../store/modal.store';
 
 const UserModal = () => {
   const logout = useLogout();
-  const showUserModal = useAppSelector<boolean>((state) => state.modal.showUserModal);
+  const { showUserModal } = useModalStore();
   const user = useGetLoginedUser(showUserModal);
 
   if (!showUserModal) {
@@ -61,15 +61,10 @@ interface LinkButtonProps {
 }
 
 const LinkButton: React.FC<LinkButtonProps> = (props) => {
+  const { clear } = useModalStore();
   return (
     <li className={classNames(styles.link_li, props.admin && styles.admin)}>
-      <Link
-        to={props.to}
-        className={styles.link}
-        onClick={() => {
-          store.dispatch(modalActions.closeDownAll());
-        }}
-      >
+      <Link to={props.to} className={styles.link} onClick={clear}>
         <props.icon className={styles.icon} />
         <span>{props.text}</span>
       </Link>

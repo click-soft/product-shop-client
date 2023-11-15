@@ -3,6 +3,7 @@ import usePasswordValidator from '../use-password-validator';
 import verifyAccountQuery from '../../graphql/queries/account/verify-account.query';
 import changePasswordMutate from '../../graphql/mutates/account/change-password.mutate';
 import { toast } from 'react-toastify';
+import { Account } from '../../graphql/interfaces/account';
 
 const useSettingsChangePassword = () => {
   const {
@@ -28,8 +29,16 @@ const useSettingsChangePassword = () => {
 
   async function fetchChangePassword(userId: string) {
     setLoading(true);
+
+    let account: Account;
     try {
-      const account = await verifyAccountQuery({ userId, password: currentPassword });
+      account = await verifyAccountQuery({ userId, password: currentPassword });
+    } catch (error: any) {
+      toast.error('현재 비밀번호를 확인하세요.');
+      return setLoading(false);
+    }
+
+    try {
       const success = await changePasswordMutate({ userId: account.userId, password });
       if (success) {
         toast.success('비밀번호가 변경되었습니다.');

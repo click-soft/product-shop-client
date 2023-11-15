@@ -4,10 +4,11 @@ import CartViewTable from '../../components/CartView/CartViewTable/CartViewTable
 import useCartViewStore from '../../store/cart-view.store';
 import { useEffect } from 'react';
 import EmptyCartView from '../../components/EmptyCartView/EmptyCartView';
+import useClearModal from '../../hooks/use-clear-modal';
 
 const CartViewPage = () => {
   const { cart, loading, initialized, clear } = useCartViewStore();
-
+  useClearModal();
   useEffect(() => {
     return clear;
   }, []);

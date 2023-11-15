@@ -1,9 +1,9 @@
 import DownModal from '../../ui/DownModal/DownModal';
-import { useAppSelector } from '../../store';
 import MenuLink from '../MenuLink/MenuLink';
+import useModalStore from '../../store/modal.store';
 
 const MenuModal = () => {
-  const showMenuModal = useAppSelector((state) => state.modal.showMenuModal);
+  const { showMenuModal } = useModalStore();
 
   if (!showMenuModal) {
     return <></>;

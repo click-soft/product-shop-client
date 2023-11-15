@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { modalActions } from '../store/modal-slice';
 import { useMutation } from '@apollo/client';
 import { LocalStoragekey } from '../utils/enums';
 import { useEffect } from 'react';
@@ -16,7 +15,6 @@ const useLogout = () => {
     if (data) {
       localStorage.removeItem(LocalStoragekey.ACT);
       localStorage.removeItem(LocalStoragekey.USR);
-      dispatch(modalActions.closeDownAll());
       navigate('/login');
     }
   }, [data]);

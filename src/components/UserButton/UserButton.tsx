@@ -1,24 +1,14 @@
 import IconButton from '../../ui/IconButton/IconButton';
 import { AiOutlineUser } from 'react-icons/ai';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { modalActions } from '../../store/modal-slice';
 import useResizeWindow from '../../hooks/use-resize-window';
 import { useEffect, useState } from 'react';
 import UserModal from '../UserModal/UserModal';
+import useModalStore from '../../store/modal.store';
 
 const UserButton = () => {
-  const dispatch = useAppDispatch();
   const { isMobile } = useResizeWindow();
   const [mouseEntered, setMouseEntered] = useState(false);
-  const showUserModal = useAppSelector((state) => state.modal.showUserModal);
-
-  function showModal() {
-    dispatch(modalActions.showUser());
-  }
-
-  function closeModal() {
-    dispatch(modalActions.closeUser());
-  }
+  const { showUserModal, showUser, closeUser } = useModalStore();
 
   useEffect(() => {
     if (!showUserModal) {
@@ -29,16 +19,16 @@ const UserButton = () => {
   useEffect(() => {
     if (isMobile) return;
     if (mouseEntered) {
-      showModal();
+      showUser();
     } else {
-      closeModal();
+      closeUser();
     }
   }, [mouseEntered]);
 
   return (
     <IconButton
       icon={AiOutlineUser}
-      onClick={showModal}
+      onClick={showUser}
       onMouseEnter={() => setMouseEntered(true)}
       onMouseLeave={() => setMouseEntered(false)}
       text={isMobile ? '' : '계정'}

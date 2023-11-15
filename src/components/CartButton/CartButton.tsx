@@ -3,21 +3,19 @@ import styles from './CartButton.module.scss';
 import IconButton from '../../ui/IconButton/IconButton';
 import { BsCart2 } from 'react-icons/bs';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { modalActions } from '../../store/modal-slice';
 import useResizeWindow from '../../hooks/use-resize-window';
 import CartModal from '../CartModal/CartModal';
 import useCart from '../../hooks/use-cart';
+import useModalStore from '../../store/modal.store';
 
 const CartButton = () => {
   const { itemsCount, fetchCartItemsCount } = useCart();
   const [animation, setAnimation] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const [mouseEntered, setMouseEntered] = useState(false);
-  const showCartModal = useAppSelector((state) => state.modal.showCartModal);
+  const { showCartModal } = useModalStore();
   const { isMobile } = useResizeWindow();
-  function clickHandler() {
-    dispatch(modalActions.showCart());
-  }
+  const { showCart, closeCart } = useModalStore();
 
   useEffect(() => {
     fetchCartItemsCount();
@@ -33,11 +31,11 @@ const CartButton = () => {
   }, [itemsCount]);
 
   function showModal() {
-    dispatch(modalActions.showCart());
+    showCart();
   }
 
   function closeModal() {
-    dispatch(modalActions.closeCart());
+    closeCart();
   }
 
   useEffect(() => {
@@ -59,7 +57,7 @@ const CartButton = () => {
   return (
     <IconButton
       icon={BsCart2}
-      onClick={clickHandler}
+      onClick={showModal}
       onMouseEnter={() => setMouseEntered(true)}
       onMouseLeave={() => setMouseEntered(false)}
       text={isMobile ? '' : '장바구니'}

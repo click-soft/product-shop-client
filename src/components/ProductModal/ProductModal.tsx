@@ -1,8 +1,6 @@
 import Modal from '../../ui/Modal/Modal';
 import { RootState, useAppDispatch, useAppSelector } from '../../store';
-import { modalActions } from '../../store/modal-slice';
 import styles from './ProductModal.module.scss';
-import ProductListSub from '../../interfaces/product-list-sub';
 import React, { useEffect, useState } from 'react';
 import CheckBox from '../../ui/CheckBox/CheckBox';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
@@ -12,6 +10,7 @@ import ProductQuantitySelect from '../ProductQuantitySelect/ProductQuantitySelec
 import Drawer from '../../ui/Drawer/Drawer';
 import ServiceInfo from '../ServiceInfo/ServiceInfo';
 import useCart from '../../hooks/use-cart';
+import useModalStore from '../../store/modal.store';
 
 const ProductModal = () => {
   const { fetchAddToCart } = useCart();
@@ -20,9 +19,9 @@ const ProductModal = () => {
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(2);
   const [fitChecked, setFitChecked] = useState<boolean>(false);
-  const showProductModal = useAppSelector<boolean>((state) => state.modal.showProductModal);
+  const { productPayload, showProductModal, closeProduct } = useModalStore();
   const { isFitProduct, defaultFit, defaultQuantity } = useProductState(showProductModal);
-  const productData = useAppSelector<ProductListSub>((state) => state.modal.data!);
+  const productData = productPayload?.data;
 
   useEffect(() => {
     if (!showProductModal) return;
@@ -47,21 +46,17 @@ const ProductModal = () => {
 
   const addItemToCart = async () => {
     await fetchAddToCart({
-      code: productData.smCode,
+      code: productData?.smCode!,
       quantity,
       fit: fitChecked ?? false,
     });
 
-    closeHandler();
+    closeProduct();
   };
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await addItemToCart();
-  };
-
-  const closeHandler = () => {
-    dispatch(modalActions.closeProduct());
   };
 
   function addAndToCartHandler(): void {
@@ -71,18 +66,18 @@ const ProductModal = () => {
   }
 
   return (
-    <Modal onBackdropClick={closeHandler}>
+    <Modal onBackdropClick={closeProduct}>
       <form className={`${styles.container}`} onSubmit={submitHandler}>
         <h3 className={`header-text ${styles.header}`}>주문하기</h3>
         <div className={styles.body}>
           <ul>
-            <CustomLi title="주문명칭" text={productData.smMyung} />
-            <CustomLi title="단위" text={productData.danwi} />
+            <CustomLi title="주문명칭" text={productData?.smMyung} />
+            <CustomLi title="단위" text={productData?.danwi} />
             <CustomLi title="금액" text={productData?.danga?.toLocaleString()} />
             <CustomLi title="수량">
               <ProductQuantitySelect value={quantity} onChange={quantityChangeHandler} isFit={fitChecked ?? false} />
             </CustomLi>
-            <CustomLi title="총 금액" text={(quantity * productData?.danga).toLocaleString()} />
+            <CustomLi title="총 금액" text={(quantity * (productData?.danga ?? 0)).toLocaleString()} />
             {isFitProduct && <CheckBox text="맞춤주문" checked={fitChecked} onChange={fitCheckHandler} />}
           </ul>
         </div>
@@ -97,7 +92,7 @@ const ProductModal = () => {
             <br />
             담기
           </button>
-          <button className={styles['cancel-button']} type="button" onClick={closeHandler}>
+          <button className={styles['cancel-button']} type="button" onClick={closeProduct}>
             취소
           </button>
         </div>
@@ -121,7 +116,7 @@ const useProductState = (isShown: boolean) => {
   const user = useGetLoginedUser(isShown);
   const [defaultFit, setDefaultFit] = useState(false);
   const [defaultQuantity, setDefaultQuantity] = useState(2);
-  const isFitProduct = useAppSelector<boolean>((state) => ['A', 'B'].includes(state.modal.productCode ?? ''));
+  const isFitProduct = useModalStore((state) => ['A', 'B'].includes(state.productPayload?.code ?? ''));
 
   useEffect(() => {
     if (!isShown || !user) return;
