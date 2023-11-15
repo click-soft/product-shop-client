@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './NumericCombo.module.scss';
 import { isNuemric } from '../../utils/strings';
+import DeviceUtils from '../../utils/device.utils';
 
 interface NumericComboProps {
   value?: number;
@@ -92,9 +93,15 @@ const NumericCombo: React.FC<NumericComboProps> = ({
             ref={textRef}
             type="text"
             className={styles['combo-style']}
-            onBlur={mouseLeaveHandler}
+            onBlur={DeviceUtils.isIOS ? undefined : mouseLeaveHandler}
             onFocus={(e) => e.target.select()}
             value={inputValue}
+            onMouseOut={DeviceUtils.isIOS ? mouseLeaveHandler : undefined}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                countApplyHandler();
+              }
+            }}
             onChange={(e) => setInputValue(e.target.value)}
           />
           {isValueChanged && (
@@ -103,7 +110,6 @@ const NumericCombo: React.FC<NumericComboProps> = ({
               onMouseDown={(e) => e.preventDefault()}
               onClick={countApplyHandler}
             >
-              {' '}
               적용
             </button>
           )}
