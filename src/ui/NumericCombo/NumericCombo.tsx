@@ -28,7 +28,13 @@ const NumericCombo: React.FC<NumericComboProps> = ({
   function comboChangeHandler(e: React.ChangeEvent<HTMLSelectElement>) {
     if (e.target.value === 'custom') {
       setComboValue(e.target.value);
-      setTimeout(() => textRef.current?.focus(), 1000);
+
+      setTimeout(() => {
+        alert('test');
+        textRef.current?.focus();
+        alert(`textRef.current : ${textRef.current}`);
+        alert(`textRef.current.className : ${textRef.current?.className}`);
+      }, 1000);
     } else {
       const comboValue = +e.target.value;
       if (comboValue >= minValue && comboValue <= maxValue) {
