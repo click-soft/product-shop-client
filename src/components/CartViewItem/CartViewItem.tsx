@@ -2,6 +2,7 @@ import React from 'react';
 import CartItem from '../../interfaces/cart-item';
 import styles from './CartViewItem.module.scss';
 import IntUpAndDown from '../../ui/IntUpAndDown/IntUpAndDown';
+import useCartViewStore from '../../store/cart-view.store';
 interface CartViewItemProps {
   cartItem: CartItem;
   checked: boolean;
@@ -11,6 +12,7 @@ interface CartViewItemProps {
 }
 
 const CartViewItems: React.FC<CartViewItemProps> = (props) => {
+  const { loading } = useCartViewStore();
   const ci = props.cartItem;
   const totalPrice = ci.quantity * ci.product?.danga!;
 
@@ -37,7 +39,13 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
           <div className={styles.cart_item__body}>
             <div className={styles.cart_item__body__left}>
               <div className={styles.cart_item__body__price}>{ci.product?.danga?.toLocaleString()}원</div>
-              <IntUpAndDown value={ci.quantity} step={2} min={2} onChange={(v) => props.onCountChange(ci.id!, v)} />
+              <IntUpAndDown
+                value={ci.quantity}
+                step={2}
+                min={2}
+                disabled={loading}
+                onChange={(v) => props.onCountChange(ci.id!, v)}
+              />
             </div>
 
             <button className={styles.cancel_button} onClick={props.onCancel.bind(null, ci.id!)}>

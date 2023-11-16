@@ -43,7 +43,14 @@
   }
 }
 
-@media (min-width: 400px) {
+@media (min-width: 568px) {
+  .cart_item__head,
+  .cart_item__body {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
   .cart_item__body__left {
     align-items: center;
     flex-direction: row;
@@ -51,14 +58,6 @@
     .cart_item__body__price {
       min-width: 4.8rem;
     }
-  }
-}
-@media (min-width: 768px) {
-  .cart_item__head,
-  .cart_item__body {
-    flex: 1;
-    display: flex;
-    align-items: center;
   }
 }
 

@@ -44,8 +44,10 @@ const useCartView = () => {
 
     if (isNotChanged) return;
 
+    setLoading(true);
     await fetchUpdateCartItemQuantity({ id: cartItemId, quantity });
     await refetch();
+    setLoading(false);
   }
 
   return { cart, updateQuantity, deleteCartItemById };

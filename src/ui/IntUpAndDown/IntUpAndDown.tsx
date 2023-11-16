@@ -5,17 +5,21 @@ import { FaMinus, FaPlus } from 'react-icons/fa6';
 interface Props {
   value: number;
   onChange: (value: number) => void;
+  disabled?: boolean;
   step?: number;
   min?: number;
   max?: number;
 }
-const IntUpAndDown: React.FC<Props> = ({ value, min = 0, max = 999, step = 1, onChange }) => {
+const IntUpAndDown: React.FC<Props> = ({ value, onChange, disabled, min = 0, max = 999, step = 1 }) => {
   function handleChange(value: number) {
-    if (value < min || value > max) return;
+    if (disabled) return;
+    if (value < min || value > max) {
+      return;
+    }
 
     onChange(value);
   }
-  
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.icon} onClick={handleChange.bind(null, value - step)}>
