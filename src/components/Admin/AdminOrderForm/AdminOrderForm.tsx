@@ -1,27 +1,24 @@
 import AdminSearchForm, { FormValues } from '../AdminSearchForm/AdminSearchForm';
 import dayjs from 'dayjs';
-import { adminOrderAction } from '../../../store/admin-order-slice';
 import { ADMIN_QUERY_KEY } from '../../../hooks/adminOrder/use-admin-order-infinite-query';
 import { useQueryClient } from 'react-query';
-import { useAppDispatch } from '../../../store';
+import useAdminOrderStore from '../../../store/admin-order.store';
 
 const AdminOrderForm = () => {
-  const dispatch = useAppDispatch();
+  const { setVariables } = useAdminOrderStore();
   const queryClient = useQueryClient();
 
   function submitHandler(formValues: FormValues): void {
     const startYmd = dayjs(formValues.startDate).format('YYYYMMDD');
     const endYmd = dayjs(formValues.endDate).format('YYYYMMDD');
 
-    dispatch(
-      adminOrderAction.setVariables({
-        startYmd,
-        endYmd,
-        emCode: formValues.manager,
-        csMyung: formValues.text,
-        page: 1,
-      })
-    );
+    setVariables({
+      startYmd,
+      endYmd,
+      emCode: formValues.manager,
+      csMyung: formValues.text,
+      page: 1,
+    });
     queryClient.invalidateQueries(ADMIN_QUERY_KEY);
   }
 

@@ -1,5 +1,4 @@
 import Modal from '../../ui/Modal/Modal';
-import { RootState, useAppDispatch, useAppSelector } from '../../store';
 import styles from './ProductModal.module.scss';
 import React, { useEffect, useState } from 'react';
 import CheckBox from '../../ui/CheckBox/CheckBox';
@@ -15,7 +14,6 @@ import useModalStore from '../../store/modal.store';
 const ProductModal = () => {
   const { fetchAddToCart } = useCart();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(2);
   const [fitChecked, setFitChecked] = useState<boolean>(false);

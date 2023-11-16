@@ -2,7 +2,6 @@ import ChildrenProps from '../../interfaces/children-props';
 import styles from './DownModal.module.scss';
 import Card from '../Card/Card';
 import Backdrop from '../Backdrop/Backdrop';
-import { useAppDispatch } from '../../store';
 import { CSSProperties } from 'react';
 import useResizeWindow from '../../hooks/use-resize-window';
 import useModalStore from '../../store/modal.store';

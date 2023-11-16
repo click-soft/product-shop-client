@@ -4,8 +4,6 @@ import styles from './IconButton.module.scss';
 import ChildrenProps from '../../interfaces/children-props';
 import classNames from 'classnames';
 import useResizeWindow from '../../hooks/use-resize-window';
-import { RootState, useAppSelector } from '../../store';
-import { useSelector } from 'react-redux';
 import useModalStore from '../../store/modal.store';
 
 interface IconButtonProps extends ChildrenProps {

@@ -1,33 +1,15 @@
 import { useInfiniteQuery } from 'react-query';
-import client from '../../graphql/apollo-client';
-import GetAdminProductsArgs from '../../graphql/dto/get-admin-products.args';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { adminOrderAction } from '../../store/admin-order-slice';
 import useIntersectionObserver from '../use-intersection-observer';
-import ProductsWithPage from '../../graphql/interfaces/products-with-page';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
-import { GET_ADMIN_PRODUCTS } from '../../graphql/gql/product';
-
-const fetchGetAdminProducts = async (page: number, variables: GetAdminProductsArgs): Promise<ProductsWithPage> => {
-  const result = await client.query({
-    query: GET_ADMIN_PRODUCTS,
-    variables: {
-      ...variables,
-      page,
-    },
-    fetchPolicy: 'no-cache',
-  });
-
-  return result.data?.getAdminProducts;
-};
+import useAdminOrderStore from '../../store/admin-order.store';
+import getAdminProductsQuery from '../../graphql/queries/account/get-admin-products.query';
 
 const useAdminOrderInfiniteQuery = () => {
-  const dispatch = useAppDispatch();
-  const variables = useAppSelector((state) => state.adminOrder.variables);
+  const { products, variables, setProducts, setIsFetching, clear } = useAdminOrderStore();
   const { isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery(
     [ADMIN_QUERY_KEY, variables],
-    ({ pageParam = 1 }) => fetchGetAdminProducts(pageParam, variables!),
+    ({ pageParam = 1 }) => getAdminProductsQuery(pageParam, variables!),
     {
       getNextPageParam: (nextPage, pages) => {
         if (nextPage?.isLast ?? true) {
@@ -37,7 +19,7 @@ const useAdminOrderInfiniteQuery = () => {
       },
       onSuccess: (data) => {
         const products = data.pages?.flatMap((pg) => pg.products);
-        dispatch(adminOrderAction.setProducts(products));
+        setProducts(products);
       },
 
       onError: (err) => {
@@ -58,15 +40,14 @@ const useAdminOrderInfiniteQuery = () => {
   });
 
   useEffect(() => {
-    return () => {
-      dispatch(adminOrderAction.clear());
-    };
+    return clear;
   }, []);
 
   useEffect(() => {
-    dispatch(adminOrderAction.setFetching(isFetching));
+    setIsFetching(isFetching);
   }, [isFetching]);
   return {
+    products,
     isFetching,
     observerComponent,
   };

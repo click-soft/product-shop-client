@@ -1,29 +1,17 @@
 import { useInfiniteQuery } from 'react-query';
-import client from '../../graphql/apollo-client';
-import PaymentWithPage from '../../graphql/interfaces/payments-with-page';
 import { toast } from 'react-toastify';
 import useIntersectionObserver from '../use-intersection-observer';
 import { useEffect } from 'react';
 import { Payment } from '../../graphql/interfaces/payment';
 import useOrdersStore from '../../store/orders.store';
 import useSocketIo from '../use-socket-io';
-import { GET_PAYMENT_WITH_ITEMS } from '../../graphql/gql/payment';
-
-const fetchGetPaymentWithItems = async ({ pageParam = 1 }): Promise<PaymentWithPage> => {
-  const result = await client.query({
-    query: GET_PAYMENT_WITH_ITEMS,
-    variables: { page: pageParam },
-    fetchPolicy: 'no-cache',
-  });
-
-  return result.data?.getPaymentWithItems;
-};
+import getPaymentWithItemsQuery from '../../graphql/queries/payment/get-payment-with-items.query';
 
 const useOrdersInfiniteQuery = () => {
   const { payments, setPayments, updateSendType } = useOrdersStore();
   const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useInfiniteQuery(
     [GET_PAYMENT_WITH_ITEMS_QUERY_KEY],
-    fetchGetPaymentWithItems,
+    getPaymentWithItemsQuery,
     {
       getNextPageParam: (lastPage, pages) => {
         if (lastPage?.isLast ?? true) return undefined;

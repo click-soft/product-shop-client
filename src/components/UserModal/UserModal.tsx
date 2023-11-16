@@ -1,5 +1,4 @@
 import DownModal from '../../ui/DownModal/DownModal';
-import store, { useAppSelector } from '../../store';
 import styles from './UserModal.module.scss';
 import { Link } from 'react-router-dom';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';

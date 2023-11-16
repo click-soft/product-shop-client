@@ -9,7 +9,13 @@ type State = {
   isUpdateLoading?: boolean;
 };
 
-type Actions = {};
+type Actions = {
+  setProducts: (products: Product[]) => void;
+  setVariables: (variables: GetAdminProductsArgs) => void;
+  setIsUpdateLoading: (isUpdateLoading: boolean) => void;
+  setIsFetching: (isFetching: boolean) => void;
+  clear: () => void;
+};
 
 const initialState: State = {
   products: [],
@@ -20,6 +26,11 @@ const initialState: State = {
 
 const useAdminOrderStore = create<State & Actions>((set) => ({
   ...initialState,
+  setProducts: (products) => set(() => ({ products })),
+  setVariables: (variables) => set(() => ({ variables })),
+  setIsUpdateLoading: (isUpdateLoading) => set(() => ({ isUpdateLoading })),
+  setIsFetching: (isFetching) => set(() => ({ isFetching })),
+  clear: () => set(initialState),
 }));
 
 export default useAdminOrderStore;

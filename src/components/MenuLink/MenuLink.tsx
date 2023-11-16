@@ -1,5 +1,4 @@
 import styles from './MenuLink.module.scss';
-import { useAppDispatch } from '../../store';
 import { menuObject } from '../../data/text-mapping';
 import useResizeWindow from '../../hooks/use-resize-window';
 import useModalStore from '../../store/modal.store';

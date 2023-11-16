@@ -1,15 +1,13 @@
 import { useMutation } from '@apollo/client';
 import { AdminOrderArgs } from '../../components/Admin/AdminOrderItem/AdminOrderItem';
 import Product from '../../graphql/interfaces/product';
-import { useAppDispatch, useAppSelector } from '../../store';
 import { useEffect } from 'react';
-import { adminOrderAction } from '../../store/admin-order-slice';
 import { toast } from 'react-toastify';
 import { UPDATE_PRODUCT } from '../../graphql/gql/product';
+import useAdminOrderStore from '../../store/admin-order.store';
 
 const useProductUpdate = () => {
-  const dispatch = useAppDispatch();
-  const products = useAppSelector((state) => state.adminOrder.products);
+  const { products, setIsUpdateLoading, setProducts } = useAdminOrderStore();
   const [updateProduct, { data, loading, error }] = useMutation(UPDATE_PRODUCT);
 
   function fetchUpdateProduct(args: AdminOrderArgs, product: Product) {
@@ -23,7 +21,7 @@ const useProductUpdate = () => {
   }
 
   useEffect(() => {
-    dispatch(adminOrderAction.setUpdateLoading(loading));
+    setIsUpdateLoading(loading);
   }, [loading]);
 
   useEffect(() => {
@@ -45,7 +43,7 @@ const useProductUpdate = () => {
 
       newProducts[findProductIndex] = updatedProduct;
     }
-    dispatch(adminOrderAction.setProducts(newProducts));
+    setProducts(newProducts);
     toast.success('변경되었습니다.');
   }, [data]);
 

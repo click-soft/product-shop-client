@@ -1,15 +1,15 @@
 import styles from './AdminOrderPage.module.scss';
 import CircleLoading from '../../components/Loading/CircleLoading';
-import { useAppSelector } from '../../store';
 import AdminOrderList from '../../components/Admin/AdminOrderList/AdminOrderList';
 import AdminOrderForm from '../../components/Admin/AdminOrderForm/AdminOrderForm';
+import useAdminOrderStore from '../../store/admin-order.store';
 
 const AdminOrderPage = () => {
-  const state = useAppSelector((state) => state.adminOrder);
+  const { isFetching, isUpdateLoading } = useAdminOrderStore();
 
   return (
     <>
-      {(state.isFetching || state.isUpdateLoading) && <CircleLoading />}
+      {(isFetching || isUpdateLoading) && <CircleLoading />}
       <div className={styles.container}>
         <AdminOrderForm />
         <AdminOrderList />
