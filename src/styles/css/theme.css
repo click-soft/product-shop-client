@@ -1,6 +1,7 @@
 :root {
   --theme-bg-white: white;
   --theme-bg-primary: var(--color-blue-50);
+  --theme-bg-blue-500: var(--color-blue-500);
   --theme-bg-blue-600: var(--color-blue-600);
   --theme-bg-card: rgb(255, 255, 255);
   --theme-bg-blue-200: var(--color-blue-200);

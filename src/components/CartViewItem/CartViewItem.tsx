@@ -1,7 +1,7 @@
 import React from 'react';
 import CartItem from '../../interfaces/cart-item';
 import styles from './CartViewItem.module.scss';
-import NumericCombo from '../../ui/NumericCombo/NumericCombo';
+import IntUpAndDown from '../../ui/IntUpAndDown/IntUpAndDown';
 interface CartViewItemProps {
   cartItem: CartItem;
   checked: boolean;
@@ -37,12 +37,7 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
           <div className={styles.cart_item__body}>
             <div className={styles.cart_item__body__left}>
               <div className={styles.cart_item__body__price}>{ci.product?.danga?.toLocaleString()}원</div>
-              <NumericCombo value={ci.quantity} onValueChange={(v) => props.onCountChange(ci.id!, v)} isFit={ci.fit} />
-              {/* <ProductQuantitySelect
-                value={ci.quantity}
-                onChange={(v) => props.onCountChange(ci.id!, v)}
-                isFit={ci.fit}
-              /> */}
+              <IntUpAndDown value={ci.quantity} step={2} min={2} onChange={(v) => props.onCountChange(ci.id!, v)} />
             </div>
 
             <button className={styles.cancel_button} onClick={props.onCancel.bind(null, ci.id!)}>

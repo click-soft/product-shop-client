@@ -1,0 +1,16 @@
+.wrapper {
+  display: none;
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  min-width: 100%;
+  background-color: var(--theme-bg-white);
+  border: 1px solid var(--theme-blue-400);
+  border-radius: var(--rounded);
+  z-index: 99999;
+  overflow: hidden;
+}
+
+.popup {
+  display: block;
+}

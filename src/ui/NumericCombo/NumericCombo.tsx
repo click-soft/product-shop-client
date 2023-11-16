@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './NumericCombo.module.scss';
 import { isNuemric } from '../../utils/strings';
+import CstSelect from '../CstSelect/CstSelect';
+import CstOptionData from '../CstSelect/interfaces/cst-option-data';
 
 interface NumericComboProps {
   value?: number;
@@ -24,30 +26,32 @@ const NumericCombo: React.FC<NumericComboProps> = ({
   const [comboValue, setComboValue] = useState<number | string>(1);
   const isCustom = comboValue === 'custom' || +comboValue > 10;
   const isValueChanged = isCustom ? value !== +inputValue : value !== comboValue;
-  function comboChangeHandler(e: React.ChangeEvent<HTMLSelectElement>) {
-    if (e.target.value === 'custom') {
-      setComboValue(e.target.value);
+
+  function comboChangeHandler({ value }: CstOptionData) {
+    if (value === 'custom') {
+      setComboValue(value);
       setTimeout(() => textRef.current?.focus());
     } else {
-      const comboValue = +e.target.value;
-      if (comboValue >= minValue && comboValue <= maxValue) {
-        setComboValue(e.target.value);
+      if (+value >= minValue && +value <= maxValue) {
+        setComboValue(value);
       }
     }
   }
 
-  const options: number[] = useMemo(() => {
+  const options = useMemo(() => {
     const startValue = isFit ? 6 : 2;
-    const arr = [];
+    const values: CstOptionData[] = [];
     for (let i = startValue; i <= 10; i = i + 2) {
-      arr.push(i);
+      values.push({ value: i, label: i.toString() });
     }
-
-    return arr;
+    values.push({ value: 'custom', label: '직접입력' });
+    return values;
   }, [minValue]);
 
   function countApplyHandler() {
     if (+inputValue >= minValue && +inputValue <= maxValue) {
+      const isOdd = +inputValue % 2 === 1;
+      if (isOdd) return;
       setValue(+inputValue);
       setComboValue(+inputValue);
     }
@@ -55,6 +59,9 @@ const NumericCombo: React.FC<NumericComboProps> = ({
 
   useEffect(() => {
     if (initValue) {
+      const isOdd = initValue % 2 === 1;
+      if (isOdd) return;
+
       setValue(initValue);
       setInputValue(initValue.toString());
       setComboValue(initValue);
@@ -108,16 +115,7 @@ const NumericCombo: React.FC<NumericComboProps> = ({
           )}
         </div>
       ) : (
-        <select className={styles['combo-style']} onChange={comboChangeHandler} value={comboValue} itemType="text">
-          {options.map((i) => {
-            return (
-              <option key={i} value={i} onClick={e=> e.stopPropagation()} onTouchEnd={(e) => e.preventDefault()}>
-                {i}
-              </option>
-            );
-          })}
-          <option value={'custom'}>직접입력</option>
-        </select>
+        <CstSelect options={options} defaultValue={comboValue} onChange={comboChangeHandler} />
       )}
       <input type="hidden" value={value} />
     </>

@@ -1,0 +1,17 @@
+.item {
+  padding: 0.5rem;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: var(--theme-bg-blue-200);
+  }
+}
+
+.selected {
+  color: var(--theme-text-gray-100);
+  background-color: var(--theme-bg-blue-500);
+
+  &:hover {
+    background-color: var(--theme-bg-blue-500);
+  }
+}
