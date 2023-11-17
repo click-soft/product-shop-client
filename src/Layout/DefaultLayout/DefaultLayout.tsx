@@ -4,16 +4,19 @@ import ErrorFallback from '../../pages/ErrorPage/ErrorFallback/ErrorFallBack';
 import RejectionErrorBoundary from '../../pages/ErrorPage/RejectionErrorBoundary';
 import useToast from '../../hooks/use-toast';
 import { useEffect } from 'react';
+import * as Sentry from '@sentry/react';
 
 const DefaultLayout = () => {
   const { toastConatiner } = useToast();
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <RejectionErrorBoundary>
-        {toastConatiner}
-        <Outlet />
-      </RejectionErrorBoundary>
+      <Sentry.ErrorBoundary>
+        <RejectionErrorBoundary>
+          {toastConatiner}
+          <Outlet />
+        </RejectionErrorBoundary>
+      </Sentry.ErrorBoundary>
     </ErrorBoundary>
   );
 };

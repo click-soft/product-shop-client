@@ -23,6 +23,7 @@ import CenterLayout from './Layout/CenterLayout/CenterLayout';
 import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
 import SettingsLayout from './Layout/SettingsLayout/SettingsLayout';
 import SettingsProfilePage from './pages/SettingsProfilePage/SettingsProfilePage';
+import './sentry/sentry.config';
 
 const router = createBrowserRouter([
   {

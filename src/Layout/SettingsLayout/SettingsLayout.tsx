@@ -1,25 +1,25 @@
 import React, { useEffect } from 'react';
-import styles from './SettingsLayout.module.scss';
 import BaseLayout from '../BaseLayout/BaseLayout';
 import SettingsHeader from './Header/SettingsHeader';
 import SettingsLeftMenu from './LeftMenu/SettingsLeftMenu';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SettingsLayout = () => {
+  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate('/settings/profile');
-  }, [navigate]);
+    if (location.pathname === '/settings') {
+      navigate('/settings/profile');
+    }
+  }, [location.pathname]);
 
   return (
-    <>
-      <BaseLayout
-        headerComponent={<SettingsHeader />}
-        leftMenuComponent={<SettingsLeftMenu />}
-        footerComponent={<div>footer</div>}
-      />
-    </>
+    <BaseLayout
+      headerComponent={<SettingsHeader />}
+      leftMenuComponent={<SettingsLeftMenu />}
+      footerComponent={<div>footer</div>}
+    />
   );
 };
 

@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import styles from './Login.module.scss';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TextInput from '../../ui/TextInput/TextInput';
 import useLogin from '../../hooks/login/use-login';
 import CircleLoading from '../Loading/CircleLoading';
 import classNames from 'classnames';
-import { authApi } from '../../utils/api';
 
 function Login() {
   const { userId, password, loading, login, handleUserIdChange, handlePasswordChange } = useLogin();
@@ -26,6 +25,13 @@ function Login() {
 
   return (
     <>
+      <button
+        onClick={() => {
+          throw new Error('에러 테스트입니다.');
+        }}
+      >
+        error test
+      </button>
       {loading && <CircleLoading />}
       <div className={styles.container}>
         <h2>Login Account</h2>
