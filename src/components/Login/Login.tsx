@@ -25,13 +25,6 @@ function Login() {
 
   return (
     <>
-      <button
-        onClick={() => {
-          throw new Error('에러 테스트입니다.');
-        }}
-      >
-        error test
-      </button>
       {loading && <CircleLoading />}
       <div className={styles.container}>
         <h2>Login Account</h2>
