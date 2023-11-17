@@ -2,6 +2,9 @@ import * as Sentry from '@sentry/react';
 
 Sentry.init({
   dsn: process.env.REACT_APP_SENTRY_DNS,
+  release: '0.1.0',
+  environment: 'production',
+  normalizeDepth: 6,
   integrations: [
     new Sentry.BrowserTracing({
       // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
