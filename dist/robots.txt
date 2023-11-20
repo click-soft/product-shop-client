@@ -1,3 +1,0 @@
-# https://www.click-soft.shop/robotstxt.html
-User-agent: *
-Disallow:
