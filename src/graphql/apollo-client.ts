@@ -8,7 +8,7 @@ import { errorActions } from '../store/error-slice';
 import { refresh } from './gql/auth';
 
 const httpLink = new HttpLink({
-  uri: `${process.env.REACT_APP_BACKEND_URL}/graphql`,
+  uri: `${import.meta.env.VITE_BACKEND_URL}/graphql`,
   credentials: 'include',
 });
 

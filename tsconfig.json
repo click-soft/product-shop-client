@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "types": ["vite/client", "vite-plugin-svgr/client", "node"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -16,14 +17,16 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "sourceMap": true,
-    "inlineSources": true,
-
+    "inlineSources": true, 
     // Set `sourceRoot` to  "/" to strip the build path prefix
     // from generated source code references.
     // This improves issue grouping in Sentry.
     // Set `sourceRoot` to  "/" to strip the build path prefix
     // from generated source code references.
     // This improves issue grouping in Sentry.
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "sourceRoot": "/"
   },
   "include": ["src", "jest.config.ts"]

@@ -18,7 +18,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import ThemeProvider from './ui/ThemeProvider/ThemeProvider';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -28,16 +27,19 @@ const queryClient = new QueryClient({
   },
 });
 
-root.render(
+console.log(123);
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <QueryClientProvider client={queryClient}>
-      <ApolloProvider client={client}>
-        <Provider store={store}>
-          <ThemeProvider>
-            <App />
-          </ThemeProvider>
-        </Provider>
-      </ApolloProvider>
-    </QueryClientProvider>
-  </LocalizationProvider>
-);
+  <QueryClientProvider client={queryClient}>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </Provider>
+    </ApolloProvider>
+  </QueryClientProvider>
+</LocalizationProvider>
+)
+ 
