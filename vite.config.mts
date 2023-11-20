@@ -9,6 +9,9 @@ export default defineConfig({
   server: {
     port: 3001,
   },
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

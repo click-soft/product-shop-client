@@ -27,8 +27,6 @@ const queryClient = new QueryClient({
   },
 });
 
-console.log(123);
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <LocalizationProvider dateAdapter={AdapterDayjs}>
   <QueryClientProvider client={queryClient}>

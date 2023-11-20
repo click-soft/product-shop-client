@@ -131,6 +131,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  console.log(123);
   return <RouterProvider router={router} />;
 }
 
