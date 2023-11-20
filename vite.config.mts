@@ -9,9 +9,19 @@ export default defineConfig({
   server: {
     port: 3001,
   },
-  esbuild: {
-    drop: ['console', 'debugger'],
+  build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
   },
+  // esbuild: {
+  //   define: { DEBUG: false },
+  //   drop: ['console', 'debugger'],
+  // },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

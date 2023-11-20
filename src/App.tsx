@@ -130,8 +130,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-function App() {
-  console.log(123);
+function App() {  
   return <RouterProvider router={router} />;
 }
 
