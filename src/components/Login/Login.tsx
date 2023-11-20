@@ -26,6 +26,9 @@ function Login() {
   return (
     <>
       {loading && <CircleLoading />}
+      <button onClick={()=> {
+        throw new Error("ErrorTest2");
+      }}>Error Test</button>
       <div className={styles.container}>
         <h2>Login Account</h2>
         <form className={styles.login_form} onSubmit={submitHandler}>
