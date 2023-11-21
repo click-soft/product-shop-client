@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './CartButton.module.scss';
 import IconButton from '../../ui/IconButton/IconButton';
 import { BsCart2 } from 'react-icons/bs';

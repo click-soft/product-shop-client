@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import BaseLayout from '../BaseLayout/BaseLayout';
 import SettingsHeader from './Header/SettingsHeader';
 import SettingsLeftMenu from './LeftMenu/SettingsLeftMenu';

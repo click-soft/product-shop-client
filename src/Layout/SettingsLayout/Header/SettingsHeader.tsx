@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './SettingsHeader.module.scss';
 import LinkLongLogo from '../../../components/LinkLongLogo/LinkLongLogo';
 import MenuButton from './MenuButton/MenuButton';

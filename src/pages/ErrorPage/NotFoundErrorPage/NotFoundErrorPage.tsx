@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './NotFoundErrorPage.module.scss';
 import BaseErrorPage from '../BaseErrorPage/BaseErrorPage';
 

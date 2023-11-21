@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 import ErrorFallback from '../../pages/ErrorPage/ErrorFallback/ErrorFallBack';
 import RejectionErrorBoundary from '../../pages/ErrorPage/RejectionErrorBoundary';
 import useToast from '../../hooks/use-toast';
-import { useEffect } from 'react';
 import * as Sentry from '@sentry/react';
 
 const DefaultLayout = () => {

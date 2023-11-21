@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './CartViewTable.module.scss';
 import CartViewBody from '../CartViewBody/CartViewBody';
 import useCartViewStore from '../../../store/cart-view.store';

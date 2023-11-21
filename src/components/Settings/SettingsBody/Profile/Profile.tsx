@@ -5,7 +5,7 @@ import ChangePassword from './ChangePassword/ChangePassword';
 import useGetLoginedUser from '../../../../hooks/use-get-logined-user';
 
 const Profile = () => {
-  const user = useGetLoginedUser(true);
+  const user = useGetLoginedUser();
 
   return (
     <div>

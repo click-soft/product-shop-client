@@ -3,10 +3,6 @@ import client from '../apollo-client';
 import { LocalStoragekey } from '../../utils/enums';
 import TokenResult from '../types/token-result';
 
-type Message = {
-  message: string;
-};
-
 export const LOGOUT = gql`
   mutation {
     logout {

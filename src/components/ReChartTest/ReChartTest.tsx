@@ -1,8 +1,6 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar } from 'recharts';
-import { Payment, PaymentItem } from '../../graphql/interfaces/payment';
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar } from 'recharts';
 import Product from '../../graphql/interfaces/product';
-import dayjs from 'dayjs';
 import { ymdToShortString } from '../../utils/parse';
 
 interface Props {
@@ -28,7 +26,7 @@ const ReChartTest: React.FC<Props> = (props) => {
       } else {
         foundData[emCode] = amount;
       }
-    } else {   
+    } else {
       const data: { [key: string]: any } = {};
       lines.forEach((l) => (data[l.datakey] = 0));
       datas.push({

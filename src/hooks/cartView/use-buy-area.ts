@@ -8,7 +8,7 @@ import useGetLoginedUser from '../use-get-logined-user';
 
 const useBuyArea = () => {
   const navigate = useNavigate();
-  const user = useGetLoginedUser(true);
+  const user = useGetLoginedUser();
   const { loading, fetchCheckoutByArgs } = useCheckout();
   const [checkBNPL, setCheckBNPL] = useState(false);
   const { cart, checkedIds } = useCartViewStore();

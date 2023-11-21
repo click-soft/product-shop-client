@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './EmptyCartView.module.scss';
 import cartImg from '../../assets/images/cart-pixcel-art.png';
 

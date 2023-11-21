@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { SEND_CHANGE_PASSWORD_EMAIL } from '../../graphql/gql/account';
 import { toast } from 'react-toastify';
 import useFindPasswordStore from '../../store/find-password.store';

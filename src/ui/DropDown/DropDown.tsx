@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './DropDown.module.scss';
 import ChildrenProps from '../../interfaces/children-props';
 import useResizeWindow from '../../hooks/use-resize-window';

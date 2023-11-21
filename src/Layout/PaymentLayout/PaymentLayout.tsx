@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './PaymentLayout.module.scss';
 import { Outlet } from 'react-router-dom';
 import PaymentHeader from './Header/PaymentHeader';

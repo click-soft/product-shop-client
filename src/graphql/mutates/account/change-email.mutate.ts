@@ -1,6 +1,5 @@
 import client from '../../apollo-client';
 import { CHANGE_EMAIL } from '../../gql/account';
-import { Account } from '../../interfaces/account';
 
 type Args = {
   newEmail: string;

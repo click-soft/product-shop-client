@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './OrdersList.module.scss';
 import useOrdersInfiniteQuery from '../../../hooks/orders/use-orders-infinite-query';
 import OrderBox from '../../OrderBox/OrderBox';

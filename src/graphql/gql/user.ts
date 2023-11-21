@@ -1,6 +1,4 @@
 import { gql } from '@apollo/client';
-import client from '../apollo-client';
-import UserProfile from '../../interfaces/user-profile';
 import { CS_FIELD } from '../fragments/user.fragment';
 
 export const GET_USER = gql`

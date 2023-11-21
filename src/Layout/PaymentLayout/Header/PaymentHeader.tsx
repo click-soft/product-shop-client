@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './PaymentHeader.module.scss';
 import clickIcon from '../../../assets/images/click_icon.png';
 import { useNavigate } from 'react-router-dom';

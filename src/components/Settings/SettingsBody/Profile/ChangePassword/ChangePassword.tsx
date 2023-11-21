@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './ChangePassword.module.scss';
 import GroupWrapper from '../../../../../ui/GroupWapper/GroupWrapper';
 import ErrorText from '../../../../../ui/ErrorText/ErrorText';
@@ -7,7 +7,7 @@ import CircleLoading from '../../../../Loading/CircleLoading';
 import useSettingsChangePassword from '../../../../../hooks/settings/use-settings-change-password';
 
 const ChangePassword = () => {
-  const user = useGetLoginedUser(true);
+  const user = useGetLoginedUser();
   const {
     currentPassword,
     password,

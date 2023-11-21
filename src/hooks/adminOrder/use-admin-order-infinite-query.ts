@@ -11,7 +11,7 @@ const useAdminOrderInfiniteQuery = () => {
     [ADMIN_QUERY_KEY, variables],
     ({ pageParam = 1 }) => getAdminProductsQuery(pageParam, variables!),
     {
-      getNextPageParam: (nextPage, pages) => {
+      getNextPageParam: (nextPage) => {
         if (nextPage?.isLast ?? true) {
           return null;
         }

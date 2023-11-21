@@ -28,11 +28,11 @@ const IconButton: React.FC<IconButtonProps> = (props) => {
 
   return (
     <div
-      onMouseEnter={(e) => {
+      onMouseEnter={() => {
         setMouseEntered(true);
         props?.onMouseEnter?.();
       }}
-      onMouseLeave={(e) => {
+      onMouseLeave={() => {
         setMouseEntered(false);
         props?.onMouseLeave?.();
       }}

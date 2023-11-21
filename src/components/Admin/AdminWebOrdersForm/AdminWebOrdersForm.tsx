@@ -1,4 +1,3 @@
-import React from 'react';
 import AdminSearchForm, { FormValues } from '../AdminSearchForm/AdminSearchForm';
 import { isNuemric } from '../../../utils/strings';
 import useAdminWebOrdersStore from '../../../store/admin-web-orders.store';
@@ -10,7 +9,7 @@ import { useQueryClient } from 'react-query';
 const AdminWebOrdersForm = () => {
   const queryClient = useQueryClient();
   const { setVariables } = useAdminWebOrdersStore();
-  const user = useGetLoginedUser(true);
+  const user = useGetLoginedUser();
 
   function submitHandler(value: FormValues): void {
     const emCode = value.manager;

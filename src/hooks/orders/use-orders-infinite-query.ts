@@ -13,7 +13,7 @@ const useOrdersInfiniteQuery = () => {
     [GET_PAYMENT_WITH_ITEMS_QUERY_KEY],
     getPaymentWithItemsQuery,
     {
-      getNextPageParam: (lastPage, pages) => {
+      getNextPageParam: (lastPage) => {
         if (lastPage?.isLast ?? true) return undefined;
         return lastPage.page + 1;
       },

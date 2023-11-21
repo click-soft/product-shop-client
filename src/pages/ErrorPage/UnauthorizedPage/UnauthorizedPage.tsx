@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './UnauthorizedPage.module.scss';
 import BaseErrorPage from '../BaseErrorPage/BaseErrorPage';
 

@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './OrderBoxHeader.module.scss';
 import { Payment } from '../../../graphql/interfaces/payment';
 import classNames from 'classnames';
-import DropDown from '../../../ui/DropDown/DropDown';
-
 interface Props {
   payment: Payment;
   sendType: string;

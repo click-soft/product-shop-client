@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 
 type Mode = 'light' | 'dark';
 
@@ -19,7 +19,9 @@ const useThemeStore = create(
   persist<State & Actions>(
     (set) => ({
       ...initialState,
-      setMode: (mode) =>        set(() => {          return { mode };
+      setMode: (mode) =>
+        set(() => {
+          return { mode };
         }),
     }),
     {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styles from './FindPasswordSended.module.scss';
 import useFindPasswordStore from '../../../store/find-password.store';
 import { Link } from 'react-router-dom';

@@ -19,7 +19,7 @@ const CstSelect: React.FC<Props> = ({ options, defaultValue, onChange }) => {
     setDispOption(data);
   }
 
-  function handlePopup(e: React.MouseEvent<HTMLDivElement, MouseEvent>): void {
+  function handlePopup(): void {
     setPopup((prevPopup) => !prevPopup);
   }
 

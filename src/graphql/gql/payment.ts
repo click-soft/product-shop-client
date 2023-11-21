@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { GET_PAYMENTS_FIELDS, ORDER_COMPLETED_FIELD, PAYMENT_VIRTUAL_FIELD } from '../fragments/payment.fragment';
+import { GET_PAYMENTS_FIELDS, ORDER_COMPLETED_FIELD } from '../fragments/payment.fragment';
 
 export const GET_PAYMENT_WITH_ITEMS = gql`
   query ($page: Int!) {

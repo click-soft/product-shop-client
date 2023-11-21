@@ -8,8 +8,6 @@ import { toast } from 'react-toastify';
 import TokenResult from '../../graphql/types/token-result';
 import { LOGIN } from '../../graphql/gql/auth';
 import { GET_ACCOUNT_EXISTS } from '../../graphql/gql/account';
-import * as Sentry from '@sentry/react';
-import ApolloClientError from '../../sentry/errors/ApolloApiError';
 
 const useLogin = () => {
   const navigate = useNavigate();

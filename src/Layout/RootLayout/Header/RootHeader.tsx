@@ -3,11 +3,10 @@ import styles from './RootHeader.module.scss';
 import MenuButton from '../../../components/MenuButton/MenuButton';
 import CartButton from '../../../components/CartButton/CartButton';
 import UserButton from '../../../components/UserButton/UserButton';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import MenuLink from '../../../components/MenuLink/MenuLink';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import useScrollWindow from '../../../hooks/use-scroll-window';
-import useThemeStore from '../../../store/theme.store';
 import LinkLongLogo from '../../../components/LinkLongLogo/LinkLongLogo';
 
 const RootHeader: React.FC<ChildrenProps> = () => {
@@ -15,7 +14,6 @@ const RootHeader: React.FC<ChildrenProps> = () => {
   const isMainPage = location.pathname === '/';
   const [headerFixed, setHeaderFixed] = useState('');
   const ref = useRef<HTMLDivElement>(null);
-  const { mode } = useThemeStore();
   useScrollWindow(({ y }) => {
     setHeaderFixed(y > 0 ? styles.header_fixed : '');
   });

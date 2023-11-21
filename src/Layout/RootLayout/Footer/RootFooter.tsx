@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './RootFooter.module.scss';
 import { useLocation } from 'react-router-dom';
 

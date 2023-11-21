@@ -52,24 +52,6 @@
     "serve": "vite preview",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org efdb1838adbc --project javascript-react ./dist && sentry-cli sourcemaps upload --org efdb1838adbc --project javascript-react ./dist"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@types/classnames": "^2.3.1",
     "@types/node": "^20.9.2",

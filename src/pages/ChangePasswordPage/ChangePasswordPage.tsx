@@ -1,8 +1,6 @@
-import React from 'react';
-import ToBackXButton from '../../components/ToBackXButton/ToBackXButton';
 import ChangePasswordForm from '../../components/ChangePassword/ChangePasswordForm/ChangePasswordForm';
 import styles from './ChangePasswordPage.module.scss';
-import { Link } from 'react-router-dom';
+
 const ChangePasswordPage = () => {
   return (
     <>

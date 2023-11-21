@@ -4,7 +4,6 @@ import ProductListSub from '../../../interfaces/product-list-sub';
 import ChildrenProps from '../../../interfaces/children-props';
 import ProductItem from '../ProductItem/ProductItem';
 import { menuObject } from '../../../data/text-mapping';
-import useThemeStore from '../../../store/theme.store';
 import classNames from 'classnames';
 import useTheme from '../../../hooks/theme/use-theme';
 

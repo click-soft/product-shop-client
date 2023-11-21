@@ -14,7 +14,7 @@ import useModalStore from '../../store/modal.store';
 const UserModal = () => {
   const logout = useLogout();
   const { showUserModal } = useModalStore();
-  const user = useGetLoginedUser(showUserModal);
+  const user = useGetLoginedUser();
 
   if (!showUserModal) {
     return <></>;

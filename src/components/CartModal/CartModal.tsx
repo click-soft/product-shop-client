@@ -17,7 +17,7 @@ const Cart = () => {
     return <></>;
   }
 
-  const itemsComponents = cartItems?.map((item, i) => {
+  const itemsComponents = cartItems?.map((item) => {
     return (
       <Fragment key={item.id}>
         <CartItem item={item} />

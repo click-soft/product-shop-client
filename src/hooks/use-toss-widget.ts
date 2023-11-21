@@ -4,7 +4,6 @@ import { TOSSPAYMENTS_CLIENT_KEY } from '../config';
 import { LocalStoragekey } from '../utils/enums';
 import useCheckoutStore, { CheckoutState } from '../store/checkout.store';
 import useGetLoginedUser from './use-get-logined-user';
-import dayjs from 'dayjs';
 import { SuccessFailCallback } from '../types/callback-type';
 import { useLocation } from 'react-router-dom';
 import { getOrderId } from '../utils/toss-payments.utils';
@@ -14,7 +13,7 @@ const selector = '#payment-widget';
 const useTossWidget = () => {
   const paymentWidgetRef = useRef<PaymentWidgetInstance | null>(null);
   const paymentMethodsWidgetRef = useRef<ReturnType<PaymentWidgetInstance['renderPaymentMethods']> | null>(null);
-  const user = useGetLoginedUser(true);
+  const user = useGetLoginedUser();
   const checkoutState: CheckoutState = useLocation().state;
   const { setData } = useCheckoutStore();
 

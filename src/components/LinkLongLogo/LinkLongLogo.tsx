@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './LinkLongLogo.module.scss';
 import logo from '../../assets/images/main_logo.png';
 import darkLogo from '../../assets/images/main_logo_dark.png';

@@ -7,7 +7,7 @@ import { GET_RPDUCTS_BUNRYU_LIST } from '../../graphql/gql/product';
 
 const useMainQuery = () => {
   const [prodGroups, setProdGroups] = useState<ProductsByBunryu[]>();
-  const user = useGetLoginedUser(true);
+  const user = useGetLoginedUser();
   const { loading, data, error } = useQuery(GET_RPDUCTS_BUNRYU_LIST, {
     variables: { jisa: user?.jisa },
     skip: !user,

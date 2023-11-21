@@ -111,7 +111,7 @@ const ProductModal = () => {
 };
 
 const useProductState = (isShown: boolean) => {
-  const user = useGetLoginedUser(isShown);
+  const user = useGetLoginedUser();
   const [defaultFit, setDefaultFit] = useState(false);
   const [defaultQuantity, setDefaultQuantity] = useState(2);
   const isFitProduct = useModalStore((state) => ['A', 'B'].includes(state.productPayload?.code ?? ''));

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Cart from '../../interfaces/cart';
 import useCartViewStore from '../../store/cart-view.store';
 import { toast } from 'react-toastify';

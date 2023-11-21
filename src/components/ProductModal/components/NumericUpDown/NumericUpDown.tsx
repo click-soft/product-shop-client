@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import CustomLi from '../CustomLi/CustomLi';
 import styles from './NumericUpDown.module.scss';
 

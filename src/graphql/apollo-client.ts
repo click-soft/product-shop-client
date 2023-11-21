@@ -1,4 +1,4 @@
-import { ApolloClient, HttpLink, InMemoryCache, Observable, concat, fromPromise } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache, Observable, concat } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { LocalStoragekey } from '../utils/enums';
 import { onError } from '@apollo/client/link/error';

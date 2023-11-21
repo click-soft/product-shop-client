@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ChildrenProps from '../../interfaces/children-props';
 import { useAppSelector } from '../../store';
 import { ErrorArgs } from '../../store/error-slice';

@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useProfileStore from '../store/user-profile.store';
 import getUserQuery from '../graphql/queries/account/get-user.query';
 
 let isLoading = false;
 
-export default function useGetLoginedUser(load: boolean) {
+export default function useGetLoginedUser() {
   const { isAuthenticated, user, setUser } = useProfileStore();
 
   async function fetchGetUser() {

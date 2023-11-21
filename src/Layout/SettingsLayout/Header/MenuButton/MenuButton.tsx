@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styles from './MenuButton.module.scss';
+import { useEffect, useRef, useState } from 'react';
 import Drawer, { DrawerHandler } from '../../../../ui/Drawer/Drawer';
 import useResizeWindow from '../../../../hooks/use-resize-window';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -18,7 +17,7 @@ const MenuButton = () => {
   if (!isMobile) {
     return <></>;
   }
-  
+
   return (
     <>
       <Drawer ref={drawerRef} show={show} onClose={() => setShow(false)}>

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './SettingsLeftMenu.module.scss';
-import { AiOutlineFileSearch } from 'react-icons/ai';
 import GroupWrapper from '../../../ui/GroupWapper/GroupWrapper';
 import MenuLink from './MenuLink/MenuLink';
 import { BiUser } from 'react-icons/bi';

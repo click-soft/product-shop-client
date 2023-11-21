@@ -1,5 +1,3 @@
-import React from 'react';
-import styles from './MobileBackButton.module.scss';
 import IconButton from '../IconButton/IconButton';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
