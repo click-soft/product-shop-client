@@ -1,3 +1,7 @@
+:root[color-theme='dark'] {
+  --product-item-image-background-color: var(--color-gray-300);
+}
+
 .item {
   display: flex;
   flex-direction: column;
@@ -15,6 +19,18 @@
   &:hover {
     transform: scale(1.05);
   }
+}
+
+.item__image {
+  flex: 1;
+  border-radius: var(--rounded);
+  // box-shadow: 1px 2px 4px rgba($color: var(--theme-rgb-black), $alpha: 0.3);
+  overflow: hidden;
+  object-fit: scale-down;
+  min-height: 10rem;
+  max-height: 15rem;
+  margin-bottom: 1rem;
+  padding: 0.25rem;
 }
 
 .item__name {
