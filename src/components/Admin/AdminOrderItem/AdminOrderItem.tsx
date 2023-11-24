@@ -5,7 +5,7 @@ import Product from '../../../graphql/interfaces/product';
 import { ymdToShortString } from '../../../utils/parse';
 import Em from '../../../graphql/interfaces/em';
 import ChildrenProps from '../../../interfaces/children-props';
-import InnerSelect from './Components/DeliverySelect/DeliverySelect';
+import InnerSelect from './DeliverySelect/DeliverySelect';
 import deliveryMethods from '../../../data/delivery-methods';
 import dayjs from 'dayjs';
 import useProductUpdate from '../../../hooks/adminOrder/use-product-update';

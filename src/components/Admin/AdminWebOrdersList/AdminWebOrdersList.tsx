@@ -22,8 +22,8 @@ const AdminWebOrdersList = () => {
           onCancel={({ state, message }) => {
             toast[state](message);
             if (state === 'success') {
-              queryClient.removeQueries(GET_AMDIN_PAYMENTS_KEY);
               cancelPayment(p);
+              queryClient.removeQueries(GET_AMDIN_PAYMENTS_KEY);
             }
           }}
         />

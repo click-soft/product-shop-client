@@ -1,6 +1,6 @@
 import styles from './CartModal.module.scss';
 import { BsCartCheck } from 'react-icons/bs';
-import CartItem from '../CartItem/CartItem';
+import CartItem from './CartItem/CartItem';
 import { Fragment, useMemo } from 'react';
 import DownModal from '../../ui/DownModal/DownModal';
 import useCartItems from '../../hooks/use-cart-items';

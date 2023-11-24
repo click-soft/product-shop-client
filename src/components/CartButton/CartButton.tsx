@@ -27,15 +27,7 @@ const CartButton = () => {
 
     return () => clearTimeout(animationTimeout);
   }, [itemsCount]);
-
-  function showModal() {
-    showCart();
-  }
-
-  function closeModal() {
-    closeCart();
-  }
-
+ 
   useEffect(() => {
     if (!showCartModal) {
       setMouseEntered(false);
@@ -46,16 +38,16 @@ const CartButton = () => {
     if (isMobile) return;
 
     if (mouseEntered) {
-      showModal();
+      showCart();
     } else {
-      closeModal();
+      closeCart();
     }
   }, [mouseEntered]);
 
   return (
     <IconButton
       icon={BsCart2}
-      onClick={showModal}
+      onClick={showCart}
       onMouseEnter={() => setMouseEntered(true)}
       onMouseLeave={() => setMouseEntered(false)}
       text={isMobile ? '' : '장바구니'}
