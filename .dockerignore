@@ -1,3 +1,13 @@
 node_modules
 package-lock.json
 .git
+
+.pnp.cjs
+.pnp.loader.mjs
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

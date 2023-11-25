@@ -49,7 +49,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && npm run sentry:sourcemaps && npm run sentry:sourcemaps",
+    "build": "tsc && vite build",
     "serve": "vite preview",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org efdb1838adbc --project javascript-react ./dist && sentry-cli sourcemaps upload --org efdb1838adbc --project javascript-react ./dist"
   },
