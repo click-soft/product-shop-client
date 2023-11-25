@@ -17,7 +17,7 @@ COPY . .
 
 RUN yarn build
 
-FROM nginx:alpine
+FROM nginxinc/nginx-unprivileged 
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
