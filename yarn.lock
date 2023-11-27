@@ -1338,7 +1338,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/cli@npm:^2.21.5":
+"@sentry/cli@npm:^2.22.2":
   version: 2.22.2
   resolution: "@sentry/cli@npm:2.22.2"
   dependencies:
@@ -2779,7 +2779,7 @@ __metadata:
     "@mui/system": "npm:^5.14.18"
     "@mui/x-date-pickers": "npm:^6.16.3"
     "@reduxjs/toolkit": "npm:^1.9.5"
-    "@sentry/cli": "npm:^2.21.5"
+    "@sentry/cli": "npm:^2.22.2"
     "@sentry/react": "npm:^7.80.1"
     "@sentry/tracing": "npm:^7.80.1"
     "@testing-library/jest-dom": "npm:^5.17.0"
