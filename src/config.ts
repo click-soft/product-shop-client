@@ -9,6 +9,7 @@ function getEnvironment(): 'test' | 'production' | 'development' {
 }
 
 export const environment = getEnvironment();
+export const isTestEnv = environment === 'test';
 export const TOSSPAYMENTS_CLIENT_KEY =
   environment === 'production'
     ? import.meta.env.VITE_TOSSPAYMENTS_CLIENT_KEY

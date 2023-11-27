@@ -5,6 +5,7 @@ import TextInput from '../../ui/TextInput/TextInput';
 import useLogin from '../../hooks/login/use-login';
 import CircleLoading from '../Loading/CircleLoading';
 import classNames from 'classnames';
+import { isTestEnv } from '@/config';
 
 function Login() {
   const { userId, password, loading, login, handleUserIdChange, handlePasswordChange } = useLogin();
@@ -26,6 +27,16 @@ function Login() {
   return (
     <>
       {loading && <CircleLoading />}
+      {isTestEnv && (
+        <button
+          onClick={() => {
+            throw new Error('testz');
+          }}
+        >
+          error
+        </button>
+      )}
+
       <div className={styles.container}>
         <h2>Login Account</h2>
         <form className={styles.login_form} onSubmit={submitHandler}>
