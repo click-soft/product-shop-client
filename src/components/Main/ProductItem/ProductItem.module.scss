@@ -4,15 +4,16 @@
 
 .item {
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
   align-items: left;
-  list-style: none;
-  min-width: 10rem;
+  justify-content: space-between;
+  list-style: none;  
   border-radius: 4px;
   box-shadow: 0px 2px 4px rgba(black, 0.1);
   padding: 14px 10px;
   background-color: var(--theme-bg-card);
   margin: 10px;
+  height: 20rem;
   min-width: 12rem;
   transition: transform 0.1s;
 
@@ -35,15 +36,17 @@
 
 .item__name {
   color: var(--theme-text-blue-900);
-  margin-bottom: 10px;
+  margin: 0.5rem 0;
 }
 
 .item__unit {
   font-size: var(--fs-xs);
   color: var(--color-gray-500);
+  line-height: 1.25;
 }
 
 .cost {
   color: var(--theme-text-rose-500);
   font-weight: bold;
+  line-height: 1.25;
 }

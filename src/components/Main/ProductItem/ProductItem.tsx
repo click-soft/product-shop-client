@@ -14,17 +14,20 @@ const ProductItem: React.FC<ProductItemProps> = (props) => {
   const itemClickHandler = () => {
     showProduct({ code: props.productCode, data: pls });
   };
+
   const url = import.meta.env.VITE_BACKEND_URL;
   const imageUrl = `${url}/images/productlist_image/${user?.jisa}/${pls.smCode}`;
 
-  // console.log(`${pls.smMyung} / ${pls.smCode}`);
-  
+  console.log(`${pls.smMyung} / ${pls.smCode}`);
+
   return (
     <li className={styles.item} onClick={itemClickHandler}>
       <img className={styles.item__image} src={imageUrl} alt="상품 이미지" />
-      <div className={styles.item__name}>{pls.smMyung}</div>
-      <div className={styles.item__unit}>{pls.danwi}</div>
-      <div className={styles.cost}>{pls.danga.toLocaleString()}원</div>
+      <div>
+        <div className={styles.item__name}>{pls.smMyung}</div>
+        <div className={styles.item__unit}>{pls.danwi}</div>
+        <div className={styles.cost}>{pls.danga.toLocaleString()}원</div>
+      </div>
     </li>
   );
 };
