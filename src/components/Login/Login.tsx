@@ -27,7 +27,7 @@ function Login() {
   return (
     <>
       {loading && <CircleLoading />}
-      {isTestEnv && (
+      { (
         <button
           onClick={() => {
             throw new Error('testz');
