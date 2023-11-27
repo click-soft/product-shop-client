@@ -5,7 +5,6 @@ import TextInput from '../../ui/TextInput/TextInput';
 import useLogin from '../../hooks/login/use-login';
 import CircleLoading from '../Loading/CircleLoading';
 import classNames from 'classnames';
-import { isTestEnv } from '@/config';
 
 function Login() {
   const { userId, password, loading, login, handleUserIdChange, handlePasswordChange } = useLogin();
