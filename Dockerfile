@@ -2,9 +2,9 @@ FROM node:18-alpine as builder
 
 WORKDIR /app
 
-# COPY package.json .
 
 # RUN yarn set version berry
+# COPY package.json .
 
 COPY . .
 
@@ -18,7 +18,7 @@ ENV VITE_TOSSPAYMENTS_TEST_CLIENT_KEY=${VITE_TOSSPAYMENTS_TEST_CLIENT_KEY}
 ENV VITE_TOSSPAYMENTS_CLIENT_KEY=${VITE_TOSSPAYMENTS_CLIENT_KEY}
 ENV VITE_SENTRY_DNS=${VITE_SENTRY_DNS}
 
-RUN yarn install
+RUN yarn install --immutable
 RUN yarn build
 
 FROM nginxinc/nginx-unprivileged:alpine
