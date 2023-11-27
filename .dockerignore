@@ -3,7 +3,7 @@ package-lock.json
 .git
 
 .pnp.cjs
-.pnp.loader.mjs
+# .pnp.loader.mjs
 .yarn/*
 !.yarn/cache
 !.yarn/patches
