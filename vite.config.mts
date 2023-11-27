@@ -23,6 +23,7 @@ export default defineConfig({
         drop_debugger: true,
       },
     },
+    sourcemap: true,
   },
   // esbuild: {
   //   define: { DEBUG: false },
@@ -35,10 +36,6 @@ export default defineConfig({
   // },
   server: {
     port: 3001,
-  },
-
-  build: {
-    sourcemap: true,
   },
 });
 
