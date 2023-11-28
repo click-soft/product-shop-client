@@ -27,11 +27,11 @@ const ProductModal = () => {
 
     setFitChecked(defaultFit);
     setQuantity(defaultQuantity);
-  }, [showProductModal, defaultFit]);
+  }, [showProductModal, defaultFit, defaultQuantity]);
 
   useEffect(() => {
     setQuantity(defaultQuantity);
-  }, [fitChecked]);
+  }, [fitChecked, defaultQuantity]);
 
   if (!showProductModal) return <></>;
 
@@ -123,13 +123,13 @@ const useProductState = (isShown: boolean, step: number) => {
     if (!isShown || !user) return;
 
     setDefaultFit(isFitProduct && user?.fitCherbang);
-  }, [isShown, isFitProduct, user?.fitCherbang]);
+  }, [isShown, user, isFitProduct, user?.fitCherbang]);
 
   useEffect(() => {
     if (!isShown) return;
 
     setDefaultQuantity(defaultFit ? 6 : step);
-  }, [defaultFit]);
+  }, [isShown, defaultFit, step]);
 
   return {
     isFitProduct,
