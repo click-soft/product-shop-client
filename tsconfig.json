@@ -22,9 +22,9 @@
 
     "sourceMap": true,
 
-    // "paths": {
-    //   "@/*": ["./src/*"]
-    // }
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "references": [{ "path": "./tsconfig.node.json" }]
 }
