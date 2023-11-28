@@ -1,4 +1,4 @@
-import useGetLoginedUser from '@/hooks/use-get-logined-user';
+import useGetLoginedUser from '../../../hooks/use-get-logined-user';
 import ProductListSub from '../../../interfaces/product-list-sub';
 import useModalStore from '../../../store/modal.store';
 import styles from './ProductItem.module.scss';
@@ -17,8 +17,6 @@ const ProductItem: React.FC<ProductItemProps> = (props) => {
 
   const url = import.meta.env.VITE_BACKEND_URL;
   const imageUrl = `${url}/images/productlist_image/${user?.jisa}/${pls.smCode}`;
-
-  console.log(`${pls.smMyung} / ${pls.smCode}`);
 
   return (
     <li className={styles.item} onClick={itemClickHandler}>

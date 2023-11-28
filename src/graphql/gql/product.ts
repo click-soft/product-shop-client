@@ -21,6 +21,9 @@ export const GET_RPDUCTS_BUNRYU_LIST = gql`
         smMyung
         danga
         danwi
+        productList {
+          step
+        }
       }
     }
   }

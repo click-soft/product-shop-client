@@ -3,23 +3,24 @@ import styles from './ProductModal.module.scss';
 import React, { useEffect, useState } from 'react';
 import CheckBox from '../../ui/CheckBox/CheckBox';
 import useGetLoginedUser from '../../hooks/use-get-logined-user';
-import CustomLi from './components/CustomLi/CustomLi';
+import CustomLi from './CustomLi/CustomLi';
 import { useNavigate } from 'react-router-dom';
-import ProductQuantitySelect from '../ProductQuantitySelect/ProductQuantitySelect';
 import Drawer from '../../ui/Drawer/Drawer';
 import ServiceInfo from '../ServiceInfo/ServiceInfo';
 import useCart from '../../hooks/use-cart';
 import useModalStore from '../../store/modal.store';
+import IntUpAndDown from '../../ui/IntUpAndDown/IntUpAndDown';
 
 const ProductModal = () => {
   const { fetchAddToCart } = useCart();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
-  const [quantity, setQuantity] = useState(2);
   const [fitChecked, setFitChecked] = useState<boolean>(false);
   const { productPayload, showProductModal, closeProduct } = useModalStore();
-  const { isFitProduct, defaultFit, defaultQuantity } = useProductState(showProductModal);
   const productData = productPayload?.data;
+  const step = productData?.productList?.step ?? 1;
+  const { isFitProduct, defaultFit, defaultQuantity } = useProductState(showProductModal, step);
+  const [quantity, setQuantity] = useState(step);
 
   useEffect(() => {
     if (!showProductModal) return;
@@ -44,7 +45,7 @@ const ProductModal = () => {
 
   const addItemToCart = async () => {
     await fetchAddToCart({
-      code: productData?.smCode!,
+      code: productData?.smCode ?? '',
       quantity,
       fit: fitChecked ?? false,
     });
@@ -58,10 +59,12 @@ const ProductModal = () => {
   };
 
   function addAndToCartHandler(): void {
-    addItemToCart().then((_) => {
+    addItemToCart().then(() => {
       navigate('/cart-view');
     });
   }
+
+  console.log(productData?.smMyung, productData?.productList?.step);
 
   return (
     <Modal onBackdropClick={closeProduct}>
@@ -73,7 +76,7 @@ const ProductModal = () => {
             <CustomLi title="단위" text={productData?.danwi} />
             <CustomLi title="금액" text={productData?.danga?.toLocaleString()} />
             <CustomLi title="수량">
-              <ProductQuantitySelect value={quantity} onChange={quantityChangeHandler} isFit={fitChecked ?? false} />
+              <IntUpAndDown value={quantity} step={step} min={step} onChange={quantityChangeHandler} />
             </CustomLi>
             <CustomLi title="총 금액" text={(quantity * (productData?.danga ?? 0)).toLocaleString()} />
             {isFitProduct && <CheckBox text="맞춤주문" checked={fitChecked} onChange={fitCheckHandler} />}
@@ -110,7 +113,7 @@ const ProductModal = () => {
   );
 };
 
-const useProductState = (isShown: boolean) => {
+const useProductState = (isShown: boolean, step: number) => {
   const user = useGetLoginedUser();
   const [defaultFit, setDefaultFit] = useState(false);
   const [defaultQuantity, setDefaultQuantity] = useState(2);
@@ -119,13 +122,13 @@ const useProductState = (isShown: boolean) => {
   useEffect(() => {
     if (!isShown || !user) return;
 
-    setDefaultFit(isFitProduct && user?.fitCherbang!);
+    setDefaultFit(isFitProduct && user?.fitCherbang);
   }, [isShown, isFitProduct, user?.fitCherbang]);
 
   useEffect(() => {
     if (!isShown) return;
 
-    setDefaultQuantity(defaultFit ? 6 : 2);
+    setDefaultQuantity(defaultFit ? 6 : step);
   }, [defaultFit]);
 
   return {

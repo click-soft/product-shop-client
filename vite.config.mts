@@ -3,7 +3,6 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import svgrPlugin from 'vite-plugin-svgr';
-import path from 'path';
 
 export default defineConfig({
   plugins: [
@@ -13,6 +12,7 @@ export default defineConfig({
     sentryVitePlugin({
       org: 'efdb1838adbc',
       project: 'javascript-react',
+      disable: process.env.NODE_ENV === 'development',
     }),
   ],
   build: {
