@@ -3,6 +3,7 @@ import CartItem from '../../interfaces/cart-item';
 import styles from './CartViewItem.module.scss';
 import IntUpAndDown from '../../ui/IntUpAndDown/IntUpAndDown';
 import useCartViewStore from '../../store/cart-view.store';
+import { defaultProductCount } from '@/utils/product.utils';
 interface CartViewItemProps {
   cartItem: CartItem;
   checked: boolean;
@@ -15,6 +16,7 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
   const { loading } = useCartViewStore();
   const ci = props.cartItem;
   const totalPrice = ci.quantity * (ci.product?.danga ?? 0);
+
   const step = ci.product?.productList?.step ?? 1;
 
   function checkChangeHandler(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -43,7 +45,7 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
               <IntUpAndDown
                 value={ci.quantity}
                 step={step}
-                min={step}
+                min={defaultProductCount({ isFit: ci.fit, step })}
                 disabled={loading}
                 onChange={(v) => props.onCountChange(ci.id!, v)}
               />

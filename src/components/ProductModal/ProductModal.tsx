@@ -10,6 +10,7 @@ import ServiceInfo from '../ServiceInfo/ServiceInfo';
 import useCart from '../../hooks/use-cart';
 import useModalStore from '../../store/modal.store';
 import IntUpAndDown from '../../ui/IntUpAndDown/IntUpAndDown';
+import { defaultProductCount as defaultProductQuantity } from '@/utils/product.utils';
 
 const ProductModal = () => {
   const { fetchAddToCart } = useCart();
@@ -76,7 +77,7 @@ const ProductModal = () => {
             <CustomLi title="단위" text={productData?.danwi} />
             <CustomLi title="금액" text={productData?.danga?.toLocaleString()} />
             <CustomLi title="수량">
-              <IntUpAndDown value={quantity} step={step} min={step} onChange={quantityChangeHandler} />
+              <IntUpAndDown value={quantity} step={step} min={defaultQuantity} onChange={quantityChangeHandler} />
             </CustomLi>
             <CustomLi title="총 금액" text={(quantity * (productData?.danga ?? 0)).toLocaleString()} />
             {isFitProduct && <CheckBox text="맞춤주문" checked={fitChecked} onChange={fitCheckHandler} />}
@@ -128,7 +129,7 @@ const useProductState = (isShown: boolean, step: number) => {
   useEffect(() => {
     if (!isShown) return;
 
-    setDefaultQuantity(defaultFit ? 6 : step);
+    setDefaultQuantity(defaultProductQuantity({ isFit: defaultFit, step }));
   }, [isShown, defaultFit, step]);
 
   return {

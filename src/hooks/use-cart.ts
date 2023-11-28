@@ -34,7 +34,7 @@ const useCart = () => {
   useEffect(() => {
     if (!cartItemsCountData) return;
     setItemsCount(cartItemsCountData?.cartItemsCount ?? 0);
-  }, [cartItemsCountData]);
+  }, [cartItemsCountData, setItemsCount]);
 
   return {
     itemsCount,
