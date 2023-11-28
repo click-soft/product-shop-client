@@ -14,7 +14,8 @@ interface CartViewItemProps {
 const CartViewItems: React.FC<CartViewItemProps> = (props) => {
   const { loading } = useCartViewStore();
   const ci = props.cartItem;
-  const totalPrice = ci.quantity * ci.product?.danga!;
+  const totalPrice = ci.quantity * (ci.product?.danga ?? 0);
+  const step = ci.product?.productList?.step ?? 1;
 
   function checkChangeHandler(event: React.ChangeEvent<HTMLInputElement>): void {
     props.onCheckChange(event.target.checked);
@@ -41,8 +42,8 @@ const CartViewItems: React.FC<CartViewItemProps> = (props) => {
               <div className={styles.cart_item__body__price}>{ci.product?.danga?.toLocaleString()}원</div>
               <IntUpAndDown
                 value={ci.quantity}
-                step={2}
-                min={2}
+                step={step}
+                min={step}
                 disabled={loading}
                 onChange={(v) => props.onCountChange(ci.id!, v)}
               />

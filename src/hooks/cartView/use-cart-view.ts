@@ -17,15 +17,15 @@ const useCartView = () => {
 
     setCart(cart);
     setInitialized();
-  }, [data]);
+  }, [data, setCart, setInitialized]);
 
   useEffect(() => {
     if (!initialized) return;
 
     setCheckAll(true);
-  }, [initialized]);
+  }, [initialized, setCheckAll]);
 
-  useEffect(() => setLoading(loading), [loading]);
+  useEffect(() => setLoading(loading), [loading, setLoading]);
 
   useEffect(() => {
     if (error) {

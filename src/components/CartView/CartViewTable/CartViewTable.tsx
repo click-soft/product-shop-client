@@ -14,7 +14,7 @@ const CartViewTable = () => {
   useEffect(() => {
     const isAllChecked = checkedIds?.length === cart?.cartItems.length;
     setAllCheck(isAllChecked);
-  }, [checkedIds]);
+  }, [checkedIds, cart]);
 
   return (
     <div className={styles.container}>
