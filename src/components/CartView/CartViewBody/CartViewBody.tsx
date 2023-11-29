@@ -19,15 +19,15 @@ const CartViewBody = () => {
   }
 
   const itemComponents = cart?.cartItems.map((ci: CartProduct) => {
-    return (
-      <CartViewItems
-        key={ci.id}
-        cartItem={ci}
-        checked={checkedIds.includes(ci.id!)}
-        onCheckChange={(checked) => checkChangeHandler(ci.id!, checked)}
-        onCancel={onCancelHandler}
-        onCountChange={countChangeHandler}
-      />
+    return (      
+        <CartViewItems
+          key={ci.id}
+          cartItem={ci}
+          checked={checkedIds.includes(ci.id!)}
+          onCheckChange={(checked) => checkChangeHandler(ci.id!, checked)}
+          onCancel={onCancelHandler}
+          onCountChange={countChangeHandler}
+        />
     );
   });
 

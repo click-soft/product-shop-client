@@ -26,13 +26,13 @@ const authLink = setContext((_, { headers }) => {
 
 const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
   if (graphQLErrors) {
-    for (let err of graphQLErrors) {
+    for (const err of graphQLErrors) {
       switch (err.extensions.code) {
         case 'UNAUTHENTICATED':
           return new Observable((observer) => {
             refresh()
               .then((result) => {
-                let headers = {
+                const headers = {
                   // re-add old headers
                   ...operation.getContext().headers,
                   // switch out old access token for new one

@@ -1,9 +1,11 @@
-import { FallbackProps } from 'react-error-boundary';
-import UnauthorizedPage from '../UnauthorizedPage/UnauthorizedPage';
-import BaseErrorPage from '../BaseErrorPage/BaseErrorPage';
-import NotFoundErrorPage from '../NotFoundErrorPage/NotFoundErrorPage';
+import ChildrenProps from '@/interfaces/children-props';
+import React from 'react';
+import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
+import NotFoundErrorPage from '@/pages/ErrorPage/NotFoundErrorPage/NotFoundErrorPage';
+import UnauthorizedPage from '@/pages/ErrorPage/UnauthorizedPage/UnauthorizedPage';
+import BaseErrorPage from '@/pages/ErrorPage/BaseErrorPage/BaseErrorPage';
 
-const ErrorFallback: React.FC<FallbackProps> = ({ error, resetErrorBoundary }) => {
+const RootErrorFallback: React.FC<FallbackProps> = ({ error, resetErrorBoundary }) => {
   const errorMessage = error?.message;
 
   switch (error.status) {
@@ -11,6 +13,7 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, resetErrorBoundary }) =
     case 404:
       return <NotFoundErrorPage />;
   }
+
   switch (error?.message?.toUpperCase()) {
     case 401:
     case 'UNAUTHORIZED':
@@ -36,4 +39,8 @@ const ErrorFallback: React.FC<FallbackProps> = ({ error, resetErrorBoundary }) =
   );
 };
 
-export default ErrorFallback;
+const RootErrorBoundary: React.FC<ChildrenProps> = (props) => {
+  return <ErrorBoundary FallbackComponent={RootErrorFallback}>{props.children}</ErrorBoundary>;
+};
+
+export default RootErrorBoundary;

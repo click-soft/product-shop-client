@@ -19,7 +19,7 @@ class ApolloClientError extends Error implements ApolloError {
 
     let name = 'ApolloClientError';
 
-    for (let err of error.graphQLErrors) {
+    for (const err of error.graphQLErrors) {
       switch (err.extensions.code) {
         case 'UNAUTHENTICATED':
           name = 'ApolloClientUnauthenticatedError';

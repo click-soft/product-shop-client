@@ -11,7 +11,6 @@ const useCart = () => {
   const [addToCart] = useMutation(ADD_TO_CART);
   const [updateCartItemQuantity] = useMutation(UPDATE_CART_ITEM_QUANTITY);
   const [deleteCartItems] = useMutation(DELETE_CART_ITEMS);
-
   async function fetchCartItemsCount() {
     return await cartItemsCount({ fetchPolicy: 'no-cache' });
   }

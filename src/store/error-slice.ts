@@ -22,6 +22,7 @@ export interface ErrorArgs {
   code?: string;
   status?: number;
   message?: string;
+  error?: any;
 }
 
 export const errorActions = errorSlice.actions;

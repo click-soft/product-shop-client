@@ -4,6 +4,7 @@ import styles from './CartViewItem.module.scss';
 import IntUpAndDown from '../../ui/IntUpAndDown/IntUpAndDown';
 import useCartViewStore from '../../store/cart-view.store';
 import { defaultProductCount } from '@/utils/product.utils';
+
 interface CartViewItemProps {
   cartItem: CartItem;
   checked: boolean;
