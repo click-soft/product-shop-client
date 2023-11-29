@@ -48,7 +48,11 @@
 }
 
 @mixin red-button {
-  @include custom-button($color: white, $backgroundColor: var(--color-rose-500), $activeBackgroundColor: var(--color-red-600));
+  @include custom-button(
+    $color: white,
+    $backgroundColor: var(--color-rose-500),
+    $activeBackgroundColor: var(--color-red-600)
+  );
 }
 
 @mixin white-button-legacy {

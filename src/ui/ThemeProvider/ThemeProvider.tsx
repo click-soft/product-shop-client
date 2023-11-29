@@ -9,7 +9,7 @@ const ThemeProvider: React.FC<ChildrenProps> = ({ children }) => {
   useEffect(() => {
     setMode(environment === 'test' ? 'dark' : 'light');
   }, []);
-  
+
   useEffect(() => {
     document.documentElement.setAttribute('color-theme', mode);
     document.documentElement.classList.add(mode);

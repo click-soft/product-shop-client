@@ -10,8 +10,8 @@ export async function checkSettingsMainLoader() {
     const isAuthenticated = response;
     if (isAuthenticated) {
       const pathName = window.document.location.pathname;
-      if (pathName === '/settings'){
-        return redirect('/settings/profile')
+      if (pathName === '/settings') {
+        return redirect('/settings/profile');
       }
     }
 

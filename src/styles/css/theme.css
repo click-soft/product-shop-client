@@ -11,7 +11,7 @@
   --theme-bg-buy-area: var(--color-blue-600);
   --theme-bg-gray-50: rgb(245, 247, 250);
   --theme-bg-gray-100: rgb(238, 240, 243);
-  
+
   --theme-text-white: var(--color-white);
   --theme-text-black: black;
   --theme-text-gray: var(--color-gray-500);
@@ -43,7 +43,7 @@
   --theme-bg-buy-area: var(--color-blue-950);
   --theme-bg-gray-50: rgb(30, 27, 23);
   --theme-bg-gray-100: rgb(10, 8, 5);
-  
+
   --theme-text-white: black;
   --theme-text-black: white;
   --theme-text-gray: var(--color-gray-400);

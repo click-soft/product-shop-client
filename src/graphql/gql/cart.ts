@@ -29,7 +29,7 @@ export const GET_CART_WITH_RRODUCT = gql`
           smMyung
           danga
           danwi
-          productList{
+          productList {
             step
           }
         }

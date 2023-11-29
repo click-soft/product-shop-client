@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './OrderItem.module.scss'
+import styles from './OrderItem.module.scss';
 import { PaymentItem } from '../../../interfaces/payment-item';
 import useDeliveryTracking, { TrackingType } from '../../../hooks/use-delivery-tracking';
 import TrackingModal from '../../TrackingModal/TrackingModal';

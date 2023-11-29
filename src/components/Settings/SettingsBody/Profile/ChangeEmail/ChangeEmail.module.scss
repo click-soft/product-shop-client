@@ -8,7 +8,7 @@
 .input {
   @include custom-input;
   margin-bottom: 0.5rem;
-  width: 100%
+  width: 100%;
 }
 
 .button {
@@ -17,7 +17,7 @@
   width: 5rem;
 }
 
-.error{
+.error {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
 }

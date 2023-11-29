@@ -27,7 +27,7 @@ const CartButton = () => {
 
     return () => clearTimeout(animationTimeout);
   }, [itemsCount]);
- 
+
   useEffect(() => {
     if (!showCartModal) {
       setMouseEntered(false);

@@ -8,15 +8,12 @@ interface IntersectionObserverArgs {
 
 const useIntersectionObserver = (args: IntersectionObserverArgs) => {
   const observerRef = useRef(null);
-  const handleObserver = useCallback(
-    (entries: IntersectionObserverEntry[]) => {
-      const [target] = entries;
-      if (target.isIntersecting) {
-        args.onIntersecting?.();
-      }
-    },
-    []
-  );
+  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
+    const [target] = entries;
+    if (target.isIntersecting) {
+      args.onIntersecting?.();
+    }
+  }, []);
 
   useEffect(() => {
     if (!args.hasNextPage || args.isFetching) {

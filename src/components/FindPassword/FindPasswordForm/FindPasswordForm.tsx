@@ -17,7 +17,9 @@ const FindPasswordForm = () => {
     <>
       {loading && <CircleLoading />}
       <form onSubmit={submitHandler}>
-        <label htmlFor="id" className={styles.label}>아이디를 입력하세요.</label>
+        <label htmlFor="id" className={styles.label}>
+          아이디를 입력하세요.
+        </label>
         <TextInput placeholder="ID" id="id" value={userId} onChange={(e) => setUserId(e.target.value)} />
         <button className={styles.find_button} disabled={!userId}>
           찾기

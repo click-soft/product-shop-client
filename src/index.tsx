@@ -29,15 +29,14 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <LocalizationProvider dateAdapter={AdapterDayjs}>
-  <QueryClientProvider client={queryClient}>
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
-      </Provider>
-    </ApolloProvider>
-  </QueryClientProvider>
-</LocalizationProvider>
-)
- 
+    <QueryClientProvider client={queryClient}>
+      <ApolloProvider client={client}>
+        <Provider store={store}>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </Provider>
+      </ApolloProvider>
+    </QueryClientProvider>
+  </LocalizationProvider>
+);

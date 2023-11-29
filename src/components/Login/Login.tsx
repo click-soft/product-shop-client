@@ -25,7 +25,7 @@ function Login() {
 
   return (
     <>
-      {loading && <CircleLoading />}    
+      {loading && <CircleLoading />}
       <div className={styles.container}>
         <h2>Login Account</h2>
         <form className={styles.login_form} onSubmit={submitHandler}>

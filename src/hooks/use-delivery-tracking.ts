@@ -47,7 +47,10 @@ const useDeliveryTracking = () => {
 };
 
 export class TrackingType {
-  constructor(public name: string, public number: string) {}
+  constructor(
+    public name: string,
+    public number: string
+  ) {}
 
   get trackingNumber() {
     const numbersOnly = this.number?.match(/\d+/g);

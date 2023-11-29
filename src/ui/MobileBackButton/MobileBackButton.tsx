@@ -12,7 +12,7 @@ const MobileBackButton = () => {
   }
 
   if (!isMobile) return <></>;
-  
+
   return <IconButton icon={IoIosArrowBack} onClick={handleToBack} />;
 };
 
