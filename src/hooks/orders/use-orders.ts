@@ -4,7 +4,7 @@ import useOrdersStore from '../../store/orders.store';
 import { GET_PAYMENT_ITEM_CODE } from '../../graphql/gql/payment-item';
 import { useLazyQuery } from '@apollo/client';
 import useCart from '../use-cart';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { GET_PAYMENT_WITH_ITEMS_QUERY_KEY } from './use-orders-infinite-query';
 
 const useOrders = () => {

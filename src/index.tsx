@@ -13,7 +13,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './store';
 import client from './graphql/apollo-client';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import ThemeProvider from './ui/ThemeProvider/ThemeProvider';

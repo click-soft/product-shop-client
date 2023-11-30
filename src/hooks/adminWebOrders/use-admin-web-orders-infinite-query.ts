@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import client from '../../graphql/apollo-client';
 import GetAdminPaymentsArgs from '../../graphql/dto/get-admin-payments.args';
 import PaymentWithPage from '../../graphql/interfaces/payments-with-page';
@@ -24,26 +24,17 @@ const fetchGetAdminPayments = async (page: number, variables: GetAdminPaymentsAr
 const useAdminWebOrdersInfiniteQuery = () => {
   const { variables, setPayments, setFetching } = useAdminWebOrdersStore();
 
-  const { hasNextPage, isFetching, fetchNextPage } = useInfiniteQuery(
-    [GET_AMDIN_PAYMENTS_KEY, variables],
-    ({ pageParam = 1 }) => fetchGetAdminPayments(pageParam, variables!),
-    {
-      getNextPageParam: (nextPage) => {
-        if (nextPage.isLast) return undefined;
-        return nextPage.page + 1;
-      },
-      onSuccess: (data) => {
-        const payments = data?.pages.flatMap((pg) => pg.payments);
-        setPayments(payments ?? []);
-      },
-      onError: (err) => {
-        if (err instanceof Error) {
-          toast.error(err.message);
-        }
-      },
-      enabled: !!variables,
-    }
-  );
+  const { data, error, hasNextPage, isFetching, fetchNextPage } = useInfiniteQuery({
+    initialPageParam: 1,
+    queryKey: [GET_AMDIN_PAYMENTS_KEY, variables],
+    queryFn: ({ pageParam = 1 }) => fetchGetAdminPayments(pageParam, variables!),
+    getNextPageParam: (nextPage) => {
+      if (nextPage.isLast) return undefined;
+      return nextPage.page + 1;
+    },
+    select: (data) => data.pages?.flatMap((pg) => pg.payments),
+    enabled: !!variables,
+  });
 
   const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
@@ -55,7 +46,15 @@ const useAdminWebOrdersInfiniteQuery = () => {
 
   useEffect(() => {
     setFetching(isFetching);
-  }, [isFetching]);
+  }, [isFetching, setFetching]);
+
+  useEffect(() => {
+    setPayments(data ?? []);
+  }, [data, setPayments]);
+
+  useEffect(() => {
+    if (error) toast.error(error.message);
+  }, [error]);
 
   return {
     observerComponent,

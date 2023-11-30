@@ -5,7 +5,7 @@ import useAdminWebOrdersInfiniteQuery, {
 import useAdminWebOrdersStore from '../../../store/admin-web-orders.store';
 import OrderBox from '../../OrderBox/OrderBox';
 import styles from './AdminWebOrdersList.module.scss';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
 const AdminWebOrdersList = () => {
@@ -23,7 +23,7 @@ const AdminWebOrdersList = () => {
             toast[state](message);
             if (state === 'success') {
               cancelPayment(p);
-              queryClient.removeQueries(GET_AMDIN_PAYMENTS_KEY);
+              queryClient.removeQueries({ queryKey: [GET_AMDIN_PAYMENTS_KEY] });
             }
           }}
         />
@@ -33,7 +33,7 @@ const AdminWebOrdersList = () => {
 
   useEffect(() => {
     return clear;
-  }, []);
+  }, [clear]);
 
   return (
     <ul className={styles.order_ul}>

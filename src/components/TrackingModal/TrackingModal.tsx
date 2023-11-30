@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
+import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import styles from './TrackingModal.module.scss';
 import { Box, CircularProgress, Fade, Modal } from '@mui/material';
 import ChildrenProps from '../../interfaces/children-props';
@@ -18,25 +18,26 @@ interface TrackingModalProps extends ChildrenProps {
 const TrackingModal: React.FC<TrackingModalProps> = (props) => {
   const { fetchTracking } = useDeliveryTracking();
   const [trackingResult, setTrackingResult] = useState<TrackingResult>();
-  const { isFetching, error } = useQuery(
-    ['fetchTracking', props.tracking, props.open],
-    ({ queryKey }) => {
-      if (!props.open) return;
+  const { data, isFetching, error } = useQuery({
+    queryKey: ['fetchTracking', props.tracking, props.open],
+    queryFn: ({ queryKey }) => {
       const [_, tracking] = queryKey;
       return fetchTracking(tracking as TrackingType);
     },
-    {
-      onSuccess: (data) => {
-        data?.progresses?.sort((a, b) => {
-          return new Date(b.time).getTime() - new Date(a.time).getTime();
-        });
-        setTrackingResult(data);
-      },
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-      cacheTime: 60000,
-    }
-  );
+    select: (data) => {
+      data?.progresses?.sort((a, b) => {
+        return new Date(b.time).getTime() - new Date(a.time).getTime();
+      });
+      return data;
+    },
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    gcTime: 60000,
+  });
+
+  useEffect(() => {
+    setTrackingResult(data);
+  }, [data]);
 
   if (!props.open) {
     return <></>;

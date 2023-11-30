@@ -1,7 +1,7 @@
 import AdminSearchForm, { FormValues } from '../AdminSearchForm/AdminSearchForm';
 import dayjs from 'dayjs';
 import { ADMIN_QUERY_KEY } from '../../../hooks/adminOrder/use-admin-order-infinite-query';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import useAdminOrderStore from '../../../store/admin-order.store';
 
 const AdminOrderForm = () => {

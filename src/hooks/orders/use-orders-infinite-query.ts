@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import useIntersectionObserver from '../use-intersection-observer';
 import { useEffect } from 'react';
@@ -9,23 +9,20 @@ import getPaymentWithItemsQuery from '../../graphql/queries/payment/get-payment-
 
 const useOrdersInfiniteQuery = () => {
   const { payments, setPayments, updateSendType } = useOrdersStore();
-  const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useInfiniteQuery(
-    [GET_PAYMENT_WITH_ITEMS_QUERY_KEY],
-    getPaymentWithItemsQuery,
-    {
-      getNextPageParam: (lastPage) => {
-        if (lastPage?.isLast ?? true) return undefined;
-        return lastPage.page + 1;
-      },
-      select({ pageParams, pages }) {
-        const payments = pages.flatMap((pg) => pg.payments);
-        return { pageParams, pages: payments };
-      },
-      onError: (err) => {
-        toast.error((err as any).message);
-      },
-    }
-  );
+  const { data, error, hasNextPage, isFetching, fetchNextPage, refetch } = useInfiniteQuery({
+    initialPageParam: 1,
+    queryKey: [GET_PAYMENT_WITH_ITEMS_QUERY_KEY],
+    queryFn: ({ pageParam }) => getPaymentWithItemsQuery({ pageParam }),
+    getNextPageParam: (nextPage) => {
+      if (nextPage?.isLast ?? true) {
+        return null;
+      }
+      return nextPage.page + 1;
+    }, 
+    select: (data) => {
+      return data.pages?.flatMap((pg) => pg.payments);
+    },
+  });
 
   const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
@@ -53,8 +50,12 @@ const useOrdersInfiniteQuery = () => {
   });
 
   useEffect(() => {
-    setPayments(data?.pages ?? []);
-  }, [data]);
+    setPayments(data ?? []);
+  }, [data, setPayments]);
+
+  useEffect(() => {
+    if (error) toast.error(error.message);
+  }, [error]);
 
   return {
     payments,

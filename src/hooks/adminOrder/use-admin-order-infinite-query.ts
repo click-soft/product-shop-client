@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import useIntersectionObserver from '../use-intersection-observer';
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
@@ -7,29 +7,21 @@ import getAdminProductsQuery from '../../graphql/queries/account/get-admin-produ
 
 const useAdminOrderInfiniteQuery = () => {
   const { products, variables, setProducts, setIsFetching, clear } = useAdminOrderStore();
-  const { isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery(
-    [ADMIN_QUERY_KEY, variables],
-    ({ pageParam = 1 }) => getAdminProductsQuery(pageParam, variables!),
-    {
-      getNextPageParam: (nextPage) => {
-        if (nextPage?.isLast ?? true) {
-          return null;
-        }
-        return nextPage.page + 1;
-      },
-      onSuccess: (data) => {
-        const products = data.pages?.flatMap((pg) => pg.products);
-        setProducts(products);
-      },
-
-      onError: (err) => {
-        if (err instanceof Error) {
-          toast.error(err.message);
-        }
-      },
-      enabled: !!variables,
-    }
-  );
+  const { data, error, isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery({
+    initialPageParam: 1,
+    queryKey: [ADMIN_QUERY_KEY, variables],
+    queryFn: ({ pageParam }) => getAdminProductsQuery(pageParam, variables!),
+    getNextPageParam: (nextPage) => {
+      if (nextPage?.isLast ?? true) {
+        return null;
+      }
+      return nextPage.page + 1;
+    },
+    select: (data) => {
+      return data.pages?.flatMap((pg) => pg.products);
+    },
+    enabled: !!variables,
+  });
 
   const { observerComponent } = useIntersectionObserver({
     hasNextPage: !!hasNextPage,
@@ -41,11 +33,20 @@ const useAdminOrderInfiniteQuery = () => {
 
   useEffect(() => {
     return clear;
-  }, []);
+  }, [clear]);
+
+  useEffect(() => {
+    setProducts(data ?? []);
+  }, [data, setProducts]);
+
+  useEffect(() => {
+    if (error) toast.error(error.message);
+  }, [error]);
 
   useEffect(() => {
     setIsFetching(isFetching);
-  }, [isFetching]);
+  }, [isFetching, setIsFetching]);
+
   return {
     products,
     isFetching,

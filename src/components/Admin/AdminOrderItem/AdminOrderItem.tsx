@@ -44,16 +44,16 @@ const AdminOrderItem: React.FC<AdminOrderItemProps> = ({ product, managers }) =>
             }
             isHeader={true}
           />
-          <DataBox label="담당자" text={product.cs?.em.name!} isHeader={true} />
+          <DataBox label="담당자" text={product.cs?.em?.name} isHeader={true} />
         </div>
       </div>
       <DataBox label="거래처코드" text={product.csCode} />
-      <DataBox label="거래처" text={product.cs?.myung!} />
+      <DataBox label="거래처" text={product.cs?.myung} />
       <DataBox label="상품코드" text={product.clCode} />
       <DataBox label="상품명칭" text={product.productListSub?.smMyung} />
       <DataBox label="수량" text={product.count} />
-      <DataBox label="단가" text={product.productListSub?.danga!.toLocaleString()} />
-      <DataBox label="금액" text={(product.productListSub?.danga! * product.count).toLocaleString()} />
+      <DataBox label="단가" text={product.productListSub?.danga?.toLocaleString()} />
+      <DataBox label="금액" text={((product.productListSub?.danga ?? 0) * product.count).toLocaleString()} />
       <DataBox label="발주일" text={ymdToShortString(product.sellYmd)} />
       <DataBox label="발주여부" text={product.etc1} />
       <DataBox label="배송방법">

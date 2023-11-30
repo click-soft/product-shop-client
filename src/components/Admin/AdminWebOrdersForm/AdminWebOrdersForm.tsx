@@ -4,7 +4,7 @@ import useAdminWebOrdersStore from '../../../store/admin-web-orders.store';
 import useGetLoginedUser from '../../../hooks/use-get-logined-user';
 import dayjs from 'dayjs';
 import { GET_AMDIN_PAYMENTS_KEY } from '../../../hooks/adminWebOrders/use-admin-web-orders-infinite-query';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 
 const AdminWebOrdersForm = () => {
   const queryClient = useQueryClient();
