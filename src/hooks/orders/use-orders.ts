@@ -17,7 +17,7 @@ const useOrders = () => {
     toast[state](message);
     if (state === 'success') {
       cancelPayment(payment);
-      queryClient.removeQueries([GET_PAYMENT_WITH_ITEMS_QUERY_KEY]);
+      queryClient.removeQueries({ queryKey: [GET_PAYMENT_WITH_ITEMS_QUERY_KEY] });
     }
   }
 

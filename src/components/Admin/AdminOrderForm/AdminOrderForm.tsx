@@ -19,7 +19,7 @@ const AdminOrderForm = () => {
       csMyung: formValues.text,
       page: 1,
     });
-    queryClient.invalidateQueries(ADMIN_QUERY_KEY);
+    queryClient.invalidateQueries({ queryKey: [ADMIN_QUERY_KEY] });
   }
 
   return <AdminSearchForm textLabel="거래처 명칭" onSubmit={submitHandler} />;

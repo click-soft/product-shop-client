@@ -23,14 +23,14 @@ const AdminWebOrdersForm = () => {
     }
 
     setVariables({
-      jisa: user?.jisa!,
+      jisa: user?.jisa ?? '',
       startDate: dayjs(value.startDate).startOf('day').toDate(),
       endDate: dayjs(value.endDate).endOf('day').toDate(),
       emCode,
       customerName,
       orderId,
     });
-    queryClient.invalidateQueries([GET_AMDIN_PAYMENTS_KEY]);
+    queryClient.invalidateQueries({ queryKey: [GET_AMDIN_PAYMENTS_KEY] });
   }
 
   return <AdminSearchForm textLabel="거래처명 or 주문번호" onSubmit={submitHandler} />;
