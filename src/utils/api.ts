@@ -22,5 +22,16 @@ const axiosAuthApi = (url: string, options?: any) => {
   return instance;
 };
 
+const axGraphQL = (options?: any) => {
+  const instance = axios.create({
+    baseURL: BASE_URL + '/graphql',
+    withCredentials: true,
+    ...options,
+  });
+  interceptors(instance);
+  return instance;
+};
+
 export const baseApi = axiosApi(BASE_URL + '/api');
 export const authApi = axiosAuthApi(BASE_URL + '/api');
+export const axGql = axGraphQL();
