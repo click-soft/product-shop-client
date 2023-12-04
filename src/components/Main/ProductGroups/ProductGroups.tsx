@@ -1,13 +1,13 @@
 import React from 'react';
-import ProductsByBunryu from '../../../interfaces/products-by-bunryu';
 import ProductList from '../ProductList/ProductList';
+import { ProductsWithWebBunryu } from '@/interfaces/products-by-bunryu';
 
 interface ProductGroupsProps {
-  prodGroups?: ProductsByBunryu[];
+  prodGroups?: ProductsWithWebBunryu[];
 }
 const ProductGroups: React.FC<ProductGroupsProps> = ({ prodGroups }) => {
-  const elements: JSX.Element[] | undefined = prodGroups?.map(({ bunryu, products }) => {
-    return <ProductList key={bunryu} prodCode={bunryu} prds={products} />;
+  const elements: JSX.Element[] | undefined = prodGroups?.map((prodGroup) => {
+    return <ProductList key={prodGroup.bunryu} prodGroup={prodGroup} />;
   });
 
   return <ul>{elements}</ul>;

@@ -4,7 +4,7 @@ import MenuButton from '../../../components/MenuButton/MenuButton';
 import CartButton from '../../../components/CartButton/CartButton';
 import UserButton from '../../../components/UserButton/UserButton';
 import { useLocation } from 'react-router-dom';
-import MenuLink from '../../../components/MenuLink/MenuLink';
+import { MenuLink } from '@/components/MenuLink/MenuLink';
 import { useRef, useState } from 'react';
 import useScrollWindow from '../../../hooks/use-scroll-window';
 import LinkLongLogo from '../../../components/LinkLongLogo/LinkLongLogo';

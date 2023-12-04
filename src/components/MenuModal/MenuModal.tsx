@@ -1,5 +1,5 @@
 import DownModal from '../../ui/DownModal/DownModal';
-import MenuLink from '../MenuLink/MenuLink';
+import { MenuLink } from '../MenuLink/MenuLink';
 import useModalStore from '../../store/modal.store';
 
 const MenuModal = () => {

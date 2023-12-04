@@ -1,9 +1,11 @@
 import { create } from 'zustand';
 import ProductListSub from '../interfaces/product-list-sub';
+import ProductListWebBunryu from '@/graphql/interfaces/product-list-web-bunryu';
 
 type ProductPayload = {
   code?: string;
   data?: ProductListSub;
+  webBunryu?: ProductListWebBunryu;
 };
 
 type State = {

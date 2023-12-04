@@ -23,6 +23,7 @@ export const GET_RPDUCTS_BUNRYU_LIST = gql`
         danwi
         productList {
           step
+          fit
         }
       }
     }

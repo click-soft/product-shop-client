@@ -11,6 +11,7 @@ import useCart from '../../hooks/use-cart';
 import useModalStore from '../../store/modal.store';
 import IntUpAndDown from '../../ui/IntUpAndDown/IntUpAndDown';
 import { defaultProductCount as defaultProductQuantity } from '@/utils/product.utils';
+import ProductList from '@/interfaces/product-list';
 
 const ProductModal = () => {
   const { fetchAddToCart } = useCart();
@@ -18,9 +19,15 @@ const ProductModal = () => {
   const [show, setShow] = useState(false);
   const [fitChecked, setFitChecked] = useState<boolean>(false);
   const { productPayload, showProductModal, closeProduct } = useModalStore();
-  const productData = productPayload?.data;
+  const { data: productData, webBunryu } = productPayload || {};
+  const { fit: isFitProduct, name: bunryuName } = webBunryu || {};
   const step = productData?.productList?.step ?? 1;
-  const { isFitProduct, defaultFit, defaultQuantity } = useProductState(showProductModal, step);
+  const { defaultFit, defaultQuantity } = useProductState({
+    isShown: showProductModal,
+    productList: productData?.productList,
+    isFitProduct,
+    bunryuName,
+  });
   const [quantity, setQuantity] = useState(step);
 
   useEffect(() => {
@@ -114,16 +121,26 @@ const ProductModal = () => {
   );
 };
 
-const useProductState = (isShown: boolean, step: number) => {
+interface UseProductStateArgs {
+  isShown: boolean;
+  productList?: ProductList;
+  isFitProduct?: boolean;
+  bunryuName?: string;
+}
+
+const useProductState = ({ isShown, productList, isFitProduct, bunryuName }: UseProductStateArgs) => {
   const user = useGetLoginedUser();
   const [defaultFit, setDefaultFit] = useState(false);
   const [defaultQuantity, setDefaultQuantity] = useState(2);
-  const isFitProduct = useModalStore((state) => ['A', 'B'].includes(state.productPayload?.code ?? ''));
+  const step = productList?.step ?? 1;
 
   useEffect(() => {
     if (!isShown || !user) return;
 
-    setDefaultFit(isFitProduct && user?.fitCherbang);
+    const prescriptionFit = user?.fitCherbang && bunryuName?.includes('처방전');
+    const isFitSetting = productList?.fit || prescriptionFit;
+
+    setDefaultFit(!!isFitProduct && !!isFitSetting);
   }, [isShown, user, isFitProduct, user?.fitCherbang]);
 
   useEffect(() => {
@@ -133,7 +150,6 @@ const useProductState = (isShown: boolean, step: number) => {
   }, [isShown, defaultFit, step]);
 
   return {
-    isFitProduct,
     defaultFit,
     defaultQuantity,
   };

@@ -8,4 +8,5 @@ export default interface ProductList {
   web: boolean;
   bunryu: string;
   step: number;
+  fit: boolean;
 }

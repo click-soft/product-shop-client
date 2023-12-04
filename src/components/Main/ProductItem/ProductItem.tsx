@@ -1,3 +1,4 @@
+import ProductListWebBunryu from '@/graphql/interfaces/product-list-web-bunryu';
 import useGetLoginedUser from '../../../hooks/use-get-logined-user';
 import ProductListSub from '../../../interfaces/product-list-sub';
 import useModalStore from '../../../store/modal.store';
@@ -6,13 +7,14 @@ import styles from './ProductItem.module.scss';
 interface ProductItemProps {
   productCode: string;
   productList: ProductListSub;
+  webBunryu?: ProductListWebBunryu;
 }
-const ProductItem: React.FC<ProductItemProps> = (props) => {
+const ProductItem: React.FC<ProductItemProps> = ({ productCode, productList, webBunryu }) => {
   const { showProduct } = useModalStore();
   const user = useGetLoginedUser();
-  const pls = props.productList;
+  const pls = productList;
   const itemClickHandler = () => {
-    showProduct({ code: props.productCode, data: pls });
+    showProduct({ code: productCode, data: pls, webBunryu });
   };
 
   const url = import.meta.env.VITE_BACKEND_URL;
