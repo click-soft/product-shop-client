@@ -8,8 +8,11 @@ import { MenuLink } from '@/components/MenuLink/MenuLink';
 import { useRef, useState } from 'react';
 import useScrollWindow from '../../../hooks/use-scroll-window';
 import LinkLongLogo from '../../../components/LinkLongLogo/LinkLongLogo';
+import OrderListButton from '@/components/OrderListButton/OrderListButton';
+import useResizeWindow from '@/hooks/use-resize-window';
 
 const RootHeader: React.FC<ChildrenProps> = () => {
+  const { isMobile } = useResizeWindow();
   const location = useLocation();
   const isMainPage = location.pathname === '/';
   const [headerFixed, setHeaderFixed] = useState('');
@@ -23,11 +26,15 @@ const RootHeader: React.FC<ChildrenProps> = () => {
       {headerFixed && <div className={styles.header} style={{ height: ref.current?.clientHeight }}></div>}
       <div ref={ref} className={`${styles.header} ${headerFixed}`}>
         <div className={styles.header__container}>
-          <div className={styles.header__left}>{isMainPage && <MenuButton />}</div>
+          <div className={styles.header__left}>
+            {isMainPage && <MenuButton />}
+            {isMobile && <OrderListButton />}
+          </div>
           <div className={styles.header__center}>
             <LinkLongLogo />
           </div>
           <div className={styles.header__right}>
+            {!isMobile && <OrderListButton />}
             <UserButton />
             <CartButton />
           </div>
