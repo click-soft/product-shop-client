@@ -19,6 +19,10 @@ const cancelOrderMutate = async (args: Args): Promise<CheckoutResult> => {
     },
   });
 
+  if (response.errors) {
+    throw response.errors;
+  }
+
   return response.data?.cancelOrder;
 };
 

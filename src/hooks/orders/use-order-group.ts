@@ -41,7 +41,10 @@ const useOrderGroup = (payment: Payment) => {
     setLoading(true);
 
     try {
-      await cancelOrderMutate({ payment, cancelReason: '미선택' });
+      const result = await cancelOrderMutate({ payment, cancelReason: '미선택' });
+      if (!result.success) {
+        throw new Error(result.errorMessage);
+      }
       callback({ state: 'success', message: '취소되었습니다.' });
     } catch (error: any) {
       callback({ state: 'error', message: error.message });
