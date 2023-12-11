@@ -50,6 +50,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:prod": "tsc && vite build && cp .env ./dist/.env",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "serve": "vite preview",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org efdb1838adbc --project javascript-react ./dist && sentry-cli sourcemaps upload --org efdb1838adbc --project javascript-react ./dist"
