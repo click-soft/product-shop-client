@@ -1,14 +1,20 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './Login.module.scss';
 import { Link } from 'react-router-dom';
 import TextInput from '../../ui/TextInput/TextInput';
 import useLogin from '../../hooks/login/use-login';
 import CircleLoading from '../Loading/CircleLoading';
 import classNames from 'classnames';
+import useProfileStore from '@/store/user-profile.store';
 
 function Login() {
   const { userId, password, loading, login, handleUserIdChange, handlePasswordChange } = useLogin();
   const passwordRef = useRef<HTMLInputElement>(null);
+  const { clear } = useProfileStore();
+
+  useEffect(() => {
+    clear();
+  }, []);
 
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
